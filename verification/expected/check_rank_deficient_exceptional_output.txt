@@ -1,0 +1,8 @@
+quadratic-index normalization.............. passed
+G2: max dim(V)=0; factor multisets=0; dimension matches=0; complex=0; safe=0; integral indices=0
+F4: max dim(V)=23; factor multisets=5; dimension matches=0; complex=0; safe=0; integral indices=0
+E6: max dim(V)=36; factor multisets=28; dimension matches=19; complex=12; safe=10; integral indices=0
+E7: max dim(V)=65; factor multisets=48; dimension matches=15; complex=2; safe=2; integral indices=0
+E8: max dim(V)=121; factor multisets=118; dimension matches=30; complex=20; safe=14; integral indices=0
+rank-deficient exceptional safe candidates=0
+all exceptional rank-deficient sieve checks passed

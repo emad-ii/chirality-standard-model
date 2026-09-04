@@ -1,0 +1,15 @@
+E6 extremal-incidence verification passed
+roots=72, |W|=51,840, subsystem orbits=(27, 36, 40)
+triples=38,880
+pairwise maximizers=4,320, stabilizer=12
+common maximizers=2,160, stabilizer=24
+joint-profile orbits=6
+profile=(16, 10, 6), common roots=2, type=A1: 12,960
+profile=(16, 10, 6), common roots=6, type=A1+A1+A1: 3,240
+profile=(16, 10, 14), common roots=6, type=A1+A1+A1: 3,240
+profile=(16, 10, 14), common roots=10, type=A2+A1+A1: 2,160
+profile=(20, 10, 6), common roots=4, type=A1+A1: 12,960
+profile=(20, 10, 14), common roots=8, type=A2+A1: 4,320
+A2 occurs exactly in the pairwise- and common-maximal cells
+distinct inclusions=2,160; labelled realizations=8,640
+cubic-surface data: 27 lines, 36 double-sixes, 45 tritangents, 40 triads

@@ -1,0 +1,1 @@
+Independent R8 verification passed: 72 27 40 4320 2160 color cells=2

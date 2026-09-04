@@ -1,0 +1,303 @@
+name: Release CI
+
+on:
+  push:
+    branches:
+      - main
+      - "release-v*"
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release-ref-integrity:
+    name: Exact three-way release identity
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      canonical_commit: ${{ steps.compare.outputs.canonical_commit }}
+    steps:
+      - name: Check out triggering commit
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          fetch-depth: 1
+          ref: ${{ github.sha }}
+      - name: Compare main, annotated tag, and release launcher
+        id: compare
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_REF: ${{ github.ref }}
+          EVENT_SHA: ${{ github.sha }}
+          MAIN_BRANCH: main
+          RELEASE_TAG: v0.1.0
+          RELEASE_BRANCH: release-v0.1.0
+        run: |
+          set -euo pipefail
+
+          if [[ "$EVENT_NAME" != push && "$EVENT_NAME" != workflow_dispatch ]]; then
+            echo "::error::Unsupported release-evidence event: $EVENT_NAME"
+            exit 1
+          fi
+
+          main_ref="refs/heads/${MAIN_BRANCH}"
+          tag_ref="refs/tags/${RELEASE_TAG}"
+          launcher_ref="refs/heads/${RELEASE_BRANCH}"
+
+          case "$EVENT_REF" in
+            "$main_ref"|"$tag_ref"|"$launcher_ref")
+              ;;
+            *)
+              echo "::error::Release evidence must be triggered from main, v0.1.0, or release-v0.1.0"
+              exit 1
+              ;;
+          esac
+
+          git fetch \
+            --no-tags \
+            --no-recurse-submodules \
+            --depth=1 \
+            origin \
+            "+${main_ref}:refs/release-integrity/main" \
+            "+${tag_ref}:refs/release-integrity/tag" \
+            "+${launcher_ref}:refs/release-integrity/launcher"
+
+          tag_type="$(git cat-file -t refs/release-integrity/tag)"
+          if [[ "$tag_type" != tag ]]; then
+            echo "::error::v0.1.0 must be an annotated tag; found object type: $tag_type"
+            exit 1
+          fi
+
+          head_commit="$(git rev-parse --verify --end-of-options 'HEAD^{commit}')"
+          event_commit="$(git rev-parse --verify --end-of-options "${EVENT_SHA}^{commit}")"
+          main_commit="$(git rev-parse --verify --end-of-options 'refs/release-integrity/main^{commit}')"
+          tag_commit="$(git rev-parse --verify --end-of-options 'refs/release-integrity/tag^{commit}')"
+          launcher_commit="$(git rev-parse --verify --end-of-options 'refs/release-integrity/launcher^{commit}')"
+
+          if [[ "$head_commit" != "$event_commit" ]]; then
+            echo "::error::Checked-out HEAD does not match the triggering event SHA"
+            exit 1
+          fi
+
+          if [[ "$head_commit" != "$tag_commit" ]]; then
+            echo "::error::Triggering ref and canonical tag resolve to different commits"
+            echo "trigger: $head_commit"
+            echo "tag:     $tag_commit"
+            exit 1
+          fi
+
+          if [[ "$main_commit" != "$tag_commit" || "$main_commit" != "$launcher_commit" ]]; then
+            echo "::error::main, v0.1.0, and release-v0.1.0 do not resolve to one commit"
+            echo "main:     $main_commit"
+            echo "tag:      $tag_commit"
+            echo "launcher: $launcher_commit"
+            exit 1
+          fi
+
+          if [[ "$event_commit" != "$main_commit" ]]; then
+            echo "::error::Triggering run is not executing the canonical release commit"
+            echo "event:     $event_commit"
+            echo "canonical: $main_commit"
+            exit 1
+          fi
+
+          printf 'canonical_commit=%s\n' "$main_commit" >> "$GITHUB_OUTPUT"
+          echo "Exact release identity verified: $main_commit"
+
+  python-verification:
+    name: Python verification
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.12"
+      - name: Stress-test the release-workflow contract
+        run: |
+          python verification/release/check_release_workflow.py --self-test
+          PYTHONOPTIMIZE=1 python verification/release/check_release_workflow.py --self-test
+      - name: Run every exact verifier
+        run: python verification/python/run_all.py --jobs 2
+      - name: Repeat with Python optimizations enabled
+        env:
+          PYTHONOPTIMIZE: "1"
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python verification/python/run_all.py --jobs 2
+
+  notebook:
+    name: Executable notebook
+    needs: [release-ref-integrity]
+    if: >-
+      always() &&
+      (github.event_name == 'pull_request' ||
+       needs.release-ref-integrity.result == 'success')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-notebook.txt
+      - name: Install notebook runtime
+        run: python -m pip install -r requirements-notebook.txt
+      - name: Stress-test notebook provenance guards
+        run: |
+          python notebooks/check_notebook_freshness.py --self-test
+          PYTHONOPTIMIZE=1 python notebooks/check_notebook_freshness.py --self-test
+      - name: Check canonical notebook source matches its builder
+        run: >-
+          python notebooks/check_notebook_freshness.py
+          --source-only
+          --notebook Cubic_Anomaly_Master_Verification.ipynb
+      - name: Execute notebook in a clean kernel
+        env:
+          EXPECTED_COMMIT_SHA: ${{ github.sha }}
+          EXPECTED_CANONICAL_TAG_COMMIT: ${{ needs.release-ref-integrity.outputs.canonical_commit }}
+        run: |
+          mkdir -p build/notebook
+          python -m jupyter nbconvert \
+            --execute --to notebook \
+            --output Cubic_Anomaly_Master_Verification.executed \
+            --output-dir build/notebook \
+            --ExecutePreprocessor.timeout=1200 \
+            Cubic_Anomaly_Master_Verification.ipynb
+      - name: Fully validate executed notebook
+        env:
+          EXPECTED_COMMIT_SHA: ${{ github.sha }}
+          EXPECTED_CANONICAL_TAG_COMMIT: ${{ needs.release-ref-integrity.outputs.canonical_commit }}
+        run: |
+          args=(
+            --notebook build/notebook/Cubic_Anomaly_Master_Verification.executed.ipynb
+            --require-verified-provenance
+            --expected-commit-sha "$EXPECTED_COMMIT_SHA"
+          )
+          if [[ "$GITHUB_EVENT_NAME" != pull_request ]]; then
+            test -n "$EXPECTED_CANONICAL_TAG_COMMIT"
+            args+=(
+              --require-canonical-release-provenance
+              --expected-canonical-release-sha "$EXPECTED_CANONICAL_TAG_COMMIT"
+            )
+          fi
+          python notebooks/check_notebook_freshness.py "${args[@]}"
+      - name: Upload executed notebook
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: executed-verification-notebook
+          if-no-files-found: warn
+          path: build/notebook/Cubic_Anomaly_Master_Verification.executed.ipynb
+
+  lean:
+    name: Lean finite checker
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.12"
+      - name: Check JSON-to-Lean freshness
+        run: python formal/scripts/check_generated_data.py
+      - name: Install checksum-pinned Elan
+        env:
+          ELAN_VERSION: "4.2.4"
+          ELAN_SHA256: "42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63"
+        run: |
+          archive="$RUNNER_TEMP/elan.tar.gz"
+          install_dir="$RUNNER_TEMP/elan-install"
+          curl -fsSL \
+            "https://github.com/leanprover/elan/releases/download/v${ELAN_VERSION}/elan-x86_64-unknown-linux-gnu.tar.gz" \
+            -o "$archive"
+          echo "${ELAN_SHA256}  $archive" | sha256sum -c -
+          mkdir -p "$install_dir"
+          tar -xzf "$archive" -C "$install_dir"
+          "$install_dir/elan-init" -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch the source-keyed Mathlib build cache
+        run: lake exe cache get
+      - name: Build the version/source-pinned Lean and Mathlib project
+        run: lake build
+      - name: Check proof escapes and axiom receipt
+        run: python formal/scripts/check_formal_hygiene.py
+
+  paper:
+    name: Paper build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - name: Install TeX and PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            latexmk \
+            lmodern \
+            poppler-utils \
+            texlive-fonts-recommended \
+            texlive-latex-extra \
+            texlive-pictures
+      - name: Compile paper
+        run: make paper-release-check
+      - name: Inspect resulting PDF
+        run: |
+          mkdir -p build
+          pdfinfo paper/build/paper.pdf | tee build/pdfinfo.txt
+          test "$(pdfinfo paper/build/paper.pdf | awk '/^Pages:/ {print $2}')" -eq 35
+          pdftotext paper/build/paper.pdf build/paper.txt
+          test -s build/paper.txt
+      - name: Upload rebuilt paper
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: rebuilt-paper
+          if-no-files-found: warn
+          path: |
+            paper/build/paper.pdf
+            paper/build/paper.log
+            build/paper-repeat/paper.pdf
+            build/paper-repeat/paper.log
+            build/pdfinfo.txt
+
+  release-gate:
+    name: Release gate
+    if: always()
+    needs: [release-ref-integrity, python-verification, notebook, lean, paper]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Require every verification lane
+        shell: bash
+        env:
+          REF_RESULT: ${{ needs.release-ref-integrity.result }}
+          PYTHON_RESULT: ${{ needs.python-verification.result }}
+          NOTEBOOK_RESULT: ${{ needs.notebook.result }}
+          LEAN_RESULT: ${{ needs.lean.result }}
+          PAPER_RESULT: ${{ needs.paper.result }}
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_EVENT_NAME" == pull_request ]]; then
+            test "$REF_RESULT" = skipped
+          else
+            test "$REF_RESULT" = success
+          fi
+          test "$PYTHON_RESULT" = success
+          test "$NOTEBOOK_RESULT" = success
+          test "$LEAN_RESULT" = success
+          test "$PAPER_RESULT" = success

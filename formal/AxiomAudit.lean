@@ -1,0 +1,20 @@
+import CubicAnomaly
+
+#print axioms CubicAnomaly.Classification.Exceptional.exceptional_toral_census
+#print axioms CubicAnomaly.Classification.Exceptional.exceptional_order_two_odd_graphs_connected
+#print axioms CubicAnomaly.Classification.Exceptional.cartan_cubic_selector
+#print axioms CubicAnomaly.E6.finite_certificate_valid
+#print axioms CubicAnomaly.E6.e6_root_table_valid
+#print axioms CubicAnomaly.E6.subsystem_orbit_types_and_sizes_valid
+#print axioms CubicAnomaly.E6.subsystem_orbit_sizes_valid
+#print axioms CubicAnomaly.E6.triple_space_has_38880_elements
+#print axioms CubicAnomaly.E6.triple_space_has_38880_distinct_elements
+#print axioms CubicAnomaly.E6.six_cell_distribution_valid
+#print axioms CubicAnomaly.E6.six_weyl_orbits_partition_triple_space
+#print axioms CubicAnomaly.E6.six_cell_orbits_classified_valid
+#print axioms CubicAnomaly.E6.extrema_counts_and_bounds_valid
+#print axioms CubicAnomaly.E6.a2_occurs_exactly_on_two_extremal_cells
+#print axioms CubicAnomaly.E6.pairwise_common_multiplicity_valid
+#print axioms CubicAnomaly.E6.common_maximal_multiplicity_valid
+#print axioms CubicAnomaly.E6.context_counts_valid
+#print axioms CubicAnomaly.E6.labelled_containments_valid

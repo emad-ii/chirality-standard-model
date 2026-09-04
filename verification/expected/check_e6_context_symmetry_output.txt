@@ -1,0 +1,5 @@
+contexts in one Weyl orbit 1080
+context stabilizer order 48
+factor-preserving kernel 24
+factor-exchanging coset 24
+common maximum fixed; pairwise maxima exchanged
