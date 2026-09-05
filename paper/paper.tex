@@ -65,7 +65,7 @@
 \title{From Chirality to the Standard Model\\[0.45em]
 \large A Uniqueness and No-Go Theorem for Compact Homogeneous Chiral Matter}
 \author{Emad Mostaque}
-\date{Version 2 \(\cdot\) 5 September 2026\\[0.5em]
+\date{5 September 2026\\[0.5em]
 \small\href{https://github.com/emad-ii/chirality-standard-model}
 {\nolinkurl{github.com/emad-ii/chirality-standard-model}}}
 
@@ -232,8 +232,7 @@ Finally, restriction gives the complete matter decomposition. Each
 \(\mathbf{27}\) contains one minimal chiral Standard Model family, a
 vectorlike pair, and two singlets. The multiplicity factor supplies three
 copies. Section~5 keeps this full representation separate from its net
-chiral class. We also classify the kernels of invariant symmetric forms
-on this full module. Section~5 states the interpretation needed to identify
+chiral class. Section~5 states the interpretation needed to identify
 the coefficient three with the complete physical family multiplicity.
 
 \Needspace{6\baselineskip}
@@ -241,7 +240,7 @@ Section~2 defines the two invariant conditions and states the unique-pair
 theorem.  Section~3 proves the exhaustive homogeneous census.  Section~4
 classifies the finite \(E_6\) triple space and reconstructs the faithful
 subgroup chains.  Section~5 restricts the selected module and computes its
-chiral index, invariant mass kernels, and anomalies. The finite algorithms and their completeness
+chiral index and anomalies. The finite algorithms and their completeness
 arguments are explained where the proofs use them. The source, certificates,
 and verification instructions are identified in the computational-material
 statement at the end of the paper.
@@ -2164,83 +2163,6 @@ summand is vectorlike or a singlet. Under the complete-matter interpretation
 multiplicity.
 \end{corollary}
 
-\subsection{Invariant mass forms and their kernels}
-
-The chiral class records the imbalance between dual irreducible
-representations. The same imbalance constrains invariant mass forms on the
-full module. In two-component Weyl notation the internal coefficient of a
-quadratic fermion mass term is symmetric, because the antisymmetric spinor
-contraction is combined with fermion anticommutation \cite{DreinerHaberMartin}.
-
-\Needspace{22\baselineskip}
-\begin{lemma}[Invariant symmetric forms and their kernels]
-\label{lem:mass-kernels}
-Let \(K=\Ksm\), let \(W=V|_K\) have the orientation of \textup{(9)}, and put
-\[
- R_D=(\mathbf3,\mathbf1)_{-1/3},\qquad
- R_L=(\mathbf1,\mathbf2)_{1/2},\qquad
- \mathcal M_K(W)=(\operatorname{Sym}^2W^*)^K.
-\]
-Regard a form \(m\) as the equivariant map \(W\to W^*\) given by
-\(x\mapsto m(x,\cdot)\). After choosing bases in the multiplicity spaces,
-\[
- \mathcal M_K(W)\cong
- \operatorname{Mat}_{3\times6}(\mathbb C)
- \oplus\operatorname{Mat}_{3\times6}(\mathbb C)
- \oplus\operatorname{Sym}_6(\mathbb C),
-\]
-where \(\operatorname{Sym}_6(\mathbb C)\) denotes the symmetric \(6\times6\)
-matrices. If these three matrices have ranks \(r_D,r_L,r_0\), then
-\[
-\begin{aligned}
- \ker m\cong{}&3\mathcal F_{\mathrm{SM}}
- \oplus(3-r_D)(R_D\oplus R_D^*)\\
- &\oplus(3-r_L)(R_L\oplus R_L^*)
- \oplus(6-r_0)\mathbf1
-\end{aligned}
-\]
-as \(K\)-modules. Every triple with \(0\le r_D,r_L\le3\) and
-\(0\le r_0\le6\) occurs. Consequently
-\[
- \chi(\ker m)=3\chi(\mathcal F_{\mathrm{SM}}),\qquad
- \dim_{\mathbb C}\ker m=81-6r_D-4r_L-r_0\ge45.
-\]
-Equality holds precisely at \((r_D,r_L,r_0)=(3,3,6)\), when
-\(\ker m\cong3\mathcal F_{\mathrm{SM}}\). This maximal-rank locus is
-nonempty, Zariski-open and dense in \(\mathcal M_K(W)\).
-\end{lemma}
-\begin{proof}
-Equation (9) contains three copies of \(R_D\) and six of \(R_D^*\),
-three copies of \(R_L\) and six of \(R_L^*\), and six trivial modules.
-The three copies each of \(Q,u^c,e^c\) have no dual partners in \(W\).
-Schur's lemma therefore permits only the two dual-pair blocks and a
-symmetric form on the trivial isotypic component. The two charged
-doublet representations are inequivalent to their duals under \(K\);
-no self-dual doublet block is present.
-
-A dual-pair block has multiplicity-space matrix
-\[
- \begin{pmatrix}0&M\\M^T&0\end{pmatrix},
- \qquad M\in\operatorname{Mat}_{3\times6}(\mathbb C).
-\]
-If \(M\) has rank \(r\), the kernel multiplicities are \(3-r\) and \(6-r\).
-A singlet matrix of rank \(r_0\) leaves \(6-r_0\) trivial summands.
-Each dual-pair block leaves at least three copies of the dual representation.
-Together with \(Q,u^c,e^c\), these give \(3\mathcal F_{\mathrm{SM}}\);
-any further kernel summands occur in dual pairs or are trivial.
-Since \(\dim R_D=3\) and \(\dim R_L=2\), the dimension formula follows.
-
-Rectangular diagonal matrices and diagonal symmetric matrices realize
-every stated rank triple. The maximal-rank conditions are the nonvanishing
-of appropriate minors. They define a nonempty open subset of the
-57-dimensional complex vector space \(\mathcal M_K(W)\), hence a dense one.
-\end{proof}
-
-The kernels are determined up to \(K\)-module isomorphism, not as preferred
-subspaces of \(W\). These are forms preserving \(G_{\mathrm{SM}}\).
-For the full homogeneous group, \(V\not\cong V^*\) instead gives
-\((\operatorname{Sym}^2V^*)^H=0\). The lemma classifies the allowed forms
-and their kernels; it does not choose a form or a mass scale.
 
 \subsection{Local anomalies and the \texorpdfstring{\(SU(3)_M^3\)}{SU(3)M cubed} background anomaly}
 
@@ -2326,36 +2248,34 @@ forms and hypercharge embedding. The full branching \textup{(9)} and chiral
 class \textup{(10)} distinguish three minimal families from the additional
 vectorlike pairs and singlets. Interpretation \textup{(M)} identifies the
 chiral coefficient with the complete physical family multiplicity.
-Lemma~\ref{lem:mass-kernels} further identifies three minimal families as
-the minimum-dimensional kernel of a Standard Model-invariant symmetric form.
 
-The homogeneous conditions specify how matter is represented, and the
-intermediate-group dimension criterion specifies the subgroup construction.
-Within these domains the classification is exhaustive. The exceptional pair
-is the only compact homogeneous realization with irreducible complex-type
-isotropy and a nonzero mixed-cubic radical.
+Ordinary matter is built from electrons and the lightest quarks. Their
+heavier relatives carry the same gauge charges, repeating the family
+pattern three times. In the setting studied here, that repetition and
+the cubic-anomaly-safe symmetry come from one embedding. The question
+that began with chirality returns to the particles themselves: why does
+matter have this particular structure?
 
 \section*{Computational material}
 
-The exact programs and certificates are distributed with the version~2
-computational companion \cite{ComputationalCompanion}. The finite algorithms
-and completeness arguments used by the proof are stated in Sections~3--4. Additional output
-tables, the minuscule-character verification, and execution instructions
-belong to the companion documentation.
+The repository linked on the title page contains the exact programs,
+certificates and master verification notebook \cite{ComputationalCompanion}.
+The finite algorithms and completeness arguments used by the proof are
+stated in Sections~3--4; the notebook supplies the reproducible calculations
+and output tables.
 
 The repository also contains Lean checks of the finite exceptional grading
 calculation, the Cartan cubic test, and the stated \(E_6\) incidence
 propositions. These checks use \texttt{native\_decide} with the compiler
-trust described in the repository. They do not formalize the general
-compact-Lie reductions, the classical all-rank argument, or the physical
-interpretation. Lemma~\ref{lem:mass-kernels} is proved by Schur's lemma and matrix ranks;
-an exact rank-stratum check is included in the companion. The manuscript
-proofs and finite checks have explicit, complementary roles.
+trust described in the repository. The manuscript supplies the compact-Lie
+reductions, the classical all-rank argument and the representation-theoretic
+proofs around these finite checks.
 
 \par\medskip
 \noindent\textbf{AI assistance disclosure.}
 This paper was created with the aid of the Intelligent Internet Zenith
-system. The paper was checked with GPT 5.6 Pro and Fable 5.1 Max.
+system. The paper was checked with GPT-6 Astra Pro and Fable 5.1 Max.
+The repository and computational verification were generated by GPT-6 Astra.
 
 \clearpage
 \begin{multicols}{2}
@@ -2493,16 +2413,11 @@ J.~Herms and M.~Ruhdorfer,
 \emph{How common are grand unified theories?},
 Phys. Rev. D \textbf{112} (2025), 115041;
 arXiv:2408.11089 [hep-ph].
-\bibitem{DreinerHaberMartin}
-H.~K. Dreiner, H.~E. Haber and S.~P. Martin,
-\emph{Two-component spinor techniques and Feynman rules for quantum field
-theory and supersymmetry},
-Phys. Rept. \textbf{494} (2010), 1--196.
 \bibitem{ComputationalCompanion}
 E.~Mostaque,
 \emph{Computational companion to From Chirality to the Standard Model},
 source code and exact certificates (2026).
-Release \texttt{v0.2.0}. The repository is linked on the title page.
+\url{https://github.com/emad-ii/chirality-standard-model}.
 \end{thebibliography}
 \end{multicols}
 

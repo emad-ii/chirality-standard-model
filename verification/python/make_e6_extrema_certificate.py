@@ -141,8 +141,6 @@ def main(output: Path | None = None):
 
     file_names = [
         "verification/python/run_all.py",
-        "verification/python/check_invariant_mass_kernels.py",
-        "verification/expected/check_invariant_mass_kernels_output.txt",
         "verification/python/verification_checks.py",
         "verification/python/verify_e6_extrema.py",
         "verification/python/verify_e6_extrema_r8_fast.py",

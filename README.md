@@ -44,7 +44,7 @@ This is a **uniqueness and no-go theorem over the stated domain**. The domain fi
 
 1. **Classify the homogeneous pairs.** Structural reduction and exhaustive full-rank and rank-deficient exclusions leave the displayed exceptional pair.
 2. **Resolve its subgroup geometry.** Inside $E_6$, the complete space of $27\cdot36\cdot40=38{,}880$ maximal-subsystem triples has six Weyl orbits. The two extremal cells and the paper's intermediate-group dimension criterion select the faithful Standard Model and left–right chains.
-3. **Read off the chiral content.** Restricting $\mathbf{27}\boxtimes\mathbf{3}$ gives chiral index $\pm3$, alongside vectorlike pairs and singlets. The invariant mass-form theorem identifies three minimal families as the minimum-dimensional kernel, up to isomorphism. The paper's complete-matter interpretation **(M)** identifies the index with the physical family count.
+3. **Read off the chiral content.** Restricting $\mathbf{27}\boxtimes\mathbf{3}$ gives chiral index $\pm3$, alongside vectorlike pairs and singlets. The paper's complete-matter interpretation **(M)** identifies the index with the physical family count.
 
 The [paper](paper/paper.pdf) gives the proofs. The [master notebook](Cubic_Anomaly_Master_Verification.ipynb) walks through the exact calculations and can run the Lean checks.
 
@@ -58,7 +58,7 @@ The optional Lean section has a **Run Lean** switch and a separate installation 
 
 | Paper | Exact computation | Lean |
 | --- | --- | --- |
-| Structural reductions, completeness arguments, invariant theory, global groups, branching and mass-kernel proof | Independent root realizations, complete finite censuses, subgroup kernels and all 112 mass-form rank strata | Exceptional root-data census, Cartan cubic selector and bounded $E_6$ incidence theorems |
+| Structural reductions, completeness arguments, invariant theory, global groups and branching | Independent root realizations, complete finite censuses, subgroup kernels and chiral dimensions | Exceptional root-data census, Cartan cubic selector and bounded $E_6$ incidence theorems |
 
 See [verification notes](verification/README.md) for individual commands and the precise Lean scope and trust model.
 
@@ -79,6 +79,6 @@ Concrete objections with exact locations are useful. Model agreement is suppleme
 
 ---
 
-**Emad Mostaque · Version 2 · September 2026**
+**Emad Mostaque · September 2026**
 
 [Cite the work](CITATION.cff) · [Review permissions](LICENSE.md)

@@ -36,7 +36,6 @@ OUTPUT_CHECKS = (
     ("context symmetry", "check_e6_context_symmetry.py", "check_e6_context_symmetry_output.txt"),
     ("stabilizers and kernels", "check_proof_and_kernels.py", "check_proof_and_kernels_output.txt"),
     ("pair-first d_chi table", "check_e6_pair_orderings.py", "check_e6_pair_orderings_output.txt"),
-    ("invariant mass kernels", "check_invariant_mass_kernels.py", "check_invariant_mass_kernels_output.txt"),
     ("closed-subsystem census", "check_closed_subsystems.py", "check_closed_subsystems_output.txt"),
     ("independent R8 census", "check_closed_subsystems_r8.py", "check_closed_subsystems_r8_output.txt"),
     ("secondary order-three audit", "check_order_three_gradings.py", "check_order_three_gradings_output.txt"),

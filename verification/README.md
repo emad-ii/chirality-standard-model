@@ -10,7 +10,7 @@ From the repository root, with Python 3.10 or later:
 python verification/python/run_all.py --jobs 2
 ```
 
-The runner executes every mathematical verifier, compares 13 recorded outputs, independently regenerates both JSON certificates, checks the E6 certificate digest and cross-checks certificate arithmetic and the Lean data binding: 17 checks in total. They also work with Python optimization enabled:
+The runner executes every mathematical verifier, compares 12 recorded outputs, independently regenerates both JSON certificates, checks the E6 certificate digest and cross-checks certificate arithmetic and the Lean data binding: 16 checks in total. They also work with Python optimization enabled:
 
 ```bash
 python -O verification/python/run_all.py --jobs 2
@@ -22,7 +22,6 @@ All mathematical programs use the Python standard library. They cover:
 - Two complete closed-subsystem censuses: 5,079 closed subsystems, of which 103 are maximal proper subsystems.
 - Exceptional toral gradings, the Cartan cubic selector and the rank-deficient exceptional and classical checks.
 - Context symmetry, stabilizers, central kernels, subgroup orderings and chiral dimensions.
-- All 112 invariant mass-form rank strata on the restricted 81-dimensional module, including the 45-dimensional minimum kernel.
 
 The [programs](python), [recorded outputs](expected) and [certificates](certificates) can also be inspected separately. Bounded classical arithmetic checks accompany the manuscript's all-rank proof; a finite sample is not substituted for that proof.
 
@@ -71,7 +70,7 @@ The first two are foundational Lean axioms; the last two connect compiled evalua
 
 ### Manuscript proofs
 
-The paper supplies the compact-Lie structural reductions, completeness bridges, invariant-theory argument from the Cartan cubic to the ideal-valued radical, classical all-rank argument, global group integrations, branching, chiral index and invariant mass-kernel proof. Their finite computational parts have the support described above. The complete-matter interpretation (M) is the stated step from chiral index to physical family count.
+The paper supplies the compact-Lie structural reductions, completeness bridges, invariant-theory argument from the Cartan cubic to the ideal-valued radical, classical all-rank argument, global group integrations, branching and chiral index. Their finite computational parts have the support described above. The complete-matter interpretation (M) is the stated step from chiral index to physical family count.
 
 ## Local notebook
 
