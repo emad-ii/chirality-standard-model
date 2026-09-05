@@ -43,7 +43,7 @@ This is a **uniqueness and no-go theorem over the stated domain**. The domain fi
 ## Follow the argument
 
 1. **Classify the homogeneous pairs.** Structural reduction and exhaustive full-rank and rank-deficient exclusions leave the displayed exceptional pair.
-2. **Resolve its subgroup geometry.** Inside $E_6$, the complete space of $27\cdot36\cdot40=38{,}880$ maximal-subsystem triples has six Weyl orbits. The two extremal cells and the paper's intermediate-group dimension criterion select the faithful Standard Model and left–right chains.
+2. **Resolve its subgroup geometry.** Inside $E_6$, the complete space of $27\cdot36\cdot40=38{,}880$ maximal-subsystem triples has six Weyl orbits. In every triple, one pairwise derived group has strictly greatest dimension. Using that group in the pair-first construction gives the faithful Standard Model and left-right chains on the two extremal orbits. Its chiral dimensions, 15 or 16, follow from restriction.
 3. **Read off the chiral content.** Restricting $\mathbf{27}\boxtimes\mathbf{3}$ gives chiral index $\pm3$, alongside vectorlike pairs and singlets. The paper's complete-matter interpretation **(M)** identifies the index with the physical family count.
 
 The [paper](paper/paper.pdf) gives the proofs. The [master notebook](Cubic_Anomaly_Master_Verification.ipynb) walks through the exact calculations and can run the Lean checks.
@@ -54,11 +54,11 @@ Open it in **Colab** and choose **Runtime → Run all**, or open it in Jupyter f
 
 While the repository is private, download its ZIP from **Code → Download ZIP**, upload the notebook to Colab, and upload the ZIP when the setup cell asks. The same route works for collaborators without putting a GitHub token in the notebook. The Colab button also works when your account can open the private notebook.
 
-The optional Lean section has a **Run Lean** switch and a separate installation switch. Lean checks the exceptional toral census, the Cartan cubic selector and the finite $E_6$ incidence claims. It uses the pinned Lean 4 / Mathlib versions and audits all 18 exported theorems.
+The optional Lean section has a **Run Lean** switch and a separate installation switch. Lean checks the exceptional toral census, the Cartan cubic selector, the finite $E_6$ incidence claims and the intrinsic pair ordering. It uses the pinned Lean 4 / Mathlib versions and audits all 25 exported theorems.
 
 | Paper | Exact computation | Lean |
 | --- | --- | --- |
-| Structural reductions, completeness arguments, invariant theory, global groups and branching | Independent root realizations, complete finite censuses, subgroup kernels and chiral dimensions | Exceptional root-data census, Cartan cubic selector and bounded $E_6$ incidence theorems |
+| Structural reductions, completeness arguments, invariant theory, global groups and branching | Independent root realizations, complete finite censuses, subgroup kernels and chiral dimensions | Exceptional root-data census, Cartan cubic selector, finite $E_6$ incidence and rank-plus-root-count ordering |
 
 See [verification notes](verification/README.md) for individual commands and the precise Lean scope and trust model.
 

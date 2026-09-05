@@ -96,8 +96,9 @@ Inside this \(E_6\), a second classification concerns the \(38{,}880\)
 triples formed from its three Weyl orbits of maximal proper closed root
 subsystems. There are six orbits of triples. Exactly two have an irreducible
 \(A_2\) component in their common intersection; these are the two extremal
-orbits. With the stated intermediate-group dimension criterion and derived-subgroup
-construction, compatible representatives give
+orbits. In every triple, one pairwise derived group has strictly greatest
+dimension. Using that group in the pair-first construction, compatible
+representatives of the extremal orbits give
 \[
  G_{\mathrm{SM}}\subset G_{\mathrm{LR}}\subset G_{\mathrm{PS}}
  \subset\operatorname{Spin}(10)\subset E_6^{\mathrm{sc}},
@@ -216,14 +217,16 @@ triples with largest pairwise intersections and those with largest common
 intersection. Exactly these two extremal orbits have a common irreducible
 \(A_2\) component.
 
-We then compare the intermediate semisimple groups obtained from pairwise
-intersections. A stated criterion on the chiral dimension of the
-\(\mathbf{27}\), applied before further restriction, distinguishes the
-\(D_5\)--\((A_5+A_1)\) pairing. Intersecting that intermediate group with
+We then compare the dimensions of the intermediate semisimple groups
+obtained from pairwise intersections. For every triple, the
+\(D_5\)--\((A_5+A_1)\) pairing gives the unique largest group.
+This ordering uses only the root intersections. Intersecting that group with
 the third regular group gives the Standard Model and left--right groups on
 the two extremal orbits. Compatible representatives give their inclusion
 in a common Pati--Salam chain, with its finite central quotients and
-hypercharge embedding. The branchings and the familiar intersection
+hypercharge embedding. Restricting the \(\mathbf{27}\) to the selected
+intermediate group then gives chiral dimension \(15\) or \(16\).
+The branchings and the familiar intersection
 \(SU(5)\cap G_{\mathrm{PS}}\) are classical
 \cite{BaezHuerta,Krasnov,TodorovDuboisViolette}; the two exhaustive classifications establish which configurations realize
 these branchings.
@@ -269,8 +272,8 @@ chiral-index coefficient \(=\pm3\)};
 \draw[branch] (pair) -- (incidence);
 \draw[branch] (incidence) -- (sm);
 \end{tikzpicture}
-\caption{The two classification problems. The subgroup step uses the stated
-intermediate-group criterion and derived-subgroup construction. The last
+\caption{The two classification problems. The subgroup construction uses
+the two extremal orbits and the unique largest pairwise derived group. The last
 coefficient records net chirality; interpretation \textup{(M)} identifies it
 with the complete physical family multiplicity.}
 \label{fig:logical-architecture}
@@ -337,8 +340,11 @@ so \(T_X=-i\rho_V(X)\) is Hermitian. With
  &\Rad(c_V)&=\ker\Phi_V.
 \end{aligned}                                                       \tag{2}
 \]
-For a left-handed Weyl multiplet, \(c_V\) is the group factor in the
-local triangle anomaly \cite{AlvarezGaumeGinsparg}.
+For a left-handed Weyl multiplet in four spacetime dimensions, \(c_V\)
+is the group factor in the local triangle anomaly. Equivalently, it
+polarizes the cubic trace underlying the pure-gauge term
+\(\Tr_V(F^3)\) in the six-form anomaly polynomial
+\cite{AlvarezGaumeGinsparg}.
 The map \(\Phi_V:\h\to\operatorname{Sym}^2\h^*\) is equivariant, so
 its kernel is invariant under the adjoint action and is therefore an
 ideal. It is the largest ideal \(\mathfrak a\triangleleft\h\) for which
@@ -1192,7 +1198,9 @@ The group \(H_{PQ}\) is the semisimple intermediate group obtained by
 intersecting two regular groups and taking the derived subgroup. We then
 intersect this intermediate group with the third regular group and take the identity
 component. This is the \emph{pair-first construction}. The derived-subgroup
-step makes the choice of the first pair matter.
+step makes the choice of the first pair matter. We choose the pair whose
+intermediate group has greatest dimension; Proposition~\ref{prop:largest-intermediate}
+proves that this choice is unique for every triple.
 
 \begin{proposition}[Maximal closed subsystems of \(E_6\)]
 \label{prop:e6-subsystems}
@@ -1539,10 +1547,44 @@ The two extremal criteria are inequivalent. Pairwise maximality gives a
 common intersection of type \(A_2+A_1\) with eight roots, whereas maximizing
 the common intersection gives type \(A_2+A_1+A_1\) with ten roots.
 
-\subsection{Chiral dimensions and the six triple orbits}
+\subsection{The largest intermediate group and the six triple orbits}
 
 We now compare the three intermediate groups \(H_{DA}\), \(H_{D\Theta}\), and
-\(H_{A\Theta}\) by restricting the \(\mathbf{27}\) to each.
+\(H_{A\Theta}\). Their dimensions give an intrinsic ordering before any
+matter representation is restricted.
+
+\begin{proposition}[The unique largest intermediate group]
+\label{prop:largest-intermediate}
+For every \(s=(D,A,\Theta)\in\mathcal X\), the three pairwise derived
+groups have the following root types and real dimensions:
+\[
+\begin{array}{c|c|c}
+\text{intermediate group} & \text{root type} & \dim H_{PQ}\\
+\hline
+H_{DA} & A_4\ \text{or}\ A_3+A_1+A_1 & 24\ \text{or}\ 21\\
+H_{D\Theta} & A_2+A_1+A_1 & 14\\
+H_{A\Theta} & A_2+A_2+A_1\ \text{or}\ A_1^3 & 19\ \text{or}\ 9.
+\end{array}
+\]
+Thus \(H_{DA}\) is the unique group of greatest dimension. Its pair also
+has strictly more common roots than either of the other two pairs.
+The choice commutes with root-system automorphisms and, at group level,
+with conjugation of the entire configuration.
+\end{proposition}
+\begin{proof}
+The pairwise types in Theorem~\ref{thm:incidence} hold on all of
+\(\mathcal X\). A compact semisimple group with root system \(\Psi\)
+has real dimension \(\operatorname{rank}\Psi+|\Psi|\). Hence the
+three rows have dimensions \(20+4\) or \(16+5\), \(10+4\), and
+\(14+5\) or \(6+3\), respectively. The least possible value in the
+first row is \(21\), greater than every value in the other rows.
+Likewise, \(16>14\) and \(16>10\) prove the root-count assertion.
+Automorphisms preserve intersections and their ranks; conjugation
+preserves connected intersections, derived groups and dimension.
+\end{proof}
+
+Having selected the intermediate group by its dimension, we now compute
+its chiral content and compare it with the other two orderings.
 To measure the remaining chirality, cancel each irreducible representation
 against its dual and discard self-dual summands.
 
@@ -1554,32 +1596,22 @@ define its chiral dimension by
 \]
 where the sum runs over unordered pairs of non-self-dual irreducibles.
 Thus \(d_\chi\) counts the dimension of the non-self-dual remainder.
-We call the requirement \(d_\chi(\mathbf{27}|_{H_{PQ}})\in\{15,16\}\)
-the \emph{intermediate-group dimension criterion}. These values are the chiral dimensions
-of the familiar \(SU(5)\) and Pati--Salam one-family representations,
-respectively. On restriction to the Standard Model, the latter includes
-the neutral singlet \(\nu^c\), which no longer contributes to \(d_\chi\).
-The criterion is imposed at the semisimple intermediate group, before further restriction;
-Section~5 identifies the resulting representations and charges.
+We evaluate it at each semisimple intermediate group, before further
+restriction. Section~5 identifies the resulting representations and charges.
 
 \begin{proposition}[Chiral dimensions of the three intermediate groups]
 \label{prop:pair-ordering}
-For \(P,Q\in\{D_\lambda,A_{\bar\alpha},\Theta\}\), the restriction of the
+For distinct \(P,Q\in\{D_\lambda,A_{\bar\alpha},\Theta\}\), the restriction of the
 \(\mathbf{27}\) to \(H_{PQ}\) has
 \[
-\begin{array}{c|c|c}
-\text{intermediate group} & \text{root type} & d_\chi(\mathbf{27})\\
+\begin{array}{c|c}
+\text{intermediate group} & d_\chi(\mathbf{27})\\
 \hline
-H_{DA} & A_4\ \text{or}\ A_3+A_1+A_1 & 15\ \text{or}\ 16\\
-H_{D\Theta} & A_2+A_1+A_1 & 12\\
-H_{A\Theta} & A_2+A_2+A_1\ \text{or}\ A_1^3 & 27\ \text{or}\ 0.
+H_{DA} & 15\ \text{or}\ 16\\
+H_{D\Theta} & 12\\
+H_{A\Theta} & 27\ \text{or}\ 0.
 \end{array}
 \]
-The three orderings are therefore distinguished by their chiral content:
-\(H_{DA}\) gives \(15\) or \(16\), \(H_{D\Theta}\) gives \(12\), and
-\(H_{A\Theta}\) gives \(27\) or \(0\). The first two values in the
-\(H_{DA}\) row are the dimensions of the familiar one-family \(SU(5)\) and
-\(\operatorname{Spin}(10)\)/Pati--Salam chiral multiplets.
 \end{proposition}
 \begin{proof}
 For the two \(D\)-\(A\) strata, the familiar restrictions are
@@ -1637,14 +1669,23 @@ and none of the dual summands occurs, so \(d_\chi=27\). If
 \(d_\chi=0\).
 \end{proof}
 
-\begin{corollary}[Uniqueness of the selected intermediate group]
+\begin{corollary}[Chirality of the largest intermediate group]
 \label{cor:pair-first}
-Among the three pair-first constructions, \(H_{DA}\) is the unique intermediate group
-whose chiral dimension is \(15\) or \(16\), and hence the unique intermediate group
-satisfying the intermediate-group dimension criterion.
-Under interpretation \textup{(M)} of Section~5, this criterion selects the
-\(D\)-\(A\) intermediate group for the complete matter module.
+Among the three pair-first intermediate groups, the following are equivalent:
+the group has greatest dimension; its pair has the greatest number of
+common roots; and its restricted \(\mathbf{27}\) has chiral dimension
+\(15\) or \(16\). The unique group satisfying these conditions is
+\(H_{DA}\).
 \end{corollary}
+\begin{proof}
+Combine Propositions~\ref{prop:largest-intermediate} and~\ref{prop:pair-ordering}.
+\end{proof}
+
+The values \(15\) and \(16\) are therefore consequences of the structural
+ordering. They are the chiral dimensions of the familiar \(SU(5)\) and
+Pati--Salam one-family representations. On restriction to the Standard
+Model, the latter includes the neutral singlet \(\nu^c\), which no
+longer contributes to \(d_\chi\).
 
 The next result identifies the triples whose common root system contains an
 \(A_2\) component. Along the faithful chains below, this component is the
@@ -2242,9 +2283,12 @@ The familiar exceptional pair is characterized, not assumed.
 
 Inside its \(E_6\) factor, the second classification gives six Weyl orbits
 of maximal-subsystem triples, exactly two with a common \(A_2\) component.
-The stated intermediate-group dimension criterion and derived-subgroup construction
-give the Standard Model and left--right chains, with their faithful global
-forms and hypercharge embedding. The full branching \textup{(9)} and chiral
+In every triple, the unique largest pairwise derived group is obtained
+from the \(D_5\)--\((A_5+A_1)\) pair. Using that group in the
+pair-first construction gives the Standard Model and left--right chains
+on the two extremal orbits, with their faithful global forms and hypercharge
+embedding. The chiral dimensions \(15\) and \(16\) follow from restriction
+to the intermediate groups. The full branching \textup{(9)} and chiral
 class \textup{(10)} distinguish three minimal families from the additional
 vectorlike pairs and singlets. Interpretation \textup{(M)} identifies the
 chiral coefficient with the complete physical family multiplicity.

@@ -7,10 +7,10 @@ minuscule characters (including trivial characters).  This is not a general
 irreducible-character decomposition routine.
 """
 
-from collections import Counter
+from collections import Counter, namedtuple
 from collections.abc import Mapping
 from functools import lru_cache
-from itertools import combinations_with_replacement, product
+from itertools import combinations_with_replacement, permutations, product
 
 import verify_e6_extrema as e6
 
@@ -142,16 +142,69 @@ non-minuscule characters or for additional central torus factors.
     return _torus_remainder(restricted)
 
 
+ParentStructure = namedtuple(
+    "ParentStructure", "type root_count rank semisimple_dimension"
+)
+
+
+@lru_cache(maxsize=4096)
+def _pair_structure(roots):
+    roots = _root_set(roots)
+    simple, _ = _parent_data(roots)
+    rank = e6.rank(roots)  # Exact row reduction, not a type-to-rank lookup.
+    require(rank == len(simple), "parent rank disagrees with its simple roots")
+    sizes = sorted((len(c) for c in e6.components(roots)), reverse=True)
+    names = {2: "A1", 6: "A2", 12: "A3", 20: "A4"}
+    require(all(n in names for n in sizes), "unsupported pair parent")
+    kind = "+".join(names[n] for n in sizes)
+    require((kind, rank) in {
+        ("A4", 4), ("A3+A1+A1", 5), ("A2+A1+A1", 4),
+        ("A2+A2+A1", 5), ("A1+A1+A1", 3),
+    }, "unsupported pair parent")
+    return ParentStructure(kind, len(roots), rank, rank + len(roots))
+
+
+def unique_greatest(scores):
+    """Return the position of a strict maximum of three exact integer scores."""
+    require(isinstance(scores, (tuple, list)) and len(scores) == 3
+            and all(type(n) is int and n >= 0 for n in scores),
+            "expected three nonnegative integer scores")
+    require(scores.count(max(scores)) == 1, "greatest score is tied")
+    return scores.index(max(scores))
+
+
+def select_intrinsic_pair(parents):
+    """Select by both roots and rank+roots, without pair labels or d_chi.
+
+    Supply three frozensets of E6 roots, of the supported pair-parent types.
+    This checks closure and type, but does not certify a common source triple;
+    census() checks every actual triple. Ties or disagreement fail closed.
+    Dimensions are semisimple: no central torus dimension is included.
+    """
+    require(isinstance(parents, (tuple, list)) and len(parents) == 3
+            and all(isinstance(parent, frozenset) for parent in parents),
+            "expected three parent root frozensets")
+    # Validate before the cache: float/bool coordinates can hash like integers.
+    data = tuple(_pair_structure(_root_set(parent)) for parent in parents)
+    winner = unique_greatest(tuple(row.root_count for row in data))
+    require(winner == unique_greatest(tuple(row.semisimple_dimension for row in data)),
+            "root-count and semisimple-dimension selectors disagree")
+    return winner
+
+
+def _rejects(function, *args):
+    *inputs, reason = args
+    try:
+        function(*inputs)
+    except VerificationFailure as error:
+        require(reason in str(error), ("unexpected rejection", str(error)))
+    else:
+        require(False, ("accepted invalid input", function.__name__, reason))
+
+
 def self_test():
     """Silent adversarial checks, also run by the certificate's census call."""
-    def rejects(function, weights, roots, reason):
-        try:
-            function(weights, roots)
-        except VerificationFailure as error:
-            require(reason in str(error), ("unexpected rejection", str(error)))
-        else:
-            require(False, ("accepted invalid input", function.__name__, reason))
-
+    rejects = _rejects
     def symmetric_cube(weights):
         return Counter(
             tuple(sum(weight[i] for weight in triple) for i in range(e6.N))
@@ -170,6 +223,21 @@ def self_test():
     rejects(minuscule_restricted_d_chi, [e6.add(alpha, beta)], a2, "not minuscule")
 
     roots = _ambient_roots()
+    require(unique_greatest((16, 10, 14)) == 0
+            and unique_greatest((14, 21, 19)) == 1, "strict structural maxima")
+    for bad in ((), (1, 2), (1, 2, 3, 4), "123", {0: 1, 1: 2, 2: 3},
+                (True, 2, 3), (1.0, 2, 3), (-1, 2, 3)):
+        rejects(unique_greatest, bad, "three nonnegative integer scores")
+    for tied in ((20, 20, 10), (24, 14, 24), (0, 0, 0)):
+        rejects(unique_greatest, tied, "tied")
+    for bad in (None, (), (roots, roots), (roots, roots, set(roots))):
+        rejects(select_intrinsic_pair, bad, "three parent root frozensets")
+    for unsupported in (a2, roots, frozenset()):
+        rejects(select_intrinsic_pair, (unsupported,) * 3, "unsupported pair parent")
+    rejects(select_intrinsic_pair, (frozenset((alpha,)),) * 3,
+            "closed root subsystem")
+    rejects(select_intrinsic_pair, (frozenset(((0,) * e6.N,)),) * 3, "non-E6 root")
+    rejects(select_intrinsic_pair, (frozenset(((1, 0),)),) * 3, "six integers")
     weights27 = e6.orbit(e6.E[0], e6.reflect_weight)
     sym27 = symmetric_cube(weights27)
     require(sum(sym27.values()) == 3654 and len(sym27) == 1522
@@ -220,7 +288,8 @@ def self_test():
         rejects(minuscule_restricted_d_chi, defining3, incomplete, "closed root subsystem")
 
 
-def census():
+def census(*, include_structure=False):
+    """Return the existing d_chi cells; optionally also return selector evidence."""
     self_test()
     roots = e6.orbit(e6.E[0], e6.reflect_root)
     weights = e6.orbit(e6.E[0], e6.reflect_weight)
@@ -239,6 +308,8 @@ def census():
     highest = max((root for root in roots if min(root) >= 0), key=sum)
     theta0 = frozenset(root for root in roots if root[highest.index(3)] % 3 == 0)
     thetas = e6.orbit(theta0, e6.reflect_set)
+    require((len(set(D.values())), len(set(A.values())), len(thetas)) == (27, 36, 40),
+            "complete triple universe")
 
     # Cache each distinct parent root system once.
     parent_sets = set()
@@ -255,10 +326,31 @@ def census():
     require(Counter(d_chi_by_parent.values()) == Counter({
         0: 540, 12: 1080, 15: 216, 16: 270, 27: 360,
     }), "all 2466 restricted-27 parent values")
+    structure = {parent: _pair_structure(parent) for parent in parent_sets}
+    parent_counts = Counter(
+        (*structure[parent], d_chi_by_parent[parent]) for parent in parent_sets
+    )
+    require(parent_counts == Counter({
+        ("A4", 20, 4, 24, 15): 216,
+        ("A3+A1+A1", 16, 5, 21, 16): 270,
+        ("A2+A1+A1", 10, 4, 14, 12): 1080,
+        ("A2+A2+A1", 14, 5, 19, 27): 360,
+        ("A1+A1+A1", 6, 3, 9, 0): 540,
+    }), "calculated pair-parent types, ranks, dimensions and d_chi")
+    for parent in parent_sets:
+        for i in range(e6.N):
+            image = e6.reflect_set(parent, i)
+            require(image in structure and structure[image] == structure[parent]
+                    and d_chi_by_parent[image] == d_chi_by_parent[parent],
+                    "pair-parent invariance under every simple reflection")
 
     cells = {}
+    structural_cells, representatives = {}, {}
+    cell_counts, rank_winners, chiral_winners = Counter(), Counter(), Counter()
     for (weight, d_set), (alpha, a_set), theta in product(D.items(), A.items(), thetas):
-        profile = (len(d_set & a_set), len(d_set & theta), len(a_set & theta))
+        parents = (d_set & a_set, d_set & theta, a_set & theta)
+        data = tuple(structure[parent] for parent in parents)
+        profile = tuple(row.root_count for row in data)
         common = len(d_set & a_set & theta)
         key = (profile, common)
         values = (
@@ -266,8 +358,38 @@ def census():
             d_chi_by_parent[d_set & theta],
             d_chi_by_parent[a_set & theta],
         )
+        selected = select_intrinsic_pair(parents)
+        require(selected == 0, "DA must be the unique structural greatest pair")
+        require(tuple(i for i, value in enumerate(values) if value in (15, 16))
+                == (selected,), "structural selector iff d_chi is 15 or 16")
+        ranks = tuple(row.rank for row in data)
+        dimensions = tuple(row.semisimple_dimension for row in data)
+        rank_best = tuple(i for i, rank in enumerate(ranks) if rank == max(ranks))
+        rank_winners[rank_best] += 1
+        chiral_winners[unique_greatest(values)] += 1
+        cell_counts[key] += 1
+        structural_cells.setdefault(key, (ranks, dimensions))
+        require(structural_cells[key] == (ranks, dimensions), "structural cell uniformity")
+        representatives.setdefault(key, parents)
         cells.setdefault(key, values)
         require(cells[key] == values)
+
+    require(sum(cell_counts.values()) == 38_880, "all triples checked")
+    require(rank_winners == Counter({(0,): 16200, (2,): 4320,
+                                     (0, 1): 12960, (0, 2): 5400}),
+            "rank alone must exhibit ties and wrong selections")
+    require(chiral_winners == Counter({0: 29160, 2: 9720}),
+            "maximizing d_chi must disagree on 9720 triples")
+    for parents in representatives.values():
+        for order in permutations(range(3)):
+            require(select_intrinsic_pair(tuple(parents[i] for i in order))
+                    == order.index(0), "selector depends on pair labelling")
+        _rejects(select_intrinsic_pair, (parents[0], parents[0], parents[1]), "tied")
+        for zero in (0.0, False):
+            malformed = frozenset(tuple(zero if x == 0 else x for x in root)
+                                  for root in parents[0])
+            require(malformed == parents[0], "exercise equal cache keys")
+            _rejects(select_intrinsic_pair, (malformed, *parents[1:]), "six integers")
 
     expected = {
         ((20, 10, 14), 8): (15, 12, 27),
@@ -278,6 +400,36 @@ def census():
         ((16, 10, 6), 2): (16, 12, 0),
     }
     require(cells == expected)
+    if include_structure:
+        columns = ["H_DA", "H_DTheta", "H_ATheta"]
+        return cells, {
+            "semisimple_dimension_definition": "rank + root_count (no central torus)",
+            "columns": columns,
+            "triples_checked": sum(cell_counts.values()),
+            "distinct_pair_parents": len(parent_sets),
+            "unique_greatest_root_count_pair": columns[0],
+            "unique_greatest_semisimple_dimension_pair": columns[0],
+            "equivalent_to_d_chi_15_or_16": True,
+            "pair_parent_types": [
+                dict(zip(("type", "root_count", "rank", "semisimple_dimension", "d_chi"), row),
+                     distinct_parents=count)
+                for row, count in sorted(parent_counts.items())
+            ],
+            "cells": [
+                {"profile": list(profile), "common_root_count": common,
+                 "count": cell_counts[profile, common], "ranks": list(ranks),
+                 "semisimple_dimensions": list(dimensions)}
+                for (profile, common), (ranks, dimensions) in sorted(structural_cells.items())
+            ],
+            "rank_maximizers": [
+                {"pairs": [columns[i] for i in winners], "triples": count}
+                for winners, count in sorted(rank_winners.items())
+            ],
+            "d_chi_maximizers": [
+                {"pair": columns[i], "triples": count}
+                for i, count in sorted(chiral_winners.items())
+            ],
+        }
     return cells
 
 
@@ -287,6 +439,8 @@ def main():
     print("columns: d_chi(H_DA), d_chi(H_DTheta), d_chi(H_ATheta)")
     for key in sorted(cells):
         print(f"profile={key[0]}, common roots={key[1]}: {cells[key]}")
+    print("Structural ordering PASS: 38880 triples, 2466 parents; roots and rank+roots "
+          "uniquely select H_DA iff d_chi in {15,16}")
 
 
 if __name__ == "__main__":

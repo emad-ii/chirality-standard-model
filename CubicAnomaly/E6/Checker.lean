@@ -172,6 +172,25 @@ def vectorRank (vectors : Array (Array Int)) : Nat := Id.run do
       basis := basis.push row
   return basis.size
 
+/-- Rank computed from the actual root coordinates, independently of root counts. -/
+def rootRank (mask : RootMask) : Nat :=
+  vectorRank ((maskIndices mask).map fun index => roots[index]!)
+
+/-- The numerical dimension of the root-generated semisimple algebra: rank plus
+root count. Identifying this number with a Lie-algebra dimension uses the usual
+root-space dimension formula; no central torus is counted here. -/
+def rootGeneratedDimension (mask : RootMask) : Nat :=
+  rootRank mask + maskSize mask
+
+/-- Check each pair once, sharing its computed root count and exact rank across
+the allowed signatures. Triple-level claims reuse these pair-level results. -/
+def pairSignaturesValid (left right : Array RootMask)
+    (allowed : Array (Nat × Nat)) : Bool :=
+  left.all fun l => right.all fun r =>
+    let mask := l &&& r
+    let signature := (maskSize mask, rootRank mask)
+    allowed.contains signature
+
 /-- Root count and lattice rank of every irreducible component. -/
 def rootComponentSignatures (mask : RootMask) : Array (Nat × Nat) :=
   (rootComponents mask).map fun component =>
@@ -229,6 +248,15 @@ private def firstSeed : Triple := cellSeeds[0]!
 def dOrbit : Array RootMask := generatedOrbit maskNext firstSeed.d
 def aOrbit : Array RootMask := generatedOrbit maskNext firstSeed.a
 def thetaOrbit : Array RootMask := generatedOrbit maskNext firstSeed.theta
+
+/-- Exhaustive pair data for the intrinsic selector. Only 27*36 + 27*40 +
+36*40 = 3492 coordinate-rank computations are needed for all 38880 triples.
+The expected signatures are checked against the reconstructed intersections;
+they do not supply the ranks used in `rootGeneratedDimension`. -/
+def intrinsicPairDataValid : Bool :=
+  pairSignaturesValid dOrbit aOrbit #[(16, 5), (20, 4)] &&
+  pairSignaturesValid dOrbit thetaOrbit #[(10, 4)] &&
+  pairSignaturesValid aOrbit thetaOrbit #[(6, 3), (14, 5)]
 
 def subsystemOrbitsValid : Bool :=
   cellSeeds.size == 6 &&

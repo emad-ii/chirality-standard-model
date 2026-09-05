@@ -871,6 +871,215 @@
     2,
     1
   ],
+  "intrinsic_pair_selector": {
+    "cells": [
+      {
+        "common_root_count": 2,
+        "count": 12960,
+        "profile": [
+          16,
+          10,
+          6
+        ],
+        "ranks": [
+          5,
+          4,
+          3
+        ],
+        "semisimple_dimensions": [
+          21,
+          14,
+          9
+        ]
+      },
+      {
+        "common_root_count": 6,
+        "count": 3240,
+        "profile": [
+          16,
+          10,
+          6
+        ],
+        "ranks": [
+          5,
+          4,
+          3
+        ],
+        "semisimple_dimensions": [
+          21,
+          14,
+          9
+        ]
+      },
+      {
+        "common_root_count": 6,
+        "count": 3240,
+        "profile": [
+          16,
+          10,
+          14
+        ],
+        "ranks": [
+          5,
+          4,
+          5
+        ],
+        "semisimple_dimensions": [
+          21,
+          14,
+          19
+        ]
+      },
+      {
+        "common_root_count": 10,
+        "count": 2160,
+        "profile": [
+          16,
+          10,
+          14
+        ],
+        "ranks": [
+          5,
+          4,
+          5
+        ],
+        "semisimple_dimensions": [
+          21,
+          14,
+          19
+        ]
+      },
+      {
+        "common_root_count": 4,
+        "count": 12960,
+        "profile": [
+          20,
+          10,
+          6
+        ],
+        "ranks": [
+          4,
+          4,
+          3
+        ],
+        "semisimple_dimensions": [
+          24,
+          14,
+          9
+        ]
+      },
+      {
+        "common_root_count": 8,
+        "count": 4320,
+        "profile": [
+          20,
+          10,
+          14
+        ],
+        "ranks": [
+          4,
+          4,
+          5
+        ],
+        "semisimple_dimensions": [
+          24,
+          14,
+          19
+        ]
+      }
+    ],
+    "columns": [
+      "H_DA",
+      "H_DTheta",
+      "H_ATheta"
+    ],
+    "d_chi_maximizers": [
+      {
+        "pair": "H_DA",
+        "triples": 29160
+      },
+      {
+        "pair": "H_ATheta",
+        "triples": 9720
+      }
+    ],
+    "distinct_pair_parents": 2466,
+    "equivalent_to_d_chi_15_or_16": true,
+    "pair_parent_types": [
+      {
+        "d_chi": 0,
+        "distinct_parents": 540,
+        "rank": 3,
+        "root_count": 6,
+        "semisimple_dimension": 9,
+        "type": "A1+A1+A1"
+      },
+      {
+        "d_chi": 12,
+        "distinct_parents": 1080,
+        "rank": 4,
+        "root_count": 10,
+        "semisimple_dimension": 14,
+        "type": "A2+A1+A1"
+      },
+      {
+        "d_chi": 27,
+        "distinct_parents": 360,
+        "rank": 5,
+        "root_count": 14,
+        "semisimple_dimension": 19,
+        "type": "A2+A2+A1"
+      },
+      {
+        "d_chi": 16,
+        "distinct_parents": 270,
+        "rank": 5,
+        "root_count": 16,
+        "semisimple_dimension": 21,
+        "type": "A3+A1+A1"
+      },
+      {
+        "d_chi": 15,
+        "distinct_parents": 216,
+        "rank": 4,
+        "root_count": 20,
+        "semisimple_dimension": 24,
+        "type": "A4"
+      }
+    ],
+    "rank_maximizers": [
+      {
+        "pairs": [
+          "H_DA"
+        ],
+        "triples": 16200
+      },
+      {
+        "pairs": [
+          "H_DA",
+          "H_DTheta"
+        ],
+        "triples": 12960
+      },
+      {
+        "pairs": [
+          "H_DA",
+          "H_ATheta"
+        ],
+        "triples": 5400
+      },
+      {
+        "pairs": [
+          "H_ATheta"
+        ],
+        "triples": 4320
+      }
+    ],
+    "semisimple_dimension_definition": "rank + root_count (no central torus)",
+    "triples_checked": 38880,
+    "unique_greatest_root_count_pair": "H_DA",
+    "unique_greatest_semisimple_dimension_pair": "H_DA"
+  },
   "joint_distribution": [
     {
       "common_root_count": 2,
@@ -1543,30 +1752,30 @@
     "verification/expected/check_closed_subsystems_r8_output.txt": "a5dea6c5163f5fad0c0fe6ac4908103a0414a9c62ba3d25508e7128a37a2bec0",
     "verification/expected/check_cubic_radical_selection_output.txt": "6059d3023a8bb254db775774fd442f381821966b92cc95c65058be766e5e7be5",
     "verification/expected/check_e6_context_symmetry_output.txt": "351bf26a6e0647cb3596514db04c4633dde6f15275efc539f4d7d5b5f77b51bd",
-    "verification/expected/check_e6_pair_orderings_output.txt": "538e8c2497535a913644e3e401135c693e5bb0753ea1523aeac65fe672018f28",
+    "verification/expected/check_e6_pair_orderings_output.txt": "4f38f5559d1c28305f79ddc056fa5b9506b9b69a7a4f4f94870b7d33538e202a",
     "verification/expected/check_order_three_gradings_output.txt": "be51dfd462669f220a2b3e4d7fe240817e014db382b969c41bf6a7623523df23",
     "verification/expected/check_proof_and_kernels_output.txt": "53edd8c9c9d1d0340ca0f1f8ef496cffd5570e9588cd84d97baea4aa16a862d7",
     "verification/expected/check_rank_deficient_classical_output.txt": "262aaff02b2321766f22334c91a39cfbdaca4a7177fe905bc04c65ac0f8c65c3",
     "verification/expected/check_rank_deficient_exceptional_output.txt": "ebf135250a03966f71a7f36b1e212e8822b8aea7975415c4d58eea97b10f562e",
     "verification/expected/check_toral_gradings_output.txt": "3ae6b5f41764832771a008c208f63abc64534f50bd6c3b407ce527cf0c9e778a",
     "verification/expected/verify_e6_extrema_output.txt": "f06fa03cf015be72dedf2947ec4029af172d9edccdc294034a23ac32d5e823c0",
-    "verification/expected/verify_e6_extrema_r8_output.txt": "5845236bea6225103eee46036780b10765cb6afaad48095c7d139aa8fd5ce542",
+    "verification/expected/verify_e6_extrema_r8_output.txt": "697ef9d53c5db25d52c14b1b887db38d5962ebebcc668a88bea3a412955f5632",
     "verification/python/check_closed_subsystems.py": "ac29e56def10f16c47b76fd7b95822b6c1687143b78efa6ff0a1da5821849788",
     "verification/python/check_closed_subsystems_r8.py": "2b244e2b502ee4a3d4e88788b66fc2fa4d15b6a2c01ca70645552ee8f27a5b24",
     "verification/python/check_cubic_radical_selection.py": "1e4ede5a3850d6f8cdf93cf5b21292f7dcf997c0e80c994148a8c0eb435b1e03",
     "verification/python/check_e6_context_symmetry.py": "098984de194b6a2eef95171731cb8691e7dd71a6265c5388387d0a2b89b239d1",
-    "verification/python/check_e6_pair_orderings.py": "a31c7a11896608039afa51ef96ac2fafb9b2d5b15e40091efd078fb9de298194",
+    "verification/python/check_e6_pair_orderings.py": "4e0a763cd22e1744d16d994e354757dce01127a27603639ee2cf882f58ffc5fd",
     "verification/python/check_order_three_gradings.py": "345468be0acd06a72c272ef5828e1c7cb615f8f68e7e8d99a013468f28f7be24",
     "verification/python/check_proof_and_kernels.py": "8b956d0bd6b00fb18f952b87a74942b399c12baa7178feb3ef05532ea7ea8b13",
     "verification/python/check_rank_deficient_classical.py": "8993152c3289e3e11a7046bde4e388009c990383a568a858bf8a61509ad84fc4",
     "verification/python/check_rank_deficient_exceptional.py": "f4cde6181397ef5816d282e13ad00ddee6d0ee7f7fd24b6b01b04e167e635b9d",
     "verification/python/check_toral_gradings.py": "551bac22ade8ccf48d01df0906f025f669465d4b48b19273664b2c83e447fdaf",
-    "verification/python/make_e6_extrema_certificate.py": "8e58c12a5174107a0db47a15449cfd7b2024821a38cad7bc447b73a90072a287",
+    "verification/python/make_e6_extrema_certificate.py": "a0088189924e61c7e6d1e1846da0fff8b1bec42622d0d038d73f864ce1fdef64",
     "verification/python/make_exceptional_rank_deficient_audit.py": "e16bb328e910ff53fb9b74af919d029988e942233257031828cfa23995ca53fe",
-    "verification/python/run_all.py": "eafdc455c4280834ced0c0d52e95c2974e2e9af972a47ad3ad2e4b4db5899381",
+    "verification/python/run_all.py": "a5b7bc3bf3754fb7066990165fd56bb872b79bd10578dc68f56c0985aa86b4d4",
     "verification/python/verification_checks.py": "821f75c783e56f3f80e944a3bdfb5533be114c9fee437bdf7bc6a2646b966346",
     "verification/python/verify_e6_extrema.py": "585a1de39c4b031c4c285d14e96d04bd12ade519ae9b71482f33d6ccafc426eb",
-    "verification/python/verify_e6_extrema_r8_fast.py": "46f402c2bd9165d51e3fca48464fcf906ad685c9a1342fe4185131bba8e6041d"
+    "verification/python/verify_e6_extrema_r8_fast.py": "52adfd607883f9e947ff832ae8241eed91a7d48a5df08d133d250c6544acf917"
   },
   "simple_reflection_permutations": [
     [

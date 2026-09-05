@@ -38,7 +38,7 @@ def root_type(S):
 def main(output: Path | None = None):
     closed_census = closed_simple.census()
     require(closed_r8.census() == closed_census)
-    d_chi_cells = pair_orderings.census()
+    d_chi_cells, intrinsic_selector = pair_orderings.census(include_structure=True)
     roots_set = e6.orbit(e6.E[0], e6.reflect_root)
     roots = sorted(roots_set)
     # One-based numbering is easier to inspect in a static certificate.
@@ -234,6 +234,7 @@ def main(output: Path | None = None):
             ],
             "unique_15_or_16_parent": "H_DA",
         },
+        "intrinsic_pair_selector": intrinsic_selector,
         "color_factor_classification": {
             "cells_with_A2_component": [
                 {"profile": [20, 10, 14], "common_root_count": 8, "common_type": "A2+A1"},

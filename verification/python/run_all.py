@@ -35,7 +35,7 @@ OUTPUT_CHECKS = (
     ("independent R8 realization", "verify_e6_extrema_r8_fast.py", "verify_e6_extrema_r8_output.txt"),
     ("context symmetry", "check_e6_context_symmetry.py", "check_e6_context_symmetry_output.txt"),
     ("stabilizers and kernels", "check_proof_and_kernels.py", "check_proof_and_kernels_output.txt"),
-    ("pair-first d_chi table", "check_e6_pair_orderings.py", "check_e6_pair_orderings_output.txt"),
+    ("intrinsic ordering and chiral dimensions", "check_e6_pair_orderings.py", "check_e6_pair_orderings_output.txt"),
     ("closed-subsystem census", "check_closed_subsystems.py", "check_closed_subsystems_output.txt"),
     ("independent R8 census", "check_closed_subsystems_r8.py", "check_closed_subsystems_r8_output.txt"),
     ("secondary order-three audit", "check_order_three_gradings.py", "check_order_three_gradings_output.txt"),
@@ -189,6 +189,51 @@ def validate_certificate_semantic_contract(certificate: dict[str, object]) -> No
                 )
             ],
             "unique_15_or_16_parent": "H_DA",
+        },
+        "intrinsic_pair_selector": {
+            "semisimple_dimension_definition": "rank + root_count (no central torus)",
+            "columns": ["H_DA", "H_DTheta", "H_ATheta"],
+            "triples_checked": 38_880,
+            "distinct_pair_parents": 2_466,
+            "unique_greatest_root_count_pair": "H_DA",
+            "unique_greatest_semisimple_dimension_pair": "H_DA",
+            "equivalent_to_d_chi_15_or_16": True,
+            "pair_parent_types": [
+                dict(zip(("type", "root_count", "rank", "semisimple_dimension", "d_chi"), row),
+                     distinct_parents=count)
+                for row, count in (
+                    (("A1+A1+A1", 6, 3, 9, 0), 540),
+                    (("A2+A1+A1", 10, 4, 14, 12), 1080),
+                    (("A2+A2+A1", 14, 5, 19, 27), 360),
+                    (("A3+A1+A1", 16, 5, 21, 16), 270),
+                    (("A4", 20, 4, 24, 15), 216),
+                )
+            ],
+            "cells": [
+                {"profile": list(profile), "common_root_count": common, "count": count,
+                 "ranks": list(ranks), "semisimple_dimensions": list(dimensions)}
+                for profile, common, count, ranks, dimensions in (
+                    ((16, 10, 6), 2, 12960, (5, 4, 3), (21, 14, 9)),
+                    ((16, 10, 6), 6, 3240, (5, 4, 3), (21, 14, 9)),
+                    ((16, 10, 14), 6, 3240, (5, 4, 5), (21, 14, 19)),
+                    ((16, 10, 14), 10, 2160, (5, 4, 5), (21, 14, 19)),
+                    ((20, 10, 6), 4, 12960, (4, 4, 3), (24, 14, 9)),
+                    ((20, 10, 14), 8, 4320, (4, 4, 5), (24, 14, 19)),
+                )
+            ],
+            "rank_maximizers": [
+                {"pairs": pairs, "triples": count}
+                for pairs, count in (
+                    (["H_DA"], 16200),
+                    (["H_DA", "H_DTheta"], 12960),
+                    (["H_DA", "H_ATheta"], 5400),
+                    (["H_ATheta"], 4320),
+                )
+            ],
+            "d_chi_maximizers": [
+                {"pair": "H_DA", "triples": 29160},
+                {"pair": "H_ATheta", "triples": 9720},
+            ],
         },
         "color_factor_classification": {
             "cells_with_A2_component": [

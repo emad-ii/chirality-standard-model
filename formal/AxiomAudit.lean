@@ -9,6 +9,13 @@ import CubicAnomaly
 #print axioms CubicAnomaly.E6.subsystem_orbit_sizes_valid
 #print axioms CubicAnomaly.E6.triple_space_has_38880_elements
 #print axioms CubicAnomaly.E6.triple_space_has_38880_distinct_elements
+#print axioms CubicAnomaly.E6.intrinsic_pair_data_valid
+#print axioms CubicAnomaly.E6.intrinsic_pair_signatures
+#print axioms CubicAnomaly.E6.triple_universe_orbit_membership
+#print axioms CubicAnomaly.E6.intrinsic_da_root_count_ordering_of_orbit_membership
+#print axioms CubicAnomaly.E6.intrinsic_pair_dimensions_of_orbit_membership
+#print axioms CubicAnomaly.E6.intrinsic_da_root_count_ordering
+#print axioms CubicAnomaly.E6.intrinsic_da_dimension_ordering
 #print axioms CubicAnomaly.E6.six_cell_distribution_valid
 #print axioms CubicAnomaly.E6.six_weyl_orbits_partition_triple_space
 #print axioms CubicAnomaly.E6.six_cell_orbits_classified_valid

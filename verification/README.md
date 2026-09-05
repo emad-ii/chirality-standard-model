@@ -22,6 +22,9 @@ All mathematical programs use the Python standard library. They cover:
 - Two complete closed-subsystem censuses: 5,079 closed subsystems, of which 103 are maximal proper subsystems.
 - Exceptional toral gradings, the Cartan cubic selector and the rank-deficient exceptional and classical checks.
 - Context symmetry, stabilizers, central kernels, subgroup orderings and chiral dimensions.
+- The unique largest pairwise derived group on every triple, computed independently in both coordinate systems. Root count and rank-plus-root-count select the same pair, equivalent to the restricted chiral dimension being 15 or 16.
+
+The ordering checks include all 2,466 distinct pair-parent root systems, invariance under simple reflections, relabelling of the pairs, and rejection of ties and malformed inputs. They also check counterexamples to substituting rank alone or maximum chiral dimension for the stated rule. The certificate records the dimensions, six-cell results and these alternative-selector counts.
 
 The [programs](python), [recorded outputs](expected) and [certificates](certificates) can also be inspected separately. Bounded classical arithmetic checks accompany the manuscript's all-rank proof; a finite sample is not substituted for that proof.
 
@@ -50,10 +53,11 @@ The [E6 checker](../CubicAnomaly/E6/Checker.lean) receives root coordinates, ref
 - Closed subsystem masks with the rank/root-count signatures of D5, A5+A1 and A2³, in orbits of sizes 27, 36 and 40.
 - A 38,880-element triple space covered by six disjoint simultaneous-reflection orbits.
 - The six-cell intersection distribution and the two extrema.
+- The exact ranks and root counts of all three pair types, and strict D-A dominance by root count and by rank plus root count for every member of the triple universe.
 - A closed irreducible six-root, rank-two component exactly in the two extremal cells.
 - Common-subsystem multiplicities, context counts and 8,640 labelled containments.
 
-Conventional root-system names use standard ADE classification. The theorem statements and expected counts are authored in Lean, not copied from JSON summary fields. The data-freshness check verifies the translation from JSON to Lean; Lean separately validates those witnesses. The [18 exported theorems](../formal/AxiomAudit.lean) include the principal theorem `CubicAnomaly.E6.finite_certificate_valid`.
+Conventional root-system names use standard ADE classification. The theorem statements and expected counts are authored in Lean, not copied from JSON summary fields. The data-freshness check verifies the translation from JSON to Lean; Lean separately validates those witnesses. The [25 exported theorems](../formal/AxiomAudit.lean) include `CubicAnomaly.E6.finite_certificate_valid` and the separate intrinsic-ordering theorems. Pair ranks are calculated from the integer root coordinates. The paper proves that rank plus root count is the dimension of the corresponding semisimple Lie algebra, and that the structural selection is equivalent to the chiral-dimension characterization.
 
 ### Trust model
 

@@ -33,6 +33,13 @@ EXPORTED_THEOREMS = frozenset(
         "CubicAnomaly.E6.subsystem_orbit_sizes_valid",
         "CubicAnomaly.E6.triple_space_has_38880_elements",
         "CubicAnomaly.E6.triple_space_has_38880_distinct_elements",
+        "CubicAnomaly.E6.intrinsic_pair_data_valid",
+        "CubicAnomaly.E6.intrinsic_pair_signatures",
+        "CubicAnomaly.E6.triple_universe_orbit_membership",
+        "CubicAnomaly.E6.intrinsic_da_root_count_ordering_of_orbit_membership",
+        "CubicAnomaly.E6.intrinsic_pair_dimensions_of_orbit_membership",
+        "CubicAnomaly.E6.intrinsic_da_root_count_ordering",
+        "CubicAnomaly.E6.intrinsic_da_dimension_ordering",
         "CubicAnomaly.E6.six_cell_distribution_valid",
         "CubicAnomaly.E6.six_weyl_orbits_partition_triple_space",
         "CubicAnomaly.E6.six_cell_orbits_classified_valid",
@@ -148,7 +155,45 @@ def axiom_manifest_failures(
     return failures
 
 
+def manifest_self_tests() -> int:
+    """Exercise every export, including selector claims, without running Lean."""
+    targets = sorted(EXPORTED_THEOREMS)
+    names = sorted(EXPORTED_THEOREM_BASENAMES)
+    audit_lines = [f"#print axioms {target}" for target in targets]
+    audit = "\n".join(audit_lines)
+    if axiom_manifest_failures(names, audit):
+        raise AssertionError("The complete exported surface must pass")
+
+    negative_cases = 0
+
+    def rejected(label: str, candidate_names: list[str], candidate_audit: str) -> None:
+        nonlocal negative_cases
+        if not axiom_manifest_failures(candidate_names, candidate_audit):
+            raise AssertionError(f"Manifest accepted {label}")
+        negative_cases += 1
+
+    for target in targets:
+        basename = target.rsplit(".", 1)[-1]
+        line = f"#print axioms {target}"
+
+        def replace_target(replacement: str) -> str:
+            return "\n".join(replacement if entry == line else entry for entry in audit_lines)
+
+        rejected(f"missing theorem {target}", [name for name in names if name != basename], audit)
+        rejected(f"missing receipt {target}", names, replace_target(""))
+        rejected(f"wrong namespace {target}", names, replace_target(f"#print axioms Wrong.{basename}"))
+        rejected(f"commented receipt {target}", names, replace_target(f"/- {line} -/"))
+
+    rejected("unknown public theorem", names + ["unlisted_selector"], audit)
+    rejected("duplicate public theorem", names + [names[0]], audit)
+    rejected("unknown receipt", names, audit + "\n#print axioms Wrong.unlisted_selector")
+    rejected("duplicate receipt", names, audit + f"\n#print axioms {targets[0]}")
+    print(f"PASS  explicit axiom manifest: positive control and {negative_cases} negative self-tests")
+    return 0
+
+
 def main() -> int:
+    manifest_self_tests()
     failures: list[str] = []
     theorem_names: list[str] = []
     for path in LEAN_FILES:
@@ -207,4 +252,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(manifest_self_tests() if sys.argv[1:] == ["--self-test"] else main())
