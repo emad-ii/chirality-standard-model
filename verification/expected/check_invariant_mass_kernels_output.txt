@@ -1,0 +1,51 @@
+Independent invariant-mass-kernel checks passed (Lemma 5.2; lem:mass-kernels)
+Scope: concrete finite rational model; ranks are also exact over C.
+Schur identification of all complex forms and Zariski-open/dense locus: manuscript proof.
+Branching q=6Y: 3Q(3,2)q1, 3uc(bar3,1)q-4, 3ec(1,1)q6, 6dc(bar3,1)q2, 6L(1,2)q-3, 3D(3,1)q-2, 3H(1,2)q3, 6 singlets(1,1)q0
+Derived dimensions: one 27 = 27; 3x27 = 81; one minimal family = 15.
+Net chiral class: 3 families; unpaired Q,uc,ec and dc-D=L-H=3.
+Local invariance: 36 species pairs; 12 generators; at most 36 unknowns.
+Nonzero local pairing spaces: dc/D=1, L/H=1, 1/1=1; charged self-doublet=0.
+Invariant symmetric parameter basis: 18+18+21=57; full-matrix independence checked.
+r0 runs 0..6 in every row; entries below are measured full-matrix ranks/nullities.
+rD=0, rL=0: mass=[0,1,2,3,4,5,6]; kernel=[81,80,79,78,77,76,75]
+rD=0, rL=1: mass=[4,5,6,7,8,9,10]; kernel=[77,76,75,74,73,72,71]
+rD=0, rL=2: mass=[8,9,10,11,12,13,14]; kernel=[73,72,71,70,69,68,67]
+rD=0, rL=3: mass=[12,13,14,15,16,17,18]; kernel=[69,68,67,66,65,64,63]
+rD=1, rL=0: mass=[6,7,8,9,10,11,12]; kernel=[75,74,73,72,71,70,69]
+rD=1, rL=1: mass=[10,11,12,13,14,15,16]; kernel=[71,70,69,68,67,66,65]
+rD=1, rL=2: mass=[14,15,16,17,18,19,20]; kernel=[67,66,65,64,63,62,61]
+rD=1, rL=3: mass=[18,19,20,21,22,23,24]; kernel=[63,62,61,60,59,58,57]
+rD=2, rL=0: mass=[12,13,14,15,16,17,18]; kernel=[69,68,67,66,65,64,63]
+rD=2, rL=1: mass=[16,17,18,19,20,21,22]; kernel=[65,64,63,62,61,60,59]
+rD=2, rL=2: mass=[20,21,22,23,24,25,26]; kernel=[61,60,59,58,57,56,55]
+rD=2, rL=3: mass=[24,25,26,27,28,29,30]; kernel=[57,56,55,54,53,52,51]
+rD=3, rL=0: mass=[18,19,20,21,22,23,24]; kernel=[63,62,61,60,59,58,57]
+rD=3, rL=1: mass=[22,23,24,25,26,27,28]; kernel=[59,58,57,56,55,54,53]
+rD=3, rL=2: mass=[26,27,28,29,30,31,32]; kernel=[55,54,53,52,51,50,49]
+rD=3, rL=3: mass=[30,31,32,33,34,35,36]; kernel=[51,50,49,48,47,46,45]
+112 triples x 2 witnesses = 224 explicit 81x81 rank/invariance checks.
+Basis stress: rational multiplicity mixing, full coordinate permutation and rational rescaling.
+Residual multiplicities measured separately from all 8 full-matrix column restrictions.
+Residual: 3F + (3-rD)(D+dc) + (3-rL)(H+L) + (6-r0)1; net class always 3F.
+Kernel formula is up to K-module isomorphism; it specifies no preferred subspace or physical mass scale.
+Kernel dimension = 81-6rD-4rL-r0; minimum 45 and maximum mass rank 36 only at (3,3,6).
+Exact rank calibration: rational cancellation, rectangular rows, and a 1/10^40 pivot.
+REJECTED: missing D mirror copy (dimension preserved)
+REJECTED: missing H mirror copy (dimension preserved)
+REJECTED: lost U1 / mistaken weak self-duality
+REJECTED: identity used instead of weak epsilon
+REJECTED: wrong weak reverse-block sign
+REJECTED: one colour component perturbed
+REJECTED: rectangular parameter loses a column
+REJECTED: rectangular parameter transposed
+REJECTED: singlet parameter loses a copy
+REJECTED: alternating singlet parameters
+REJECTED: invariant but alternating full form
+REJECTED: missing parameter direction
+REJECTED: duplicate parameter direction
+REJECTED: invariant rank-one perturbation at claimed zero triple
+REJECTED: deleted massive colour pair at claimed maximal triple
+REJECTED: residual formula loses the unpaired dc copies
+REJECTED: rank oracle accepts a false claimed rank
+PASS: 17 adversarial mutations rejected; explicit raises remain active under python -O.

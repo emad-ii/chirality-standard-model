@@ -31,7 +31,7 @@ def main() -> int:
         expected = COMMITTED.read_text()
         actual = generated.read_text()
         if expected != actual:
-            print("Generated Lean data is stale. Run `make regenerate`.", file=sys.stderr)
+            print("Generated Lean data is stale. Run `python verification/python/regenerate.py`.", file=sys.stderr)
             print(
                 "".join(
                     difflib.unified_diff(

@@ -2,7 +2,7 @@
 .env
 .env.*
 !.env.example
-.venv/
+.venv
 .jupyter/
 .lake/
 tmp/

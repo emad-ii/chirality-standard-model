@@ -10,13 +10,12 @@
 \usepackage{needspace,float}
 \usepackage{multicol}
 \usepackage{xcolor}
-\usepackage{listings}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc}
 \usepackage[hidelinks]{hyperref}
 
 \hypersetup{
-  pdftitle={From the Cubic Anomaly to the Standard Model: A Uniqueness and No-Go Theorem for Compact Homogeneous Chiral Matter},
+  pdftitle={From Chirality to the Standard Model: A Uniqueness and No-Go Theorem for Compact Homogeneous Chiral Matter},
   pdfauthor={Emad Mostaque},
   pdfsubject={An inverse uniqueness and no-go theorem for compact homogeneous chiral matter and extremal E6 subgroup chains},
   pdfkeywords={inverse unification, chirality, cubic anomaly, compact Lie algebras, uniqueness theorem, no-go theorem, homogeneous chiral matter, E8, E6, extremal subgroups, Standard Model, left-right symmetry, charge quantization, three generations}
@@ -30,32 +29,6 @@
 \emergencystretch=2em
 \allowdisplaybreaks[2]
 
-
-\lstdefinestyle{e6python}{
-  language=Python,
-  basicstyle=\ttfamily\fontsize{7.0}{7.75}\selectfont,
-  keywordstyle=\bfseries,
-  commentstyle=\itshape\color{black!65},
-  stringstyle=\color{black!80},
-  numbers=left,
-  numberstyle=\tiny\color{black!45},
-  stepnumber=5,
-  numbersep=6pt,
-  frame=lines,
-  rulecolor=\color{black!30},
-  backgroundcolor=\color{black!1},
-  breaklines=true,
-  breakatwhitespace=true,
-  showstringspaces=false,
-  keepspaces=true,
-  columns=fullflexible,
-  tabsize=4,
-  xleftmargin=1.6em,
-  framexleftmargin=1.1em,
-  aboveskip=7pt,
-  belowskip=7pt,
-  captionpos=t
-}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -72,7 +45,7 @@
   singletbox/.style={draw=black!65,rounded corners=1pt,fill=black!2,
     align=center,inner sep=6pt,font=\small},
   overviewbox/.style={draw=black!70,rounded corners=2pt,fill=black!2,
-    text width=.82\textwidth,align=center,inner sep=7pt,font=\small},
+    text width=.82\textwidth,align=center,inner sep=4pt,font=\small},
   branch/.style={-{Latex[length=1.8mm]},line width=.6pt}
 }
 
@@ -89,158 +62,201 @@
 \newcommand{\Klr}{G_{\mathrm{LR}}}
 \newcommand{\Kps}{G_{\mathrm{PS}}}
 
-\title{From the Cubic Anomaly to the Standard Model\\[0.45em]
+\title{From Chirality to the Standard Model\\[0.45em]
 \large A Uniqueness and No-Go Theorem for Compact Homogeneous Chiral Matter}
 \author{Emad Mostaque}
-\date{August 2026}
+\date{Version 2 \(\cdot\) 5 September 2026\\[0.5em]
+\small\href{https://github.com/emad-ii/chirality-standard-model}
+{\nolinkurl{github.com/emad-ii/chirality-standard-model}}}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-Conventional unification usually chooses an internal symmetry, a matter
-representation, and a family multiplicity as separate inputs.  We instead
-classify the full domain of connected, infinitesimally effective compact
-pairs \(H\subsetneq G\) for which the canonical isotropy module
-\(\mathfrak q=\mathfrak g/\mathfrak h\) is irreducible of complex type and
-the cubic anomaly of one complex half has a nonzero radical.  Up to
-isomorphism of Lie-algebra pairs and duality, the classification has one
-solution:
+Chirality and anomaly cancellation constrain matter representations. We ask
+what they imply in a homogeneous setting, where an embedding supplies its
+own representation. We classify connected compact pairs \(H\subsetneq G\),
+with \(H\) closed and \(G/H\) infinitesimally effective, for which the
+isotropy module is irreducible of complex type and the cubic trace tensor of
+one complex half has nonzero radical. Up to isomorphism of Lie-algebra pairs
+and duality, the unique solution is
 \[
  \mathfrak e_8\supset\mathfrak e_6\oplus\mathfrak{su}(3)_M,
  \qquad V=\mathbf{27}\boxtimes\mathbf3,
  \qquad \operatorname{Rad}(c_V)=\mathfrak e_6.
 \]
-Thus the ambient algebra, complex matter module, cubic-anomaly-safe ideal, and
-three-dimensional multiplicity factor are fixed simultaneously.  The census
-is direct: full-rank pairs are enumerated by toral gradings, while
-rank-deficient exceptional and classical pairs are excluded by index
-arithmetic and uniform highest-weight arguments.
+Every other pair in the stated complex-type domain has zero radical. The
+proof covers arbitrary rank: toral gradings enumerate the equal-rank cases,
+and index arithmetic and highest-weight arguments exclude the lower-rank
+cases. The commuting \(SU(3)_M\) factor gives three copies of the
+\(\mathbf{27}\) on restriction to \(E_6\).
 
-For the selected \(E_6\), we exhaust the
-\(27\cdot36\cdot40=38{,}880\) triples formed from the three Weyl orbits of
-maximal proper closed root subsystems.  The triples form six Weyl orbits;
-exactly two have a common \(A_2\) component.  Their faithful connected groups
-give
+Inside this \(E_6\), a second classification concerns the \(38{,}880\)
+triples formed from its three Weyl orbits of maximal proper closed root
+subsystems. There are six orbits of triples. Exactly two have an irreducible
+\(A_2\) component in their common intersection; these are the two extremal
+orbits. With the stated intermediate-group dimension criterion and derived-subgroup
+construction, compatible representatives give
 \[
  G_{\mathrm{SM}}\subset G_{\mathrm{LR}}\subset G_{\mathrm{PS}}
  \subset\operatorname{Spin}(10)\subset E_6^{\mathrm{sc}},
  \qquad Y=T_R^3+\frac{B-L}{2},
 \]
-with exact global quotients and compatible charge lattices.
-
-Restricting the selected module to \(G_{\mathrm{SM}}\) gives
+including their faithful global forms and charge lattices. The full restriction is
 \[
  V|_{G_{\mathrm{SM}}}
  \cong3\,\mathcal F_{\mathrm{SM}}
  \oplus3\,(\mathbf5\oplus\overline{\mathbf5})|_{G_{\mathrm{SM}}}
  \oplus6\,\mathbf1.
 \]
-Here \(\mathcal F_{\mathrm{SM}}\) denotes one Standard Model family.
-The two complex orientations have chiral indices \(+3\) and \(-3\); all
-remaining summands are vectorlike or singlets.  Under the complete-matter
-interpretation \textup{(M)}, the family multiplicity is three.  Structures
-normally entered independently in grand-unified model building are here
-components of one classified homogeneous structure.
+Here \(\mathcal F_{\mathrm{SM}}\) is one minimal chiral family. The net
+chiral class is \(3\chi(\mathcal F_{\mathrm{SM}})\), up to sign; the
+other summands are vectorlike or singlets. Identifying this coefficient with
+the complete physical family multiplicity uses interpretation \textup{(M)}.
 \end{abstract}
 \clearpage
 
 \section{Introduction}
 
-\paragraph{The inverse problem.}
-A chiral gauge theory normally begins with three choices: an internal
-symmetry algebra, a representation for left-handed Weyl fermions, and a
-replication number.
-The Standard Model spectrum is chiral and anomaly-free, contains an unbroken
-\(SU(3)\) color factor, and occurs in three families
-\cite{ParticleDataGroup}.  Minimal \(SU(5)\), \(\operatorname{Spin}(10)\),
-and \(E_6\) unification organize one family in
-\(\mathbf{10}\oplus\overline{\mathbf5}\), \(\mathbf{16}\), or
-\(\mathbf{27}\), but leave the family number free
-\cite{GeorgiGlashow,FritzschMinkowski,GurseyRamondSikivie}.  This paper asks
-the converse question: can the group, its matter, and the multiplicity be
-outputs of one classification rather than independent inputs?
+Matter in the Standard Model is chiral: left- and right-handed fermions
+transform differently under the weak interaction. A consistent chiral gauge
+theory must also satisfy anomaly cancellation \cite{ParticleDataGroup}.
+These requirements constrain the matter representations. Can a mathematical
+formulation of them go further, and determine an internal symmetry and its
+matter representation together?
 
-For a connected compact pair \(H\subset G\), the quotient
+Compact homogeneous spaces provide a setting in which to ask this question.
+An embedding \(H\subset G\) defines a space \(G/H\). The subgroup \(H\)
+fixes the base point and acts on its tangent space,
 \[
- \mathfrak q=\mathfrak g/\mathfrak h
+ \mathfrak q=\mathfrak g/\mathfrak h.
 \]
-is a canonical \(H\)-module.  The embedding therefore supplies an internal
-algebra and a matter representation at once.  We range over every connected,
-infinitesimally effective compact pair for which this module is irreducible of
-complex type and its cubic anomaly has a nonzero ideal-valued radical.  No
-exceptional group, rank, representation dimension, family number, or Standard
-Model subgroup is fixed in advance.
+This is the isotropy representation. It belongs to the embedding: changing
+the pair changes the algebra and its representation together. We study
+which pairs satisfy a complex-type condition and a condition on the cubic
+trace tensor, without first specifying an exceptional group or a matter
+multiplet.
 
-\paragraph{Why this domain.}
-The defining conditions have independent roles.  Compactness is the standard
-finite-dimensional setting for unitary internal symmetries.  Connectedness
-isolates the continuous symmetry seen by Lie theory; discrete extensions can
-be studied after the connected classification.  Infinitesimal effectivity
-removes generators that act on nothing.  Complex type is the representation-theoretic condition that distinguishes a
-module from its conjugate; choosing one of its two orientations gives a
-chiral half.  Irreducibility states the strict homogeneous unity hypothesis:
-the matter complement is one structure, not a hand-assembled direct sum.  Finally, the anomaly radical asks the
-representation itself to identify a nonzero ideal free of every mixed cubic
-insertion.  It does not choose a cubic-anomaly-safe subgroup after the fact.
-Together these conditions define a physically motivated and answer-neutral
-unification domain.
+\paragraph{The homogeneous problem.}
+We consider connected compact \(G\), connected closed proper \(H\), and
+infinitesimally effective \(G/H\): no nonzero ideal of \(\mathfrak g\)
+is contained in \(\mathfrak h\). The first condition is
+\[
+ \operatorname{End}_{\mathfrak h}(\mathfrak q)\cong\mathbb C.
+\]
+It implies that the real module \(\mathfrak q\) is irreducible and has an
+invariant complex structure, unique up to sign. Its complexification is
+\(V\oplus V^*\), where \(V\) and \(V^*\) are inequivalent irreducible
+representations. One of these halves supplies the internal representation
+for a chiral Weyl multiplet. Thus irreducibility and complex type are
+encoded in one condition, rather than imposed separately.
 
-The homogeneous premise itself has a long pedigree.  Isotropy modules
-organize fields in coset-space dimensional reduction, compact internal
-geometry can produce chiral fermions, and exceptional K\"ahler cosets have
-been used for family unification
+The second condition concerns the cubic trace tensor \(c_V\) on
+\(\mathfrak h\). A generator lies in its radical when inserting that
+generator makes the cubic vanish, whatever the other two arguments are.
+This radical is automatically an ideal, and we require it to be nonzero:
+\[
+ \operatorname{Rad}(c_V)\ne0.
+\]
+The test includes all mixed insertions from \(\mathfrak h\). It is
+stronger than requiring the cubic to vanish only on a separately specified
+gauge subalgebra. The ideal on which the cubic vanishes is determined by
+the representation itself.
+
+\paragraph{One pair remains.}
+Under these conditions, the pair is unique up to isomorphism of Lie-algebra
+pairs and duality:
+\[
+ \mathfrak e_8\supset\mathfrak e_6\oplus\mathfrak{su}(3)_M,
+ \qquad V=\mathbf{27}\boxtimes\mathbf3.
+\]
+Here \(\boxtimes\) denotes the tensor product for the two simple factors.
+The cubic radical is \(\mathfrak e_6\); its commuting factor
+\(\mathfrak{su}(3)_M\) acts on a three-dimensional multiplicity space.
+Restriction to \(E_6\) therefore gives three copies of the \(\mathbf{27}\).
+The embedding and the multiplicity are conclusions of the classification.
+
+The theorem is also an exclusion result. Every inequivalent pair satisfying
+the standing homogeneous hypotheses and the complex-type condition has
+zero cubic radical. Proving that the displayed pair works is therefore
+only one part of the argument. We must exclude every other equal-rank and
+lower-rank possibility, without a rank cutoff.
+
+\paragraph{Relation to earlier constructions.}
+Ordinary \(SU(5)\), \(\operatorname{Spin}(10)\), and \(E_6\) unification
+organizes a family in \(\mathbf{10}\oplus\overline{\mathbf5}\),
+\(\mathbf{16}\), or \(\mathbf{27}\), but does not by itself fix how many
+times it is repeated \cite{GeorgiGlashow,FritzschMinkowski,GurseyRamondSikivie}.
+Homogeneous representations have also been used in coset-space dimensional
+reduction and exceptional family unification
 \cite{ForgacsManton,MantonFermions,ChaplineSlansky,ChaplineGrossman,
-DouzasEtAl,KugoYanagida,ItohKugoKunitomo}.  Heterotic standard embeddings
-likewise express net chirality through chosen compactification data
-\cite{CandelasHorowitzStromingerWitten}, and recent bordism work sharpens the
-anomaly analysis of exceptional family-unification cosets
-\cite{SugenoWada}.  These approaches choose a particular group, coset,
-bundle, or geometry and compute its consequences.  The new step here is the
-inverse classification: no pair or matter representation is selected before
-the census.
+DouzasEtAl,KugoYanagida,ItohKugoKunitomo}. Heterotic standard embeddings relate
+chirality to compactification data \cite{CandelasHorowitzStromingerWitten},
+and recent work studies anomalies of exceptional family-unification cosets
+through bordism \cite{SugenoWada}.
+These constructions provide precedents for tying matter to geometry. The
+problem here is the converse: classify all pairs in the stated homogeneous
+domain.
 
-Anomaly cancellation also has a history as a source of structure rather than
-a final check.  In the early electroweak theory it linked quark and lepton
-content and supplied an independent consistency argument for a fourth quark
-\cite{BouchiatIliopoulosMeyer,GrossJackiw}.  The present theorem applies that
-logic one level earlier, before the internal algebra and its matter module
-have been chosen.
+Anomaly cancellation has long been used to constrain matter content rather
+than merely to check an existing model
+\cite{BouchiatIliopoulosMeyer,GrossJackiw}. There are also exhaustive methods
+for finding semisimple completions of a supplied gauge algebra and fermion
+representation \cite{GomesRuhdorferToobySmith}, and systematic studies of
+which anomaly-free spectra admit unification \cite{HermsRuhdorfer}.
+Our input differs: the representation is \(\mathfrak g/\mathfrak h\),
+and both the pair and its canonical representation vary.
 
-\paragraph{What is new.}
-Several ingredients of the final chain are classical.  The branchings
-\(E_8\to E_6\times SU(3)\) and \(E_6\to\operatorname{Spin}(10)\), and the
-faithful Standard Model group as the intersection of \(SU(5)\) and
-Pati--Salam inside \(\operatorname{Spin}(10)\), are familiar
-\cite{BaezHuerta,Krasnov}; exceptional subgroup intersections also appear in
-Jordan-algebra constructions \cite{TodorovDuboisViolette}.  The new content
-is the converse and its simultaneity:
-\begin{enumerate}
-\item the mixed anomaly radical leaves one homogeneous pair and excludes every
-      other full-rank and rank-deficient possibility in the domain;
-\item the complete \(38{,}880\)-triple \(E_6\) space has six Weyl orbits,
-      exactly two with a common \(A_2\) component;
-\item those two orbits determine the faithful Standard Model and left--right
-      chains, their compatible finite kernels, and \(8{,}640\) labelled
-      containment incidences representing \(2{,}160\) distinct root-subsystem
-      inclusions; and
-\item the selected module has chiral index of magnitude three.
-\end{enumerate}
-The familiar embeddings are therefore identified outputs, not assumptions of
-the argument.
+\paragraph{Intersections and matter.}
+A second problem begins inside the resulting \(E_6\). We form triples
+containing one maximal proper closed root subsystem from each of its three
+Weyl orbits. The \(38{,}880\) triples form six orbits. We classify both the
+triples with largest pairwise intersections and those with largest common
+intersection. Exactly these two extremal orbits have a common irreducible
+\(A_2\) component.
+
+We then compare the intermediate semisimple groups obtained from pairwise
+intersections. A stated criterion on the chiral dimension of the
+\(\mathbf{27}\), applied before further restriction, distinguishes the
+\(D_5\)--\((A_5+A_1)\) pairing. Intersecting that intermediate group with
+the third regular group gives the Standard Model and left--right groups on
+the two extremal orbits. Compatible representatives give their inclusion
+in a common Pati--Salam chain, with its finite central quotients and
+hypercharge embedding. The branchings and the familiar intersection
+\(SU(5)\cap G_{\mathrm{PS}}\) are classical
+\cite{BaezHuerta,Krasnov,TodorovDuboisViolette}; the two exhaustive classifications establish which configurations realize
+these branchings.
+
+Finally, restriction gives the complete matter decomposition. Each
+\(\mathbf{27}\) contains one minimal chiral Standard Model family, a
+vectorlike pair, and two singlets. The multiplicity factor supplies three
+copies. Section~5 keeps this full representation separate from its net
+chiral class. We also classify the kernels of invariant symmetric forms
+on this full module. Section~5 states the interpretation needed to identify
+the coefficient three with the complete physical family multiplicity.
+
+\Needspace{6\baselineskip}
+Section~2 defines the two invariant conditions and states the unique-pair
+theorem.  Section~3 proves the exhaustive homogeneous census.  Section~4
+classifies the finite \(E_6\) triple space and reconstructs the faithful
+subgroup chains.  Section~5 restricts the selected module and computes its
+chiral index, invariant mass kernels, and anomalies. The finite algorithms and their completeness
+arguments are explained where the proofs use them. The source, certificates,
+and verification instructions are identified in the computational-material
+statement at the end of the paper.
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[node distance=5.5mm]
-\node[overviewbox] (domain) {\textbf{Complete homogeneous domain}\\
+\begin{tikzpicture}[node distance=3mm]
+\node[overviewbox] (domain) {\textbf{Homogeneous hypotheses}\\
 all connected, infinitesimally effective compact pairs with irreducible
 complex-type complement and nonzero cubic radical};
 \node[overviewbox,below=of domain] (pair) {\textbf{Homogeneous uniqueness and no-go}\\
 \(\mathfrak e_8\supset\mathfrak e_6\oplus\mathfrak{su}(3)_M\),
 \(V=\mathbf{27}\boxtimes\mathbf3\),
 \(\operatorname{Rad}(c_V)=\mathfrak e_6\)};
-\node[overviewbox,below=of pair] (incidence) {\textbf{Complete \(E_6\) incidence space}\\
+\node[overviewbox,below=of pair] (incidence) {\textbf{A second, finite classification in \(E_6\)}\\
 \(38{,}880\) triples, six Weyl orbits, exactly two with a common
 \(A_2\) component};
 \node[overviewbox,below=of incidence] (sm) {\textbf{Faithful chains and matter restriction}\\
@@ -254,32 +270,17 @@ chiral-index coefficient \(=\pm3\)};
 \draw[branch] (pair) -- (incidence);
 \draw[branch] (incidence) -- (sm);
 \end{tikzpicture}
-\caption{The logical architecture.  The first arrow is the homogeneous
-classification, the second the exhaustive \(E_6\) orbit classification, and
-the third applies the pair-first and \(A_2\)-extremal criteria before the
-branching and lattice calculation.  Interpretation \textup{(M)}
-enters only when the final chiral index is identified with the complete
-physical family count.}
+\caption{The two classification problems. The subgroup step uses the stated
+intermediate-group criterion and derived-subgroup construction. The last
+coefficient records net chirality; interpretation \textup{(M)} identifies it
+with the complete physical family multiplicity.}
 \label{fig:logical-architecture}
 \end{figure}
 
-\paragraph{How to read the paper.}
-Section~2 defines the two invariant conditions and states the unique-pair
-theorem.  Section~3 proves the exhaustive homogeneous census.  Section~4
-classifies the finite \(E_6\) triple space and reconstructs the faithful
-subgroup chains.  Section~5 restricts the selected module and computes its
-chiral index and anomalies.  Readers interested first in the result can read
-Theorem~\ref{thm:main}, Theorems~\ref{thm:incidence} and~
-\ref{thm:common-intersection}, Corollary~\ref{cor:subgroup-chain}, and
-Section~5; the intervening sections and appendices supply the full proofs and
-independent exact verification.
-
 \section{Homogeneous chirality and cubic anomalies}
 
-This section turns the physical vocabulary into two invariant algebraic
-conditions.  The first produces one irreducible real module with two complex
-orientations.  The second asks its cubic anomaly to identify a nonzero ideal
-that is safe against every mixed insertion.
+We first define complex-type isotropy and the cubic radical. These two
+conditions specify the homogeneous classification problem.
 
 Let \(G\) be a connected compact Lie group and let
 \(H\subsetneq G\) be a connected closed subgroup. Write
@@ -318,10 +319,11 @@ dual \(\h\)-modules \(V\) and \(V^*\), so
 \[
  \q_{\mathbb C}=V\oplus V^*,\qquad V\not\cong V^*.
 \]
-The two choices \(J\) and \(-J\) exchange \(V\) and \(V^*\). The
-homogeneous data determine the unordered dual pair \(\{V,V^*\}\), but not an
-orientation. Choosing one member gives the usual all-left-handed convention;
-choosing the other reverses all charges.
+The two choices \(J\) and \(-J\) exchange \(V\) and \(V^*\); we call them
+the two complex orientations. The homogeneous pair determines the unordered
+dual pair \(\{V,V^*\}\), not a preferred member. In a fixed all-left-handed
+Weyl convention, exchanging the complex orientations replaces the internal
+representations by their duals.
 
 \subsection{The cubic anomaly and its radical}
 
@@ -395,13 +397,12 @@ realization must fail at least one pair hypothesis or one of conditions
 separately in Section~4.
 \end{remark}
 
-\begin{remark}[What the theorem fixes]
+\begin{remark}[Cubic radical and multiplicity factor]
 The pair fixes \(\mathfrak h\) and \(\mathfrak q\) simultaneously.  In the
 surviving case the cubic radical then separates
 \(\mathfrak h=\mathfrak e_6\oplus\mathfrak{su}(3)_M\) into the
 cubic-anomaly-safe ideal \(\mathfrak e_6\) and the commuting multiplicity factor
-\(\mathfrak{su}(3)_M\).  These are outputs of one theorem rather than
-separate group, representation, and family-symmetry choices.
+\(\mathfrak{su}(3)_M\).
 \end{remark}
 
 \begin{remark}[Invariant degrees and the surviving radical]
@@ -500,16 +501,14 @@ neither satisfies (3).
 
 \section{Exhaustive census of the homogeneous domain}
 
-Lemma~\ref{lem:reduction} narrows no hypothesis and loses no pair.  It puts
-every object in the original classification domain into a forced structural
-normal form: \(\g\) is compact and simple, \(\h\) is maximal semisimple,
-and the complement is irreducible of complex type.  The proof below exhausts
-the full-rank and rank-deficient branches of that original domain.  The first
-becomes a finite root-grading calculation.  The second is eliminated by exact
-index arithmetic in exceptional ambient algebras and by a highest-weight
-argument in the classical ones.
+By Lemma~\ref{lem:reduction}, \(\g\) is compact and simple, \(\h\) is
+maximal semisimple, and the complement is irreducible of complex type.
+We separate the remaining pairs by rank. Full-rank pairs reduce to a finite
+root-grading calculation. For smaller-rank \(\h\), index arithmetic excludes
+the exceptional ambient algebras, and a uniform highest-weight argument
+excludes the classical ones.
 
-We use \(A_n=\su(n+1)\).  A subalgebra is called regular when it is normalized
+We use \(A_n=\su(n+1)\).  A subalgebra is called regular when it is normalised
 by a Cartan subalgebra of \(\g\).
 
 \subsection{The full-rank branch}
@@ -584,7 +583,8 @@ conjugation preserves that odd root set because \(-c=c\).  For a classical
 ambient algebra, an inner involution either has a unitary block centralizer
 with nonzero center, or has an orthogonal or symplectic block centralizer whose
 odd module is a self-dual tensor product.  For an exceptional ambient algebra,
-the exact involutive census in Appendix~\ref{app:direct-census} shows that
+the finite involutive calculation described in
+Proposition~\ref{prop:direct-toral-census} shows that
 whenever the fixed algebra is semisimple, the odd weight graph is connected.
 In every case compatible with semisimplicity the irreducible odd module is
 self-conjugate, not of complex type.
@@ -606,11 +606,13 @@ defines a toral order-three automorphism with fixed algebra
 
 \begin{proposition}[Direct toral grading census]
 \label{prop:direct-toral-census}
-Let \((G,H)\) lie in the compact homogeneous domain defined above: the standing pair hypotheses together with Conditions~\textup{(1)} and~\textup{(3)}.  By
-Lemma~\ref{lem:reduction}, without any additional hypothesis,
-\(\g\) is simple, \(\h\) is maximal semisimple, and the complement is
-irreducible of complex type.  In the full-rank case the pair is isomorphic to
-exactly one of the following six types:
+Let \((G,H)\) satisfy the standing pair hypotheses and
+Conditions~\textup{(1)} and~\textup{(3)}, with
+\(\operatorname{rank}\h=\operatorname{rank}\g\).
+The pair must be isomorphic to exactly one of the six candidates below.
+Here condition~\textup{(3)} has been used through
+Lemma~\ref{lem:reduction} to establish semisimplicity of \(\h\);
+the cubic coefficients are evaluated in Table~\ref{tab:direct-census}.
 \[
  \mathfrak g_2\supset A_2,\quad
  \mathfrak f_4\supset A_2+A_2,\quad
@@ -626,11 +628,6 @@ Their complex halves have dimensions
 respectively, and are irreducible and inequivalent to their duals.
 \end{proposition}
 \begin{proof}
-Condition~\textup{(3)} has entered this candidate list only through
-Lemma~\ref{lem:reduction}, where it forces \(\h\) to be semisimple.  No cubic
-coefficient has yet been used to eliminate a row; that selection follows
-after the rank-deficient branch is closed.
-
 For the classical groups the calculation is immediate in the defining
 module.  A nonidentity inner automorphism of order three of \(\mathfrak{su}(n)\)
 has a representative with eigenvalues among \(c,c\zeta,c\zeta^2\), where
@@ -644,11 +641,21 @@ unitary factor in its centralizer, again giving a center.  Thus no proper
 classical fixed algebra is semisimple.  For involutions, the semisimple
 classical centralizers have self-dual tensor-product quotients.
 
-For the exceptional groups the remaining calculation is finite.
-Appendix~\ref{app:direct-census} enumerates every nonzero homomorphism
-\(Q\to\mathbb Z_m\), \(m=2,3\), modulo the Weyl action, directly from the
-Cartan matrices.  It retains the gradings whose grade-zero roots span the
-full rank and tests connectedness of the grade-one weight graph.  For
+For the exceptional groups the remaining calculation is finite. Starting
+from each Cartan matrix, simple reflections generate the roots in
+simple-root coordinates. A homomorphism \(Q\to\mathbb Z_m\), \(m=2,3\),
+is determined by its values on the simple roots. We enumerate all
+\(m^{\operatorname{rank}\g}-1\) nonzero assignments and form their Weyl
+orbits. This covers every toral grading under consideration. We retain the
+gradings whose grade-zero roots span the full rank and test connectedness
+of the grade-one weight graph. The exact implementation and resulting
+root data are supplied in the computational companion \cite{ComputationalCompanion}.
+Its vertices are the roots of degree one; two are joined when their
+difference is a grade-zero root. The corresponding root operator acts
+nontrivially between their one-dimensional weight spaces. Since the
+grade-zero algebra contains the full Cartan subalgebra, its submodules are
+sums of these weight spaces, and the connected components are precisely the
+irreducible constituents. For
 \(m=2\) every semisimple row has a connected self-conjugate odd module.  For
 \(m=3\) the six rows displayed above are the complete list.  The Killing
 form pairs grades one and two nondegenerately, so the two modules are dual;
@@ -699,7 +706,7 @@ representation gives the necessary equations
  \qquad
  h_\g^\vee I_i=h_i^\vee+2T_i\prod_{j\ne i}d_j. \tag{6}
 \]
-The normalization is visible in the surviving full-rank row.  For
+The normalisation is visible in the surviving full-rank row.  For
 \(E_8\supset E_6+A_2\), both embeddings have index one and
 \[
  30=12+2\cdot3\cdot3,
@@ -727,14 +734,23 @@ For \(G_2\), the only smaller-rank semisimple type is \(A_1\), and
 parity-compatible semisimple dimension is six, while \(E_7\) admits
 \(A_1\) of dimension three.
 
-There are therefore finitely many factor types; for each one, Weyl's
-dimension formula is strictly increasing in every Dynkin label, so only
-finitely many dominant weights occur.  Appendix~\ref{app:direct-census}
-enumerates all of them inside the bounds \textup{(6b)}, quotients permutations
-of identical factors, and imposes complex type, a nonzero radical factor,
-the dimension equation, and the integrality of every equation in
-\textup{(6)}.  Its audit records every candidate reaching the index stage.
-No candidate remains for \(G_2,F_4,E_6,E_7\), or \(E_8\).
+There are finitely many multisets of simple factor types of smaller total
+rank. For each factor, enumerate dominant Dynkin labels from zero by
+successively increasing one label. Weyl's dimension formula is strictly
+increasing in each label, so a branch may be stopped when its dimension
+exceeds the applicable bound in \textup{(6b)}. This terminates and includes
+every admissible highest weight. Each factor dimension is at most
+\(\dim V\), so the same bounds suffice for every factor.
+
+For every multiset, form all representation products within these bounds,
+identify permutations of identical factors, and impose the dimension
+equation, complex type, a zero cubic coefficient on at least one factor,
+and positive integrality of every index in \textup{(6)}. The finite
+calculation leaves no candidate in any of the five ambient types
+\cite{ComputationalCompanion}. Its machine-readable audit records every
+product reaching the index test and the nonintegral index excluding it.
+These are necessary conditions on an embedding; their empty intersection
+is sufficient for the no-go conclusion.
 \end{proof}
 
 \begin{lemma}[Defining modules and canonical constituents]
@@ -764,6 +780,7 @@ If the last integer is at least three, then
 \(V_{2\lambda-3\alpha_i}\) also occurs in \(\Lambda^2W\).
 \end{lemma}
 \begin{proof}
+\emph{Irreducibility of \(W\).}
 Suppose first that the defining module is reducible.  In the compact
 real form, complete reducibility gives either a proper invariant orthogonal
 decomposition or
@@ -775,14 +792,20 @@ orthogonal and symplectic cases the off-diagonal quotient is a sum of
 self-dual tensor products of defining blocks, contrary to irreducible complex
 type.  Under the isotropic-dual-pair alternative, the splitting defines an \(\h\)-invariant
 orthogonal complex structure, and \(\h\) lies in its proper compact unitary
-centralizer, contradicting maximality.  Every possibility is excluded, so the defining
-module is irreducible, and
-\(W=\boxtimes_iW_i\) for the simple ideals of \(\h\).  In
+centralizer, whose nonzero centre excludes equality with the semisimple
+\(\h\), again contradicting maximality. Thus the defining module is
+irreducible.
+
+\emph{Simplicity of \(\h\).}
+Write \(W=\boxtimes_iW_i\) for the simple ideals of \(\h\). In
 \(\mathfrak{sl}(W)\), two distinct factors produce the self-dual constituent
 \(\operatorname{ad}\h_i\boxtimes\operatorname{ad}\h_j\) outside \(\h\).
-In the orthogonal or symplectic cases every \(W_i\) is self-dual.  Writing
-\(\operatorname{End}(W_i)=K_i\oplus P_i\) for the skew- and self-adjoint
-parts, the ambient Lie algebra is the odd-parity part of
+In the orthogonal or symplectic cases every \(W_i\) is self-dual.
+Choose its invariant nondegenerate bilinear form, symmetric or alternating
+as appropriate. Adjointness in the decomposition
+\(\operatorname{End}(W_i)=K_i\oplus P_i\) refers to this bilinear form:
+\(K_i\) is the skew-adjoint part and \(P_i\) the self-adjoint part. With \(P_i^0=\{p\in P_i:\operatorname{Tr}p=0\}\) for the traceless
+self-adjoint part, the ambient Lie algebra is the odd-parity part of
 \(\bigotimes_i(K_i\oplus P_i)\).  Three factors again give the self-dual
 constituent
 \(\operatorname{ad}\h_1\boxtimes\operatorname{ad}\h_2
@@ -797,11 +820,13 @@ quotient is \(\operatorname{ad}\mathfrak{sl}_2\boxtimes P_2^0\), an
 irreducible self-dual module; if both traceless parts vanish, the quotient is
 zero.  Hence \(\h\) is simple.
 
-The first two displayed inclusions are the Cartan products.  For the third,
+\emph{Highest-weight constituents.}
+The first two displayed inclusions are the Cartan products. For the third,
 if \(v_\lambda\) is a highest-weight vector and \(f_i\) a simple lowering
 operator, then
 \(v_\lambda\wedge f_iv_\lambda\) is a highest-weight vector of weight
-\(2\lambda-\alpha_i\).  If
+\(2\lambda-\alpha_i\). The corresponding weight space in \(\Lambda^2W\)
+is one-dimensional, which proves the stated multiplicity. If
 \(m=\langle\lambda,\alpha_i^\vee\rangle\ge3\), the vector
 \[
  m\,v_\lambda\wedge f_i^3v_\lambda
@@ -843,6 +868,9 @@ this proof are labelwise, and their nonzero dominant solutions are
  & D_r:\ \omega_1;\ D_4:\ \omega_3,\omega_4;\ G_2:\ \omega_1.
 \end{array} \tag{6d}
 \]
+In the symplectic case, \(\g_{\mathbb C}\cong\operatorname{Sym}^2W\),
+and the self-dual Cartan constituent \(V_{2\lambda}\) must likewise be the
+adjoint of \(\h\). This gives the second equation, \(2\lambda=\theta\).
 The first row gives the standard \(A_r\) representation, for which the
 ambient algebra equals \(\h\), and the defining symplectic representation,
 whose quotient in \(\mathfrak{sl}(W)\) is self-dual.  The second row gives
@@ -855,18 +883,43 @@ adjoint, so \(2\lambda-\alpha_i=\theta\).  The third row of
 \textup{(6d)} consists of defining representations and low-rank
 isomorphisms, together with \(G_2\subset SO(7)\) and the spin embedding
 \(B_3\subset SO(8)\); their quotients are zero or self-dual.
-Consequently the support of \(\lambda\), if any case remains, is one pair of
-nodes exchanged by duality, with a common coefficient \(a\).  This occurs
-only in types \(A_r\), odd \(D_r\), and \(E_6\).
+For distinct support nodes, the weights \(2\lambda-\alpha_i\) are
+distinct. Once the self-dual cases have been excluded, each must be one of
+the two quotient highest weights. There can therefore be only one pair of
+support nodes exchanged by duality. Their coefficients are equal because
+the orthogonal module \(W\) is self-dual. Write this common coefficient as
+\(a\). Such a pair occurs only in types \(A_r\), odd \(D_r\), and \(E_6\).
 
 For \(A_{N-1}\), choose the pair \(i,N-i\) with \(1\le i<N/2\).
-The constituent
-\(\mu_i=2\lambda-\alpha_i\) has cubic Harish--Chandra eigenvalue
+For a highest weight \(\mu=\sum_{j=1}^{N-1}b_j\omega_j\), put
+\(\ell_j=\sum_{k=j}^{N-1}b_k\), \(\ell_N=0\), and
+\(x_j=\ell_j+N-j\). We use the cubic Harish--Chandra normalisation
+\[
+ C_3(\mu)=\sum_{j=1}^N(x_j-\bar x)^3,\qquad
+ \bar x=\frac1N\sum_{j=1}^N x_j.
+\]
+In this normalisation the constituent \(\mu_i=2\lambda-\alpha_i\) has
 \[
  C_3(\mu_i)=-6a\bigl(2a+N-2i\bigr)\ne0. \tag{6e}
 \]
-It is therefore one of the two quotient halves with nonzero cubic index, so
-the radical is zero.
+For completeness, let \(u,v\) be the \(i\)-th and \((i+1)\)-st centred
+coordinates of \(2\lambda\). Self-duality makes their full cubic sum zero,
+while
+\[
+ u-v=2a+1,\qquad u+v=2a+N-2i.
+\]
+Subtracting \(\alpha_i\) changes only these two centred coordinates, to
+\(u-1,v+1\). Hence the change in the cubic sum is
+\[
+ (u-1)^3-u^3+(v+1)^3-v^3
+ =3(u+v)(v-u+1)=-6a(2a+N-2i),
+\]
+which proves \textup{(6e)}. In type \(A\), the cubic trace tensor is a
+multiple of the unique invariant cubic. Contracting it with that invariant
+yields the cubic central eigenvalue times the dimension, up to a fixed
+nonzero normalisation. Thus its coefficient vanishes exactly when
+\(C_3\) does. The constituent \(\mu_i\) is consequently a quotient half
+with nonzero cubic index, so the radical is zero.
 
 For odd \(D_r\) and for \(E_6\), a coefficient \(a\ge3\) gives the additional
 constituent \(V_{2\lambda-3\alpha_i}\), contradicting the assumption that
@@ -875,7 +928,12 @@ the quotient has only one dual pair.  It remains to inspect \(a=1,2\).  Put
  D_{r,a}=\dim V_{a(\omega_{r-1}+\omega_r)},\qquad
  M_{r,a}=\dim V_{2a(\omega_{r-1}+\omega_r)-\alpha_{r-1}}.
 \]
-Weyl's formula gives, for odd \(r\ge5\),
+For odd \(r\ge5\) and \(a\in\{1,2\}\), we will show
+\[
+ \binom{D_{r,a}}2>r(2r-1)+2M_{r,a}.
+\]
+Thus the adjoint and the proposed dual pair cannot exhaust \(\Lambda^2W\).
+Weyl's formula gives the ratios
 \[
  \frac{4M_{r,1}}{D_{r,1}^2}
  =\frac{36(r-1)(2r+1)}{r(r+2)(r+3)(r+4)},
@@ -925,15 +983,18 @@ values \(a=1,2\) give the positive dimension gaps
  \quad1{,}949{,}250{,}433,
  \quad24{,}307{,}954{,}884{,}506{,}865.
 \]
-The exact Dynkin-label and dimension calculations are reproduced in
-Appendix~\ref{app:direct-census}.  No rank-deficient classical pair can have
-a nonzero radical.
+These four dimension gaps follow from Weyl's product formula; their exact
+values and a separate check of the symbolic inequalities above are recorded
+in the computational companion \cite{ComputationalCompanion}.
+The inequalities are uniform in rank; the finite regression tests supplied
+with the code are supplementary checks, not the all-rank argument.
+No rank-deficient classical pair can have a nonzero radical.
 \end{proof}
 
 \subsection{Cubic indices and the survivor}
 
 For a simple factor of type \(A_{N-1}\) with \(N\ge3\), let \(A(R)\) be the
-cubic index, normalized by \(A(\mathbf N)=1\); for \(A_1\) and every other simple type put
+cubic index, normalised by \(A(\mathbf N)=1\); for \(A_1\) and every other simple type put
 \(A(R)=0\).  Duality gives \(A(R^*)=-A(R)\), and for
 \(V=\boxtimes_iV_i\) the coefficient on the \(i\)-th factor is
 \[
@@ -944,7 +1005,8 @@ Mixed cubics between distinct simple ideals vanish because they factor
 through the trace of a generator.  Hence \(\Rad(c_V)\) is the sum of the
 simple ideals whose coefficients in \textup{(6f)} vanish.
 
-The six full-rank rows of Proposition~\ref{prop:direct-toral-census} give:
+Table~\ref{tab:direct-census} gives the cubic coefficients of the six
+full-rank rows in Proposition~\ref{prop:direct-toral-census}.
 \begin{table}[!t]
 \centering
 \caption{The direct full-rank census and its cubic coefficients.  The
@@ -974,7 +1036,8 @@ pair \(\g\supset\h\) & complex summand \(V\) & \(\mathbf A(V)\) &
 \end{tabular}
 \end{table}
 
-The entries follow, for \(N\ge3\) and \(1\le k\le N-1\), from
+The entries follow from the standard cubic-index formulas
+\cite{Slansky,McKayPatera}: for \(N\ge3\) and \(1\le k\le N-1\),
 \[
  A(\Lambda^k\mathbf N)
  =\frac{(N-2k)(N-3)!}{(k-1)!(N-k-1)!},
@@ -1004,20 +1067,19 @@ Propositions~\ref{prop:exceptional-rankdef} and~
 radical.  The final row satisfies all hypotheses, proving the converse.
 \end{proof}
 
-\begin{remark}[Classification closure]
+\begin{remark}[Completeness of the classification]
 The proof uses no classification of maximal subalgebras or homogeneous
 spaces.  The full-rank branch is a finite toral-grading census from Cartan
 matrices; the exceptional rank-deficient branch is a finite
 Weyl-dimension/index sieve; and the classical rank-deficient branch is the
-uniform highest-weight argument above.  The manuscript supplies the
-reductions and completeness criteria; the distributed programs discharge the
-resulting finite leaves.
+uniform highest-weight argument above. The manuscript proves the reductions
+and establishes their completeness; the accompanying programs perform the
+remaining finite calculations.
 \end{remark}
 
 
 \subsection{The centralizer and multiplicity three}
-The surviving zero coefficient has an immediate multiplicity interpretation.
-For the selected pair,
+For the unique pair, the radical and its centralizer are
 \[
  \Rad(c_V)=\e_6,
  \qquad C_{\h}(\Rad(c_V))=\su(3)_M.
@@ -1026,9 +1088,9 @@ Here \(C_{\h}\) denotes the centralizer in \(\h\). The radical is the
 largest ideal on which all cubic coefficients, including mixed ones, vanish.
 Its centralizer acts on the second tensor factor, and its defining
 \(\mathbf3\) gives three copies of the \(\mathbf{27}\) after restriction to
-\(E_6\). The subscript \(M\) records this multiplicity. The construction uses
-\(SU(3)_M\) as a commuting multiplicity factor, not as a gauged symmetry;
-Section~5 computes its cubic anomaly.
+\(E_6\). The subscript \(M\) records this multiplicity.
+We treat \(SU(3)_M\) as a background symmetry; Section~5 computes its
+cubic anomaly.
 
 The ambient algebra is \(E_8\). Lorentz symmetry remains
 external, and matter is the complex summand \(V\), not the adjoint
@@ -1088,17 +1150,21 @@ questions on it: simultaneous pairwise maximality and maximal common
 intersection.
 
 The calculation rests on three pairwise facts. A \(D_5\)--\((A_5+A_1)\)
-intersection has two possible types; the \(D_5\)--\(A_2^3\) intersection is
-rigid; and an \((A_5+A_1)\)--\(A_2^3\) intersection is large precisely when
+intersection has two possible types; the \(D_5\)--\(A_2^3\) intersection
+always has type \(A_2+A_1+A_1\); and an \((A_5+A_1)\)--\(A_2^3\)
+intersection is large precisely when
 the distinguished root pair lies in the \(A_2^3\) subsystem. The two
 extremal theorems combine these facts in different ways.
 
 \subsection{The finite configuration space}
 
-The three maximal subsystem types admit concrete parameterizations that make
+The three maximal subsystem types admit concrete parametrisations that make
 the finite problem explicit. Fix a maximal torus \(T_0\subset E_6^{\mathrm{sc}}\)
 with Lie algebra \(\mathfrak t_0\), let \(\Phi=\Phi(E_6)\), and write
-\(\mathcal W=W(E_6)\). A subsystem
+\(\mathcal W=W(E_6)\). We use Bourbaki numbering: the chain is
+\(1-3-4-5-6\), with node \(2\) attached to node \(4\). The Cartan matrix
+has diagonal entries \(2\), entries \(-1\) on these edges, and zero
+elsewhere. A subsystem
 \(\Psi\subseteq\Phi\) is \emph{closed} when
 \[
  \alpha,\beta\in\Psi,\quad \alpha+\beta\in\Phi
@@ -1111,6 +1177,23 @@ subgroup containing \(T_0\) with
  =(\mathfrak t_0)_{\mathbb C}
   \oplus\bigoplus_{\beta\in\Psi}(\e_6)_{\beta}.
 \]
+
+The intersections of these regular groups retain the common maximal torus
+\(T_0\). Passing to the derived subgroup retains only the torus generated
+by the common coroots; after the third intersection, some of these
+directions can become central.
+For two subsystems \(P,Q\), define
+\[
+ H_{PQ}=[(\widehat P\cap\widehat Q)^\circ,
+          (\widehat P\cap\widehat Q)^\circ].
+\]
+Here the superscript \(\circ\) denotes the identity component, and
+\([L,L]\) is the derived subgroup of \(L\).
+The group \(H_{PQ}\) is the semisimple intermediate group obtained by
+intersecting two regular groups and taking the derived subgroup. We then
+intersect this intermediate group with the third regular group and take the identity
+component. This is the \emph{pair-first construction}. The derived-subgroup
+step makes the choice of the first pair matter.
 
 \begin{proposition}[Maximal closed subsystems of \(E_6\)]
 \label{prop:e6-subsystems}
@@ -1142,9 +1225,25 @@ give \(\mathcal W\)-equivariant bijections
 \(\mathcal R\simeq\mathcal O_A\).
 \end{proposition}
 \begin{proof}
-The exact closed-subsystem traversal of Appendix~\ref{app:e6-scan} gives
-\(D_5,A_5+A_1,A_2^3\) as the maximal proper types in \(E_6\). Roots orthogonal to a minuscule
-weight form \(D_5\); a root pair \(\{\pm\alpha\}\) determines the
+The Cartan matrix generates all \(72\) roots by simple reflections.
+Fix the resulting positive system. Enumerate all linearly independent
+subsets of positive roots with pairwise nonpositive inner products, including
+the empty subset; take their reflection closures, test additive closedness,
+and identify duplicates. This enumeration is exhaustive: every closed
+subsystem inherits a positive system from \(\Phi\), and its simple roots
+are one of the enumerated subsets. Reflection closure of those simple roots
+recovers the subsystem.
+
+The exact traversal gives \(5{,}079\) closed subsystems, including the empty
+and full systems, and \(103\) maximal proper subsystems. Grouping the latter
+under the simple reflections gives \(27\) of type \(D_5\), \(36\) of type
+\(A_5+A_1\), and \(40\) of type \(A_2^3\)
+\cite{ComputationalCompanion}. Two coordinate implementations reproduce
+these counts. They share the simple-root enumeration strategy; its
+completeness is the argument just given.
+
+Roots orthogonal to a minuscule weight form \(D_5\); a root pair
+\(\{\pm\alpha\}\) determines the
 \(A_1\) that it spans together with the orthogonal \(A_5\). If
 \(D_\lambda=D_\mu\), their
 one-dimensional orthogonal complements give \(\mu=\pm\lambda\); the
@@ -1441,39 +1540,36 @@ The two extremal criteria are inequivalent. Pairwise maximality gives a
 common intersection of type \(A_2+A_1\) with eight roots, whereas maximizing
 the common intersection gives type \(A_2+A_1+A_1\) with ten roots.
 
-\begin{remark}[Monotone objectives]
-Any function of
-\(\bigl(|D\cap A|,|D\cap\Theta|,|A\cap\Theta|\bigr)\) that is strictly
-increasing in each coordinate is maximized on the pairwise-maximal orbit.
-Likewise, every strictly increasing function of
-\(|D\cap A\cap\Theta|\) is maximized on the common-maximal orbit.
-\end{remark}
+\subsection{Chiral dimensions and the six triple orbits}
 
-\subsection{The six orbit cells and their chiral parents}
+We now compare the three intermediate groups \(H_{DA}\), \(H_{D\Theta}\), and
+\(H_{A\Theta}\) by restricting the \(\mathbf{27}\) to each.
+To measure the remaining chirality, cancel each irreducible representation
+against its dual and discard self-dual summands.
 
-A triple offers three canonical pair-first parents.  Their chiral dimensions
-first distinguish the parent-level one-family criterion specified below;
-for that extraction, the common root systems then show that color occurs on
-exactly the two extremal cells.
-
-\begin{proposition}[Chiral dimensions of the three pair-first parents]
-\label{prop:pair-ordering}
 For a representation \(R=\bigoplus_U m_U U\) of a semisimple compact group,
 define its chiral dimension by
 \[
  d_\chi(R)=
  \sum_{\{U,U^*\}}|m_U-m_{U^*}|\,\dim U,
 \]
-where the sum runs over unordered pairs of non-self-dual irreducibles. For
-\(P,Q\in\{D_\lambda,A_{\bar\alpha},\Theta\}\), let
-\[
- H_{PQ}=[(\widehat P\cap\widehat Q)^\circ,
-          (\widehat P\cap\widehat Q)^\circ].
-\]
-Then the restriction of the \(\mathbf{27}\) has
+where the sum runs over unordered pairs of non-self-dual irreducibles.
+Thus \(d_\chi\) counts the dimension of the non-self-dual remainder.
+We call the requirement \(d_\chi(\mathbf{27}|_{H_{PQ}})\in\{15,16\}\)
+the \emph{intermediate-group dimension criterion}. These values are the chiral dimensions
+of the familiar \(SU(5)\) and Pati--Salam one-family representations,
+respectively. On restriction to the Standard Model, the latter includes
+the neutral singlet \(\nu^c\), which no longer contributes to \(d_\chi\).
+The criterion is imposed at the semisimple intermediate group, before further restriction;
+Section~5 identifies the resulting representations and charges.
+
+\begin{proposition}[Chiral dimensions of the three intermediate groups]
+\label{prop:pair-ordering}
+For \(P,Q\in\{D_\lambda,A_{\bar\alpha},\Theta\}\), the restriction of the
+\(\mathbf{27}\) to \(H_{PQ}\) has
 \[
 \begin{array}{c|c|c}
-\text{parent} & \text{root type} & d_\chi(\mathbf{27})\\
+\text{intermediate group} & \text{root type} & d_\chi(\mathbf{27})\\
 \hline
 H_{DA} & A_4\ \text{or}\ A_3+A_1+A_1 & 15\ \text{or}\ 16\\
 H_{D\Theta} & A_2+A_1+A_1 & 12\\
@@ -1529,7 +1625,7 @@ The first line is self-dual, and the two three-dimensional terms in the
 second line form a dual pair. The remaining two summands have dimension six,
 so \(d_\chi=12\).
 
-If \(H_{A\Theta}\cong A_1+A_2+A_2\), then
+If \(H_{A\Theta}\) has type \(A_1+A_2+A_2\), then
 \[
 \mathbf{27}=(\mathbf2,\overline{\mathbf3},\mathbf1)
 \oplus(\mathbf1,\overline{\mathbf3},\mathbf1)
@@ -1538,23 +1634,24 @@ If \(H_{A\Theta}\cong A_1+A_2+A_2\), then
 \oplus(\mathbf1,\mathbf1,\mathbf3),
 \]
 and none of the dual summands occurs, so \(d_\chi=27\). If
-\(H_{A\Theta}\cong A_1^3\), every irreducible is self-dual and
+\(H_{A\Theta}\) has type \(A_1^3\), every irreducible is self-dual and
 \(d_\chi=0\).
 \end{proof}
 
-\begin{corollary}[Uniqueness of the one-family pair-first parent]
+\begin{corollary}[Uniqueness of the selected intermediate group]
 \label{cor:pair-first}
-Among the three pair-first constructions, \(H_{DA}\) is the unique one whose
-parent-level chiral dimension is \(15\) or \(16\).  Define the one-family
-parent criterion to require that the non-self-dual remainder of one
-\(\mathbf{27}\), computed as an \(H_{PQ}\)-module, have dimension \(15\) or
-\(16\).  Under interpretation \textup{(M)} of Section~5 and this criterion,
-the \(D\)-\(A\) parent is uniquely characterized.  The criterion is evaluated
-before further restriction; the Standard Model representations and charges
-are identified by the subgroup chain and branching in Section~5.
+Among the three pair-first constructions, \(H_{DA}\) is the unique intermediate group
+whose chiral dimension is \(15\) or \(16\), and hence the unique intermediate group
+satisfying the intermediate-group dimension criterion.
+Under interpretation \textup{(M)} of Section~5, this criterion selects the
+\(D\)-\(A\) intermediate group for the complete matter module.
 \end{corollary}
 
-\begin{proposition}[The color-containing orbits]
+The next result identifies the triples whose common root system contains an
+\(A_2\) component. Along the faithful chains below, this component is the
+colour factor.
+
+\begin{proposition}[The \(A_2\)-containing orbits]
 \label{prop:color-extrema}
 For \(s=(D_\lambda,A_{\bar\alpha},\Theta)\in\mathcal X\), put
 \[
@@ -1602,8 +1699,17 @@ Since \(|\mathcal O_D|=27\), \(|\mathcal O_A|=36\), and
 \[
  |\mathcal X|=27\cdot36\cdot40=38{,}880.
 \]
-Table~\ref{tab:complete-e6-cells} lists the six incidence cells. The
-independent scan also shows that each row is a Weyl orbit.
+For a triple \(s=(D,A,\Theta)\), its pairwise profile is
+\(p(s)=(|D\cap A|,|D\cap\Theta|,|A\cap\Theta|)\).
+To obtain the full orbit decomposition, enumerate every triple and form
+its orbit by simultaneously applying the six simple reflections to its
+three subsystems. Repeat from an unvisited triple until none remains.
+Because these reflections generate \(\mathcal W\), the process gives the
+complete orbit partition, not merely a partition by numerical invariants.
+The resulting six orbits have the profiles, common root systems, and
+cardinalities in Table~\ref{tab:complete-e6-cells}
+\cite{ComputationalCompanion}. Their sizes sum to \(38{,}880\); exactly
+one orbit realizes each displayed row.
 
 \begin{table}[H]
 \centering
@@ -1637,12 +1743,6 @@ representations the outer class exchanges \(\mathbf{27}\) and
 unoriented subsystem classification unchanged.
 \end{remark}
 
-Appendix~\ref{app:e6-scan} reconstructs the root system and Weyl group from
-the Cartan matrix, scans all \(38{,}880\) triples, and verifies the two
-extremal orbit theorems and the six-cell classification.
-
-
-
 \subsection{Faithful subgroup chains}
 
 The common root systems record the derived semisimple parts of the connected
@@ -1658,8 +1758,9 @@ identifies their faithful compact global forms and compares the two chains.
 \begin{remark}[Fixed groups and the intersection construction]
 The regular groups associated with \(D_5\), \(A_5+A_1\), and \(A_2^3\)
 are the connected fixed groups of two toral involutions and of the
-order-three grading.  Their root systems are reconstructed directly in
-Appendices~\ref{app:direct-census} and~\ref{app:e6-scan}. The defining toral
+order-three grading.  Their root systems are obtained by the finite calculations in
+Propositions~\ref{prop:direct-toral-census} and~\ref{prop:e6-subsystems}.
+The defining toral
 elements, and hence their inner automorphisms, may be chosen in the same
 maximal torus and therefore commute.  Their fixed groups need not commute;
 the construction uses their intersections. Intersections such as
@@ -1894,48 +1995,17 @@ from any spacetime parity operation.
 
 \section{The \texorpdfstring{\(\mathbf{27}\)}{27} and the Standard Model}
 
-No further selection principle enters here.  We restrict the already selected
-module along the faithful subgroup chain, retain the complete branching, and
-then pass to its net chiral class.  The decomposition and chiral index are
-representation-theoretic statements independent of the interpretation below.
-
-\paragraph{Complete-matter interpretation \textup{(M)}.}
-To identify the chiral index with the complete family multiplicity, we assume
-that one complex isotropy half is the full chiral fermion module. The
-homogeneous uniqueness theorem, the subgroup classifications, and the
-branching calculation do not depend on \textup{(M)}.
-
-\subsection{The faithful Standard Model group and its charge lattice}
-
-Corollary~\ref{cor:subgroup-chain} gives one \(E_8\)-conjugacy class,
-so the restriction may be computed in the block representative
-\[
- \Ksm=S(U(3)\times U(2))
- \subset SU(5)\subset\operatorname{Spin}(10)\subset E_6^{\mathrm{sc}}.
-\]
-A primitive cocharacter generating its central \(U(1)\) is, up to
-inversion,
-\[
- \eta(z)=\operatorname{diag}(z^{-2}I_3,z^3I_2).
-\]
-Orient \(\eta\) so that the \((\mathbf3,\mathbf2)\) in the
-\(\mathbf{10}\) has integer charge \(q=1\); conventional hypercharge is
-then \(Y=q/6\). Define \(t\in\mathbb Z/3\) and \(s\in\mathbb Z/2\)
-by requiring the central elements
-\(e^{2\pi i/3}I_3\in SU(3)\) and \(-I_2\in SU(2)\) to act as
-\(e^{2\pi it/3}\) and \((-1)^s\), respectively. The kernel in
-Corollary~\ref{cor:subgroup-chain} says that a representation of integer
-charge \(q\) descends to \(\Ksm\) exactly when
-\[
- q+2t+3s\equiv0\pmod6.
-\]
-This congruence is the \(\mathbb Z_6\) charge lattice. When \(t=0\), it
-links \(q\) to the \(SU(2)\) center parity and forces every electric charge
-in a color-singlet multiplet to be integral.
+We restrict \(V=\mathbf{27}\boxtimes\mathbf3\) along the faithful Standard
+Model chain. First we give its complete branching, then determine the charge
+lattice and compute the net chiral class. The three-dimensional multiplicity
+factor gives three copies of every summand in the restriction of one
+\(\mathbf{27}\).
 
 \subsection{One \texorpdfstring{\(\mathbf{27}\)}{27}: a chiral family, a vectorlike pair, and two singlets}
 
-Restriction along this subgroup chain gives
+Restriction along
+\(E_6^{\mathrm{sc}}\supset\operatorname{Spin}(10)\supset SU(5)\)
+gives
 \[
 \begin{aligned}
 \mathbf{27}
@@ -1949,6 +2019,7 @@ Restriction along this subgroup chain gives
 \end{aligned}
 \tag{8}
 \]
+\Needspace{6\baselineskip}
 The restriction
 \(\mathcal F_{\mathrm{SM}}
  =(\mathbf{10}\oplus\overline{\mathbf5})|_{\Ksm}\)
@@ -1959,7 +2030,8 @@ is
 (\overline{\mathbf3},\mathbf1)_{1/3}\oplus
 (\mathbf1,\mathbf2)_{-1/2}\), the fermion representation of one minimal
 Standard Model family in an all-left-handed convention
-\cite{Slansky,McKayPatera}. The
+\cite{Slansky,McKayPatera}. Denote these five summands by
+\(Q,u^c,e^c,d^c,L\), respectively. The
 \(G_{\mathrm{SM}}\)-singlet \(\nu^c\subset\mathbf{16}\) is one of the two
 singlets in (8), not a summand of \(\mathcal F_{\mathrm{SM}}\). Equations
 (7)--(8) give the full decomposition
@@ -2012,12 +2084,46 @@ neutral states. This is the field content used in extended-seesaw
 constructions \cite{MohapatraValle}; the classification fixes the
 representations, not their masses or couplings.
 
+\subsection{The faithful Standard Model group and its charge lattice}
+
+Corollary~\ref{cor:subgroup-chain} gives one \(E_8\)-conjugacy class,
+so the restriction may be computed in the block representative
+\[
+ \Ksm=S(U(3)\times U(2))
+ \subset SU(5)\subset\operatorname{Spin}(10)\subset E_6^{\mathrm{sc}}.
+\]
+Its central circle has the primitive parametrisation, up to inversion,
+\[
+ \eta(z)=\operatorname{diag}(z^{-2}I_3,z^3I_2).
+\]
+This circle homomorphism is a \emph{cocharacter}; primitive means that it
+traverses the circle once. Orient \(\eta\) so that the
+\((\mathbf3,\mathbf2)\) in the \(\mathbf{10}\) has integer charge \(q=1\).
+The conventional hypercharge used above is then \(Y=q/6\).
+Let \(t\in\mathbb Z/3\) be colour triality and \(s\in\mathbb Z/2\)
+weak-centre parity: the central elements
+\(e^{2\pi i/3}I_3\in SU(3)\) and \(-I_2\in SU(2)\) act as
+\(e^{2\pi it/3}\) and \((-1)^s\), respectively. The kernel in
+Corollary~\ref{cor:subgroup-chain} says that a representation of integer
+charge \(q\) descends to \(\Ksm\) exactly when
+\[
+ q+2t+3s\equiv0\pmod6.
+\]
+This congruence is the \(\mathbb Z_6\) charge lattice. When \(t=0\), it
+links \(q\) to the \(SU(2)\) centre parity and forces every electric charge
+in a colour-singlet multiplet to be integral.
+
 \subsection{The net chiral index is three}
+
+Net chirality records the difference between the multiplicities of an
+irreducible representation and its dual. A dual pair contributes zero,
+as does a self-dual summand. The following quotient records all these
+differences at once.
 
 Let \(R(\Ksm)\) be the additive Grothendieck group of finite-dimensional
 complex representations. Let \(\chi\) be the quotient map obtained by
 imposing
-\(\chi(R^*)=-\chi(R)\) and \(\chi(S)=0\) for every self-dual \(S\).
+\(\chi(R^*)=-\chi(R)\) and \(\chi(S)=0\) for every self-dual~\(S\).
 The map \(\chi\) records, for each non-self-dual pair
 \(\{R,R^*\}\), the multiplicity difference \(m_R-m_{R^*}\). Applying
 it to (9) gives
@@ -2042,6 +2148,12 @@ records net chirality; equation (9) records the full module. Duality gives
 Relative to \(\chi(\mathcal F_{\mathrm{SM}})\), the coefficients \(+3\) and
 \(-3\) are the chiral indices of \(V\) and \(V^*\), respectively.
 
+\paragraph{Complete-matter interpretation \textup{(M)}.}
+To identify this coefficient with the complete physical family multiplicity,
+we assume that one complex isotropy half is the full chiral fermion module.
+This is the complete-matter interpretation \textup{(M)}. The branching
+and its net chiral class have already been determined by restriction.
+
 \begin{corollary}[Chiral content of the classified module]
 \label{cor:chiral-content}
 The two orientations have chiral-index coefficients \(+3\) and \(-3\),
@@ -2051,6 +2163,84 @@ summand is vectorlike or a singlet. Under the complete-matter interpretation
 \textup{(M)}, the absolute coefficient \(3\) is the complete physical family
 multiplicity.
 \end{corollary}
+
+\subsection{Invariant mass forms and their kernels}
+
+The chiral class records the imbalance between dual irreducible
+representations. The same imbalance constrains invariant mass forms on the
+full module. In two-component Weyl notation the internal coefficient of a
+quadratic fermion mass term is symmetric, because the antisymmetric spinor
+contraction is combined with fermion anticommutation \cite{DreinerHaberMartin}.
+
+\Needspace{22\baselineskip}
+\begin{lemma}[Invariant symmetric forms and their kernels]
+\label{lem:mass-kernels}
+Let \(K=\Ksm\), let \(W=V|_K\) have the orientation of \textup{(9)}, and put
+\[
+ R_D=(\mathbf3,\mathbf1)_{-1/3},\qquad
+ R_L=(\mathbf1,\mathbf2)_{1/2},\qquad
+ \mathcal M_K(W)=(\operatorname{Sym}^2W^*)^K.
+\]
+Regard a form \(m\) as the equivariant map \(W\to W^*\) given by
+\(x\mapsto m(x,\cdot)\). After choosing bases in the multiplicity spaces,
+\[
+ \mathcal M_K(W)\cong
+ \operatorname{Mat}_{3\times6}(\mathbb C)
+ \oplus\operatorname{Mat}_{3\times6}(\mathbb C)
+ \oplus\operatorname{Sym}_6(\mathbb C),
+\]
+where \(\operatorname{Sym}_6(\mathbb C)\) denotes the symmetric \(6\times6\)
+matrices. If these three matrices have ranks \(r_D,r_L,r_0\), then
+\[
+\begin{aligned}
+ \ker m\cong{}&3\mathcal F_{\mathrm{SM}}
+ \oplus(3-r_D)(R_D\oplus R_D^*)\\
+ &\oplus(3-r_L)(R_L\oplus R_L^*)
+ \oplus(6-r_0)\mathbf1
+\end{aligned}
+\]
+as \(K\)-modules. Every triple with \(0\le r_D,r_L\le3\) and
+\(0\le r_0\le6\) occurs. Consequently
+\[
+ \chi(\ker m)=3\chi(\mathcal F_{\mathrm{SM}}),\qquad
+ \dim_{\mathbb C}\ker m=81-6r_D-4r_L-r_0\ge45.
+\]
+Equality holds precisely at \((r_D,r_L,r_0)=(3,3,6)\), when
+\(\ker m\cong3\mathcal F_{\mathrm{SM}}\). This maximal-rank locus is
+nonempty, Zariski-open and dense in \(\mathcal M_K(W)\).
+\end{lemma}
+\begin{proof}
+Equation (9) contains three copies of \(R_D\) and six of \(R_D^*\),
+three copies of \(R_L\) and six of \(R_L^*\), and six trivial modules.
+The three copies each of \(Q,u^c,e^c\) have no dual partners in \(W\).
+Schur's lemma therefore permits only the two dual-pair blocks and a
+symmetric form on the trivial isotypic component. The two charged
+doublet representations are inequivalent to their duals under \(K\);
+no self-dual doublet block is present.
+
+A dual-pair block has multiplicity-space matrix
+\[
+ \begin{pmatrix}0&M\\M^T&0\end{pmatrix},
+ \qquad M\in\operatorname{Mat}_{3\times6}(\mathbb C).
+\]
+If \(M\) has rank \(r\), the kernel multiplicities are \(3-r\) and \(6-r\).
+A singlet matrix of rank \(r_0\) leaves \(6-r_0\) trivial summands.
+Each dual-pair block leaves at least three copies of the dual representation.
+Together with \(Q,u^c,e^c\), these give \(3\mathcal F_{\mathrm{SM}}\);
+any further kernel summands occur in dual pairs or are trivial.
+Since \(\dim R_D=3\) and \(\dim R_L=2\), the dimension formula follows.
+
+Rectangular diagonal matrices and diagonal symmetric matrices realize
+every stated rank triple. The maximal-rank conditions are the nonvanishing
+of appropriate minors. They define a nonempty open subset of the
+57-dimensional complex vector space \(\mathcal M_K(W)\), hence a dense one.
+\end{proof}
+
+The kernels are determined up to \(K\)-module isomorphism, not as preferred
+subspaces of \(W\). These are forms preserving \(G_{\mathrm{SM}}\).
+For the full homogeneous group, \(V\not\cong V^*\) instead gives
+\((\operatorname{Sym}^2V^*)^H=0\). The lemma classifies the allowed forms
+and their kernels; it does not choose a form or a mass scale.
 
 \subsection{Local anomalies and the \texorpdfstring{\(SU(3)_M^3\)}{SU(3)M cubed} background anomaly}
 
@@ -2064,13 +2254,12 @@ shows that one copy of \(\mathcal F_{\mathrm{SM}}\), and hence three copies,
 is free of perturbative gauge and mixed gauge--gravitational anomalies.
 
 The preceding argument covers perturbative local anomalies. The spectrum in
-(9) also has no mod-two \(SU(2)\) anomaly: counting color multiplicity, each
+(9) also has no mod-two \(SU(2)\) anomaly: counting colour multiplicity, each
 \(\mathcal F_{\mathrm{SM}}\) contains four doublets, while each vectorlike
 \(\mathbf5\oplus\overline{\mathbf5}\) contributes two. The same spectrum is
-the restriction of anomaly-free \(SU(5)\) representations. Bordism analyses
-of the four connected Standard Model global forms show that this embedding
-has no further global gauge anomaly for the \(\mathbb Z_6\) quotient used
-here \cite{DavighiGripaiosLohitsiri}.
+the restriction of anomaly-free \(SU(5)\) representations. For theories on spin manifolds, the bordism analysis
+of the four connected Standard Model global forms gives no further global
+gauge anomaly for the \(\mathbb Z_6\) quotient used here \cite{DavighiGripaiosLohitsiri}.
 
 \medskip
 \noindent\emph{The family background.} To identify the remaining cubic anomaly, let \(F_{\mathrm{SM}}\) be a
@@ -2096,396 +2285,77 @@ perturbative \(SU(3)_M^3\) anomaly.
 Promoting it to a gauge factor requires additional anomaly-cancelling structure.
 
 
-\section{Discussion}
-
-\paragraph{Physical status of the domain.}
-The hypotheses do not name the answer.  Compactness is the standard
-finite-dimensional setting for unitary internal symmetry; effectivity removes
-generators that act on nothing; complex type supplies the
-representation-theoretic realization of gauge chirality used here; and
-perturbative cubic anomaly cancellation is required on gauged directions.
-Irreducibility and the ideal-valued radical impose the stricter claims that the
-homogeneous matter sector is one structure and that cubic-anomaly safety is
-found inside that structure rather than supplied by a separately chosen
-subgroup.
-The unifying premise is that the matter module is canonical to an embedding,
-not selected after the internal algebra.  That premise has a long history in
-coset reduction and homogeneous family unification; the exhaustive converse
-classification is the new result.
-
-The theorem is conditional in the ordinary mathematical sense.  Experiment
-decides whether nature realizes this homogeneous encoding; the classification
-decides what the encoding entails.  The two questions are complementary.
-The homogeneous theorem has the stated domain and equivalence.  The subgroup
-results additionally use the maximal-subsystem triple construction, the
-parent-level and extremal criteria, and the specified derived-subgroup
-operations.  Interpretation \textup{(M)} identifies the resulting chiral
-coefficient with the complete physical family multiplicity.
-
-\paragraph{Uniqueness and no-go.}
-The forward statement is Theorem~\ref{thm:main}.  Its contrapositive is the
-no-go statement: any connected, infinitesimally effective compact homogeneous
-realization with irreducible complex-type matter that is not the pair of
-Theorem~\ref{thm:main} has zero cubic-anomaly radical.  If nature admits the
-domain, the internal pair has one form; if observations require an
-incompatible internal structure, at least one defining premise fails.
-
-The later conclusions have their own, narrower contrapositives.  Additional
-net chiral matter incompatible with the complete branching of Section~5 would
-challenge \textup{(M)} or the homogeneous identification, not the
-Lie-theoretic uniqueness theorem by itself.  A different mechanism for the
-low-energy subgroup would challenge the maximal-subsystem triple realization,
-not the unique homogeneous pair.  These distinctions turn the theorem into a
-diagnostic boundary rather than an elastic model.
-
-\paragraph{Representation theory and compression.}
-There is nothing mysterious about Lie theory appearing in particle physics:
-continuous symmetry leads to Lie groups, quantum multiplets to their
-representations, branching to roots and weights, and faithful charge lattices
-to weight and cocharacter lattices \cite{Wigner}.  The surprise is the amount
-of compression.  The premises name none of \(E_8\), \(E_6\), \(SU(3)\),
-\(\mathbf{27}\), the multiplicity three, the Standard Model group, or its
-\(\mathbb Z_6\) quotient.  What appear in conventional model building as
-separate choices---group, representation, cubic-anomaly-safe sector, replication,
-breaking chain, and global form---collapse here into one homogeneous theorem,
-one finite incidence theorem, and one restriction calculation.  A unique
-answer is natural once a domain has been closed; the unexpected fact is how
-little answer-specific information is needed to close this one.
-
-\Needspace{0.38\textheight}
 \section{Conclusion}
 
-The compact homogeneous classification has one solution, up to isomorphism
-of Lie-algebra pairs and duality:
+The starting question was whether chirality and a cubic-anomaly condition
+could determine an internal symmetry together with its matter. In the compact
+homogeneous formulation studied here, the answer is a uniqueness and no-go
+theorem. Up to isomorphism of Lie-algebra pairs and duality, the unique solution is
 \[
- (\mathfrak e_8,\mathfrak e_6\oplus\mathfrak{su}(3)_M,
-   \{\mathbf{27}\boxtimes\mathbf3,
-     \overline{\mathbf{27}}\boxtimes\overline{\mathbf3}\}).
+ \mathfrak e_8\supset\mathfrak e_6\oplus\mathfrak{su}(3)_M,
+ \qquad V=\mathbf{27}\boxtimes\mathbf3,
+ \qquad\operatorname{Rad}(c_V)=\mathfrak e_6.
 \]
-Its cubic radical is \(\mathfrak e_6\).  Every other connected,
-infinitesimally effective compact pair with irreducible complex-type isotropy
-has zero radical.
+Every inequivalent pair satisfying the standing homogeneous hypotheses and
+\(\operatorname{End}_{\mathfrak h}(\mathfrak q)\cong\mathbb C\) has zero
+cubic radical. Thus no nonzero ideal \(\mathfrak k\) satisfies
+\(c_V(\mathfrak k,\mathfrak h,\mathfrak h)=0\). Changing interaction
+coefficients cannot evade this obstruction while leaving the pair and its
+representation unchanged.
 
-For the selected \(E_6\), the complete maximal-subsystem triple space has
-\(38{,}880\) elements and six Weyl orbits.  Exactly two have a common
-\(A_2\) component.  Compatible representatives give
-\[
- G_{\mathrm{SM}}\subset G_{\mathrm{LR}}\subset G_{\mathrm{PS}}
- \subset\operatorname{Spin}(10)\subset E_6^{\mathrm{sc}},
- \qquad Y=T_R^3+\frac{B-L}{2},
-\]
-with faithful global forms, compatible \(\mathbb Z_6\) kernels, and
-\(8{,}640\) labelled containment incidences representing \(2{,}160\)
-distinct root-subsystem inclusions.
+The classification covers connected compact groups of arbitrary rank, with
+connected, closed, proper \(H\) and infinitesimally effective \(G/H\).
+Neither group type, representation dimension, nor family multiplicity is
+prescribed. Irreducibility of \(\mathfrak q\), simplicity of \(\mathfrak g\),
+and semisimplicity and maximality of \(\mathfrak h\) follow from the conditions.
+The finite searches arise from proved reductions and bounds; the classical
+lower-rank exclusion is uniform in rank. Higher rank supplies no alternative.
 
-Along this Standard Model chain,
-\[
- V|_{G_{\mathrm{SM}}}
- \cong3\,\mathcal F_{\mathrm{SM}}
- \oplus3\,(\mathbf5\oplus\overline{\mathbf5})|_{G_{\mathrm{SM}}}
- \oplus6\,\mathbf1.
-\]
-The two orientations have chiral indices \(+3\) and \(-3\); all other
-summands are vectorlike or singlets.  Under \textup{(M)}, the coefficient is
-the complete family multiplicity of the module.
+Unlike a construction around a chosen group or coset, this theorem varies
+the embedding and its canonical representation together. This also
+distinguishes it from classifications of semisimple extensions of a supplied
+gauge algebra and spectrum \cite{GomesRuhdorferToobySmith}, and from studies
+of how often anomaly-free spectra admit unification \cite{HermsRuhdorfer}.
+The familiar exceptional pair is characterized, not assumed.
 
-The theorem is both a conditional derivation and a no-go result.  If the
-compact homogeneous domain describes the internal structure of nature, it
-admits one solution; if nature requires a different structure, at least one
-defining premise fails.  Within the stated domains, the internal algebra,
-matter module, cubic-anomaly-safe ideal, three-dimensional multiplicity factor,
-two color-containing chains, faithful charge lattice, and net chiral index
-are not a list of independent model-building choices.  They are one
-classified structure.
-\clearpage
-\appendix
-\section{Direct verification of the homogeneous census}
-\label{app:direct-census}
+Inside its \(E_6\) factor, the second classification gives six Weyl orbits
+of maximal-subsystem triples, exactly two with a common \(A_2\) component.
+The stated intermediate-group dimension criterion and derived-subgroup construction
+give the Standard Model and left--right chains, with their faithful global
+forms and hypercharge embedding. The full branching \textup{(9)} and chiral
+class \textup{(10)} distinguish three minimal families from the additional
+vectorlike pairs and singlets. Interpretation \textup{(M)} identifies the
+chiral coefficient with the complete physical family multiplicity.
+Lemma~\ref{lem:mass-kernels} further identifies three minimal families as
+the minimum-dimensional kernel of a Standard Model-invariant symmetric form.
 
-Three exact programs reproduce the finite parts of Section~3 from Cartan
-matrices and Weyl's dimension formula.  They use only integer and rational
-arithmetic.
+The homogeneous conditions specify how matter is represented, and the
+intermediate-group dimension criterion specifies the subgroup construction.
+Within these domains the classification is exhaustive. The exceptional pair
+is the only compact homogeneous realization with irreducible complex-type
+isotropy and a nonzero mixed-cubic radical.
 
-\subsection{Toral gradings}
+\section*{Computational material}
 
-The script \texttt{check\_toral\_gradings.py} generates the exceptional root
-systems by reflection closure and enumerates every nonzero functional on the
-root lattice modulo two and modulo three, up to the Weyl action.  It retains
-the gradings whose grade-zero roots span the full rank.  In the involutive
-case every semisimple row has a connected odd root graph; compact conjugation
-preserves that graph, so its module is self-conjugate.  In the order-three
-case, write \(\Phi_1\) for the roots of degree one.  The irreducible rows are
-\[
-\begin{array}{c|c|c}
- \g & \g_0^{\mathrm{ss}} & |\Phi_1|=\dim\g_1\\
-\hline
- G_2 & A_2 & 3\\
- F_4 & A_2+A_2 & 18\\
- E_6 & A_2^3 & 27\\
- E_7 & A_5+A_2 & 45\\
- E_8 & A_8 & 84\\
- E_8 & E_6+A_2 & 81.
-\end{array}
-\]
-The two coordinate representatives in type \(E_7\) lie in one Weyl orbit
-modulo three.  For the classical types the corresponding centralizers are
-computed directly in the defining module, as in the proof of
-Proposition~\ref{prop:direct-toral-census}.
+The exact programs and certificates are distributed with the version~2
+computational companion \cite{ComputationalCompanion}. The finite algorithms
+and completeness arguments used by the proof are stated in Sections~3--4. Additional output
+tables, the minuscule-character verification, and execution instructions
+belong to the companion documentation.
 
-\subsection{Exceptional rank-deficient sieve}
+The repository also contains Lean checks of the finite exceptional grading
+calculation, the Cartan cubic test, and the stated \(E_6\) incidence
+propositions. These checks use \texttt{native\_decide} with the compiler
+trust described in the repository. They do not formalize the general
+compact-Lie reductions, the classical all-rank argument, or the physical
+interpretation. Lemma~\ref{lem:mass-kernels} is proved by Schur's lemma and matrix ranks;
+an exact rank-stratum check is included in the companion. The manuscript
+proofs and finite checks have explicit, complementary roles.
 
-The script \texttt{check\_rank\_deficient\_exceptional.py} implements
-Proposition~\ref{prop:exceptional-rankdef}.  It first verifies
-\(T(\operatorname{ad})=h^\vee\) for every simple type and the positive
-controls
-\[
- T_{A_2}(\mathbf3)=\tfrac12,\quad
- T_{B_3}(\mathbf7)=1,\quad
- T_{C_3}(\mathbf6)=\tfrac12,\quad
- T_{G_2}(\mathbf7)=1,\quad
- T_{F_4}(\mathbf{26})=3,\quad
- T_{E_6}(\mathbf{27})=3.
-\]
-For each exceptional ambient algebra it then enumerates every multiset of
-compact simple factors of smaller total rank and every irreducible factor
-module inside the separate bounds \textup{(6b)}.  Tensor products are tested
-against
-\[
- \dim\g=\sum_i\dim\h_i+2\prod_i d_i,
- \qquad
- h_\g^\vee I_i=h_i^\vee+2T_i\prod_{j\ne i}d_j,
-\]
-complex type, and the vanishing of at least one simple-factor cubic.  Counts
-use labelled Cartan-type presentations, including both \(B_2\) and \(C_2\);
-permutations of identical labels are identified.  This redundancy has no
-effect on the empty final necessary locus.  The successive counts are
-\[
-\begin{array}{c|rrrrr}
- &\text{factor multisets}&\text{dimension}&\text{complex}&\text{radical}&\text{indices}\\
-\hline
-G_2&0&0&0&0&0\\
-F_4&5&0&0&0&0\\
-E_6&28&19&12&10&0\\
-E_7&48&15&2&2&0\\
-E_8&118&30&20&14&0.
-\end{array}
-\]
-The file \texttt{exceptional\_rank\_deficient\_audit.json} records every
-representation product reaching the index stage and the nonintegral index
-that excludes it.  Dimension and index arithmetic are not used as an
-embedding classification: this is a no-go sieve, and an empty necessary
-locus is sufficient for the proposition.
-
-\subsection{Classical highest-weight arithmetic}
-
-The script \texttt{check\_rank\_deficient\_classical.py} verifies the
-Dynkin-label equations and the arithmetic used in
-Proposition~\ref{prop:classical-rankdef}.  In particular, it checks the only
-solutions of
-\[
- \lambda+\lambda^*=\theta,
- \qquad 2\lambda=\theta,
- \qquad 2\lambda-\alpha_i=\theta,
-\]
-the identity, with \(1\le i<N/2\) and \(a\ge1\),
-\[
- C_3(2a(\omega_i+\omega_{N-i})-\alpha_i)
- =-6a(2a+N-2i),
-\]
-and the two odd-\(D_r\) dimension ratios displayed in the proof.  It also
-checks symbolically, by polynomial coefficient arithmetic, the monotonicity
-inequalities used for all odd \(r\ge5\), together with
-\(D_{r,1}=\binom{2r}{r-1}\).  The four remaining \(E_6\) dimension gaps are
-reconstructed directly from its Cartan matrix.  The Cartan-equation regression
-runs through rank 32, and the direct \(A\)-type cubic substitution runs through
-\(N=32\) and \(1\le a\le5\); these bounded checks audit formulas used by the
-manuscript's all-rank argument rather than replacing that argument.  The
-odd-\(D_r\) monotonicity check is genuinely symbolic and supplies its stated
-all-rank polynomial inequalities.
-
-
-\section{Exact verification of the \texorpdfstring{\(E_6\)}{E6} incidence classification}
-\label{app:e6-scan}
-
-The finite statements in Section~4 admit a complete independent
-reconstruction from the \(E_6\) Cartan matrix. Two implementations use
-different root-system realizations and Weyl actions. Each fixes a positive
-system, enumerates every \(\pi\)-system, closes it under root reflections, and
-recovers all \(5{,}079\) closed root subsystems, counting both the empty
-subsystem and the full root system \(\Phi\). Exactly \(103\) are maximal
-proper:
-\[
- 27D_5+36(A_5+A_1)+40A_2^3.
-\]
-This verifies the three maximal-subsystem orbits used in Section~4.  The
-homogeneous census in Section~3 is reconstructed separately in
-Appendix~\ref{app:direct-census}.
-
-Both \(E_6\) implementations then evaluate all \(38{,}880\) triples and
-independently reconstruct the pairwise distributions, common intersections,
-six cells, and two extremal orbits.  The primary implementation additionally
-reconstructs the arithmetic characterizations, stabilizers, and root-system
-containments; separate audit programs reconstruct the chiral-dimension table
-and global-kernel arithmetic. The deterministic certificate
-\texttt{e6\_extrema\_certificate.json} records the root numbering,
-reflection permutations, six orbit representatives, subsystem counts, and
-all finite distributions used in the proofs. The two implementations agree
-on their shared incidence surface; the primary implementation and separate
-audit programs supply the additional data reported below.
-
-The chiral-dimension audit uses the minuscule \(\mathbf{27}\).  Its weights
-pair with every coroot in \(\{-1,0,1\}\); hence every irreducible constituent
-on a regular root subgroup is also minuscule.  Each constituent has one Weyl
-orbit of weights, with multiplicity one.  Distinct constituents have disjoint
-orbits, and negation exchanges dual orbits or preserves a self-dual orbit.
-Thus cancelling opposite weights computes the irreducible chiral dimension
-for these restrictions.  The verifier checks this domain and rejects
-nonminuscule counterexamples to the unrestricted weight-cancellation rule.
-
-\subsection{Reconstructed data}
-
-\begin{table}[H]
-\centering
-\caption{Finite objects reconstructed from the Cartan matrix.}
-\label{tab:scan-objects}
-\small
-\begin{tabular}{@{}lr@{}}
-\toprule
-quantity & value\\
-\midrule
-number of roots \(\lvert\Phi(E_6)\rvert\) & \(72\)\\
-highest-root coefficients (Bourbaki node order) & \((1,2,2,3,2,1)\)\\
-Weyl-group order \(\lvert W(E_6)\rvert\) & \(51{,}840\)\\
-\(\lvert\mathcal O_D\rvert\) & \(27\)\\
-\(\lvert\mathcal O_A\rvert\) & \(36\)\\
-\(\lvert\mathcal O_\Theta\rvert\) & \(40\)\\
-closed root subsystems & \(5{,}079\)\\
-maximal proper closed subsystems & \(103\)\\
-triples scanned \(\lvert\mathcal X\rvert\) & \(38{,}880\)\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Complete pairwise intersection counts.}
-\label{tab:scan-pairs}
-\small
-\begin{tabular}{@{}llr@{}}
-\toprule
-pair & roots in the intersection & number of pairs\\
-\midrule
-\(D_5\) and \(A_5+A_1\) & \(20\) & \(432\)\\
-\(D_5\) and \(A_5+A_1\) & \(16\) & \(540\)\\
-\(D_5\) and \(A_2^3\) & \(10\) & \(1{,}080\)\\
-\(A_5+A_1\) and \(A_2^3\) & \(14\) & \(360\)\\
-\(A_5+A_1\) and \(A_2^3\) & \(6\) & \(1{,}080\)\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-For a triple \((D,A,\Theta)\), put
-\[
- p(D,A,\Theta)=
- \bigl(|D\cap A|,|D\cap\Theta|,|A\cap\Theta|\bigr).
-\]
-The following table gives the complete joint distribution of this profile and
-the size of the common intersection.
-
-\begin{table}[H]
-\centering
-\caption{All \(38{,}880\) triples.}
-\label{tab:scan-triples}
-\small
-\begin{tabular}{@{}llrr@{}}
-\toprule
-profile \(p(D,A,\Theta)\) & common type & common roots & triples\\
-\midrule
-\((20,10,14)\) & \(A_2+A_1\)       & \(8\)  & \(4{,}320\)\\
-\((20,10,6)\)  & \(A_1+A_1\)       & \(4\)  & \(12{,}960\)\\
-\((16,10,14)\) & \(A_2+A_1+A_1\)   & \(10\) & \(2{,}160\)\\
-\((16,10,14)\) & \(A_1+A_1+A_1\)   & \(6\)  & \(3{,}240\)\\
-\((16,10,6)\)  & \(A_1+A_1+A_1\)   & \(6\)  & \(3{,}240\)\\
-\((16,10,6)\)  & \(A_1\)           & \(2\)  & \(12{,}960\)\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The possible sizes of the common intersection are \(2,4,6,8,10\). Their
-multiplicities are, in the same order,
-\[
- 12{,}960,\quad 12{,}960,\quad 6{,}480,\quad 4{,}320,\quad 2{,}160.
-\]
-The pairwise-maximal triples and the triples with largest common intersection
-form Weyl orbits of sizes
-\(4{,}320\) and \(2{,}160\), with stabilizers of orders \(12\) and \(24\).
-The first set yields \(720\) distinct common root subsystems, each represented
-by six triples; the second yields \(1{,}080\), each represented by two.
-For each of the \(1{,}080\) pairs \((D,\Theta)\), the program finds four
-pairwise-maximal triples and two triples with largest common intersection.
-Pairing any of the four with either of the two gives a root-system
-containment, for a total of \(8{,}640\) ordered pairs.
-
-\subsection{Release verification}
-
-The distributed Python verification suite is run from the source directory
-with
-\[
- \texttt{make verify}.
-\]
-The orchestrator executes the two independent root-system implementations,
-both complete closed-subsystem censuses, the context-normalizer,
-\(d_\chi\), global-kernel, toral-grading, exceptional rank-deficient, and
-classical highest-weight checks.  It reconstructs the exceptional audit and
-the static certificate in temporary paths, compares both byte-for-byte, and
-verifies the certificate digest.  A component is reported only after its
-optimization-independent runtime checks and comparisons have passed.  The primary
-exhaustive implementation is reproduced below; the independent
-\(\mathbb R^8\) implementation remains a separate source file.
-
-The formal layer is run with \texttt{make lean}, the master notebook with
-\texttt{make notebook}, and the reproducible manuscript build with
-\texttt{make paper-release-check}.  The command \texttt{make all} runs the
-complete local release gate; GitHub Actions runs the same four lanes in clean
-hosted environments.
-
-The repository adds a formally checked layer for the finite incidence claims.
-The JSON root coordinates, simple-reflection permutations, and six orbit seeds
-generate a Lean~4 data module.  Lean checks the permutations against the
-displayed \(E_6\) Cartan matrix, reconstructs the three subsystem orbits, and
-checks that their masks are closed root subsystems with component root-count/rank
-signatures \((40,5)\), \((30,5)+(2,1)\), and \((6,2)^3\).  Standard
-simply-laced classification identifies these as \(D_5\), \(A_5+A_1\), and
-\(A_2^3\).  Lean reconstructs all \(38{,}880\) triples, verifies that the six
-cell orbits partition the triple space, and checks the two extrema and the two
-cells with a closed irreducible six-root, rank-two component; standard
-classification identifies that component as \(A_2\).  It also checks
-the \(8{,}640\) labelled containment incidences by \texttt{native\_decide}.  The
-expected cardinalities are stated in Lean rather than imported from JSON.
-The disclosed trust boundary includes the compiler and interpreter path used
-by \texttt{native\_decide}; the repository records the exact axiom receipt and
-rejects project-local proof escapes.
-This finite checker does not formalize the analytic compact-Lie and
-representation-theoretic classification used in Sections~2--3, nor the
-physical interpretation in Section~5; those boundaries are recorded
-explicitly in the repository.
-
-The SHA-256 hashes of the two exhaustive implementations are
-\begin{quote}
-\footnotesize
-\texttt{verify\_e6\_extrema.py}\\
-\nolinkurl{585a1de39c4b031c4c285d14e96d04bd12ade519ae9b71482f33d6ccafc426eb}\\[2pt]
-\texttt{verify\_e6\_extrema\_r8\_fast.py}\\
-\nolinkurl{46f402c2bd9165d51e3fca48464fcf906ad685c9a1342fe4185131bba8e6041d}
-\end{quote}
-
-\lstinputlisting[
-  style=e6python,
-  caption={Exhaustive Python verification of the finite root-system assertions
-  and counts underlying Theorems~\ref{thm:incidence}
-  and~\ref{thm:common-intersection}.},
-  label={lst:e6-scan}
-]{../verification/python/verify_e6_extrema.py}
+\par\medskip
+\noindent\textbf{AI assistance disclosure.}
+This paper was created with the aid of the Intelligent Internet Zenith
+system. The paper was checked with GPT 5.6 Pro and Fable 5.1 Max.
 
 \clearpage
 \begin{multicols}{2}
@@ -2605,11 +2475,6 @@ Int. J. Mod. Phys. A \textbf{33} (2018), 1850118.
 T.~Sugeno and H.~Wada,
 \emph{Anomalies in family unification models from bordism classification},
 arXiv:2604.04393 [hep-th] (2026).
-\bibitem{Wigner}
-E.~P.~Wigner,
-\emph{The unreasonable effectiveness of mathematics in the natural sciences},
-Commun. Pure Appl. Math. \textbf{13} (1960), 1--14.
-
 \bibitem{DistlerGaribaldi}
 J.~Distler and S.~Garibaldi,
 \emph{There is no ``Theory of Everything'' inside \(E_8\)},
@@ -2618,12 +2483,27 @@ Commun. Math. Phys. \textbf{298} (2010), 419--436.
 J.~Davighi, B.~Gripaios, and N.~Lohitsiri,
 \emph{Global anomalies in the Standard Model(s) and beyond},
 JHEP \textbf{07} (2020), 232.
+\bibitem{GomesRuhdorferToobySmith}
+A.~Gomes, M.~Ruhdorfer, and J.~Tooby-Smith,
+\emph{Semisimple unifications of any gauge theory},
+Phys. Rev. D \textbf{108} (2023), 075001;
+arXiv:2306.16439 [hep-ph].
+\bibitem{HermsRuhdorfer}
+J.~Herms and M.~Ruhdorfer,
+\emph{How common are grand unified theories?},
+Phys. Rev. D \textbf{112} (2025), 115041;
+arXiv:2408.11089 [hep-ph].
+\bibitem{DreinerHaberMartin}
+H.~K. Dreiner, H.~E. Haber and S.~P. Martin,
+\emph{Two-component spinor techniques and Feynman rules for quantum field
+theory and supersymmetry},
+Phys. Rept. \textbf{494} (2010), 1--196.
+\bibitem{ComputationalCompanion}
+E.~Mostaque,
+\emph{Computational companion to From Chirality to the Standard Model},
+source code and exact certificates (2026).
+Release \texttt{v0.2.0}. The repository is linked on the title page.
 \end{thebibliography}
 \end{multicols}
-
-\par\medskip
-\noindent\textbf{AI assistance disclosure.}
-This paper was created with the aid of the Intelligent Internet Zenith system.
-The paper was checked with GPT~5.6 Pro and Fable~5.1 Max.
 
 \end{document}
