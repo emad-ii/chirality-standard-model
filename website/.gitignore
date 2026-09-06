@@ -43,8 +43,6 @@ __pycache__/
 # Copies prepared from the canonical paper, notebook and media folders.
 /public/paper.pdf
 /public/paper.tex
-/public/paper-iii.pdf
-/public/paper-iii.tex
 /public/Cubic_Anomaly_Master_Verification.ipynb
 /public/e6-certificate.json
 /public/equation-story.mp4

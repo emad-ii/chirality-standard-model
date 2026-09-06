@@ -8,8 +8,6 @@ const root = resolve(site, '..');
 const files = {
   'paper.pdf': 'paper/paper.pdf',
   'paper.tex': 'paper/paper.tex',
-  'paper-iii.pdf': 'paper/short-note/paper-iii.pdf',
-  'paper-iii.tex': 'paper/short-note/paper-iii.tex',
   'Cubic_Anomaly_Master_Verification.ipynb': 'Cubic_Anomaly_Master_Verification.ipynb',
   'e6-certificate.json': 'verification/certificates/e6_extrema_certificate.json',
   'equation-story.mp4': 'media/equations/equation-story.mp4',

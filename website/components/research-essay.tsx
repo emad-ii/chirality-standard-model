@@ -473,7 +473,7 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
   const reviewPrompt =
     'Independently examine From Chirality to the Standard Model by Emad Mostaque at ' +
     repository +
-    '. Read the complete paper and inspect the executable verification. Start with effective compact Lie-algebra inclusions and the entire adjoint complement. Audit how complex type and a nonzero cubic radical jointly drive structural reduction; then check all-rank completeness, the six cubic tests, E6 incidence and the threefold net chiral class. Distinguish the separate two-factor domain of Paper III. Seek counterexamples, omitted cases and unjustified implications. Cite exact locations and record the revision and checks actually run. Distinguish manuscript proofs, exact computations and the finite Lean trust model. If sources are inaccessible, request the PDF and repository ZIP.';
+    '. Read the complete paper and inspect the executable verification. Start with effective compact Lie-algebra inclusions and the entire adjoint complement. Audit how complex type and a nonzero cubic radical jointly drive structural reduction; then check all-rank completeness, the six cubic tests, E6 incidence and the threefold net chiral class. Seek counterexamples, omitted cases and unjustified implications. Cite exact locations and record the revision and checks actually run. Distinguish manuscript proofs, exact computations and the finite Lean trust model. If sources are inaccessible, request the PDF and repository ZIP.';
 
   return (
     <main data-depth={depth} data-path={pathId}>
@@ -1771,35 +1771,6 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
               switch on Lean for the finite theorem checks. For an offline copy,
               download the repository ZIP and open the notebook in Jupyter.
             </p>
-            <details className="inline-depth">
-              <summary>
-                The original note · April 2026 <span>+</span>
-              </summary>
-              <div className="film-transcript">
-                <p>
-                  <em>The Gauge Algebra of Chirality</em> is the original April
-                  2026 note, preceding the longer paper. It starts with simple g
-                  and maximal subalgebras made of exactly two nonabelian simple
-                  factors. It tests the complex constituents under each ordered
-                  factor choice. Its five exceptional rows answer that separate
-                  question; they do not replace the six rows in the longer
-                  paper.
-                </p>
-                <p>
-                  <a
-                    href={asset('paper-iii.pdf')}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Read the two-page PDF ↗
-                  </a>
-                  {' · '}
-                  <a href={asset('paper-iii.tex')} download>
-                    LaTeX source
-                  </a>
-                </p>
-              </div>
-            </details>
             <div className="proof-layers">
               <div>
                 <span className="proof-label">01 / MANUSCRIPT PROOFS</span>

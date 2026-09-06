@@ -14,8 +14,6 @@ Use a fresh session and provide the full repository, either through an authorize
 >
 > Report substantive findings in order of importance, with exact locations, reasoning and the smallest necessary correction. Distinguish a false claim from an unsupported implication or something you could not verify. Record the commit or archive you examined and which checks you actually ran.
 >
-> The April 2026 original note has a separate maximal two-simple-factor domain. Check that note on its own terms; do not substitute its five exceptional rows for the longer paper’s six-candidate reduction.
->
 > If you cannot access the repository, ask for its ZIP. Missing tools or access are verification limitations, not mathematical counterexamples. Do not infer correctness from badges, prior reviews or the author's confidence.
 
 An effective review identifies a specific claim and either verifies its reasoning or shows precisely where it fails. A second independent review is useful when it produces a checkable objection.

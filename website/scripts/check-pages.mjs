@@ -13,7 +13,6 @@ assert.equal(
   doc.querySelector('link[rel=canonical]').href,
   'https://emad-ii.github.io' + base,
 );
-assert.match(doc.body.textContent, /April 2026/);
 assert.match(doc.body.textContent, /Impose the two conditions together/);
 assert.match(
   doc.querySelector('#collapse-step-0').textContent,
@@ -89,6 +88,13 @@ function walk(dir) {
   });
 }
 const files = walk(output);
+const downloads = new Set(manifest.files.map((file) => file.download));
+for (const path of files.filter((path) => /\.(?:pdf|tex)$/i.test(path))) {
+  assert(
+    downloads.has(path.slice(output.length + 1)),
+    'Unlisted manuscript download: ' + path,
+  );
+}
 for (const path of files.filter((path) => path.endsWith('.css'))) {
   const css = readFileSync(path, 'utf8');
   for (const match of css.matchAll(/url\(["']?(\/[^)"']+)["']?\)/g)) {

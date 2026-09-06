@@ -4,7 +4,7 @@
 
 The paper’s interactive edition: a scroll-driven classification, historical illustrations, D3 exhibits, a Three.js root explorer, particle and anomaly demonstrations, and chaptered films. Four reading paths change the page’s order and depth. Glossary entries and folded chapters keep the background within reach.
 
-The main argument begins with compact algebra inclusions and the entire adjoint complement. Complex type and a nonzero cubic radical are imposed together; homogeneity appears as the geometric realization. The April 2026 original note is labelled separately.
+The main argument begins with compact algebra inclusions and the entire adjoint complement. Complex type and a nonzero cubic radical are imposed together; homogeneity appears as the geometric realization.
 
 ## Develop
 
