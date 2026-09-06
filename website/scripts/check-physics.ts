@@ -84,6 +84,10 @@ for (const [fg, bg] of [
   ['f0f2f3', '080b10'],
   ['b2c2d5', '0b111a'],
   ['adc2d9', '122034'],
+  ['b8c9dd', '101a28'],
+  ['a8caff', '0b111a'],
+  ['e7bc8a', '101a28'],
+  ['9cd5c1', '0b111a'],
 ]) {
   assert(contrast('#' + fg, '#' + bg) >= 4.5, 'Dark body contrast');
 }

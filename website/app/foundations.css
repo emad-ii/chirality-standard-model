@@ -2,6 +2,177 @@
   background: #0a1019;
   border-block: 1px solid var(--border);
 }
+.standard-model-guide,
+.algebra-dictionary,
+.measurement-guide {
+  margin: 4rem 0 5rem;
+}
+.guide-opening {
+  max-width: 800px;
+}
+.guide-opening h3 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1.2;
+  margin: 1rem 0 1.5rem;
+}
+.guide-opening p,
+.guide-bridge {
+  font-size: 1.05rem;
+  color: #b8c9dd;
+  line-height: 1.85;
+  margin: 1.25rem 0;
+}
+.guide-opening strong,
+.guide-bridge strong {
+  color: #e3edfa;
+  font-weight: 550;
+}
+.guide-bridge {
+  max-width: 850px;
+  margin-top: 2rem;
+}
+.symmetry-map {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+.symmetry-map article {
+  border-top: 1px solid #557894;
+  padding-top: 1.5rem;
+}
+.symmetry-map article:nth-child(2) {
+  border-color: #bf9a76;
+}
+.symmetry-map article:nth-child(3) {
+  border-color: #719e8d;
+}
+.guide-symbol {
+  font:
+    1.9rem/1.5 var(--font-geist-mono),
+    monospace;
+  color: #a8caff;
+}
+.symmetry-map article:nth-child(2) .guide-symbol {
+  color: #e7bc8a;
+}
+.symmetry-map article:nth-child(3) .guide-symbol {
+  color: #9cd5c1;
+}
+.symmetry-map h4,
+.measurement-chain h5 {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  font-weight: 500;
+  margin: 1rem 0 0.6rem;
+}
+.symmetry-map p,
+.measurement-chain p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #b8c9dd;
+}
+.guide-table-wrap {
+  overflow-x: auto;
+  margin-top: 2rem;
+}
+.guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: left;
+}
+.guide-table caption {
+  text-align: left;
+  padding: 0 0 1rem;
+  color: #b8c9dd;
+  font-size: 0.9rem;
+}
+.guide-table :is(th, td) {
+  padding: 1rem;
+  border-bottom: 1px solid #2d4055;
+}
+.guide-table th {
+  font-weight: 500;
+}
+.guide-table thead {
+  color: #b8c9dd;
+}
+.guide-table tbody {
+  color: #e3edfa;
+}
+.guide-table tbody th {
+  color: #a8caff;
+}
+.measurement-guide {
+  position: relative;
+  padding-top: 3rem;
+}
+.measurement-guide > .demo-control {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+}
+.measurement-example {
+  border: 1px solid #344b66;
+  border-radius: 6px;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  background: #101a28;
+  animation: exhibit-in 0.45s ease both;
+}
+.measurement-example > h4 {
+  font-size: clamp(1.45rem, 2.3vw, 2rem);
+  font-weight: 450;
+  line-height: 1.4;
+  margin: 1rem 0 2rem;
+}
+.measurement-chain {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+}
+.chain-step {
+  display: block;
+  font:
+    0.8rem var(--font-geist-mono),
+    monospace;
+  color: #e7bc8a;
+  border-bottom: 1px solid #344b66;
+  padding-bottom: 1rem;
+}
+.guide-equation {
+  font-family: var(--font-geist-mono), monospace;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  .symmetry-map,
+  .measurement-chain {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .guide-table :is(th, td) {
+    padding: 0.8rem 0.5rem;
+    font-size: 0.9rem;
+  }
+  .standard-model-guide,
+  .algebra-dictionary,
+  .measurement-guide {
+    margin-block: 3rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .measurement-example {
+    animation: none;
+  }
+}
+[data-site-motion='paused'] .measurement-example {
+  animation: none;
+}
 .foundation-field-definition,
 .particle-language-key,
 .branching-key,

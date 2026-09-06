@@ -2,6 +2,7 @@
 import { useRef, useState } from 'react';
 import { Slider } from '@/components/ui/slider';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { multiplets } from '@/lib/particle-physics';
 import {
   AmbientExhibit,
   DemoControl,
@@ -13,7 +14,6 @@ import {
   rotationSeparation,
   phaseVector,
   weakDoublet,
-  leptonCharge,
   nextDemoAngle,
   type Vector3,
 } from '@/lib/symmetry-lab';
@@ -114,9 +114,16 @@ function RotationLab({ depth }: { depth: string }) {
         </p>
         <p>
           All rotations of three-dimensional space about the origin form the{' '}
-          <strong>Lie group SO(3)</strong>. Its <strong>Lie algebra</strong>{' '}
-          records the infinitesimal turns and their commutator: the difference
-          that survives when we compare the two orders at very small angles.
+          <strong>Lie group SO(3)</strong>. You can combine rotations, undo
+          them, and vary the angle continuously. Its{' '}
+          <strong>Lie algebra</strong> describes the infinitesimal turns: the
+          basic directions of change from which finite rotations can be built.
+        </p>
+        <p>
+          Each basic direction is a <strong>generator</strong>. The{' '}
+          <strong>Lie bracket</strong> records how two such changes fail to
+          commute. Here, doing the turns in a different order gives a different
+          result. That rule is part of the algebra’s structure.
         </p>
       </div>
       <AmbientExhibit className="foundation-instrument">
@@ -330,7 +337,7 @@ function RepresentationLab({ depth }: { depth: string }) {
           “Complex type” is stronger than having complex entries: the
           representation is inequivalent to its conjugate. The SU(2) doublet is
           pseudoreal, not complex type. The paper instead starts with a real
-          irreducible isotropy module q whose commuting endomorphisms form ℂ.
+          irreducible adjoint complement q whose commuting endomorphisms form ℂ.
           Its complexification is V ⊕ V*, with V and V* inequivalent.
         </p>
       </details>
@@ -340,41 +347,64 @@ function RepresentationLab({ depth }: { depth: string }) {
 
 export function ChargeKey() {
   const [lower, setLower] = useState(false);
-  const t3 = lower ? -0.5 : 0.5;
+  const [quarks, setQuarks] = useState(false);
+  const multiplet = multiplets.find((p) => p.id === (quarks ? 'Q' : 'L'))!;
+  // Use the same integer-normalised hypercharges as the anomaly exhibit.
+  const chargeSixths = (lower ? -3 : 3) + multiplet.q;
+  const charges: Record<number, string> = {
+    [-6]: '−1',
+    0: '0',
+    4: '+⅔',
+    [-2]: '−⅓',
+  };
+  const components = quarks
+    ? ['Up quark', 'Down quark']
+    : ['Neutrino', 'Electron'];
   return (
     <div className="charge-key" id="charge-key">
       <div>
-        <span className="eyebrow">READ A PARTICLE’S ADDRESS</span>
-        <h3>
-          What does (1, 2)<sub>−½</sub> mean?
-        </h3>
+        <span className="eyebrow">WORK OUT THE CHARGES</span>
+        <h3>Read the label: {multiplet.rep}</h3>
+        <ToggleGroup
+          className="lab-tabs"
+          aria-label="Matter doublet"
+          value={[quarks ? 'quarks' : 'leptons']}
+          onValueChange={(values) => {
+            if (values[0]) setQuarks(values[0] === 'quarks');
+          }}
+        >
+          <ToggleGroupItem value="leptons">Lepton doublet</ToggleGroupItem>
+          <ToggleGroupItem value="quarks">Quark doublet</ToggleGroupItem>
+        </ToggleGroup>
         <p>
-          For the left-chiral lepton field: <strong>1</strong> means a colour
-          singlet, <strong>2</strong> means a weak doublet, and{' '}
-          <strong>−½</strong> is its hypercharge Y. The two components have
-          different electric charges.
+          {quarks
+            ? 'For the left-chiral quark field, 3 means a colour triplet, 2 means a weak doublet, and ⅙ is its hypercharge Y. Each of the two weak components has three colour components, making six in total.'
+            : 'For the left-chiral lepton field, 1 means a colour singlet, 2 means a weak doublet, and −½ is its hypercharge Y. A singlet is unchanged by that group’s transformations; a doublet has two components.'}
         </p>
         <p>
-          A colour singlet is unchanged by colour transformations. A weak
-          doublet has two components. Their weak-isospin labels T₃ are +½ and
-          −½; both share the same hypercharge Y. Their electric charge Q follows
-          by adding these two numbers.
+          The weak-isospin labels T₃ are +½ and −½; both components share Y. Add
+          the two numbers to find electric charge Q, measured in units of the
+          positive elementary charge. Choose a component below.
         </p>
       </div>
       <ToggleGroup
         className="lab-tabs"
-        value={[lower ? 'electron' : 'neutrino']}
+        value={[lower ? 'lower' : 'upper']}
         onValueChange={(v) => {
-          if (v[0]) setLower(v[0] === 'electron');
+          if (v[0]) setLower(v[0] === 'lower');
         }}
         aria-label="Weak-doublet component"
       >
-        <ToggleGroupItem value="neutrino">Neutrino</ToggleGroupItem>
-        <ToggleGroupItem value="electron">Electron</ToggleGroupItem>
+        <ToggleGroupItem value="upper">{components[0]}</ToggleGroupItem>
+        <ToggleGroupItem value="lower">{components[1]}</ToggleGroupItem>
       </ToggleGroup>
-      <output className="charge-key-equation" aria-live="polite">
-        Q = T₃ + Y = {lower ? '−½' : '+½'} − ½ ={' '}
-        <strong>{leptonCharge(t3)}</strong>
+      <output
+        className="charge-key-equation"
+        aria-label="Calculated electric charge"
+        aria-live="polite"
+      >
+        Q = T₃ + Y = {lower ? '−½' : '+½'} {quarks ? '+ ⅙' : '− ½'} ={' '}
+        <strong>{charges[chargeSixths]}</strong>
       </output>
       <p className="lab-note">
         The right-chiral electron is (1, 1)<sub>−1</sub>. It is a weak singlet:
@@ -405,19 +435,104 @@ export function SymmetryWorkbench({
           to a particle’s <em>charges.</em>
         </h2>
         <p className="section-lead">
-          Physicists use symmetry to say which changes leave the laws intact.
-          Representation theory then says how fields change together. These two
-          ideas are the vocabulary of the paper.
+          Rotate an experiment and its orientation changes. If the physical laws
+          stay the same, that transformation is a symmetry. Lie theory gives us
+          a language for continuous symmetries. Representation theory tells us
+          how they act on the things we want to describe.
         </p>
         <p className="foundation-field-definition">
-          A field assigns mathematical quantities to each point in spacetime. In
-          quantum field theory, particles are excitations of fields. A
-          representation specifies how a field’s components change under a
-          symmetry transformation.
+          Particle physics uses this language for internal transformations too.
+          These mix components of fields, rather than turning an object in
+          space. The familiar rotation below gives us a way to learn the rules
+          before applying them to particle charges.
         </p>
       </div>
       <RotationLab depth={depth} />
       <RepresentationLab depth={depth} />
+      <div className="algebra-dictionary" id="algebra-dictionary">
+        <div className="guide-opening">
+          <span className="eyebrow">KEEP THREE IDEAS SEPARATE</span>
+          <h3>The symmetry. Its action. The number of copies.</h3>
+          <p>
+            An algebra supplies the transformation rules. A representation
+            realises those rules as matrices acting on components. We can then
+            have several fields with the same transformation rules. These are
+            three different choices, and three different counts.
+          </p>
+        </div>
+        <div className="guide-table-wrap">
+          <table className="guide-table">
+            <caption>
+              Generators and representation dimensions count different things.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Symmetry</th>
+                <th scope="col">Generators</th>
+                <th scope="col">A representation</th>
+                <th scope="col">Components</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">SU(2)</th>
+                <td>3</td>
+                <td>Weak doublet</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <th scope="row">SU(3)</th>
+                <td>8</td>
+                <td>Colour triplet</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <th scope="row">E₆</th>
+                <td>78</td>
+                <td>The 27 used in the paper</td>
+                <td>27</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="guide-bridge">
+          SU(2), for example, has three independent generators. On a doublet,
+          each is represented by a 2 × 2 matrix. Three families of doublets
+          would be three copies of that two-component representation.
+        </p>
+        <details
+          className="inline-depth"
+          open={depth === 'math' ? true : undefined}
+        >
+          <summary>
+            What are the adjoint and the Killing–Cartan list? <span>+</span>
+          </summary>
+          <p>
+            An algebra can act on itself: a generator X changes another element
+            Z through the bracket [X,Z]. This is the adjoint representation,
+            whose dimension equals the number of generators. The eight gluons
+            carry the adjoint colour index; quarks carry a three-component
+            colour index instead.
+          </p>
+          <p>
+            The Killing–Cartan classification lists the finite-dimensional
+            complex simple Lie algebras, or equivalently their compact real
+            forms: four classical series and five exceptional types. “Simple”
+            means non-abelian with no nonzero proper ideal, an algebraic part
+            preserved by brackets with everything else. A general compact Lie
+            algebra combines simple factors and an abelian centre. The list
+            organises the possible algebras; representations describe how they
+            act.
+          </p>
+          <p>
+            The paper links these choices by putting a smaller algebra inside a
+            larger one and letting the smaller algebra act on all the remaining
+            directions. This remaining space is its adjoint complement. The
+            classification asks when that space has the specified chiral and
+            cubic-anomaly properties.
+          </p>
+        </details>
+      </div>
       {returnToCharges && (
         <a className="primary-link" href="#charge-key">
           Return to particle charges →

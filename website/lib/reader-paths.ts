@@ -5,9 +5,9 @@ export const chapterInfo = {
       'Wu’s mirror experiment and the origins of the mathematical language of symmetry.',
   },
   foundations: {
-    title: 'Learn the language of symmetry',
+    title: 'Lie algebras and representations',
     summary:
-      'Compare two rotations, turn a phase, and mix the components of a representation.',
+      'Learn what a generator does, how a representation acts, and why dimensions and families are different counts.',
   },
   frontiers: {
     title: 'How physicists built the pattern',
@@ -15,9 +15,9 @@ export const chapterInfo = {
       'Follow electroweak discoveries, then compare SU(5), Spin(10), E₆, heterotic compactification and the paper.',
   },
   physics: {
-    title: 'The particles and their constraints',
+    title: 'The Standard Model, from fields to experiments',
     summary:
-      'Meet the fields, connect left and right through the Higgs, and balance one family’s anomalies.',
+      'Read electron and quark charges, connect the mathematics to measurements, then explore mass and anomaly cancellation.',
   },
   selection: {
     title: 'From a broad domain to one pair',
@@ -37,7 +37,7 @@ export const chapterInfo = {
   families: {
     title: 'Read the matter content',
     summary:
-      'Branch the 27, take its chiral class, and include the factor of three.',
+      'See the familiar charge pattern reappear when the 27 branches, then count the three net families.',
   },
   implications: {
     title: 'Return to the physical question',
@@ -72,7 +72,7 @@ export const readerPaths: ReaderPath[] = [
       'Begin with an experiment. Build the idea without assuming the mathematics.',
     title: 'Begin with a world that distinguishes left from right.',
     introduction:
-      'An electron’s charges belong to a repeating pattern. See how physicists discovered it, then follow a question about why it takes this form. Open the equations when you want to go further.',
+      'Start with Wu’s experiment. Learn what symmetries and representations mean, see how they describe the particles we measure, then follow the paper’s search for a common origin. The equations open when you want them.',
     chapters: [
       'question',
       'foundations',
@@ -95,7 +95,7 @@ export const readerPaths: ReaderPath[] = [
       foundations:
         'The experiment establishes an asymmetry in nature. To describe it precisely, we need to know how a symmetry acts on a field. Begin with a transformation you can move yourself.',
       physics:
-        'A representation tells us how a field transforms. Now use that language to read the charges of an electron and see why its two handednesses need different weak representations.',
+        'We have the language: an algebra gives transformation rules, a representation tells us how a field follows them. Now meet the Standard Model and work out the charges of an electron and its quark neighbours.',
       frontiers:
         'The particle pattern and its consistency tests were built from experiment and theory. How much does an ordinary unification scheme determine, and which choices does it leave open?',
       selection:
@@ -105,7 +105,9 @@ export const readerPaths: ReaderPath[] = [
       geometry:
         'Finding E₆ is only part of the route. Its smaller symmetry patterns determine which overlaps can carry the familiar colour and weak factors.',
       families:
-        'The subgroup geometry provides the setting in which to read the charges. Now count the chiral matter in the selected representation.',
+        'We have found the smaller symmetry inside E₆. Read the selected representation under that symmetry, and compare its pieces with the electron and quark labels we started with.',
+      implications:
+        'The calculation has returned to a familiar charge pattern, repeated three times in the net chiral class. Here is how the mathematical route fits together.',
       verify:
         'Follow the same argument at greater depth in the paper, or run the finite calculations yourself.',
     },
@@ -214,8 +216,11 @@ export function omittedChapters(id: PathId): ChapterId[] {
 }
 export const nestedChapters: Record<string, ChapterId> = {
   particles: 'physics',
+  'standard-model': 'physics',
+  'math-and-measurement': 'physics',
   'charge-key': 'physics',
   'lie-algebra': 'foundations',
+  'algebra-dictionary': 'foundations',
   representations: 'foundations',
   mass: 'physics',
   anomalies: 'physics',

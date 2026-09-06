@@ -521,9 +521,10 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
               of <em>matter?</em>
             </h1>
             <p className="hero-deck">
-              The Standard Model describes the particles and their interactions.
-              Why this pattern? The paper asks whether giving chiral matter one
-              geometric origin leaves us a choice.
+              The electron in an atom belongs to a pattern that repeats across
+              three families of matter. The weak interaction treats left and
+              right differently. This is a journey from those discoveries to a
+              mathematical question: could a common origin fix the pattern?
             </p>
             <a className="primary-link" href="#reader-paths">
               Find your way into the argument <ArrowDown size={18} />
@@ -663,7 +664,7 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
               <figure className="wu-portrait">
                 <Image
                   unoptimized
-                  src={asset("wu-illustration.webp")}
+                  src={asset('wu-illustration.webp')}
                   width="1024"
                   height="1536"
                   alt="Stylised engraved illustration of Chien-Shiung Wu beside laboratory instruments"
@@ -721,7 +722,7 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
                     <h3>The mirror breaks</h3>
                     <p>
                       Wu and her National Bureau of Standards collaborators
-                      found that electrons from polarized cobalt-60 nuclei
+                      found that electrons from polarised cobalt-60 nuclei
                       preferred one direction relative to the nuclear spin.
                       Their experiment established parity violation in beta
                       decay: the weak interaction distinguishes a process from
@@ -788,16 +789,19 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
               described, not the age shown in each portrait.
             </p>
             <div className="question-band">
-              <span className="eyebrow">THE INVERSE QUESTION</span>
+              <span className="eyebrow">
+                FROM THE EXPERIMENT TO ITS DESCRIPTION
+              </span>
               <h3>
-                We know matter is chiral.
+                Left and right follow
                 <br />
-                Could chirality help determine <em>which matter?</em>
+                different <em>weak-interaction rules.</em>
               </h3>
               <p className="band-note">
-                Can one mathematical structure account for both the symmetry
-                rules and the repeating matter pattern? To ask that precisely,
-                we first need a language for how symmetry acts.
+                In the Standard Model, left- and right-chiral fermion fields
+                transform differently under the weak gauge symmetry. “Chiral”
+                describes this handed structure. Lie algebras and their
+                representations let us write down exactly how it works.
               </p>
             </div>
           </section>
@@ -827,9 +831,9 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
               <p className="section-lead">
                 A long list is useful only if you know what to ask of it. The
                 paper makes two demands on a compact algebra embedding: its
-                remaining directions form one complex-type whole, and its cubic anomaly
-                leaves a nonzero gauge ideal. It then follows those demands
-                through the domain.
+                remaining directions form one complex-type whole, and its cubic
+                anomaly leaves a nonzero gauge ideal. It then follows those
+                demands through the domain.
               </p>
             </div>
             <div className="plain-result">
@@ -854,8 +858,8 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
                 <p>
                   The starting object is h ⊂ g. An invariant positive inner
                   product identifies q = g/h with h⊥. The action is the bracket:
-                  an element of h moves the remaining directions within q.
-                  The quotient need not itself be a Lie algebra.
+                  an element of h moves the remaining directions within q. The
+                  quotient need not itself be a Lie algebra.
                 </p>
                 <p>
                   The two conditions force g to be simple and h semisimple.
@@ -921,10 +925,10 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
                   pure e₆ test passes while the full radical is zero.
                 </p>
                 <p>
-                  This distinction matters before the centre is excluded.
-                  Once h is semisimple, mixed cubic terms between simple factors
-                  vanish by tracelessness. For a fixed ideal k, testing
-                  cV(k,k,k) = 0 then agrees with testing cV(k,h,h) = 0.{' '}
+                  This distinction matters before the centre is excluded. Once h
+                  is semisimple, mixed cubic terms between simple factors vanish
+                  by tracelessness. For a fixed ideal k, testing cV(k,k,k) = 0
+                  then agrees with testing cV(k,h,h) = 0.{' '}
                   <a
                     href={source('paper/paper.tex')}
                     target="_blank"
@@ -1088,10 +1092,11 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
                   <em>Six configurations.</em>
                 </h2>
                 <p className="section-lead">
-                  Think of laying three symmetry patterns over the same
-                  structure. Which directions do they share? Inside E₆ there are
-                  27 choices of the first pattern, 36 of the second and 40 of
-                  the third. All 38,880 combinations fall into six types under
+                  A smaller symmetry sits inside E₆ when its generators close
+                  under the same bracket. Lay three such patterns over one
+                  another and ask which transformations they share. There are 27
+                  choices of the first pattern, 36 of the second and 40 of the
+                  third. All 38,880 combinations fall into six types under
                   symmetry.
                 </p>
               </div>
@@ -1136,7 +1141,7 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
                       <span className="live-dot" /> LIVE CERTIFICATE EXPLORER
                     </span>
                     <DemoControl {...geometryDemo} />
-                    <a href={asset("e6-certificate.json")} download>
+                    <a href={asset('e6-certificate.json')} download>
                       Download data <Download size={13} />
                     </a>
                   </div>
@@ -1410,7 +1415,14 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
               <p className="section-lead">
                 {pathId === 'mathematics' || pathId === 'review'
                   ? 'Restrict V = 27 ⊗ 3 along the identified subgroup chain. The chiral class cancels conjugate pairs and neutral singlets, leaving three copies of the Standard Model family class. Duality reverses the chiral class.'
-                  : 'The electron has heavier relatives, the muon and tau. Quarks repeat too. Each family carries the same pattern of gauge charges, although their masses differ. In the selected representation, that repetition is already present as a factor of three.'}
+                  : 'Under the Standard Model subgroup, the selected representation splits into recognisable pieces. One piece carries the charge pattern of a quark and lepton family. A separate three-dimensional multiplicity space repeats every piece three times.'}
+              </p>
+              <p className="branching-key">
+                A representation can be read using only the transformations of a
+                smaller subgroup. It may then split into pieces that no longer
+                mix with each other. This is called branching. The components
+                stay the same; we are identifying how each piece transforms
+                under the smaller symmetry.
               </p>
             </div>
             <div ref={spectrumDemoRef} {...spectrumDemo.handlers}>
@@ -1544,11 +1556,12 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
                 </div>
               </div>
               <p className="source-note">
-                Charges above use left-handed Weyl fields and Y normalization.
-                The cards show the chosen V orientation. “Net” subtracts
-                conjugate representation content; it is a chiral-index
-                operation. A zero net contribution does not establish that those
-                states are massive or absent.
+                These are the same charge labels used in the particle explorer.
+                Here every field is written as left-handed: uᶜ, dᶜ and eᶜ are
+                the charge-conjugates of the right-handed fields, so their
+                charges have the opposite sign. “Net” subtracts conjugate
+                representation content; it counts chirality rather than deciding
+                which particles are light.
               </p>
               <AmbientExhibit>
                 <div className="family-result">
@@ -1621,8 +1634,8 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
                   <h3>A symmetry and its matter</h3>
                   <p>
                     The gauge ideal E₆ and the module 27 ⊗ 3 emerge from the
-                    same compact algebra embedding. They are not independent choices
-                    within this construction.
+                    same compact algebra embedding. They are not independent
+                    choices within this construction.
                   </p>
                 </article>
                 <article>
@@ -1630,8 +1643,8 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
                   <h3>A uniqueness and a no-go</h3>
                   <p>
                     One pair satisfies the stated hypotheses, up to duality.
-                    Every other effective compact inclusion in the stated domain is
-                    excluded by the same classification.
+                    Every other effective compact inclusion in the stated domain
+                    is excluded by the same classification.
                   </p>
                 </article>
                 <article>
@@ -1645,13 +1658,14 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
                 </article>
               </div>
               <div className="closing-thought">
-                An atom on your desk contains a particular kind of matter. Its
-                electrons have particular charges. Its quarks fit particular
-                patterns.
+                We began with the electron in an atom. Its charge, its weak
+                partner and the quark charges now reappear in the branching of
+                the selected representation. Three copies of their chiral
+                pattern come with it.
                 <br />
                 <em>
-                  The question is whether those patterns were ever separate
-                  choices.
+                  Within the paper’s domain, those choices belong to one
+                  structure.
                 </em>
               </div>
             </div>
@@ -1688,8 +1702,8 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
                   the Standard Model
                 </h3>
                 <p>
-                  The exact domain, uniqueness proof, E₆ incidence geometry
-                  and restriction to the threefold chiral class.
+                  The exact domain, uniqueness proof, E₆ incidence geometry and
+                  restriction to the threefold chiral class.
                 </p>
                 <span className="resource-action">
                   Read the PDF <ArrowUpRight size={19} />
@@ -1697,7 +1711,7 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
               </a>
               <a
                 className="resource-card"
-                href={asset("Cubic_Anomaly_Master_Verification.ipynb")}
+                href={asset('Cubic_Anomaly_Master_Verification.ipynb')}
                 download
               >
                 <Code2 size={24} />
@@ -1738,7 +1752,7 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
               </a>
             </div>
             <div className="download-strip">
-              <a href={asset("paper.tex")} download>
+              <a href={asset('paper.tex')} download>
                 LaTeX source <Download size={14} />
               </a>
               <a href={repository + '/archive/refs/heads/main.zip'}>
@@ -1758,19 +1772,31 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
               download the repository ZIP and open the notebook in Jupyter.
             </p>
             <details className="inline-depth">
-              <summary>The original note · April 2026 <span>+</span></summary>
+              <summary>
+                The original note · April 2026 <span>+</span>
+              </summary>
               <div className="film-transcript">
                 <p>
-                  <em>The Gauge Algebra of Chirality</em> is the original
-                  April 2026 note, preceding the longer paper. It starts with simple g
+                  <em>The Gauge Algebra of Chirality</em> is the original April
+                  2026 note, preceding the longer paper. It starts with simple g
                   and maximal subalgebras made of exactly two nonabelian simple
                   factors. It tests the complex constituents under each ordered
                   factor choice. Its five exceptional rows answer that separate
-                  question; they do not replace the six rows in the longer paper.
+                  question; they do not replace the six rows in the longer
+                  paper.
                 </p>
                 <p>
-                  <a href={asset('paper-iii.pdf')} target="_blank" rel="noreferrer">Read the two-page PDF ↗</a>
-                  {' · '}<a href={asset('paper-iii.tex')} download>LaTeX source</a>
+                  <a
+                    href={asset('paper-iii.pdf')}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Read the two-page PDF ↗
+                  </a>
+                  {' · '}
+                  <a href={asset('paper-iii.tex')} download>
+                    LaTeX source
+                  </a>
                 </p>
               </div>
             </details>
@@ -1861,9 +1887,11 @@ function EssayContent({ initialPath }: { initialPath: PathId }) {
                   </a>{' '}
                   . Its PDFs, LaTeX sources, notebook, films and root data are
                   copied directly from that checkout and checked byte for byte.
-                  The <a href={asset('source-manifest.json')}>download manifest</a>{' '}
+                  The{' '}
+                  <a href={asset('source-manifest.json')}>download manifest</a>{' '}
                   records their SHA-256 hashes. The full repository ZIP includes
-                  the website and video sources as well as the mathematical checks.
+                  the website and video sources as well as the mathematical
+                  checks.
                 </p>
                 <p>
                   The browser checks recompute the displayed root and

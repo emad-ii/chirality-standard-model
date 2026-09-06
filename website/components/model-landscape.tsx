@@ -38,7 +38,7 @@ const approaches = [
     open: 'Family repetition and the symmetry-breaking and mass-generating sectors are not specified by choosing the 16.',
     equation: '16 → 10 ⊕ 5̄ ⊕ 1',
     explanation:
-      'This is why “ordinary unification always hand-assembles reducible matter” would be wrong. Spin(10) already offers one irreducible family package. The new question in this paper is whether both an ambient pair and its canonical quotient representation can be classified together.',
+      'The 16 brings a whole family and a neutral state into one irreducible representation. Many separate charge assignments become one representation choice. The present paper asks whether the larger algebra, its subalgebra and the representation supplied by their complement can be classified together.',
     source: 'https://doi.org/10.1016/0003-4916(75)90211-0',
     credit: 'Fritzsch & Minkowski, 1975',
   },
@@ -163,7 +163,7 @@ export function ModelLandscape() {
         <figure>
           <Image
             unoptimized
-            src={asset("electroweak-illustration.webp")}
+            src={asset('electroweak-illustration.webp')}
             width={1774}
             height={887}
             alt="Illustrated later-life portraits of Glashow, Weinberg and Salam"
@@ -301,7 +301,7 @@ export function ModelLandscape() {
               <figure className="unification-portrait">
                 <Image
                   unoptimized
-                  src={asset("unification-illustration.webp")}
+                  src={asset('unification-illustration.webp')}
                   width={1685}
                   height={933}
                   alt="Illustrated later-life portraits of Howard Georgi and Sheldon Glashow"

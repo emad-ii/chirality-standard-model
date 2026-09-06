@@ -1,6 +1,10 @@
 'use client';
 
 import { ChargeKey } from '@/components/symmetry-workbench';
+import {
+  StandardModelGuide,
+  MathematicsAndMeasurement,
+} from '@/components/standard-model-guide';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { ArrowDown, ArrowUpRight, CheckCircle2, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -601,21 +605,26 @@ export function PhysicsLaboratory() {
         </div>
         <div className="section-heading">
           <h2>
-            Matter has a pattern.
+            The Standard Model.
             <br />
-            What keeps it <em>consistent?</em>
+            A pattern in the <em>world.</em>
           </h2>
           <p className="section-lead">
-            Handedness constrains which mass terms the gauge symmetry permits.
-            Anomaly cancellation constrains which matter fields can live
-            together in a quantum gauge theory. These are different
-            requirements. Explore them separately, then follow the paper’s
-            question about their common origin.
+            The matter in an atom, the light it emits, and the weak processes
+            that change one kind of particle into another are described by a
+            remarkably small set of fields and interaction rules. Those rules
+            carry a mathematical pattern we can learn to read.
           </p>
         </div>
         <nav className="lab-contents" aria-label="Physics exhibits">
+          <a href="#standard-model">
+            Understand the model <ArrowDown size={14} />
+          </a>
           <a href="#particles">
             Meet the particles <ArrowDown size={14} />
+          </a>
+          <a href="#math-and-measurement">
+            Test it against nature <ArrowDown size={14} />
           </a>
           <a href="#mass">
             Connect left and right <ArrowDown size={14} />
@@ -624,15 +633,16 @@ export function PhysicsLaboratory() {
             Balance the anomalies <ArrowDown size={14} />
           </a>
         </nav>
+        <StandardModelGuide />
         <p className="particle-language-key">
-          L and R label two ways fermion fields transform under spacetime
-          symmetry; they do not describe classical rotation. The gallery pairs
-          each symbolic field picture with its actual charges. Need the
-          mathematical language first?{' '}
-          <a href="#representations">Explore how a representation works ↗</a>
+          The gallery uses L and R for left- and right-chiral fields. Its
+          animated pictures are symbolic; the representation labels give the
+          actual charges. For a refresher on those labels,{' '}
+          <a href="#representations">explore how a representation works ↗</a>
         </p>
         <ChargeKey />
         <ParticleGallery />
+        <MathematicsAndMeasurement />
         <HiggsExhibit />
         <AnomalyExhibit />
         <div className="physics-to-paper">
@@ -643,14 +653,16 @@ export function PhysicsLaboratory() {
             came from the same structure?
           </h3>
           <p>
-            Those experiments and consistency conditions motivate the search.
-            The paper asks for an algebraic source of that pattern: the entire
-            adjoint complement of a compact embedding, irreducible and of{' '}
+            In the Standard Model, we specify the symmetry, assign the matter
+            representations and repeat the family pattern three times. The paper
+            ties those choices together: place one compact algebra inside
+            another, and use all the remaining directions as a representation of
+            the smaller one. This adjoint complement must be irreducible and of{' '}
             <Term meaning="For this real isotropy module, Endₕ(q) ≅ ℂ. Its complexification splits into two inequivalent conjugate irreducible halves.">
               complex type
             </Term>
-            . With a nonzero cubic-anomaly radical, its classification has one
-            surviving pair.
+            . Requiring a nonzero cubic-anomaly radical as well leaves one pair.
+            We can now follow the conditions that make that uniqueness possible.
           </p>
         </div>
         <p className="source-note">
