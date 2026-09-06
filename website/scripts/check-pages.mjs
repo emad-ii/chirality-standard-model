@@ -15,6 +15,18 @@ assert.equal(
 );
 assert.match(doc.body.textContent, /April 2026/);
 assert.match(doc.body.textContent, /Impose the two conditions together/);
+assert.match(
+  doc.querySelector('#collapse-step-0').textContent,
+  /complete compact catalogue/,
+);
+assert.match(
+  doc.querySelector('#collapse-step-0').textContent,
+  /every finite-dimensional compact Lie algebra is covered/,
+);
+assert.match(
+  doc.querySelector('#question').textContent,
+  /Killing and Cartan’s classification is exhaustive/,
+);
 for (const id of [
   'standard-model',
   'math-and-measurement',

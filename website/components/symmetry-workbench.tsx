@@ -515,14 +515,16 @@ export function SymmetryWorkbench({
             colour index instead.
           </p>
           <p>
-            The Killing–Cartan classification lists the finite-dimensional
-            complex simple Lie algebras, or equivalently their compact real
-            forms: four classical series and five exceptional types. “Simple”
-            means non-abelian with no nonzero proper ideal, an algebraic part
-            preserved by brackets with everything else. A general compact Lie
-            algebra combines simple factors and an abelian centre. The list
-            organises the possible algebras; representations describe how they
-            act.
+            The Killing–Cartan classification is complete for finite-dimensional
+            complex simple Lie algebras, equivalently for compact real simple
+            Lie algebras: Aₙ, Bₙ, Cₙ, Dₙ and G₂, F₄, E₆, E₇, E₈. “Simple” means
+            non-abelian with no nonzero proper ideal, an algebraic part
+            preserved by brackets with everything else. Every finite-dimensional
+            compact Lie algebra is a direct sum of these simple factors and an
+            abelian centre. This includes arbitrary finite ranks, sums and
+            repetitions. The classification exhausts the algebras; specifying
+            embeddings, representations and global group identifications is
+            further mathematical work.
           </p>
           <p>
             The paper links these choices by putting a smaller algebra inside a

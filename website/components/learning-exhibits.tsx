@@ -53,7 +53,7 @@ export function Term({
 
 const collapseStages = [
   {
-    title: 'Begin with a broad mathematical world.',
+    title: 'Begin with the complete compact catalogue.',
     label: 'THE STARTING DOMAIN',
     text: 'A Lie algebra describes the infinitesimal rules of a continuous symmetry. Start with any finite-dimensional compact algebra g and an effective proper subalgebra h. Keep every remaining direction: together they form the representation q = g/h.',
     detail:
@@ -154,8 +154,8 @@ export function ScrollClassification({
       'E₆',
       'E₇',
       'E₈',
-      'Products',
-      'Tori',
+      'Direct sums',
+      'Centre',
     ];
     const data: VisualNode[] =
       stage < 2
@@ -276,14 +276,14 @@ export function ScrollClassification({
           <div className="collapse-caption">
             <strong>
               {stage < 2
-                ? 'A broad domain'
+                ? 'All compact algebra types'
                 : excluded === 5
                   ? 'One pair remains'
                   : fmtCount(6 - excluded) + ' candidates'}
             </strong>
             <span>
               {stage < 2
-                ? 'Family labels are schematic, not counts.'
+                ? 'Four series, five exceptions, sums and centre.'
                 : 'Exact final candidates from the paper.'}
             </span>
           </div>
@@ -323,6 +323,16 @@ export function ScrollClassification({
               0{i + 1} / {s.label}
             </span>
             <h2>{s.title}</h2>
+            {i === 0 && (
+              <p>
+                The Killing–Cartan classification exhausts the compact simple
+                Lie algebras. Allow direct sums of these building blocks and an
+                abelian centre, whose directions commute with everything, and
+                every finite-dimensional compact Lie algebra is covered. The
+                infinite series have no upper rank cutoff. This is a complete
+                starting catalogue, not a shortlist of favoured symmetries.
+              </p>
+            )}
             {i === 0 && showExample && (
               <p>
                 Rotations move a point around a sphere. The rotations fixing
@@ -507,11 +517,25 @@ export function SymmetryPrelude() {
           reversing the order generally gives a different result.
         </p>
         <p>
-          Killing and Cartan’s later classification organised the complex simple
-          Lie algebras into four infinite series and five exceptional types. E₆
-          and E₈ belong to that exceptional list. The catalogue gives this paper
-          a place to search; the hypotheses and the embeddings decide what
-          survives.
+          Killing and Cartan’s classification is exhaustive. Every
+          finite-dimensional compact simple Lie algebra belongs to one of four
+          infinite series, Aₙ, Bₙ, Cₙ and Dₙ, or five exceptional types: G₂, F₄,
+          E₆, E₇ and E₈. There is no further compact simple type outside this
+          list. Allowing direct sums and commuting central directions extends
+          the catalogue to every finite-dimensional compact Lie algebra.
+        </p>
+        <p>
+          That completeness matters here. The paper starts with the full compact
+          domain, then studies embeddings and their representations under its
+          two conditions. The catalogue supplies every possible building block;
+          the paper’s reduction and anomaly test determine what survives.{' '}
+          <a
+            href="https://math.mit.edu/~etingof/lnlg.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Classification and compact forms, MIT notes §§22–23, 39, 42 ↗
+          </a>
         </p>
         <a
           href="https://ocw.mit.edu/courses/18-755-introduction-to-lie-groups-fall-2004/256974d724f956b5d22d18d6d9935c9f_helga_sopmath3_2.pdf"
@@ -537,7 +561,7 @@ export function SymmetryPrelude() {
         <AmbientExhibit className="symmetry-motion">
           <Image
             unoptimized
-            src={asset("symmetry-illustration.webp")}
+            src={asset('symmetry-illustration.webp')}
             width={1536}
             height={1024}
             alt="Illustrated sphere, rotation paths and an open mathematics notebook"
@@ -617,19 +641,19 @@ export function EquationFilm() {
         onPointerDown={() => setManual(true)}
         onKeyDown={() => setManual(true)}
         preload="none"
-        poster={asset("equation-poster.jpg")}
+        poster={asset('equation-poster.jpg')}
         aria-label="Manim walkthrough of the core equations"
       >
-        <source src={asset("equation-story.mp4")} type="video/mp4" />
+        <source src={asset('equation-story.mp4')} type="video/mp4" />
         <track
           kind="captions"
-          src={asset("equation-story.vtt")}
+          src={asset('equation-story.vtt')}
           srcLang="en"
           label="English"
           default
         />
         Your browser does not support embedded video.{' '}
-        <a href={asset("equation-story.mp4")} download>
+        <a href={asset('equation-story.mp4')} download>
           Download the equation film.
         </a>
       </video>
@@ -664,8 +688,8 @@ export function EquationFilm() {
           <p>
             <strong>Endₕ(q) ≅ ℂ.</strong> Require one irreducible module of
             complex type. Its complexification splits into inequivalent
-            conjugate halves V and V*. Either choice determines the cubic tensor;
-            duality changes its sign but not its radical.
+            conjugate halves V and V*. Either choice determines the cubic
+            tensor; duality changes its sign but not its radical.
           </p>
           <p>
             <strong>cᵥ(k, h, h) = 0, k ≠ 0.</strong> Look for a nonzero ideal
@@ -675,9 +699,9 @@ export function EquationFilm() {
           </p>
           <p>
             <strong>e₈ ⊃ e₆ ⊕ su(3).</strong> The classification and cubic test
-            first reduce to simple g and maximal semisimple h, then exhaust
-            the ranks and evaluate six candidates. This unique pair survives,
-            up to duality. Its radical is e₆.
+            first reduce to simple g and maximal semisimple h, then exhaust the
+            ranks and evaluate six candidates. This unique pair survives, up to
+            duality. Its radical is e₆.
           </p>
           <p>
             <strong>V = 27 ⊗ 3.</strong> Each 27 branches into a chiral family,
@@ -685,16 +709,30 @@ export function EquationFilm() {
           </p>
           <p>
             <strong>χ(V) = 3χ(FSM).</strong> Conjugate pairs and singlets
-            contribute zero net chiral class. Restriction therefore gives exactly
-            three copies of the Standard Model family class. The dual has the
-            opposite chiral class.
+            contribute zero net chiral class. Restriction therefore gives
+            exactly three copies of the Standard Model family class. The dual
+            has the opposite chiral class.
           </p>
         </div>
       </details>
       <div className="download-strip">
-        <a href={asset('equation-story.mp4')} download>Download equation film</a>
-        <a href={asset('one-survivor-pilot.mp4')} target="_blank" rel="noreferrer">Watch the selection pilot · 78 seconds ↗</a>
-        <a href="https://github.com/emad-ii/chirality-standard-model/tree/main/media" target="_blank" rel="noreferrer">Captions and editable sources ↗</a>
+        <a href={asset('equation-story.mp4')} download>
+          Download equation film
+        </a>
+        <a
+          href={asset('one-survivor-pilot.mp4')}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Watch the selection pilot · 78 seconds ↗
+        </a>
+        <a
+          href="https://github.com/emad-ii/chirality-standard-model/tree/main/media"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Captions and editable sources ↗
+        </a>
       </div>
     </section>
   );
