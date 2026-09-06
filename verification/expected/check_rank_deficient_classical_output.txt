@@ -1,0 +1,5 @@
+Cartan-product regressions (rank <= 32).... passed
+A-type cubic regressions (N <= 32, a <= 5).. passed
+D-odd symbolic all-rank inequalities...... passed
+E6 dual-support dimension checks.......... passed
+all classical rank-deficient checks passed

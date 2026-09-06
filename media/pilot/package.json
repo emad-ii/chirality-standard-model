@@ -1,0 +1,18 @@
+{
+  "name": "chirality-film",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "lint:film": "hyperframes lint",
+    "preview": "hyperframes preview --port 3100",
+    "render:pilot": "hyperframes render --output outputs/one-survivor-pilot.mp4 --fps 30 --quality high --workers 1 --no-best-effort",
+    "snapshot": "hyperframes snapshot"
+  },
+  "dependencies": {
+    "gsap": "3.14.2",
+    "hyperframes": "0.8.30",
+    "katex": "0.16.22"
+  }
+}

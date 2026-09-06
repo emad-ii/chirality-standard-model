@@ -1,0 +1,9 @@
+Pair-first d_chi check passed
+columns: d_chi(H_DA), d_chi(H_DTheta), d_chi(H_ATheta)
+profile=(16, 10, 6), common roots=2: (16, 12, 0)
+profile=(16, 10, 6), common roots=6: (16, 12, 0)
+profile=(16, 10, 14), common roots=6: (16, 12, 27)
+profile=(16, 10, 14), common roots=10: (16, 12, 27)
+profile=(20, 10, 6), common roots=4: (15, 12, 0)
+profile=(20, 10, 14), common roots=8: (15, 12, 27)
+Structural ordering PASS: 38880 triples, 2466 parents; roots and rank+roots uniquely select H_DA iff d_chi in {15,16}

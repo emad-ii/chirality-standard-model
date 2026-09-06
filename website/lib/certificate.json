@@ -1,0 +1,2230 @@
+{
+  "cartan_matrix": [
+    [
+      2,
+      0,
+      -1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      2,
+      0,
+      -1,
+      0,
+      0
+    ],
+    [
+      -1,
+      0,
+      2,
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      -1,
+      -1,
+      2,
+      -1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      -1,
+      2,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      -1,
+      2
+    ]
+  ],
+  "cell_representatives": [
+    {
+      "A_root_indices": [
+        2,
+        9,
+        10,
+        11,
+        15,
+        16,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        30,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        43,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        57,
+        58,
+        62,
+        63,
+        64,
+        71
+      ],
+      "D_root_indices": [
+        2,
+        3,
+        4,
+        5,
+        12,
+        13,
+        14,
+        15,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        58,
+        59,
+        60,
+        61,
+        68,
+        69,
+        70,
+        71
+      ],
+      "Theta_root_indices": [
+        1,
+        3,
+        14,
+        16,
+        25,
+        29,
+        31,
+        32,
+        36,
+        37,
+        41,
+        42,
+        44,
+        48,
+        57,
+        59,
+        70,
+        72
+      ],
+      "cell_count": 12960,
+      "common_root_count": 2,
+      "common_type": "A1",
+      "profile": [
+        16,
+        10,
+        6
+      ]
+    },
+    {
+      "A_root_indices": [
+        2,
+        9,
+        10,
+        11,
+        15,
+        16,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        30,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        43,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        57,
+        58,
+        62,
+        63,
+        64,
+        71
+      ],
+      "D_root_indices": [
+        2,
+        3,
+        4,
+        5,
+        12,
+        13,
+        14,
+        15,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        58,
+        59,
+        60,
+        61,
+        68,
+        69,
+        70,
+        71
+      ],
+      "Theta_root_indices": [
+        1,
+        6,
+        14,
+        15,
+        22,
+        27,
+        28,
+        33,
+        36,
+        37,
+        40,
+        45,
+        46,
+        51,
+        58,
+        59,
+        67,
+        72
+      ],
+      "cell_count": 3240,
+      "common_root_count": 6,
+      "common_type": "A1+A1+A1",
+      "profile": [
+        16,
+        10,
+        6
+      ]
+    },
+    {
+      "A_root_indices": [
+        2,
+        9,
+        10,
+        11,
+        15,
+        16,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        30,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        43,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        57,
+        58,
+        62,
+        63,
+        64,
+        71
+      ],
+      "D_root_indices": [
+        2,
+        3,
+        4,
+        5,
+        12,
+        13,
+        14,
+        15,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        58,
+        59,
+        60,
+        61,
+        68,
+        69,
+        70,
+        71
+      ],
+      "Theta_root_indices": [
+        2,
+        3,
+        11,
+        16,
+        22,
+        23,
+        24,
+        33,
+        36,
+        37,
+        40,
+        49,
+        50,
+        51,
+        57,
+        62,
+        70,
+        71
+      ],
+      "cell_count": 3240,
+      "common_root_count": 6,
+      "common_type": "A1+A1+A1",
+      "profile": [
+        16,
+        10,
+        14
+      ]
+    },
+    {
+      "A_root_indices": [
+        2,
+        9,
+        10,
+        11,
+        15,
+        16,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        30,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        43,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        57,
+        58,
+        62,
+        63,
+        64,
+        71
+      ],
+      "D_root_indices": [
+        2,
+        3,
+        4,
+        5,
+        12,
+        13,
+        14,
+        15,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        58,
+        59,
+        60,
+        61,
+        68,
+        69,
+        70,
+        71
+      ],
+      "Theta_root_indices": [
+        1,
+        2,
+        15,
+        16,
+        26,
+        30,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        43,
+        47,
+        57,
+        58,
+        71,
+        72
+      ],
+      "cell_count": 2160,
+      "common_root_count": 10,
+      "common_type": "A2+A1+A1",
+      "profile": [
+        16,
+        10,
+        14
+      ]
+    },
+    {
+      "A_root_indices": [
+        1,
+        12,
+        13,
+        14,
+        15,
+        16,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        57,
+        58,
+        59,
+        60,
+        61,
+        72
+      ],
+      "D_root_indices": [
+        2,
+        3,
+        4,
+        5,
+        12,
+        13,
+        14,
+        15,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        58,
+        59,
+        60,
+        61,
+        68,
+        69,
+        70,
+        71
+      ],
+      "Theta_root_indices": [
+        2,
+        3,
+        11,
+        16,
+        22,
+        23,
+        24,
+        33,
+        36,
+        37,
+        40,
+        49,
+        50,
+        51,
+        57,
+        62,
+        70,
+        71
+      ],
+      "cell_count": 12960,
+      "common_root_count": 4,
+      "common_type": "A1+A1",
+      "profile": [
+        20,
+        10,
+        6
+      ]
+    },
+    {
+      "A_root_indices": [
+        1,
+        12,
+        13,
+        14,
+        15,
+        16,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        57,
+        58,
+        59,
+        60,
+        61,
+        72
+      ],
+      "D_root_indices": [
+        2,
+        3,
+        4,
+        5,
+        12,
+        13,
+        14,
+        15,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        58,
+        59,
+        60,
+        61,
+        68,
+        69,
+        70,
+        71
+      ],
+      "Theta_root_indices": [
+        1,
+        2,
+        15,
+        16,
+        26,
+        30,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        43,
+        47,
+        57,
+        58,
+        71,
+        72
+      ],
+      "cell_count": 4320,
+      "common_root_count": 8,
+      "common_type": "A2+A1",
+      "profile": [
+        20,
+        10,
+        14
+      ]
+    }
+  ],
+  "certificate_version": 8,
+  "color_factor_classification": {
+    "all_other_cells_have_only_A1_components": true,
+    "cells_with_A2_component": [
+      {
+        "common_root_count": 8,
+        "common_type": "A2+A1",
+        "profile": [
+          20,
+          10,
+          14
+        ]
+      },
+      {
+        "common_root_count": 10,
+        "common_type": "A2+A1+A1",
+        "profile": [
+          16,
+          10,
+          14
+        ]
+      }
+    ],
+    "equivalent_to_two_extremal_classes": true
+  },
+  "common_root_count_distribution": [
+    {
+      "common_root_count": 2,
+      "count": 12960
+    },
+    {
+      "common_root_count": 4,
+      "count": 12960
+    },
+    {
+      "common_root_count": 6,
+      "count": 6480
+    },
+    {
+      "common_root_count": 8,
+      "count": 4320
+    },
+    {
+      "common_root_count": 10,
+      "count": 2160
+    }
+  ],
+  "context_symmetry": {
+    "D_Theta_contexts": 1080,
+    "common_maximum_fixed": true,
+    "context_stabilizer_order": 48,
+    "factor_exchanging_coset_size": 24,
+    "factor_preserving_kernel_order": 24,
+    "pairwise_maximum_root_systems_exchanged": true,
+    "single_Weyl_orbit": true
+  },
+  "coordinate_convention": {
+    "root_coordinates": "Coefficients in the Bourbaki simple-root basis 1--3--4--5--6, with node 2 attached to node 4.",
+    "root_numbering": "One-based lexicographic order on the 72 root-coordinate tuples listed below.",
+    "weight_coordinates": "Dynkin labels in the same Bourbaki numbering."
+  },
+  "d_chi": {
+    "cells": [
+      {
+        "H_ATheta": 0,
+        "H_DA": 16,
+        "H_DTheta": 12,
+        "common_root_count": 2,
+        "profile": [
+          16,
+          10,
+          6
+        ]
+      },
+      {
+        "H_ATheta": 0,
+        "H_DA": 16,
+        "H_DTheta": 12,
+        "common_root_count": 6,
+        "profile": [
+          16,
+          10,
+          6
+        ]
+      },
+      {
+        "H_ATheta": 27,
+        "H_DA": 16,
+        "H_DTheta": 12,
+        "common_root_count": 6,
+        "profile": [
+          16,
+          10,
+          14
+        ]
+      },
+      {
+        "H_ATheta": 27,
+        "H_DA": 16,
+        "H_DTheta": 12,
+        "common_root_count": 10,
+        "profile": [
+          16,
+          10,
+          14
+        ]
+      },
+      {
+        "H_ATheta": 0,
+        "H_DA": 15,
+        "H_DTheta": 12,
+        "common_root_count": 4,
+        "profile": [
+          20,
+          10,
+          6
+        ]
+      },
+      {
+        "H_ATheta": 27,
+        "H_DA": 15,
+        "H_DTheta": 12,
+        "common_root_count": 8,
+        "profile": [
+          20,
+          10,
+          14
+        ]
+      }
+    ],
+    "columns": [
+      "H_DA",
+      "H_DTheta",
+      "H_ATheta"
+    ],
+    "definition": "sum over unordered non-self-dual pairs {U,U*} of |m_U-m_U*| dim(U)",
+    "unique_15_or_16_parent": "H_DA"
+  },
+  "description": "Deterministic certificate for the direct homogeneous census, the exceptional rank-deficient no-go audit, the E6 extremal-intersection theorems, and the complete six-cell color classification.",
+  "extrema": {
+    "common": {
+      "common_subsystem_independent_of_A_choice": true,
+      "distinct_common_subsystems": 1080,
+      "maximizers": 2160,
+      "orbit_size": 2160,
+      "stabilizer_order": 24,
+      "triples_per_D_Theta_pair": 2,
+      "triples_per_common_subsystem": 2
+    },
+    "nested_pairs": {
+      "distinct_root_subsystem_inclusions": 2160,
+      "labelled_ordered_pairs": 8640
+    },
+    "pairwise": {
+      "distinct_common_subsystems": 720,
+      "maximizers": 4320,
+      "orbit_size": 4320,
+      "stabilizer_order": 12,
+      "triples_per_common_subsystem": 6
+    }
+  },
+  "finite_object_counts": {
+    "A2_cubed_orbit": 40,
+    "A5_plus_A1_orbit": 36,
+    "D5_orbit": 27,
+    "closed_subsystems": 5079,
+    "maximal_proper_closed_subsystems": 103,
+    "maximal_proper_types": {
+      "A2^3": 40,
+      "A5+A1": 36,
+      "D5": 27
+    },
+    "roots": 72,
+    "triple_space": 38880,
+    "weyl_group_order": 51840
+  },
+  "highest_root_coefficients": [
+    1,
+    2,
+    2,
+    3,
+    2,
+    1
+  ],
+  "intrinsic_pair_selector": {
+    "cells": [
+      {
+        "common_root_count": 2,
+        "count": 12960,
+        "profile": [
+          16,
+          10,
+          6
+        ],
+        "ranks": [
+          5,
+          4,
+          3
+        ],
+        "semisimple_dimensions": [
+          21,
+          14,
+          9
+        ]
+      },
+      {
+        "common_root_count": 6,
+        "count": 3240,
+        "profile": [
+          16,
+          10,
+          6
+        ],
+        "ranks": [
+          5,
+          4,
+          3
+        ],
+        "semisimple_dimensions": [
+          21,
+          14,
+          9
+        ]
+      },
+      {
+        "common_root_count": 6,
+        "count": 3240,
+        "profile": [
+          16,
+          10,
+          14
+        ],
+        "ranks": [
+          5,
+          4,
+          5
+        ],
+        "semisimple_dimensions": [
+          21,
+          14,
+          19
+        ]
+      },
+      {
+        "common_root_count": 10,
+        "count": 2160,
+        "profile": [
+          16,
+          10,
+          14
+        ],
+        "ranks": [
+          5,
+          4,
+          5
+        ],
+        "semisimple_dimensions": [
+          21,
+          14,
+          19
+        ]
+      },
+      {
+        "common_root_count": 4,
+        "count": 12960,
+        "profile": [
+          20,
+          10,
+          6
+        ],
+        "ranks": [
+          4,
+          4,
+          3
+        ],
+        "semisimple_dimensions": [
+          24,
+          14,
+          9
+        ]
+      },
+      {
+        "common_root_count": 8,
+        "count": 4320,
+        "profile": [
+          20,
+          10,
+          14
+        ],
+        "ranks": [
+          4,
+          4,
+          5
+        ],
+        "semisimple_dimensions": [
+          24,
+          14,
+          19
+        ]
+      }
+    ],
+    "columns": [
+      "H_DA",
+      "H_DTheta",
+      "H_ATheta"
+    ],
+    "d_chi_maximizers": [
+      {
+        "pair": "H_DA",
+        "triples": 29160
+      },
+      {
+        "pair": "H_ATheta",
+        "triples": 9720
+      }
+    ],
+    "distinct_pair_parents": 2466,
+    "equivalent_to_d_chi_15_or_16": true,
+    "pair_parent_types": [
+      {
+        "d_chi": 0,
+        "distinct_parents": 540,
+        "rank": 3,
+        "root_count": 6,
+        "semisimple_dimension": 9,
+        "type": "A1+A1+A1"
+      },
+      {
+        "d_chi": 12,
+        "distinct_parents": 1080,
+        "rank": 4,
+        "root_count": 10,
+        "semisimple_dimension": 14,
+        "type": "A2+A1+A1"
+      },
+      {
+        "d_chi": 27,
+        "distinct_parents": 360,
+        "rank": 5,
+        "root_count": 14,
+        "semisimple_dimension": 19,
+        "type": "A2+A2+A1"
+      },
+      {
+        "d_chi": 16,
+        "distinct_parents": 270,
+        "rank": 5,
+        "root_count": 16,
+        "semisimple_dimension": 21,
+        "type": "A3+A1+A1"
+      },
+      {
+        "d_chi": 15,
+        "distinct_parents": 216,
+        "rank": 4,
+        "root_count": 20,
+        "semisimple_dimension": 24,
+        "type": "A4"
+      }
+    ],
+    "rank_maximizers": [
+      {
+        "pairs": [
+          "H_DA"
+        ],
+        "triples": 16200
+      },
+      {
+        "pairs": [
+          "H_DA",
+          "H_DTheta"
+        ],
+        "triples": 12960
+      },
+      {
+        "pairs": [
+          "H_DA",
+          "H_ATheta"
+        ],
+        "triples": 5400
+      },
+      {
+        "pairs": [
+          "H_ATheta"
+        ],
+        "triples": 4320
+      }
+    ],
+    "semisimple_dimension_definition": "rank + root_count (no central torus)",
+    "triples_checked": 38880,
+    "unique_greatest_root_count_pair": "H_DA",
+    "unique_greatest_semisimple_dimension_pair": "H_DA"
+  },
+  "joint_distribution": [
+    {
+      "common_root_count": 2,
+      "count": 12960,
+      "profile": [
+        16,
+        10,
+        6
+      ]
+    },
+    {
+      "common_root_count": 6,
+      "count": 3240,
+      "profile": [
+        16,
+        10,
+        6
+      ]
+    },
+    {
+      "common_root_count": 6,
+      "count": 3240,
+      "profile": [
+        16,
+        10,
+        14
+      ]
+    },
+    {
+      "common_root_count": 10,
+      "count": 2160,
+      "profile": [
+        16,
+        10,
+        14
+      ]
+    },
+    {
+      "common_root_count": 4,
+      "count": 12960,
+      "profile": [
+        20,
+        10,
+        6
+      ]
+    },
+    {
+      "common_root_count": 8,
+      "count": 4320,
+      "profile": [
+        20,
+        10,
+        14
+      ]
+    }
+  ],
+  "pairwise_distributions": {
+    "A5_plus_A1__A2_cubed": [
+      {
+        "alpha_pair_contained": false,
+        "count": 1080,
+        "intersection_roots": 6
+      },
+      {
+        "alpha_pair_contained": true,
+        "count": 360,
+        "intersection_roots": 14
+      }
+    ],
+    "D5__A2_cubed": [
+      {
+        "count": 1080,
+        "intersection_roots": 10
+      }
+    ],
+    "D5__A5_plus_A1": [
+      {
+        "count": 540,
+        "intersection_roots": 16,
+        "pairing_nonzero": false
+      },
+      {
+        "count": 432,
+        "intersection_roots": 20,
+        "pairing_nonzero": true
+      }
+    ]
+  },
+  "roots": [
+    [
+      -1,
+      -2,
+      -2,
+      -3,
+      -2,
+      -1
+    ],
+    [
+      -1,
+      -1,
+      -2,
+      -3,
+      -2,
+      -1
+    ],
+    [
+      -1,
+      -1,
+      -2,
+      -2,
+      -2,
+      -1
+    ],
+    [
+      -1,
+      -1,
+      -2,
+      -2,
+      -1,
+      -1
+    ],
+    [
+      -1,
+      -1,
+      -2,
+      -2,
+      -1,
+      0
+    ],
+    [
+      -1,
+      -1,
+      -1,
+      -2,
+      -2,
+      -1
+    ],
+    [
+      -1,
+      -1,
+      -1,
+      -2,
+      -1,
+      -1
+    ],
+    [
+      -1,
+      -1,
+      -1,
+      -2,
+      -1,
+      0
+    ],
+    [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      0
+    ],
+    [
+      -1,
+      -1,
+      -1,
+      -1,
+      0,
+      0
+    ],
+    [
+      -1,
+      0,
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    [
+      -1,
+      0,
+      -1,
+      -1,
+      -1,
+      0
+    ],
+    [
+      -1,
+      0,
+      -1,
+      -1,
+      0,
+      0
+    ],
+    [
+      -1,
+      0,
+      -1,
+      0,
+      0,
+      0
+    ],
+    [
+      -1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      -1,
+      -1,
+      -2,
+      -2,
+      -1
+    ],
+    [
+      0,
+      -1,
+      -1,
+      -2,
+      -1,
+      -1
+    ],
+    [
+      0,
+      -1,
+      -1,
+      -2,
+      -1,
+      0
+    ],
+    [
+      0,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    [
+      0,
+      -1,
+      -1,
+      -1,
+      -1,
+      0
+    ],
+    [
+      0,
+      -1,
+      -1,
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      -1,
+      0,
+      -1,
+      -1,
+      -1
+    ],
+    [
+      0,
+      -1,
+      0,
+      -1,
+      -1,
+      0
+    ],
+    [
+      0,
+      -1,
+      0,
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      -1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    [
+      0,
+      0,
+      -1,
+      -1,
+      -1,
+      0
+    ],
+    [
+      0,
+      0,
+      -1,
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      -1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      -1,
+      -1,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      -1,
+      -1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      -1,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      -1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      2,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      2,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      2,
+      2,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      2,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      2,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      2,
+      2,
+      1
+    ],
+    [
+      1,
+      1,
+      2,
+      2,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      2,
+      2,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      2,
+      2,
+      2,
+      1
+    ],
+    [
+      1,
+      1,
+      2,
+      3,
+      2,
+      1
+    ],
+    [
+      1,
+      2,
+      2,
+      3,
+      2,
+      1
+    ]
+  ],
+  "sha256": {
+    "formal/scripts/check_generated_data.py": "bd081c74ed1420838921e5e31b20bbb5851c41ce294bb552eaea9e728d2e5c96",
+    "formal/scripts/generate_lean_data.py": "75e8b100afe256da83bdf920b5550f8d3423d6dc20935654412ad4eea63a0e89",
+    "verification/certificates/exceptional_rank_deficient_audit.json": "b4dfb292ec7b6f5cf3dfa70f66cba8ec63b98126da493c4cad11a19fcc0fb055",
+    "verification/expected/check_closed_subsystems_output.txt": "789a5c8bbef3445af8f37d9f9f02932a0a315bac6386bda9f08bba6b38346366",
+    "verification/expected/check_closed_subsystems_r8_output.txt": "34b69479bfbd8c79237f1e05c8cb1721ffef451cccc265f9069365bc50afe9bd",
+    "verification/expected/check_cubic_radical_selection_output.txt": "6059d3023a8bb254db775774fd442f381821966b92cc95c65058be766e5e7be5",
+    "verification/expected/check_e6_context_symmetry_output.txt": "351bf26a6e0647cb3596514db04c4633dde6f15275efc539f4d7d5b5f77b51bd",
+    "verification/expected/check_e6_pair_orderings_output.txt": "4f38f5559d1c28305f79ddc056fa5b9506b9b69a7a4f4f94870b7d33538e202a",
+    "verification/expected/check_order_three_gradings_output.txt": "be51dfd462669f220a2b3e4d7fe240817e014db382b969c41bf6a7623523df23",
+    "verification/expected/check_proof_and_kernels_output.txt": "53edd8c9c9d1d0340ca0f1f8ef496cffd5570e9588cd84d97baea4aa16a862d7",
+    "verification/expected/check_rank_deficient_classical_output.txt": "262aaff02b2321766f22334c91a39cfbdaca4a7177fe905bc04c65ac0f8c65c3",
+    "verification/expected/check_rank_deficient_exceptional_output.txt": "ebf135250a03966f71a7f36b1e212e8822b8aea7975415c4d58eea97b10f562e",
+    "verification/expected/check_toral_gradings_output.txt": "3ae6b5f41764832771a008c208f63abc64534f50bd6c3b407ce527cf0c9e778a",
+    "verification/expected/verify_e6_extrema_output.txt": "f06fa03cf015be72dedf2947ec4029af172d9edccdc294034a23ac32d5e823c0",
+    "verification/expected/verify_e6_extrema_r8_output.txt": "78f8468d1e135fa8dbb011a06db1d65b0243d0558b9819184e39426d9a520baa",
+    "verification/python/check_closed_subsystems.py": "2b1f7793fed0b76981eec9e94f706ba6c1b502e982b95af8c719a37595f6cd40",
+    "verification/python/check_closed_subsystems_r8.py": "de762a7d1e858166db6613303750afae1cb7febd7ecff3721d175ccd8123b983",
+    "verification/python/check_cubic_radical_selection.py": "1e4ede5a3850d6f8cdf93cf5b21292f7dcf997c0e80c994148a8c0eb435b1e03",
+    "verification/python/check_e6_context_symmetry.py": "098984de194b6a2eef95171731cb8691e7dd71a6265c5388387d0a2b89b239d1",
+    "verification/python/check_e6_pair_orderings.py": "4e0a763cd22e1744d16d994e354757dce01127a27603639ee2cf882f58ffc5fd",
+    "verification/python/check_order_three_gradings.py": "345468be0acd06a72c272ef5828e1c7cb615f8f68e7e8d99a013468f28f7be24",
+    "verification/python/check_proof_and_kernels.py": "8b956d0bd6b00fb18f952b87a74942b399c12baa7178feb3ef05532ea7ea8b13",
+    "verification/python/check_rank_deficient_classical.py": "8993152c3289e3e11a7046bde4e388009c990383a568a858bf8a61509ad84fc4",
+    "verification/python/check_rank_deficient_exceptional.py": "f4cde6181397ef5816d282e13ad00ddee6d0ee7f7fd24b6b01b04e167e635b9d",
+    "verification/python/check_toral_gradings.py": "551bac22ade8ccf48d01df0906f025f669465d4b48b19273664b2c83e447fdaf",
+    "verification/python/make_e6_extrema_certificate.py": "877ea2592844ab0215cebbca5fe16eb0b8a14ffdb2f475fd05d50a7f51c5b072",
+    "verification/python/make_exceptional_rank_deficient_audit.py": "e16bb328e910ff53fb9b74af919d029988e942233257031828cfa23995ca53fe",
+    "verification/python/regenerate.py": "a3f3429e0950b6a378abdb0cc55885a2c4e50f997326b3456e6a31685f88a482",
+    "verification/python/run_all.py": "79f2b837ec9f6189e021c2ee542abd93cfed5ddadbfa9a4abbc33b92ddf29745",
+    "verification/python/source_snapshot.py": "529c3de890312c057903c67150ee34030aa2a6bc3784f3bce41d6280dd6bdbad",
+    "verification/python/verification_checks.py": "821f75c783e56f3f80e944a3bdfb5533be114c9fee437bdf7bc6a2646b966346",
+    "verification/python/verify_e6_extrema.py": "585a1de39c4b031c4c285d14e96d04bd12ade519ae9b71482f33d6ccafc426eb",
+    "verification/python/verify_e6_extrema_r8_fast.py": "d6b9671b30dd2433b216e1039b75f2b6409569f5c3bbde5d103b139de96ba52a"
+  },
+  "simple_reflection_permutations": [
+    [
+      1,
+      2,
+      3,
+      4,
+      5,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      27,
+      28,
+      29,
+      30,
+      57,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      23,
+      24,
+      25,
+      26,
+      12,
+      13,
+      14,
+      15,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      58,
+      59,
+      60,
+      61,
+      47,
+      48,
+      49,
+      50,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      16,
+      43,
+      44,
+      45,
+      46,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      68,
+      69,
+      70,
+      71,
+      72
+    ],
+    [
+      2,
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      12,
+      13,
+      14,
+      9,
+      10,
+      11,
+      15,
+      16,
+      17,
+      18,
+      19,
+      27,
+      28,
+      29,
+      31,
+      32,
+      33,
+      47,
+      20,
+      21,
+      22,
+      30,
+      23,
+      24,
+      25,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      48,
+      49,
+      50,
+      43,
+      51,
+      52,
+      53,
+      26,
+      40,
+      41,
+      42,
+      44,
+      45,
+      46,
+      54,
+      55,
+      56,
+      57,
+      58,
+      62,
+      63,
+      64,
+      59,
+      60,
+      61,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      72,
+      71
+    ],
+    [
+      1,
+      2,
+      6,
+      7,
+      8,
+      3,
+      4,
+      5,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      15,
+      17,
+      18,
+      19,
+      23,
+      24,
+      25,
+      20,
+      21,
+      22,
+      26,
+      31,
+      32,
+      33,
+      43,
+      27,
+      28,
+      29,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      44,
+      45,
+      46,
+      30,
+      40,
+      41,
+      42,
+      47,
+      51,
+      52,
+      53,
+      48,
+      49,
+      50,
+      54,
+      55,
+      56,
+      58,
+      57,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      68,
+      69,
+      70,
+      65,
+      66,
+      67,
+      71,
+      72
+    ],
+    [
+      1,
+      3,
+      2,
+      4,
+      5,
+      6,
+      9,
+      10,
+      7,
+      8,
+      11,
+      12,
+      13,
+      15,
+      14,
+      16,
+      17,
+      20,
+      21,
+      18,
+      19,
+      22,
+      23,
+      24,
+      26,
+      25,
+      27,
+      28,
+      30,
+      29,
+      34,
+      35,
+      40,
+      31,
+      32,
+      36,
+      37,
+      41,
+      42,
+      33,
+      38,
+      39,
+      44,
+      43,
+      45,
+      46,
+      48,
+      47,
+      49,
+      50,
+      51,
+      54,
+      55,
+      52,
+      53,
+      56,
+      57,
+      59,
+      58,
+      60,
+      61,
+      62,
+      65,
+      66,
+      63,
+      64,
+      67,
+      68,
+      69,
+      71,
+      70,
+      72
+    ],
+    [
+      1,
+      2,
+      4,
+      3,
+      5,
+      7,
+      6,
+      8,
+      9,
+      11,
+      10,
+      12,
+      14,
+      13,
+      15,
+      16,
+      18,
+      17,
+      19,
+      20,
+      22,
+      21,
+      23,
+      25,
+      24,
+      26,
+      27,
+      29,
+      28,
+      30,
+      31,
+      33,
+      32,
+      36,
+      38,
+      34,
+      39,
+      35,
+      37,
+      41,
+      40,
+      42,
+      43,
+      45,
+      44,
+      46,
+      47,
+      49,
+      48,
+      50,
+      52,
+      51,
+      53,
+      54,
+      56,
+      55,
+      57,
+      58,
+      60,
+      59,
+      61,
+      63,
+      62,
+      64,
+      65,
+      67,
+      66,
+      68,
+      70,
+      69,
+      71,
+      72
+    ],
+    [
+      1,
+      2,
+      3,
+      5,
+      4,
+      6,
+      8,
+      7,
+      10,
+      9,
+      11,
+      13,
+      12,
+      14,
+      15,
+      16,
+      17,
+      19,
+      18,
+      21,
+      20,
+      22,
+      24,
+      23,
+      25,
+      26,
+      28,
+      27,
+      29,
+      30,
+      32,
+      31,
+      33,
+      35,
+      34,
+      37,
+      36,
+      39,
+      38,
+      40,
+      42,
+      41,
+      43,
+      44,
+      46,
+      45,
+      47,
+      48,
+      50,
+      49,
+      51,
+      53,
+      52,
+      55,
+      54,
+      56,
+      57,
+      58,
+      59,
+      61,
+      60,
+      62,
+      64,
+      63,
+      66,
+      65,
+      67,
+      69,
+      68,
+      70,
+      71,
+      72
+    ]
+  ]
+}

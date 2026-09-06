@@ -1,0 +1,9 @@
+G2 node 1: A2; dim(g1)=3
+F4 node 2: A2+A2; dim(g1)=18
+E6 node 4: A2+A2+A2; dim(g1)=27
+E7 node 3: A2+A5; dim(g1)=45
+E7 node 5: A2+A5; dim(g1)=45
+E8 node 2: A8; dim(g1)=84
+E8 node 7: A2+E6; dim(g1)=81
+classical highest-root marks: no coefficient 3
+all inner order-three grading checks passed

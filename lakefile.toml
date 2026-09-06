@@ -1,0 +1,11 @@
+name = "chirality-standard-model"
+version = "0.2.0"
+defaultTargets = ["CubicAnomaly"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.28.0"
+
+[[lean_lib]]
+name = "CubicAnomaly"

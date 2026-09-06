@@ -1,0 +1,3 @@
+Closed-subsystem census passed (simple-root realization)
+closed subsystems=5,079; maximal proper=103
+maximal types: D5=27, A5+A1=36, A2^3=40

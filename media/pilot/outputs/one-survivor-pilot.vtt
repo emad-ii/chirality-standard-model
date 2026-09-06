@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.000
+After the structural reduction, the full-rank branch has six candidates.
+
+00:00:07.000 --> 00:00:15.000
+These two coefficients belong to different factors. Their opposite signs do not cancel.
+
+00:00:15.000 --> 00:00:24.000
+For these semisimple rows, mixed terms vanish. Each coefficient tests its own simple factor.
+
+00:00:24.000 --> 00:00:32.000
+Opposite signs on different factors do not cancel: they are different tensor components.
+
+00:00:32.000 --> 00:00:41.000
+Five rows have no zero coefficient. Their radicals vanish.
+
+00:00:41.000 --> 00:00:49.000
+In the final row, the E₆ coefficient is zero. The SU(3) coefficient is 27.
+
+00:00:49.000 --> 00:00:57.000
+E₆ is the radical. SU(3) remains a background global symmetry with a cubic anomaly.
+
+00:00:57.000 --> 00:01:05.000
+The representation is 27 tensor 3. Restricted to E₆, it becomes three copies of the 27.
+
+00:01:05.000 --> 00:01:13.000
+Along the paper’s Standard Model embedding, each 27 gives a family, a conjugate pair and two singlets.
+
+00:01:13.000 --> 00:01:18.000
+Three net chiral Standard Model families, up to conjugation.

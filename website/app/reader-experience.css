@@ -1,0 +1,532 @@
+/* Reader routes change document order; hidden chapters are not mounted. */
+.geometry-plain-reading {
+  max-width: 850px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+  margin: 35px 0;
+}
+.reader-paths {
+  scroll-margin-top: 85px;
+}
+.path-opening {
+  max-width: 920px;
+  padding-top: 32px;
+  animation: exhibit-in 0.6s ease both;
+}
+.path-opening h3 {
+  font:
+    34px/1.18 Georgia,
+    serif;
+  margin: 15px 0;
+  color: var(--foreground);
+  max-width: 760px;
+}
+.path-opening > p {
+  max-width: 750px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+}
+.reader-path-stops {
+  flex-wrap: wrap;
+}
+.reader-path-stops a {
+  font-size: 14px;
+}
+.path-flow {
+  counter-reset: reader-chapter;
+}
+.path-chapter {
+  counter-increment: reader-chapter;
+}
+.path-chapter .section-number > span:first-child {
+  font-size: 0;
+}
+.path-chapter .section-number > span:first-child::before {
+  content: counter(reader-chapter, decimal-leading-zero);
+  font-size: 12px;
+}
+.path-bridge {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 38px 6% 0;
+  display: flex;
+  gap: 25px;
+  align-items: baseline;
+}
+.path-bridge > span {
+  white-space: nowrap;
+  font:
+    12px var(--font-geist-mono),
+    monospace;
+  color: var(--primary);
+}
+.path-bridge p {
+  margin: 0;
+  max-width: 810px;
+  font:
+    20px/1.65 Georgia,
+    serif;
+  color: var(--muted-foreground);
+}
+.path-next {
+  margin: 0 auto;
+  padding: 0 6% 45px;
+  max-width: 1240px;
+}
+.path-next a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid var(--border);
+  padding: 20px 0;
+  width: fit-content;
+  font-size: 15px;
+  color: var(--foreground);
+}
+.path-next span {
+  font:
+    12px var(--font-geist-mono),
+    monospace;
+  color: var(--primary);
+  letter-spacing: 0.06em;
+}
+.path-further {
+  padding: 70px 6%;
+  border-top: 1px solid var(--border);
+}
+.path-further > h2 {
+  font:
+    36px/1.2 Georgia,
+    serif;
+  margin-top: 16px;
+}
+.path-further > p {
+  max-width: 640px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+}
+.optional-chapter {
+  border-top: 1px solid var(--border);
+}
+.optional-heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 0;
+  width: 100%;
+  height: auto;
+  text-align: left;
+  white-space: normal;
+}
+.optional-heading > span {
+  display: grid;
+  gap: 7px;
+}
+.optional-heading strong {
+  font:
+    24px Georgia,
+    serif;
+  color: var(--foreground);
+}
+.optional-heading small {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.optional-chapter .section {
+  padding-left: 0;
+  padding-right: 0;
+}
+.chapter-nav {
+  overflow-x: auto;
+  justify-content: flex-start;
+  scrollbar-width: thin;
+}
+.chapter-nav > a {
+  flex-shrink: 0;
+  max-width: none;
+  font-size: 14px;
+}
+.geometry-depth {
+  margin: 30px 0;
+}
+[data-slot='tabs-content']:focus-visible {
+  outline: 2px solid #a2c9fa;
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+.geometry-depth > summary {
+  cursor: pointer;
+  padding: 18px 0;
+  display: flex;
+  justify-content: space-between;
+  border-block: 1px solid var(--border);
+  font-size: 16px;
+  color: var(--primary);
+}
+.geometry-depth[open] > summary {
+  margin-bottom: 22px;
+}
+.geometry-depth[open] > summary span {
+  transform: rotate(45deg);
+}
+.geometry-depth > summary::marker {
+  content: '';
+}
+.motion-control {
+  font-size: 13px;
+  gap: 6px;
+  padding: 7px;
+  height: auto;
+  white-space: nowrap;
+}
+.demo-control {
+  width: fit-content;
+  margin: 0 0 12px auto;
+  display: flex;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  color: var(--muted-foreground);
+  height: 29px;
+}
+.explorer-top .demo-control {
+  margin: 0;
+}
+.wu-experiment .demo-control {
+  margin: 8px 0;
+}
+.hero-art > .ambient-exhibit {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+.geometry-display > .ambient-exhibit {
+  width: 100%;
+}
+.geometry-display .root-diagram.spinning {
+  animation-duration: 160s;
+}
+.three-view {
+  position: relative;
+}
+.three-scene-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px 0;
+  color: #aec9e4;
+}
+.three-scene-heading > span {
+  font:
+    12px var(--font-geist-mono),
+    monospace;
+  letter-spacing: 0.07em;
+}
+.three-scene-heading strong {
+  font:
+    25px Georgia,
+    serif;
+  color: #e4effa;
+}
+.three-scene-heading small {
+  font:
+    12px var(--font-geist-mono),
+    monospace;
+  color: #a7bfd7;
+}
+.three-canvas {
+  height: 480px;
+  background: radial-gradient(ellipse at 50% 48%, #18334b55, transparent 66%);
+}
+.root-readout {
+  text-align: center;
+  min-height: 62px;
+  padding: 7px 12px;
+}
+.root-readout span {
+  display: block;
+  font:
+    12px var(--font-geist-mono),
+    monospace;
+  color: #95b2cd;
+  letter-spacing: 0.04em;
+}
+.root-readout strong {
+  display: block;
+  font:
+    18px Georgia,
+    serif;
+  color: #f4d592;
+  margin-top: 8px;
+}
+.root-isolate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 8px;
+  color: #c4d8ee;
+  font-size: 14px;
+}
+.three-toolbar button {
+  font-size: 14px;
+  padding: 8px 10px;
+}
+.three-caption {
+  margin: 0 auto;
+  font-size: 13px;
+  padding: 0 10px 15px;
+}
+.particle-canvas {
+  height: 360px;
+}
+.mass-layout .particle-canvas {
+  height: 400px;
+}
+.particle-field-labels {
+  margin-top: -12px;
+}
+.particle-field-labels span {
+  font-size: 12px;
+}
+.particle-turn {
+  font-size: 14px;
+}
+.field-view {
+  border-radius: 14px;
+  background: radial-gradient(ellipse at 50% 40%, #1a354d, #091320 72%);
+}
+.particle-scene {
+  padding: 8px 0 16px;
+}
+.instrument-note {
+  min-height: 54px;
+}
+.balance-motion {
+  position: relative;
+}
+.balance-motion svg {
+  width: 100%;
+  display: block;
+}
+.balance-motion .balance-axis {
+  stroke-dasharray: 3 7;
+  animation: axis-flow 16s linear infinite;
+}
+.balance-motion rect {
+  transition:
+    x 1.2s ease,
+    width 1.2s ease,
+    fill 1.2s ease;
+}
+.symmetry-motion {
+  position: relative;
+}
+.symmetry-orbit {
+  position: absolute;
+  width: 39%;
+  top: 10%;
+  left: 5%;
+  color: #e8c18e;
+  opacity: 0.6;
+  animation: orbit 55s linear infinite;
+  pointer-events: none;
+}
+.emission-dots circle {
+  animation: emission-flow 5s linear infinite;
+  animation-delay: var(--emission-delay, 0s);
+  transform-origin: 0 0;
+}
+.collapse-instrument .option rect {
+  animation: option-breathe 8s ease-in-out infinite;
+}
+.collapse-instrument .option:nth-child(2n) rect {
+  animation-delay: -2s;
+}
+.collapse-instrument .option:nth-child(3n) rect {
+  animation-delay: -4s;
+}
+.ambient-exhibit .survivor-banner {
+  background-size: 180% 180%;
+  animation: survivor-light 18s ease-in-out infinite;
+}
+.ambient-exhibit .live-verification {
+  position: relative;
+}
+.ambient-exhibit .live-verification::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  animation: scan-rule 12s ease-in-out infinite;
+}
+.ambient-exhibit .three-families > span {
+  animation: family-breathe 9s ease-in-out infinite;
+}
+.ambient-exhibit .three-families > span:nth-child(2) {
+  animation-delay: -3s;
+}
+.ambient-exhibit .three-families > span:nth-child(3) {
+  animation-delay: -6s;
+}
+@keyframes emission-flow {
+  0% {
+    transform: scale(0.15);
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+@keyframes axis-flow {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+@keyframes option-breathe {
+  0%,
+  100% {
+    stroke-opacity: 0.7;
+  }
+  50% {
+    stroke-opacity: 1;
+  }
+}
+@keyframes survivor-light {
+  0%,
+  100% {
+    background-position: 0% 30%;
+  }
+  50% {
+    background-position: 100% 70%;
+  }
+}
+@keyframes scan-rule {
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateX(220%);
+    opacity: 0.8;
+  }
+}
+@keyframes family-breathe {
+  0%,
+  100% {
+    border-color: var(--border);
+  }
+  50% {
+    border-color: var(--primary);
+  }
+}
+/* Pause means pause, including CSS motion. Reduced motion retains every control/result. */
+[data-exhibit-motion='paused'] *,
+[data-exhibit-motion='paused'] *::before {
+  animation-play-state: paused !important;
+}
+[data-site-motion='paused'] *,
+[data-site-motion='paused'] *::before {
+  animation: none !important;
+}
+[data-site-motion='paused'] * {
+  transition-duration: 0s !important;
+}
+::view-transition-old(root) {
+  animation: path-leave 0.2s ease both;
+}
+::view-transition-new(root) {
+  animation: path-enter 0.45s ease both;
+}
+@keyframes path-leave {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes path-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 1050px) {
+  .motion-control span {
+    display: none;
+  }
+  .path-opening h3 {
+    font-size: 30px;
+  }
+  .three-canvas {
+    height: 420px;
+  }
+}
+@media (max-width: 700px) {
+  .path-opening h3 {
+    font-size: 27px;
+  }
+  .path-bridge {
+    padding-top: 25px;
+    gap: 15px;
+  }
+  .path-bridge p {
+    font-size: 18px;
+  }
+  .path-next {
+    padding-bottom: 24px;
+  }
+  .path-next a {
+    font-size: 14px;
+    flex-wrap: wrap;
+  }
+  .path-further {
+    padding: 45px 6%;
+  }
+  .optional-heading strong {
+    font-size: 21px;
+  }
+  .three-canvas {
+    height: 370px;
+  }
+  .particle-canvas,
+  .mass-layout .particle-canvas {
+    height: 330px;
+  }
+  .explorer-top {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-exhibit *,
+  .ambient-exhibit *::before {
+    animation: none !important;
+    transition-duration: 0s !important;
+  }
+  .emission-dots circle {
+    opacity: 0.85;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}

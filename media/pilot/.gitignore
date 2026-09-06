@@ -1,0 +1,8 @@
+node_modules/
+outputs/
+!outputs/
+outputs/*
+!outputs/one-survivor-pilot.mp4
+!outputs/one-survivor-pilot.vtt
+.hyperframes/
+.DS_Store

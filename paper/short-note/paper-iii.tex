@@ -1,0 +1,226 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.8in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+\usepackage{newpxtext,newpxmath}
+\usepackage{booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={The Gauge Algebra of Chirality},
+  pdfauthor={Emad Mostaque},
+  pdfsubject={An ordered two-simple-factor adjoint-complement classification}
+}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\ad}{\operatorname{ad}}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\spalg}{\mathfrak{sp}}
+\newcommand{\sectionhead}[1]{%
+  \par\addvspace{7pt}{\large\bfseries #1}\par\nobreak\vspace{2pt}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt plus .5pt minus .5pt}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\abovedisplayshortskip}{3pt}
+\setlength{\belowdisplayshortskip}{3pt}
+\emergencystretch=2em
+\pagestyle{plain}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries The Gauge Algebra of Chirality\par}
+\vspace{5pt}
+Emad Mostaque\par
+April 2026
+\end{center}
+\vspace{1pt}
+\hrule
+\vspace{6pt}
+
+We classify adjoint complements of ordered maximal two-simple-factor
+subalgebras of compact simple Lie algebras by complex type and cubic trace.
+
+\sectionhead{The domain and the two tests}
+Let \(\mathfrak g\) be compact and simple, and let
+\(\mathfrak h=\mathfrak k\oplus\mathfrak f\subsetneq\mathfrak g\) have
+\emph{exactly two nonabelian simple ideals}. Require \(\mathfrak h\) to be
+maximal among all proper Lie subalgebras, not merely such products.
+Both orderings are tested, with \(\mathfrak k\) the tested factor.
+The invariant orthogonal complement
+\(\mathfrak q=\mathfrak h^\perp\) is an \(\mathfrak h\)-module.
+
+Decompose \(\mathfrak q_{\mathbb C}\) into \emph{joint}
+\(\mathfrak h\)-irreducibles \(R\boxtimes S\).
+Put all summands with \(R\simeq R^*\) in \(q_0\).
+The rest occur in dual pairs with equal multiplicities:
+\[
+ \mathfrak q_{\mathbb C}
+ =q_0\oplus\bigoplus_\alpha m_\alpha(U_\alpha\oplus U_\alpha^*).
+\]
+Choose one member of each such pair, retaining its \emph{full multiplicity},
+and call their sum \(W\). Every choice is checked. Thus \(W\) is
+\(\mathfrak h\)-invariant: one may not independently reorient the
+\(\mathfrak k\)-copies inside an \(\mathfrak f\)-multiplet.
+The tests are
+\[
+ \text{(A)}\quad W\ne0,
+ \qquad
+ \text{(B)}\quad
+ d_{\mathfrak k}(W)(X,Y,Z)
+ =\tfrac12\Tr_W\!\left(T_X\{T_Y,T_Z\}\right)=0
+ \quad(X,Y,Z\in\mathfrak k),
+\]
+where \(T_X=-i\rho_W(X)\) is Hermitian. Test (B) is the vanishing of the
+local cubic anomaly tensor on \(\mathfrak k\).
+
+\sectionhead{Exclusion at every classical rank}
+The classification [1,2] gives parameterized families of unbounded rank.
+Unitary block stabilizers have a central \(\mathfrak u(1)\), outside this
+domain. Orthogonal and symplectic blocks have tensor-product defining
+complements with self-dual constituents. The tensor-embedding families are
+\[
+\begin{array}{ll}
+ \su(p)\oplus\su(q)\subset\su(pq),&
+ \so(p)\oplus\so(q)\subset\so(pq),\\
+ \spalg(p)\oplus\spalg(q)\subset\so(4pq),&
+ \so(p)\oplus\spalg(q)\subset\spalg(pq).
+\end{array}
+\]
+Here \(\spalg(p)\) has defining dimension \(2p\). Retain only maximal
+inclusions satisfying the simplicity requirements, including low-rank
+isomorphisms. The unitary tensor complement is
+\(\ad\su(p)\boxtimes\ad\su(q)\). In the other cases use
+\[
+ \Lambda^2(U\otimes Z)=
+ (\Lambda^2U\otimes\mathrm{Sym}^2Z)
+ \oplus(\mathrm{Sym}^2U\otimes\Lambda^2Z)
+\]
+and the analogous formula for \(\mathrm{Sym}^2(U\otimes Z)\), with both
+symmetric squares together and both exterior squares together.
+After subtracting the two adjoints, the factorwise constituents are
+self-dual: adjoints and traceless symmetric or exterior squares of defining
+modules. Hence every classical row has \(W=0\), at arbitrary rank.
+
+\sectionhead{Exceptional elimination}
+The exceptional branchings [3] leave the five unordered embeddings on
+page~2. In particular, for \(E_6\supset A_2+G_2\), with factors in that order,
+\[
+ \mathbf{78}=(\mathbf8,\mathbf1)\oplus(\mathbf1,\mathbf{14})
+                    \oplus(\mathbf8,\mathbf7).
+\]
+Both factors see only self-dual constituents. The complex \((\mathbf3,\mathbf7)\)
+belongs instead to
+\(\mathbf{27}=(\overline{\mathbf6},\mathbf1)\oplus(\mathbf3,\mathbf7)\).
+The \(A_5+A_1\) complement \((\mathbf{20},\mathbf2)\) is also factorwise
+self-dual. Neither embedding passes (A).
+
+\newpage
+\sectionhead{The five complex rows and the survivor}
+Dynkin types label the factors below. Entries are cubic coefficients in
+the convention \(A(\mathbf n)=1\) for \(\su(n)\); dualizing a whole half
+reverses their signs. The reverse column also reapplies test (A).
+\begin{center}
+\renewcommand{\arraystretch}{1.16}
+\setlength{\tabcolsep}{7pt}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\(\mathfrak g\)&\((\mathfrak k,\mathfrak f)\)&Half \(W\)&
+\(\mathfrak k\) test&Reverse test\\
+\midrule
+\(F_4\)&\((A_2,A_2)\)&\((\mathbf6,\overline{\mathbf3})\)&\(21\)&\(-6\)\\
+\(E_7\)&\((A_5,A_2)\)&\((\mathbf{15},\overline{\mathbf3})\)&\(6\)&\(-15\)\\
+\(E_8\)&\((A_4,A_4)\)&\(W_{a,b}\)&\(5a+10b\)&\(-10a+5b\)\\
+\(E_8\)&\((A_2,A_1)\)&\((\mathbf{10},\mathbf5)\)&\(135\)&(A) fails\\
+\(E_8\)&\((E_6,A_2)\)&\((\mathbf{27},\mathbf3)\)&\(0\)&\(27\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+For the \(A_4+A_4\) row, put
+\(U=(\mathbf{10},\overline{\mathbf5})\),
+\(Z=(\mathbf5,\mathbf{10})\), and
+\(W_{a,b}=U^{(a)}\oplus Z^{(b)}\), where \(a,b=\pm1\) and
+\(R^{(+1)}=R,\ R^{(-1)}=R^*\). Both coefficient sets are
+\(\{\pm5,\pm15\}\). For the special \(A_2+A_1\subset E_8\) embedding,
+the remaining complement is
+\(q_0=(\mathbf8,\mathbf7)\oplus(\mathbf{27},\mathbf3)\), with self-dual
+\(A_2\)-constituents; in reverse order every \(A_1\)-representation is self-dual.
+
+The calculations use
+\(A(R\boxtimes S)=\dim(S)A(R)\), additivity and duality, with
+\(A_{A_2}(\mathbf6)=7\),
+\(A_{A_5}(\mathbf{15})=2\), and
+\(A_{A_2}(\mathbf{10})=27\).
+The \(E_6\) coefficient vanishes because its Lie algebra has no invariant
+symmetric cubic. This is distinct from the cubic on
+\(\mathbf{27}^{\otimes3}\), which has representation rather than
+Lie-algebra indices.
+
+\begin{theorem}[Ordered maximal-product classification]
+In the stated domain and with the stated half-selection rule,
+(A) and (B) select
+\(\mathfrak e_8\supset\mathfrak e_6\oplus\su(3)\),
+with tested factor \(\mathfrak k=\mathfrak e_6\), uniquely up to
+isomorphism of ordered Lie-algebra pairs. The half is
+\(W=\mathbf{27}\boxtimes\mathbf3\), up to duality.
+\end{theorem}
+
+\sectionhead{Restriction and net chiral content}
+The adjoint branching is
+\[
+ \mathbf{248}=(\mathbf{78},\mathbf1)\oplus(\mathbf1,\mathbf8)
+ \oplus(\mathbf{27},\mathbf3)
+ \oplus(\overline{\mathbf{27}},\overline{\mathbf3}).
+\]
+Consequently \(W|_{E_6}=3\,\mathbf{27}\). At group level use
+\[
+ G_{\mathrm{SM}}=
+ [SU(3)\times SU(2)\times U(1)]/\mathbb Z_6
+ \subset SU(5)\subset\operatorname{Spin}(10)\subset E_6^{\mathrm{sc}}.
+\]
+Restriction gives
+\[
+ \mathbf{27}|_{\operatorname{Spin}(10)}
+ =\mathbf{16}\oplus\mathbf{10}\oplus\mathbf1,\qquad
+ \mathbf{27}|_{SU(5)}
+ =\underbrace{\mathbf{10}\oplus\overline{\mathbf5}}_{\mathcal F}
+   \oplus(\mathbf5\oplus\overline{\mathbf5})\oplus2\,\mathbf1.
+\]
+Here \(\mathcal F|_{G_{\mathrm{SM}}}\) is one minimal family:
+\[
+ (\mathbf3,\mathbf2)_{1/6}\oplus
+ (\overline{\mathbf3},\mathbf1)_{-2/3}\oplus
+ (\overline{\mathbf3},\mathbf1)_{1/3}\oplus
+ (\mathbf1,\mathbf2)_{-1/2}\oplus(\mathbf1,\mathbf1)_1.
+\]
+The labels use the all-left-handed convention; the singlet in the
+\(\mathbf{16}\) is the additional \(\nu^c\), not part of this minimal family.
+
+\begin{corollary}[Containment]
+The selected half restricts to three minimal Standard Model families,
+three vectorlike \(\mathbf5\oplus\overline{\mathbf5}\) pairs, and six
+singlets. Its net chiral class is
+\(3\chi(\mathcal F|_{G_{\mathrm{SM}}})\); the dual half
+has the opposite class.
+\end{corollary}
+Here \(\chi\) records representation-minus-dual multiplicities and
+annihilates self-dual summands.
+
+\par\addvspace{5pt}
+{\small
+\textbf{References.}
+[1] E.\,B.~Dynkin, \emph{Semisimple subalgebras of semisimple Lie algebras},
+Mat.\ Sb.\ \textbf{30} (1952), 349--462;
+\emph{Maximal subgroups of the classical groups},
+Tr.\ Mosk.\ Mat.\ Obs.\ \textbf{1} (1952), 39--166.
+[2] F.~Antoneli, M.~Forger and P.~Gaviria,
+\emph{Maximal Subgroups of Compact Lie Groups},
+\href{https://arxiv.org/abs/math/0605784}{arXiv:math/0605784}, Tables 2--4.
+[3] R.~Slansky, \emph{Group theory for unified model building},
+Phys.\ Rep.\ \textbf{79} (1981), 1--128,
+\href{https://doi.org/10.1016/0370-1573(81)90092-2}{doi:10.1016/0370-1573(81)90092-2},
+Tables 15 and 58.
+}
+\end{document}

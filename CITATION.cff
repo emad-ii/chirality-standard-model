@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "Please cite the associated paper; cite this repository additionally when relying on its verification artifacts."
+title: "From Chirality to the Standard Model: Verification and Finite E6 Formalization"
+type: software
+authors:
+  - family-names: Mostaque
+    given-names: Emad
+version: 1.0.0
+date-released: 2026-09-06
+repository-code: "https://github.com/emad-ii/chirality-standard-model"
+url: "https://emad-ii.github.io/chirality-standard-model/"
+abstract: >-
+  Exact Python verification, deterministic certificates, a Colab-ready master
+  notebook, and Lean 4 checks of the exceptional toral census, Cartan cubic
+  selector, and finite E6 incidence claims accompanying the paper
+  From Chirality to the Standard Model.
+keywords:
+  - Lean 4
+  - E6
+  - E8
+  - Lie algebras
+  - anomaly cancellation
+  - formal verification
+  - reproducible research
+preferred-citation:
+  type: generic
+  title: "From Chirality to the Standard Model"
+  authors:
+    - family-names: Mostaque
+      given-names: Emad
+  year: 2026
+  url: "https://github.com/emad-ii/chirality-standard-model/blob/main/paper/paper.pdf"

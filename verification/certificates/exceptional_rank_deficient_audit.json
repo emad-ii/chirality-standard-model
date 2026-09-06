@@ -1,0 +1,1662 @@
+{
+  "ambients": {
+    "E6": {
+      "counts": {
+        "complex_type_products": 12,
+        "dimension_matched_representation_products": 19,
+        "factor_multisets": 28,
+        "integral_index_products": 0,
+        "nonzero_radical_products": 10
+      },
+      "dimension": 78,
+      "dual_coxeter_number": 12,
+      "max_dim_V": 36,
+      "pre_index_candidates": [
+        {
+          "ambient": "E6",
+          "dim_V": 30,
+          "dim_h": 18,
+          "factors": [
+            "A1",
+            "A3"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 3,
+              "dynkin_labels": [
+                2
+              ],
+              "embedding_index": {
+                "denominator": 2,
+                "numerator": 7
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 2
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 10,
+              "dynkin_labels": [
+                0,
+                0,
+                2
+              ],
+              "embedding_index": {
+                "denominator": 6,
+                "numerator": 11
+              },
+              "factor": "A3",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 3
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E6",
+          "dim_V": 30,
+          "dim_h": 18,
+          "factors": [
+            "A1",
+            "A3"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 3,
+              "dynkin_labels": [
+                2
+              ],
+              "embedding_index": {
+                "denominator": 2,
+                "numerator": 7
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 2
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 10,
+              "dynkin_labels": [
+                2,
+                0,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 6,
+                "numerator": 11
+              },
+              "factor": "A3",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 3
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E6",
+          "dim_V": 30,
+          "dim_h": 18,
+          "factors": [
+            "A2",
+            "B2"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 3,
+              "dynkin_labels": [
+                0,
+                1
+              ],
+              "embedding_index": {
+                "denominator": 12,
+                "numerator": 13
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 10,
+              "dynkin_labels": [
+                0,
+                2
+              ],
+              "embedding_index": {
+                "denominator": 4,
+                "numerator": 7
+              },
+              "factor": "B2",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 3
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E6",
+          "dim_V": 30,
+          "dim_h": 18,
+          "factors": [
+            "A2",
+            "B2"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 3,
+              "dynkin_labels": [
+                1,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 12,
+                "numerator": 13
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 10,
+              "dynkin_labels": [
+                0,
+                2
+              ],
+              "embedding_index": {
+                "denominator": 4,
+                "numerator": 7
+              },
+              "factor": "B2",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 3
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E6",
+          "dim_V": 30,
+          "dim_h": 18,
+          "factors": [
+            "A2",
+            "B2"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 6,
+              "dynkin_labels": [
+                0,
+                2
+              ],
+              "embedding_index": {
+                "denominator": 3,
+                "numerator": 7
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 5
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 5,
+              "dynkin_labels": [
+                1,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 4,
+                "numerator": 5
+              },
+              "factor": "B2",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 1
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E6",
+          "dim_V": 30,
+          "dim_h": 18,
+          "factors": [
+            "A2",
+            "B2"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 6,
+              "dynkin_labels": [
+                2,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 3,
+                "numerator": 7
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 5
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 5,
+              "dynkin_labels": [
+                1,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 4,
+                "numerator": 5
+              },
+              "factor": "B2",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 1
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E6",
+          "dim_V": 30,
+          "dim_h": 18,
+          "factors": [
+            "A2",
+            "C2"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 3,
+              "dynkin_labels": [
+                0,
+                1
+              ],
+              "embedding_index": {
+                "denominator": 12,
+                "numerator": 13
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 10,
+              "dynkin_labels": [
+                2,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 4,
+                "numerator": 7
+              },
+              "factor": "C2",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 3
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E6",
+          "dim_V": 30,
+          "dim_h": 18,
+          "factors": [
+            "A2",
+            "C2"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 3,
+              "dynkin_labels": [
+                1,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 12,
+                "numerator": 13
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 10,
+              "dynkin_labels": [
+                2,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 4,
+                "numerator": 7
+              },
+              "factor": "C2",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 3
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E6",
+          "dim_V": 30,
+          "dim_h": 18,
+          "factors": [
+            "A2",
+            "C2"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 6,
+              "dynkin_labels": [
+                0,
+                2
+              ],
+              "embedding_index": {
+                "denominator": 3,
+                "numerator": 7
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 5
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 5,
+              "dynkin_labels": [
+                0,
+                1
+              ],
+              "embedding_index": {
+                "denominator": 4,
+                "numerator": 5
+              },
+              "factor": "C2",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 1
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E6",
+          "dim_V": 30,
+          "dim_h": 18,
+          "factors": [
+            "A2",
+            "C2"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 6,
+              "dynkin_labels": [
+                2,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 3,
+                "numerator": 7
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 5
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 5,
+              "dynkin_labels": [
+                0,
+                1
+              ],
+              "embedding_index": {
+                "denominator": 4,
+                "numerator": 5
+              },
+              "factor": "C2",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 1
+              }
+            }
+          ]
+        }
+      ],
+      "rank": 6
+    },
+    "E7": {
+      "counts": {
+        "complex_type_products": 2,
+        "dimension_matched_representation_products": 15,
+        "factor_multisets": 48,
+        "integral_index_products": 0,
+        "nonzero_radical_products": 2
+      },
+      "dimension": 133,
+      "dual_coxeter_number": 18,
+      "max_dim_V": 65,
+      "pre_index_candidates": [
+        {
+          "ambient": "E7",
+          "dim_V": 56,
+          "dim_h": 21,
+          "factors": [
+            "A1",
+            "A1",
+            "A3"
+          ],
+          "failed_index_factors": [
+            0
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 2,
+              "dynkin_labels": [
+                1
+              ],
+              "embedding_index": {
+                "denominator": 3,
+                "numerator": 5
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 7,
+              "dynkin_labels": [
+                6
+              ],
+              "embedding_index": {
+                "denominator": 1,
+                "numerator": 25
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 28
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 4,
+              "dynkin_labels": [
+                0,
+                0,
+                1
+              ],
+              "embedding_index": {
+                "denominator": 1,
+                "numerator": 1
+              },
+              "factor": "A3",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E7",
+          "dim_V": 56,
+          "dim_h": 21,
+          "factors": [
+            "A1",
+            "A1",
+            "A3"
+          ],
+          "failed_index_factors": [
+            0
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 2,
+              "dynkin_labels": [
+                1
+              ],
+              "embedding_index": {
+                "denominator": 3,
+                "numerator": 5
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 7,
+              "dynkin_labels": [
+                6
+              ],
+              "embedding_index": {
+                "denominator": 1,
+                "numerator": 25
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 28
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 4,
+              "dynkin_labels": [
+                1,
+                0,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 1,
+                "numerator": 1
+              },
+              "factor": "A3",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            }
+          ]
+        }
+      ],
+      "rank": 7
+    },
+    "E8": {
+      "counts": {
+        "complex_type_products": 20,
+        "dimension_matched_representation_products": 30,
+        "factor_multisets": 118,
+        "integral_index_products": 0,
+        "nonzero_radical_products": 14
+      },
+      "dimension": 248,
+      "dual_coxeter_number": 30,
+      "max_dim_V": 121,
+      "pre_index_candidates": [
+        {
+          "ambient": "E8",
+          "dim_V": 112,
+          "dim_h": 24,
+          "factors": [
+            "A1",
+            "A1",
+            "A1",
+            "A3"
+          ],
+          "failed_index_factors": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 2,
+              "dynkin_labels": [
+                1
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 29
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 2,
+              "dynkin_labels": [
+                1
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 29
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 7,
+              "dynkin_labels": [
+                6
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 449
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 28
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 4,
+              "dynkin_labels": [
+                0,
+                0,
+                1
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 16
+              },
+              "factor": "A3",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 112,
+          "dim_h": 24,
+          "factors": [
+            "A1",
+            "A1",
+            "A1",
+            "A3"
+          ],
+          "failed_index_factors": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 2,
+              "dynkin_labels": [
+                1
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 29
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 2,
+              "dynkin_labels": [
+                1
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 29
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 7,
+              "dynkin_labels": [
+                6
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 449
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 28
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 4,
+              "dynkin_labels": [
+                1,
+                0,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 16
+              },
+              "factor": "A3",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 117,
+          "dim_h": 14,
+          "factors": [
+            "A1",
+            "A1",
+            "A2"
+          ],
+          "failed_index_factors": [
+            0,
+            1,
+            2
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 3,
+              "dynkin_labels": [
+                2
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 79
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 2
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 13,
+              "dynkin_labels": [
+                12
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 1639
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 182
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 3,
+              "dynkin_labels": [
+                0,
+                1
+              ],
+              "embedding_index": {
+                "denominator": 5,
+                "numerator": 7
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 117,
+          "dim_h": 14,
+          "factors": [
+            "A1",
+            "A1",
+            "A2"
+          ],
+          "failed_index_factors": [
+            0,
+            1,
+            2
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 3,
+              "dynkin_labels": [
+                2
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 79
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 2
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 13,
+              "dynkin_labels": [
+                12
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 1639
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 182
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 3,
+              "dynkin_labels": [
+                1,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 5,
+                "numerator": 7
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 108,
+          "dim_h": 32,
+          "factors": [
+            "A1",
+            "A2",
+            "C3"
+          ],
+          "failed_index_factors": [
+            0,
+            1,
+            2
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 3,
+              "dynkin_labels": [
+                2
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 73
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 2
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 6,
+              "dynkin_labels": [
+                0,
+                2
+              ],
+              "embedding_index": {
+                "denominator": 10,
+                "numerator": 31
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 5
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 6,
+              "dynkin_labels": [
+                1,
+                0,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 11
+              },
+              "factor": "C3",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 108,
+          "dim_h": 32,
+          "factors": [
+            "A1",
+            "A2",
+            "C3"
+          ],
+          "failed_index_factors": [
+            0,
+            1,
+            2
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 3,
+              "dynkin_labels": [
+                2
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 73
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 2
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 6,
+              "dynkin_labels": [
+                2,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 10,
+                "numerator": 31
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 5
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 6,
+              "dynkin_labels": [
+                1,
+                0,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 11
+              },
+              "factor": "C3",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 108,
+          "dim_h": 32,
+          "factors": [
+            "A1",
+            "A2",
+            "C3"
+          ],
+          "failed_index_factors": [
+            0,
+            1,
+            2
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 6,
+              "dynkin_labels": [
+                5
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 316
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 35
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 3,
+              "dynkin_labels": [
+                0,
+                1
+              ],
+              "embedding_index": {
+                "denominator": 10,
+                "numerator": 13
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 6,
+              "dynkin_labels": [
+                1,
+                0,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 11
+              },
+              "factor": "C3",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 108,
+          "dim_h": 32,
+          "factors": [
+            "A1",
+            "A2",
+            "C3"
+          ],
+          "failed_index_factors": [
+            0,
+            1,
+            2
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 6,
+              "dynkin_labels": [
+                5
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 316
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 35
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 3,
+              "dynkin_labels": [
+                1,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 10,
+                "numerator": 13
+              },
+              "factor": "A2",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 6,
+              "dynkin_labels": [
+                1,
+                0,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 11
+              },
+              "factor": "C3",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 1
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 105,
+          "dim_h": 38,
+          "factors": [
+            "A1",
+            "A5"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 5,
+              "dynkin_labels": [
+                4
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 211
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 10
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 21,
+              "dynkin_labels": [
+                0,
+                0,
+                0,
+                0,
+                2
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 23
+              },
+              "factor": "A5",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 4
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 105,
+          "dim_h": 38,
+          "factors": [
+            "A1",
+            "A5"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 5,
+              "dynkin_labels": [
+                4
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 211
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 10
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 21,
+              "dynkin_labels": [
+                2,
+                0,
+                0,
+                0,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 23
+              },
+              "factor": "A5",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 4
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 105,
+          "dim_h": 38,
+          "factors": [
+            "A1",
+            "A5"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 7,
+              "dynkin_labels": [
+                6
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 421
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 28
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 15,
+              "dynkin_labels": [
+                0,
+                0,
+                0,
+                1,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 17
+              },
+              "factor": "A5",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 2
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 105,
+          "dim_h": 38,
+          "factors": [
+            "A1",
+            "A5"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 7,
+              "dynkin_labels": [
+                6
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 421
+              },
+              "factor": "A1",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 28
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 15,
+              "dynkin_labels": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 17
+              },
+              "factor": "A5",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 2
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 105,
+          "dim_h": 38,
+          "factors": [
+            "G2",
+            "A4"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 7,
+              "dynkin_labels": [
+                1,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 17
+              },
+              "factor": "G2",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 15,
+              "dynkin_labels": [
+                0,
+                0,
+                0,
+                2
+              ],
+              "embedding_index": {
+                "denominator": 5,
+                "numerator": 9
+              },
+              "factor": "A4",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 7
+              }
+            }
+          ]
+        },
+        {
+          "ambient": "E8",
+          "dim_V": 105,
+          "dim_h": 38,
+          "factors": [
+            "G2",
+            "A4"
+          ],
+          "failed_index_factors": [
+            0,
+            1
+          ],
+          "representations": [
+            {
+              "complex_type": false,
+              "cubic_coefficient_zero": true,
+              "dimension": 7,
+              "dynkin_labels": [
+                1,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 15,
+                "numerator": 17
+              },
+              "factor": "G2",
+              "quadratic_index": {
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            {
+              "complex_type": true,
+              "cubic_coefficient_zero": false,
+              "dimension": 15,
+              "dynkin_labels": [
+                2,
+                0,
+                0,
+                0
+              ],
+              "embedding_index": {
+                "denominator": 5,
+                "numerator": 9
+              },
+              "factor": "A4",
+              "quadratic_index": {
+                "denominator": 2,
+                "numerator": 7
+              }
+            }
+          ]
+        }
+      ],
+      "rank": 8
+    },
+    "F4": {
+      "counts": {
+        "complex_type_products": 0,
+        "dimension_matched_representation_products": 0,
+        "factor_multisets": 5,
+        "integral_index_products": 0,
+        "nonzero_radical_products": 0
+      },
+      "dimension": 52,
+      "dual_coxeter_number": 9,
+      "max_dim_V": 23,
+      "pre_index_candidates": [],
+      "rank": 4
+    },
+    "G2": {
+      "counts": {
+        "complex_type_products": 0,
+        "dimension_matched_representation_products": 0,
+        "factor_multisets": 0,
+        "integral_index_products": 0,
+        "nonzero_radical_products": 0
+      },
+      "dimension": 14,
+      "dual_coxeter_number": 4,
+      "max_dim_V": 0,
+      "pre_index_candidates": [],
+      "rank": 2
+    }
+  },
+  "dimension_bounds": {
+    "E6": 36,
+    "E7": 65,
+    "E8": 121,
+    "F4": 23,
+    "G2": 0
+  },
+  "normalization": {
+    "T_adjoint": "h_dual",
+    "long_root_squared_length": 2,
+    "positive_controls": {
+      "A2_fundamental": "1/2",
+      "B3_vector": "1",
+      "C3_vector": "1/2",
+      "D4_vector": "1",
+      "E6_27": "3",
+      "F4_26": "3",
+      "G2_7": "1"
+    }
+  },
+  "surviving_candidates": []
+}

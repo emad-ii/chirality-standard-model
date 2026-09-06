@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1920, initial-scale=1">
+  <title>One survivor — a visual pilot</title>
+  <link rel="stylesheet" href="node_modules/katex/dist/katex.min.css">
+  <link rel="stylesheet" href="film.css">
+  <script src="node_modules/gsap/dist/gsap.min.js"></script>
+  <script src="node_modules/katex/dist/katex.min.js"></script>
+</head>
+<body>
+  <main id="film" data-composition-id="one-survivor" data-start="0" data-duration="78" data-width="1920" data-height="1080" data-fps="30">
+    <header><span>FROM CHIRALITY TO THE STANDARD MODEL</span><span>VISUAL PILOT <i>·</i> 06 SEPTEMBER 2026</span></header>
+    <section id="atlas" class="scene">
+      <div class="eyebrow">THE FINAL FULL-RANK TEST</div>
+      <h1>Six possibilities.<br><em>One surviving ideal.</em></h1>
+      <div id="condition"><div class="math" data-tex="\operatorname{Rad}(c_V)\ne0"></div><p>A nonzero ideal whose cubic vanishes<br>with any other two inputs.</p></div>
+      <div id="candidate-grid"></div>
+      <div id="atlas-note"><span class="key-dot"></span> Each port is a different simple factor. A zero coefficient puts that factor in the radical.</div>
+      <div id="factor-note">Different factors. Different tensor components.</div>
+    </section>
+    <section id="survivor" class="scene">
+      <div class="eyebrow">THE UNIQUE HOMOGENEOUS PAIR</div>
+      <h1>The zero<br>that selects <em>E₆.</em></h1>
+      <div class="survivor-formula math" data-tex="\mathfrak e_8\supset\mathfrak e_6\oplus\mathfrak{su}(3)_M"></div>
+      <div class="radical-result math" data-tex="\operatorname{Rad}(c_V)=\mathfrak e_6"></div>
+      <div class="survivor-definition"><span>Gauge ideal · coefficient</span><b><em>0</em> E₆</b><span>Multiplicity factor · coefficient</span><b><em>27</em> SU(3)<sub>M</sub></b></div>
+      <p class="global-note">SU(3)<sub>M</sub> is a background global symmetry here.<br>Gauging it requires additional anomaly cancellation.</p>
+      <svg id="root-view" viewBox="0 0 880 680" aria-label="Mathematical projection of the 240 roots of E8 from eight dimensions"><g id="root-points"></g></svg>
+      <p class="root-note">240 roots of E₈ · projection from eight dimensions</p>
+    </section>
+    <section id="copies" class="scene">
+      <div class="eyebrow">RESTRICT THE REPRESENTATION TO E₆</div>
+      <h1>The three is <em>already there.</em></h1>
+      <div class="copies-formula math" data-tex="V=\mathbf{27}\boxtimes\mathbf3\quad\longrightarrow\quad\mathbf{27}\oplus\mathbf{27}\oplus\mathbf{27}"></div>
+      <div id="family-groups"></div>
+      <div id="branching-context">UNDER SU(5), ALONG THE RECOVERED SUBGROUP CHAIN</div>
+      <div id="branching" class="math" data-tex="\mathbf{27}|_{SU(5)}=(\mathbf{10}\oplus\overline{\mathbf5})\oplus(\mathbf5\oplus\overline{\mathbf5})\oplus2\,\mathbf1"></div>
+      <div id="family-legend"><span><i class="chiral"></i>15 chiral components</span><span><i class="vectorlike"></i>10 in a conjugate pair</span><span><i class="singlet"></i>2 singlets</span></div>
+      <div id="index-result" class="math" data-tex="\chi(V|_{G_{\mathrm{SM}}})=3\,\chi(\mathcal F_{\mathrm{SM}})"></div>
+      <p id="index-note">Physical interpretation (M): one complex half supplies the complete chiral fermion module.</p>
+    </section>
+    <div id="caption-band"><p id="caption"></p></div>
+    <footer><span id="source-note">Paper §3 · Table 1 · full-rank branch after structural reduction</span><span>SILENT VISUAL STUDY · NARRATION TO FOLLOW</span></footer>
+    <div id="progress"></div>
+  </main>
+  <script>
+    window.__renderReady = false;
+    window.__timelines = window.__timelines || {};
+    window.__timelines['one-survivor'] = gsap.timeline({paused: true});
+  </script>
+  <script type="module" src="film.mjs"></script>
+</body>
+</html>

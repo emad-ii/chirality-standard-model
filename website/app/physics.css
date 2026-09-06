@@ -1,0 +1,860 @@
+.massless-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+  margin: 0 0 25px;
+  cursor: pointer;
+  min-height: 44px;
+}
+.reader-paths {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 60px 5.8% 30px;
+}
+.reader-path-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 28px;
+}
+.reader-path-intro h2 {
+  font-size: 30px;
+  margin: 14px 0;
+}
+.reader-path-intro p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--tone-9bb0c9);
+  max-width: 330px;
+}
+.reader-path-choices {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100% !important;
+  gap: 12px !important;
+}
+.reader-path-choices button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: auto;
+  white-space: normal;
+  text-align: left;
+  padding: 22px !important;
+  border: 1px solid var(--tone-2d425c);
+  border-radius: 4px !important;
+  gap: 10px;
+  transition:
+    background 0.3s,
+    border-color 0.3s;
+}
+.reader-path-choices strong {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--tone-d1e1f4);
+  line-height: 1.4;
+}
+.reader-path-choices span {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--tone-99afc8);
+}
+.reader-path-choices [data-pressed] {
+  background: var(--tone-193047) !important;
+  border-color: var(--tone-789bbc);
+}
+.reader-path-stops {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  border-bottom: 1px solid var(--tone-2d425c);
+  padding: 25px 0;
+  animation: exhibit-in 0.45s ease both;
+}
+.reader-path-stops a {
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--tone-acc7e5);
+}
+.reader-path-stops a > span {
+  font:
+    12px var(--font-geist-mono),
+    monospace;
+  color: var(--tone-668daf);
+}
+.reader-path-stops .path-start {
+  margin-left: auto;
+  color: var(--tone-f0be96);
+}
+.physics-laboratory {
+  border-block: 1px solid var(--tone-293e56);
+  background: var(--tone-0b111a);
+}
+.lab-contents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  margin: 35px 0 70px;
+}
+.lab-contents a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--tone-a8c9ef);
+  font-size: 14px;
+  min-height: 44px;
+  border-bottom: 1px solid var(--tone-405e80);
+}
+.particle-gallery,
+.mass-exhibit,
+.anomaly-exhibit {
+  scroll-margin-top: 100px;
+  margin: 0 0 95px;
+}
+.lab-heading {
+  max-width: 830px;
+  margin-bottom: 30px;
+}
+.lab-heading h3 {
+  font-size: clamp(32px, 3.3vw, 46px);
+  line-height: 1.12;
+  margin: 20px 0;
+}
+.lab-heading p {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--tone-b2c2d5);
+}
+.lab-tabs {
+  flex-wrap: wrap;
+  width: auto !important;
+  gap: 6px !important;
+  margin: 20px 0;
+}
+.lab-tabs button {
+  font-size: 14px;
+  min-height: 44px;
+  height: auto;
+  padding: 10px 15px;
+  border: 1px solid var(--tone-2b435f);
+  border-radius: 3px !important;
+  color: var(--tone-a6bed8);
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+.lab-tabs [data-pressed] {
+  background: var(--tone-254362) !important;
+  color: var(--tone-eef4fc) !important;
+}
+.particle-layout {
+  display: grid;
+  grid-template-columns: 170px minmax(300px, 1.15fr) 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+.particle-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.particle-choice {
+  display: grid;
+  grid-template-columns: 35px 1fr;
+  grid-template-rows: auto auto;
+  gap: 4px 12px;
+  text-align: left;
+  justify-content: start;
+  height: auto;
+  min-height: 75px;
+  padding: 14px !important;
+  border: 1px solid var(--tone-2b405a);
+  background: var(--tone-122034);
+  border-radius: 4px;
+}
+.particle-choice strong {
+  grid-row: 1/3;
+  font:
+    29px Georgia,
+    serif;
+  color: var(--tone-9bc8ff);
+}
+.particle-choice span {
+  font-size: 14px;
+  white-space: normal;
+  color: var(--tone-c3d4e8);
+}
+.particle-choice small {
+  font:
+    12px var(--font-geist-mono),
+    monospace;
+  color: var(--tone-85a1c1);
+}
+.particle-choice[aria-pressed='true'] {
+  background: var(--tone-233f5d);
+  border-color: var(--tone-81aad6);
+  box-shadow: inset 3px 0 var(--tone-9bc8ff);
+}
+.particle-choice.kind-lepton strong,
+.particle-choice.kind-neutrino strong {
+  color: var(--tone-f1a17d);
+}
+.particle-choice.kind-boson strong {
+  color: var(--tone-91c9b5);
+}
+.particle-choice.kind-higgs strong {
+  color: var(--tone-ccb2ef);
+}
+.field-view {
+  border: 1px solid var(--tone-314a64);
+  background: radial-gradient(
+    ellipse at 50% 38%,
+    var(--tone-213850) 0%,
+    var(--tone-0b1420) 65%
+  );
+  border-radius: 5px;
+  min-width: 0;
+  overflow: hidden;
+}
+.particle-scene {
+  position: relative;
+  min-height: 440px;
+}
+.particle-canvas {
+  height: 300px;
+  width: 100%;
+  touch-action: none;
+}
+.particle-canvas canvas {
+  display: block;
+  cursor: grab;
+}
+.particle-canvas canvas:active {
+  cursor: grabbing;
+}
+.particle-field-labels {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  padding: 0 20px;
+  margin-top: -28px;
+  position: relative;
+  pointer-events: none;
+  animation: exhibit-in 0.45s ease;
+}
+.particle-field-labels > div {
+  flex: 1;
+}
+.particle-field-labels strong {
+  font:
+    35px Georgia,
+    serif;
+  color: var(--tone-e1eaf7);
+  display: block;
+}
+.particle-field-labels span {
+  font:
+    12px var(--font-geist-mono),
+    monospace;
+  line-height: 1.8;
+  color: var(--tone-8eaecd);
+  display: block;
+  margin-top: 12px;
+}
+.particle-turn {
+  display: flex;
+  margin: 12px auto 0;
+  color: var(--tone-a9c9ed);
+  font-size: 13px;
+  min-height: 44px;
+}
+.instrument-note {
+  color: var(--tone-8eabc9);
+  font-size: 12px;
+  line-height: 1.7;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0 20px 20px;
+  max-width: 390px;
+}
+.particle-fallback {
+  font-size: 14px;
+  padding: 20px;
+  color: var(--tone-a9c9ed);
+}
+.field-loading {
+  min-height: 440px;
+  display: grid;
+  place-items: center;
+  padding: 30px;
+  font-size: 14px;
+  color: var(--tone-8eabc9);
+}
+.particle-inspector {
+  padding: 25px 22px;
+  border: 1px solid var(--tone-2d425c);
+  border-radius: 5px;
+  animation: exhibit-in 0.45s ease;
+}
+.particle-inspector .eyebrow {
+  font-size: 12px;
+}
+.particle-inspector h4 {
+  font:
+    36px Georgia,
+    serif;
+  color: var(--tone-d3e4f7);
+  margin: 18px 0;
+  text-transform: capitalize;
+}
+.particle-facts {
+  display: flex;
+  gap: 22px;
+  border-bottom: 1px solid var(--tone-2c445e);
+  padding-bottom: 19px;
+}
+.particle-facts > span {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--tone-89a9c8);
+}
+.particle-facts strong {
+  font-size: 21px;
+  color: var(--tone-bbd2ed);
+  display: block;
+}
+.particle-inspector p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--tone-adc2d9);
+  margin: 20px 0;
+}
+.chiral-charges {
+  margin: 0 0 20px;
+}
+.chiral-charges > div {
+  padding: 12px 0;
+  border-top: 1px solid var(--tone-2c445e);
+}
+.chiral-charges dt {
+  font-size: 13px;
+  color: var(--tone-8da7c4);
+}
+.chiral-charges dd {
+  font:
+    17px Georgia,
+    serif;
+  color: var(--tone-d3e4f7);
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+.particle-inspector > small {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--tone-89a9c8);
+  display: block;
+}
+.mass-exhibit {
+  padding-top: 50px;
+  border-top: 1px solid var(--tone-304961);
+}
+.mass-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 40px;
+  align-items: center;
+}
+.mass-layout .particle-scene {
+  min-height: 470px;
+}
+.mass-layout .particle-canvas {
+  height: 335px;
+}
+.mass-control {
+  padding: 15px 0;
+}
+.mass-introduction {
+  animation: exhibit-in 0.45s ease;
+}
+.mass-introduction h4 {
+  font:
+    29px/1.2 Georgia,
+    serif;
+  color: var(--tone-d5e4f6);
+  margin: 18px 0;
+}
+.mass-introduction p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--tone-adc2d9);
+}
+.mass-slider-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--tone-a9bfd9);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 28px 0 20px;
+}
+.mass-slider-label strong {
+  font:
+    20px var(--font-geist-mono),
+    monospace;
+  color: var(--tone-ecd199);
+  white-space: nowrap;
+}
+.mass-control [data-slot='slider'] {
+  padding: 14px 3px;
+}
+.mass-control [data-slot='slider-thumb'] {
+  width: 20px;
+  height: 20px;
+  background: var(--tone-eecba0);
+}
+.mass-slider-ends {
+  display: flex;
+  justify-content: space-between;
+  margin: 2px 0 25px;
+  font-size: 12px;
+  color: var(--tone-89a6c5);
+}
+.mass-equation {
+  border: 1px solid var(--tone-405875);
+  background: var(--tone-15283e);
+  padding: 23px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.mass-equation span {
+  font:
+    26px Georgia,
+    serif;
+  color: var(--tone-c6def8);
+}
+.mass-equation strong {
+  font:
+    17px var(--font-geist-mono),
+    monospace;
+  color: var(--tone-ecd199);
+}
+.lab-note {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--tone-92abc6);
+  margin: 23px 0;
+}
+.anomaly-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.multiplet-switches {
+  padding-top: 12px;
+}
+.multiplet-switches > .eyebrow {
+  font-size: 12px;
+  line-height: 1.8;
+  display: block;
+  margin-bottom: 22px;
+}
+.multiplet-switches > label {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 0;
+  border-top: 1px solid var(--tone-2c445e);
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}
+.multiplet-switches > label.included {
+  opacity: 1;
+}
+.multiplet-switches label > strong {
+  width: 30px;
+  font:
+    25px Georgia,
+    serif;
+  color: var(--tone-c4ddf7);
+}
+.multiplet-switches label > span {
+  font-size: 14px;
+  color: var(--tone-b0c8e1);
+}
+.multiplet-switches small {
+  display: block;
+  font:
+    16px Georgia,
+    serif;
+  color: var(--tone-89a7c7);
+  margin-top: 7px;
+}
+.multiplet-switches > button {
+  margin-top: 20px;
+  font-size: 14px;
+  min-height: 44px;
+}
+.anomaly-instrument {
+  border: 1px solid var(--tone-385575);
+  background: var(--tone-0e1c2b);
+  border-radius: 5px;
+  padding: 20px 25px;
+}
+.anomaly-instrument .lab-tabs {
+  margin: 0 0 20px;
+  gap: 5px !important;
+}
+.anomaly-instrument .lab-tabs button {
+  font-size: 12px;
+  padding: 8px 10px;
+  min-height: 40px;
+}
+.anomaly-instrument svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.balance-axis {
+  stroke: var(--tone-527293);
+  stroke-dasharray: 3 4;
+}
+.balance-sign {
+  fill: var(--tone-8fa9c4);
+  font:
+    12px var(--font-geist-mono),
+    monospace;
+}
+.balance-label {
+  fill: var(--tone-c8ddf4);
+  font:
+    21px Georgia,
+    serif;
+}
+.balance-value {
+  fill: var(--tone-c8ddf4);
+  font:
+    15px var(--font-geist-mono),
+    monospace;
+}
+.anomaly-instrument rect {
+  transition:
+    x 0.7s,
+    width 0.7s,
+    fill 0.7s;
+}
+.anomaly-instrument rect.negative {
+  fill: var(--tone-e39e7c);
+}
+.anomaly-instrument rect.positive {
+  fill: var(--tone-89b9ef);
+}
+.anomaly-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid var(--tone-385575);
+  margin-top: 15px;
+  padding: 20px 0 10px;
+}
+.anomaly-total > span {
+  font:
+    12px var(--font-geist-mono),
+    monospace;
+}
+.anomaly-total strong {
+  font:
+    46px Georgia,
+    serif;
+}
+.balanced {
+  color: var(--tone-91c9b5);
+}
+.unbalanced {
+  color: var(--tone-eda18c);
+}
+.anomaly-summary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 15px 0 3px;
+}
+.anomaly-summary > span {
+  font-size: 12px;
+}
+.anomaly-summary strong {
+  display: block;
+  font:
+    19px var(--font-geist-mono),
+    monospace;
+  margin-top: 8px;
+}
+.anomaly-verdict {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border-block: 1px solid var(--tone-314e68);
+  margin-top: 28px;
+  padding: 12px 0;
+}
+.anomaly-verdict > svg {
+  flex-shrink: 0;
+}
+.anomaly-verdict p {
+  font-size: 16px;
+  line-height: 1.75;
+  max-width: 850px;
+}
+.anomaly-verdict > span:last-child {
+  font-size: 12px;
+  white-space: nowrap;
+  margin-left: auto;
+}
+.anomaly-cross {
+  font-size: 32px;
+}
+.physics-to-paper {
+  border-top: 1px solid var(--tone-314e68);
+  padding: 40px 0 10px;
+  max-width: 860px;
+}
+.physics-to-paper h3 {
+  font-size: 35px;
+  line-height: 1.2;
+  margin: 20px 0;
+}
+.physics-to-paper p {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--tone-b2c2d5);
+  margin: 25px 0;
+}
+.physics-to-paper .primary-link {
+  font-size: 15px;
+}
+.physics-laboratory .source-note a {
+  display: inline;
+}
+.physics-laboratory .source-note svg {
+  display: inline;
+  vertical-align: middle;
+}
+.history-layout p,
+.symmetry-story > p,
+.collapse-story-step > p,
+.wu-experiment p,
+.timeline p,
+.candidate-detail p,
+.cell-inspector p,
+.interpretation-note p,
+.proof-layers p,
+.implication-grid p {
+  font-size: 16px;
+  line-height: 1.8;
+}
+@media (max-width: 1100px) {
+  .reader-path-choices {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .particle-layout {
+    grid-template-columns: 155px 1fr;
+  }
+  .particle-inspector {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 30px;
+  }
+  .particle-inspector h4 {
+    grid-column: 1;
+  }
+  .particle-inspector .particle-facts {
+    grid-column: 1;
+  }
+  .particle-inspector > p {
+    grid-column: 2;
+    grid-row: 1/4;
+  }
+  .particle-inspector > small {
+    grid-column: 2;
+    grid-row: 4;
+  }
+  .mass-layout {
+    gap: 28px;
+  }
+  .anomaly-layout {
+    grid-template-columns: 260px 1fr;
+    gap: 25px;
+  }
+  .anomaly-instrument {
+    padding: 18px;
+  }
+}
+@media (max-width: 760px) {
+  .masthead nav {
+    gap: 12px;
+  }
+  .reader-path-intro {
+    display: block;
+  }
+  .reader-path-intro p {
+    max-width: 100%;
+  }
+  .reader-path-choices button {
+    padding: 17px !important;
+  }
+  .reader-path-choices strong {
+    font-size: 15px;
+  }
+  .reader-path-stops {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+  }
+  .reader-path-stops .path-start {
+    margin-left: 0;
+  }
+  .reader-path-stops a {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .reader-path-stops svg {
+    display: none;
+  }
+  .particle-gallery,
+  .mass-exhibit,
+  .anomaly-exhibit {
+    margin-bottom: 65px;
+  }
+  .lab-contents {
+    gap: 10px 20px;
+    margin: 25px 0 55px;
+  }
+  .mass-layout {
+    grid-template-columns: 1fr;
+  }
+  .mass-layout .particle-scene {
+    min-height: 410px;
+  }
+  .mass-layout .particle-canvas {
+    height: 270px;
+  }
+  .anomaly-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .multiplet-switches {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 18px;
+  }
+  .multiplet-switches > .eyebrow {
+    grid-column: 1/-1;
+  }
+  .multiplet-switches > button {
+    grid-column: 1/-1;
+    justify-self: start;
+  }
+  .multiplet-switches label {
+    gap: 10px;
+  }
+  .anomaly-verdict {
+    flex-wrap: wrap;
+  }
+  .anomaly-verdict p {
+    flex: 1;
+    margin: 12px 0;
+  }
+  .anomaly-verdict > span:last-child {
+    margin: 0 0 12px 40px;
+    width: 100%;
+  }
+  .lab-heading p,
+  .physics-to-paper p {
+    font-size: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .reader-paths {
+    padding: 40px 6% 20px;
+  }
+  .reader-path-intro h2 {
+    font-size: 27px;
+  }
+  .reader-path-choices {
+    grid-template-columns: 1fr;
+  }
+  .reader-path-choices button {
+    gap: 6px;
+    padding: 16px !important;
+  }
+  .particle-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .particle-picker {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .particle-choice {
+    min-height: 70px;
+    padding: 12px !important;
+  }
+  .particle-inspector {
+    display: block;
+    padding: 23px;
+  }
+  .particle-scene,
+  .field-loading {
+    min-height: 420px;
+  }
+  .particle-canvas {
+    height: 275px;
+  }
+  .multiplet-switches {
+    grid-template-columns: 1fr;
+  }
+  .mass-slider-label {
+    font-size: 14px;
+  }
+  .mass-equation {
+    padding: 20px;
+  }
+  .mass-equation strong {
+    font-size: 14px;
+  }
+  .anomaly-instrument {
+    padding: 14px;
+  }
+  .anomaly-summary {
+    gap: 12px;
+  }
+  .anomaly-total > span {
+    font-size: 12px;
+  }
+  .physics-to-paper h3 {
+    font-size: 29px;
+  }
+  .masthead .wordmark {
+    font-size: 12px;
+  }
+  .masthead nav > a[href*='github'] {
+    display: none;
+  }
+}

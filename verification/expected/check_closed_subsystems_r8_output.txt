@@ -1,0 +1,6 @@
+Closed-subsystem census passed (independent R8 realization)
+closed subsystems=5,079; maximal proper=103
+maximal types: D5=27, A5+A1=36, A2^3=40
+enumeration: exhaustive root-pair adjoining and additive closure
+all subsystems: exact R8 ranks, simple roots and Cartan/Dynkin types verified
+negative controls: invalid graphs, types, ranks and closure rejected

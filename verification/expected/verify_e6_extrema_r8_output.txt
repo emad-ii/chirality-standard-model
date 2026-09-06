@@ -1,0 +1,3 @@
+Independent R8 verification passed: 72 27 40 4320 2160 color cells=2
+Independent R8 structural ordering PASS: 38880 triples, 2466 parents; roots and rank+roots uniquely select H_DA iff d_chi in {15,16}
+Independent R8 orbit partition PASS: 6 cells, 38880 triples; sizes=12960,12960,3240,3240,4320,2160; negative controls=4

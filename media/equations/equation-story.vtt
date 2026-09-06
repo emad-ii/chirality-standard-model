@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.500
+Start with an effective, proper inclusion h ⊂ g
+of compact real Lie algebras.
+
+2
+00:00:05.500 --> 00:00:11.042
+q = g/h is the entire adjoint complement.
+No physical homogeneous-space hypothesis is assumed.
+
+3
+00:00:11.042 --> 00:00:16.958
+First input: End_h(q) ≅ C.
+The real h-module q is irreducible of complex type.
+
+4
+00:00:16.958 --> 00:00:22.875
+q_C = V ⊕ V*: two inequivalent irreducible modules.
+The two complex orientations exchange V and V*.
+
+5
+00:00:22.875 --> 00:00:29.417
+The OTHER INPUT, alongside complex type:
+k = Rad(c_V) must be nonzero.
+
+6
+00:00:29.417 --> 00:00:35.958
+c_V(k, h, h) = 0: one radical input kills the cubic
+for all other h inputs, including every mixed insertion.
+
+7
+00:00:35.958 --> 00:00:43.000
+BOTH inputs imply: g simple; h semisimple and maximal.
+The long paper's all-rank reduction leaves six candidates.
+
+8
+00:00:43.000 --> 00:00:50.042
+Five cubic radicals vanish. Only E8 ⊃ E6 + A2 survives,
+with Rad(c_V) = e6.
+
+9
+00:00:50.042 --> 00:00:56.958
+V = 27 ⊗ 3. Under Spin(10), each 27 = 16 ⊕ 10 ⊕ 1.
+The representation carries a factor of three.
+
+10
+00:00:56.958 --> 00:01:03.917
+Under SU(5): 27 = (10 ⊕ 5̄) ⊕ (5 ⊕ 5̄) ⊕ 2·1.
+One chiral family class, a conjugate pair and two singlets.
+
+11
+00:01:03.917 --> 00:01:10.667
+After restriction to the Standard Model group,
+χ(V) = 3χ(F_SM): three minimal family classes.
+
+12
+00:01:10.667 --> 00:01:17.417
+Conjugate pairs and singlets have zero net chiral class.
+This is the mathematical net chirality of the restricted module.
+
+13
+00:01:17.417 --> 00:01:22.042
+The dual orientation reverses the sign:
+χ(V*) = −3χ(F_SM).

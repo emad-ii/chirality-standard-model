@@ -1,0 +1,8 @@
+E6: A2+A2+A2; dim(g1)=27
+E7: A2+A5; dim(g1)=45
+E8: A2+E6; dim(g1)=81
+E8: A8; dim(g1)=84
+F4: A2+A2; dim(g1)=18
+G2: A2; dim(g1)=3
+all semisimple involutive quotients are self-conjugate
+all direct toral grading checks passed
