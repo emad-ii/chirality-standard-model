@@ -519,9 +519,15 @@ export function SymmetryWorkbench({
             complex simple Lie algebras, equivalently for compact real simple
             Lie algebras: Aₙ, Bₙ, Cₙ, Dₙ and G₂, F₄, E₆, E₇, E₈. “Simple” means
             non-abelian with no nonzero proper ideal, an algebraic part
-            preserved by brackets with everything else. Every finite-dimensional
-            compact Lie algebra is a direct sum of these simple factors and an
-            abelian centre. This includes arbitrary finite ranks, sums and
+            preserved by brackets with everything else.
+          </p>
+          <p>
+            A semisimple Lie algebra is a finite direct sum of simple Lie
+            algebras. The factors commute with one another. A simple algebra is
+            the one-factor case; e₆ ⊕ su(3) is an example with two factors.
+            Every finite-dimensional compact Lie algebra splits into a
+            semisimple part and an abelian centre. The centre commutes with the
+            entire algebra. This includes arbitrary finite ranks, sums and
             repetitions. The classification exhausts the algebras; specifying
             embeddings, representations and global group identifications is
             further mathematical work.

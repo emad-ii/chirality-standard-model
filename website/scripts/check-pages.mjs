@@ -27,6 +27,10 @@ assert.match(
   doc.querySelector('#question').textContent,
   /Killing and Cartan’s classification is exhaustive/,
 );
+assert.match(
+  doc.querySelector('#algebra-dictionary').textContent,
+  /A semisimple Lie algebra is a finite direct sum of simple Lie algebras/,
+);
 for (const id of [
   'standard-model',
   'math-and-measurement',

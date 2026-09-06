@@ -326,11 +326,12 @@ export function ScrollClassification({
             {i === 0 && (
               <p>
                 The Killing–Cartan classification exhausts the compact simple
-                Lie algebras. Allow direct sums of these building blocks and an
-                abelian centre, whose directions commute with everything, and
-                every finite-dimensional compact Lie algebra is covered. The
-                infinite series have no upper rank cutoff. This is a complete
-                starting catalogue, not a shortlist of favoured symmetries.
+                Lie algebras. A direct sum of simple Lie algebras is called
+                semisimple. Allow these sums and an abelian centre, whose
+                directions commute with everything, and every finite-dimensional
+                compact Lie algebra is covered. The infinite series have no
+                upper rank cutoff. This is a complete starting catalogue, not a
+                shortlist of favoured symmetries.
               </p>
             )}
             {i === 0 && showExample && (
@@ -522,7 +523,9 @@ export function SymmetryPrelude() {
           infinite series, Aₙ, Bₙ, Cₙ and Dₙ, or five exceptional types: G₂, F₄,
           E₆, E₇ and E₈. There is no further compact simple type outside this
           list. Allowing direct sums and commuting central directions extends
-          the catalogue to every finite-dimensional compact Lie algebra.
+          the catalogue to every finite-dimensional compact Lie algebra. A sum
+          of simple factors is called semisimple; the abelian centre is the
+          additional part that commutes with the whole algebra.
         </p>
         <p>
           That completeness matters here. The paper starts with the full compact
