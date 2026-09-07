@@ -24,8 +24,8 @@ def main() -> None:
     run(SCRIPT_DIR / "make_exceptional_rank_deficient_audit.py", "--output", str(exceptional))
     run(SCRIPT_DIR / "make_e6_extrema_certificate.py", "--output", str(certificate))
     digest = hashlib.sha256(certificate.read_bytes()).hexdigest()
-    (CERTIFICATE_DIR / "e6_extrema_certificate.sha256").write_text(
-        f"{digest}  {certificate.name}\n"
+    (CERTIFICATE_DIR / "e6_extrema_certificate.sha256").write_bytes(
+        f"{digest}  {certificate.name}\n".encode("utf-8")
     )
     run(REPO_ROOT / "formal" / "scripts" / "generate_lean_data.py")
     print(f"regenerated certificate {digest}")

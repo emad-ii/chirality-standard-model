@@ -296,7 +296,7 @@ def main(output: Path | None = None):
     }
 
     out = output if output is not None else CERTIFICATE_DIR / "e6_extrema_certificate.json"
-    out.write_text(json.dumps(cert, indent=2, sort_keys=True) + "\n")
+    out.write_bytes((json.dumps(cert, indent=2, sort_keys=True) + "\n").encode("utf-8"))
     print(out.name, digest(out), out.stat().st_size)
 
 
