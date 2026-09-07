@@ -107,6 +107,10 @@ def checkout_revision(root: Path) -> dict[str, object]:
         return subprocess.check_output(["git", *args], cwd=root, text=True).strip()
     commit, tree = git("rev-parse", "HEAD"), git("rev-parse", "HEAD^{tree}")
     dirty = bool(git("status", "--porcelain", "--untracked-files=normal"))
+    # Filesystems without executable bits (Windows) make Git set core.fileMode
+    # to false and take modes from the tree; mirror that so a clean checkout
+    # hashes to the recorded tree there as well.
+    trust_file_mode = git("config", "--type=bool", "--default=true", "core.fileMode") == "true"
     # Do not rely on the index: assume-unchanged/skip-worktree flags can hide
     # modified files from status. Hash every tracked file's actual bytes/mode.
     files = {}
@@ -123,7 +127,7 @@ def checkout_revision(root: Path) -> dict[str, object]:
                 or any((root / parent).is_symlink() for parent in path.relative_to(root).parents)):
             dirty = True
             continue
-        files[name] = (path.stat().st_mode, path.read_bytes())
+        files[name] = (path.stat().st_mode if trust_file_mode else int(mode, 8), path.read_bytes())
     dirty = dirty or tree_hash(files) != tree
     return {"commit": commit, "tree": tree,
             "verified": not dirty,
@@ -198,6 +202,9 @@ def self_tests() -> int:
             path.write_bytes(raw)
             path.chmod(mode & 0o777)
         subprocess.run(["git", "-c", "core.autocrlf=false", "add", "."], cwd=directory, check=True)
+        for name, (mode, _) in payload.items():
+            if mode & 0o111:  # record the bit even where the filesystem cannot
+                subprocess.run(["git", "update-index", "--chmod=+x", name], cwd=directory, check=True)
         oracle = subprocess.check_output(["git", "write-tree"], cwd=directory, text=True).strip()
         if tree != oracle:
             raise ValueError("snapshot tree hash differs from Git")

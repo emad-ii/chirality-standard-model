@@ -16,7 +16,7 @@ def main(output: Path | None = None) -> None:
     census.check_index_normalization()
     data = census.run_census()
     out = output if output is not None else OUT
-    out.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
+    out.write_bytes((json.dumps(data, indent=2, sort_keys=True) + "\n").encode("utf-8"))
 
 
 if __name__ == "__main__":

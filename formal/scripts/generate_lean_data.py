@@ -162,7 +162,7 @@ def main() -> None:
     arguments = parser.parse_args()
     content = render(arguments.certificate)
     arguments.output.parent.mkdir(parents=True, exist_ok=True)
-    arguments.output.write_text(content)
+    arguments.output.write_bytes(content.encode("utf-8"))  # LF on every platform
 
 
 if __name__ == "__main__":

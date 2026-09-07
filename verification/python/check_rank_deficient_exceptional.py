@@ -557,7 +557,7 @@ def main() -> None:
     check_index_normalization()
     result = run_census()
     if args.write_audit is not None:
-        args.write_audit.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+        args.write_audit.write_bytes((json.dumps(result, indent=2, sort_keys=True) + "\n").encode("utf-8"))
     print_summary(result)
 
 
