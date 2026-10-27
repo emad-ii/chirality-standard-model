@@ -28,6 +28,7 @@ import CubicAnomaly.Classification.ClassicalWeyl
 import CubicAnomaly.Classification.ClassicalToral
 import CubicAnomaly.Classification.Selection
 import CubicAnomaly.E6.Claims
+import CubicAnomaly.Fixed
 
 /-!
 The machine-checked surface for the all-rank real/complex structural reduction,
@@ -39,7 +40,10 @@ concrete compact classical branches, constructed tensor modules and forms,
 the complete two-factor quotient exclusion, complete special-unitary exclusion
 by tensor interchange, actual complexifications, exceptional dimension bounds,
 classical arithmetic and Weyl products, finite exceptional
-selection, and the E6 incidence checks. See formal/README.md
+selection, the E6 incidence checks, and constructed components of the fixed
+candidate: an actual exceptional root pairing and generated matrix algebra,
+the Standard Model central quotient and charge lattice, concrete matter
+modules and their local anomalies. See formal/README.md
 for the precise geometric abelian-rank convention and the remaining
 classification and census-identification bridges to global uniqueness.
 -/

@@ -299,6 +299,30 @@ The [E6 checker](../CubicAnomaly/E6/Checker.lean) receives root coordinates, ref
 
 Conventional root-system names use standard ADE classification. The theorem statements and expected counts are authored in Lean, not copied from JSON summary fields. The data-freshness check verifies the translation from JSON to Lean; Lean separately validates those witnesses. The [exported theorem audit](../formal/AxiomAudit.lean) includes `CubicAnomaly.E6.finite_certificate_valid` and the separate intrinsic-ordering theorems, together with the new structural and classical results. Pair ranks are calculated from the integer root coordinates. The paper proves that rank plus root count is the dimension of the corresponding semisimple Lie algebra, and that the structural selection is equivalent to the chiral-dimension characterization.
 
+### Constructed fixed candidate
+
+The [fixed package](../CubicAnomaly/Fixed.lean) adds actual objects to the
+finite and structural results. It constructs the exceptional `E8` root
+pairing and simple base and uses Mathlib's Geck construction to obtain a
+finite-dimensional matrix Lie algebra with trivial radical and an irreducible
+248-dimensional defining module. The finite root certificate is inherited
+by these structural theorems and remains visible in their named receipts.
+
+Separately, deductive proofs construct the actual Standard Model group
+quotient and charge lattice, derive its family Lie actions, and split the
+81-dimensional matter module into three families and a self-dual remainder.
+Actual group representations on the same matter spaces prove triviality of
+the covering-kernel action and the expected central-circle powers.
+An odd trace proves non-self-duality. The complete local cubic cancels on
+the actual Standard Model algebra. After coupling the actual defining
+family `sl(3,ℂ)` action, the full cubic radical is exactly the Standard Model
+ideal and the family cubic is nonzero.
+
+The [fixed-candidate scope](../formal/FixedCandidate.md) distinguishes this
+constructed downstream matter from the still-required compact exceptional
+inclusion and `27 ⊠ 3` complement identification. The latter must derive the
+family multiplicity from the exceptional structure.
+
 ### Trust model
 
 The finite computations use `native_decide`. The axiom audit checks the original
@@ -312,8 +336,8 @@ Lean.trustCompiler
 ```
 
 The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem.
-The manifest contains **841 public theorem exports**: **812 deductive** and
-**29 finite/native-derived**. The deductive structural, root-lattice and
+The manifest contains **995 public theorem exports**: **935 deductive**,
+**29 original finite/native-derived**, and **31 certificate-derived structural**. The deductive structural, root-lattice and
 classical theorems use only a
 subset of `propext`, `Classical.choice`, and `Quot.sound`; compiler-evaluation
 axioms are rejected for that class. Every receipt is matched to its fully
@@ -323,12 +347,22 @@ The check also rejects unfinished proofs, project axioms, unsafe declarations
 and partial definitions. Compiler binaries and optional build caches come
 from their standard upstream distributions.
 
+The new certificate-derived exceptional structural exports have a third
+named class with **exactly** `propext`, `Classical.choice`, `Quot.sound`,
+`Lean.ofReduceBool`, and `Lean.trustCompiler`. This records their dependence
+on the finite root certificate; it does not broaden either the original
+finite profile or the deductive profile. Receipt self-tests reject every
+missing dependency in this third class and any added `sorryAx` or project
+classification axiom. The Standard Model group, charge, matter, chirality
+and anomaly theorems are deductive.
+
 ### Manuscript proofs
 
 The paper supplies the homogeneous realization of the algebraic pair, the
 remaining classification/completeness and representation-theoretic bridges,
 identification of the classified actual weights and ideals with the finite
-census, global group integrations, branching and chiral index. The Lean
+census, compact exceptional group integrations, exceptional branching and
+its chiral index. The Lean
 modules discharge the real and complex structural reduction, the actual
 dual-pair construction, the geometric rank-deficient-or-intrinsic-toral-data
 dichotomy, same-Cartan root-cubic detection and reconstruction of the full
@@ -339,7 +373,9 @@ bridges, dimension and quadratic restriction identities, derived exceptional
 search bounds, root-lattice saturation, classical order-three exclusion and
 unbounded classical arithmetic described above.
 They do not replace the remaining classification argument. The chiral-index
-coefficient is a statement about the classified representation.
+coefficient for the exceptional representation still requires its
+identification with the constructed matter module; the latter already has
+a proved equivariant three-family splitting and self-dual remainder.
 
 ## Local notebook
 

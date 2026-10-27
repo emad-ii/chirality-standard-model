@@ -26,6 +26,38 @@ bridges are stated below.
 The toolchain remains Lean 4.28.0 with the exact Mathlib revision in
 `lake-manifest.json`. No project axioms or unfinished proofs are used.
 
+## The constructive fixed target
+
+The new [fixed-candidate scope](FixedCandidate.md) describes a second,
+constructive route that does not require excluding every other Lie pair.
+The [fixed package](../CubicAnomaly/Fixed.lean) supplies actual exceptional
+root objects and actual Standard Model groups and modules:
+
+- The 240 exceptional coordinate roots define an irreducible complex
+  `RootPairing` with an explicit simple base and `E8` Cartan matrix. The
+  resulting Geck matrix Lie algebra is finite-dimensional with trivial
+  solvable radical; its defining module is irreducible of dimension 248.
+- The actual unitary block group is the quotient of
+  `SU(3) × SU(2) × U(1)` by an explicitly proved central cyclic kernel of
+  order six. Its charge congruence and representation descent criterion
+  are proved algebraically. Actual group representations on the same
+  matter spaces have the derived circle powers and a trivial kernel
+  action; differentiation compatibility with the Lie actions remains open.
+- The five family charge blocks are derived from alternating tensors and
+  the dual defining module. The actual 81-dimensional module splits
+  equivariantly as three families and a self-dual 36-dimensional remainder.
+  A nonzero fifth trace proves the family and full module are not self-dual.
+- The actual Standard Model action on the 27-dimensional module has zero
+  linear trace and full symmetric cubic. Coupling the actual defining
+  family `sl(3,ℂ)` action gives an 81-dimensional representation whose full
+  cubic radical is exactly the Standard Model ideal.
+
+The fixed exceptional inclusion and complement identification remain open.
+In particular, dimension 248 here concerns the **defining module**, not yet
+the generated Lie algebra itself, and the three-copy matter construction
+has not yet been derived from the exceptional inclusion. These are precise
+construction gaps, separate from the universal classification gaps below.
+
 ## The structural reduction
 
 The original real structural entry point is
@@ -1001,7 +1033,7 @@ current project:
 | Exceptional rank-deficient branch | Formalization and completeness of the Weyl-dimension/Dynkin-index sieve currently implemented in Python, including the highest-weight dimension interpretation and normalized index integrality; actual dimension/quadratic identities, the four search bounds, and the rank-two even-dimensional obstruction are proved |
 | Classical representation branch | The remaining orthogonal/symplectic constituents, support classification, and dimension/cubic-index interpretations; defining-module irreducibility and real/complexified isotropy simplicity are proved in all three concrete branches; the two-factor orthogonal/symplectic exclusion is complete, and the special-unitary branch is fully excluded in every dimension by tensor interchange |
 | Census-to-Lie interpretation | Identify authored finite roots, coroot spans, component labels and Weyl action with actual classified Lie data, and establish semantic completeness of the executable root/rank/graph/orbit algorithms; intrinsic coordinate filters, full-span and connectivity criteria, root counts, the actual root-cubic anomaly and full-radical reconstruction from internally null simple ideals are proved |
-| Existence and identification | Construction of the compact `E8 ⊃ E6 + A2` inclusion and identification of its complex half with `27 ⊠ 3` |
+| Existence and identification | An actual `E8` root pairing, explicit simple base and Geck matrix Lie algebra are now constructed; identifying the adjoint module, constructing the compact `E8 ⊃ E6 + A2` inclusion, and identifying its complex half with `27 ⊠ 3` remain open |
 
 The common-Cartan construction, closed contained-root subsystem, three-grade
 support, integral basis, actual root-lattice character, full-rank and
@@ -1028,8 +1060,8 @@ python3 formal/scripts/check_formal_hygiene.py
 python3 formal/scripts/check_formal_hygiene.py --self-test
 ```
 
-The audit covers **841 public theorem exports**: **812 deductive** and
-**29 finite/native-derived**. The hygiene checker keeps an explicit export
+The audit covers **995 public theorem exports**: **935 deductive**,
+**29 original finite/native-derived**, and **31 certificate-derived structural**. The hygiene checker keeps an explicit export
 manifest and matches every
 `#print axioms` receipt to its fully qualified theorem name. It rejects
 missing, duplicate, unknown, and mislabeled receipts as well as unfinished
@@ -1059,3 +1091,21 @@ A deductive theorem that acquires `Lean.trustCompiler`, `Lean.ofReduceBool`,
 are also accepted in this class. The stricter native receipt is preserved
 for the existing finite surface rather than applying one enlarged whitelist
 to all theorems.
+
+The certificate-derived exceptional root and Geck theorems have a third,
+separately named trust class with the **exact** receipt
+
+```text
+propext
+Classical.choice
+Quot.sound
+Lean.ofReduceBool
+Lean.trustCompiler
+```
+
+This class records ordinary structural deductions that inherit the finite
+root certificate, including the coordinate certificate's own use of choice.
+It does not change either of the previous trust profiles. Adversarial receipt
+tests remove each required dependency and inject an unfinished-proof or
+project-classification axiom; each mutation must be rejected. The group,
+charge, matter, chirality and anomaly proofs remain in the deductive class.

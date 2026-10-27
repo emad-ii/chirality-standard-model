@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from collections import Counter
 from pathlib import Path
 import re
 import subprocess
@@ -23,6 +24,7 @@ THEOREM_KEYWORD = re.compile(r"\b(?:theorem|lemma)\b")
 SUPPORTED_THEOREM_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_'.]*")
 NATIVE_AXIOMS = {"propext", "Lean.ofReduceBool", "Lean.trustCompiler", "Quot.sound"}
 KERNEL_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
+CERTIFICATE_DERIVED_AXIOMS = NATIVE_AXIOMS | {"Classical.choice"}
 AXIOM_AUDIT = REPO_ROOT / "formal" / "AxiomAudit.lean"
 NATIVE_THEOREMS = frozenset(
     {
@@ -871,10 +873,169 @@ KERNEL_THEOREMS = frozenset(
         'CubicAnomaly.Classification.WeightCubic.trace_power_eq_sum_weights',
         'CubicAnomaly.Classification.WeightCubic.trace_prod_eq_sum_weights',
         'CubicAnomaly.Classification.WeightCubic.trace_prod_toEnd_genWeightSpace',
+        'CubicAnomaly.Fixed.E8RootPairing.cartan_coordinates_eq',
+        'CubicAnomaly.Fixed.E8RootPairing.cartan_det_ne_zero',
+        'CubicAnomaly.Fixed.E8RootPairing.cartan_mul_inverse',
+        'CubicAnomaly.Fixed.E8RootPairing.form_apply',
+        'CubicAnomaly.Fixed.E8RootPairing.form_nondegenerate',
+        'CubicAnomaly.Fixed.E8RootPairing.form_rootVectors',
+        'CubicAnomaly.Fixed.E8RootPairing.form_symmetric',
+        'CubicAnomaly.Fixed.E8RootPairing.innerZ_smul_left',
+        'CubicAnomaly.Fixed.E8RootPairing.innerZ_sub_left',
+        'CubicAnomaly.Fixed.E8RootPairing.reflectZ_apply',
+        'CubicAnomaly.Fixed.E8RootPairing.reflectZ_eq',
+        'CubicAnomaly.Fixed.E8RootPairing.reflectZ_involutive',
+        'CubicAnomaly.Fixed.E8RootPairing.rootVector_injective',
+        'CubicAnomaly.Fixed.E8RootPairing.unsigned_cartan_det_ne_zero',
+        'CubicAnomaly.Fixed.E8RootPairing.unsigned_cartan_mul_inverse',
+        'CubicAnomaly.Fixed.FamilyAnomaly.family_cubic_witness',
+        'CubicAnomaly.Fixed.FamilyAnomaly.family_representation_radical_eq_bot',
+        'CubicAnomaly.Fixed.FamilyAnomaly.family_representation_trace',
+        'CubicAnomaly.Fixed.FamilyAnomaly.family_tensor_27_cubic_witness',
+        'CubicAnomaly.Fixed.FamilyAnomaly.family_tensor_full_cubic',
+        'CubicAnomaly.Fixed.FamilyAnomaly.family_tensor_pure_cubic',
+        'CubicAnomaly.Fixed.FamilyAnomaly.family_tensor_radical_eq_left_ideal',
+        'CubicAnomaly.Fixed.FamilyAnomaly.three_by_three_cubic_detects_matrix',
+        'CubicAnomaly.Fixed.MatterAlternating.alternating_action_val',
+        'CubicAnomaly.Fixed.MatterAlternating.alternating_coordinates_diagonal',
+        'CubicAnomaly.Fixed.MatterAlternating.alternating_diagonal_action',
+        'CubicAnomaly.Fixed.MatterAlternating.alternating_finrank',
+        'CubicAnomaly.Fixed.MatterAnomaly.family_standard_model_cube_trace',
+        'CubicAnomaly.Fixed.MatterAnomaly.family_standard_model_linear_trace',
+        'CubicAnomaly.Fixed.MatterAnomaly.matter27_matrix_operator',
+        'CubicAnomaly.Fixed.MatterAnomaly.matter27_matrix_trace',
+        'CubicAnomaly.Fixed.MatterAnomaly.matter27_standard_model_cube_trace',
+        'CubicAnomaly.Fixed.MatterAnomaly.matter27_standard_model_full_cubic',
+        'CubicAnomaly.Fixed.MatterAnomaly.matter27_standard_model_linear_trace',
+        'CubicAnomaly.Fixed.MatterAnomaly.weak_traceless_cube_trace',
+        'CubicAnomaly.Fixed.MatterBlocks.alternating_block_action',
+        'CubicAnomaly.Fixed.MatterBranching.standard_model_generator_trace',
+        'CubicAnomaly.Fixed.MatterBranching.ten_block_action',
+        'CubicAnomaly.Fixed.MatterBranching.ten_finrank',
+        'CubicAnomaly.Fixed.MatterBranching.ten_hypercharge_action',
+        'CubicAnomaly.Fixed.MatterBranching.ten_standard_model_action',
+        'CubicAnomaly.Fixed.MatterChirality.extra_copies_finrank',
+        'CubicAnomaly.Fixed.MatterChirality.matter81_sm_three_families_self_dual_remainder',
+        'CubicAnomaly.Fixed.MatterChirality.matter81_three_families_self_dual_remainder',
+        'CubicAnomaly.Fixed.MatterChirality.three_families_finrank',
+        'CubicAnomaly.Fixed.MatterChirality.vectorlike_self_dual_apply',
+        'CubicAnomaly.Fixed.MatterDual.anti_five_block_action',
+        'CubicAnomaly.Fixed.MatterDual.anti_five_hypercharge_action',
+        'CubicAnomaly.Fixed.MatterDual.anti_five_sm_action',
+        'CubicAnomaly.Fixed.MatterDual.anti_five_standard_model_action',
+        'CubicAnomaly.Fixed.MatterDual.dual_coordinates_apply',
+        'CubicAnomaly.Fixed.MatterDual.dual_matrix_action',
+        'CubicAnomaly.Fixed.MatterDual.weak_dual_action',
+        'CubicAnomaly.Fixed.MatterDual.weak_dual_traceless_action',
+        'CubicAnomaly.Fixed.MatterFamilyAnomaly.coupled_matter81_dimension',
+        'CubicAnomaly.Fixed.MatterFamilyAnomaly.coupled_matter81_family_cubic_witness',
+        'CubicAnomaly.Fixed.MatterFamilyAnomaly.coupled_matter81_full_cubic',
+        'CubicAnomaly.Fixed.MatterFamilyAnomaly.coupled_matter81_gauge_action',
+        'CubicAnomaly.Fixed.MatterFamilyAnomaly.coupled_matter81_gauge_insertion_zero',
+        'CubicAnomaly.Fixed.MatterFamilyAnomaly.coupled_matter81_linear_trace',
+        'CubicAnomaly.Fixed.MatterFamilyAnomaly.coupled_matter81_radical_eq_gauge_ideal',
+        'CubicAnomaly.Fixed.MatterFamilyAnomaly.coupled_matter81_radical_ne_bot',
+        'CubicAnomaly.Fixed.MatterFamilyAnomaly.gauge_hypercharge_ne_zero',
+        'CubicAnomaly.Fixed.MatterGroupAction.alternating_unitary_group_action_val',
+        'CubicAnomaly.Fixed.MatterGroupAction.antifive_circle_group_action',
+        'CubicAnomaly.Fixed.MatterGroupAction.antifive_gauge_group_action',
+        'CubicAnomaly.Fixed.MatterGroupAction.five_circle_group_action',
+        'CubicAnomaly.Fixed.MatterGroupAction.five_gauge_group_action',
+        'CubicAnomaly.Fixed.MatterGroupAction.matter27_gauge_group_action',
+        'CubicAnomaly.Fixed.MatterGroupAction.matter81_cover_group_descent',
+        'CubicAnomaly.Fixed.MatterGroupAction.matter81_cover_kernel_trivial',
+        'CubicAnomaly.Fixed.MatterGroupAction.matter81_gauge_group_action',
+        'CubicAnomaly.Fixed.MatterGroupAction.ten_circle_group_action',
+        'CubicAnomaly.Fixed.MatterGroupAction.ten_gauge_group_action',
+        'CubicAnomaly.Fixed.MatterLieAlgebra.standard_model_element_parameters',
+        'CubicAnomaly.Fixed.MatterLieAlgebra.standard_model_generator_element_val',
+        'CubicAnomaly.Fixed.MatterLieAlgebra.standard_model_matter27_action',
+        'CubicAnomaly.Fixed.MatterNonSelfDual.family_hypercharge_fifth_trace',
+        'CubicAnomaly.Fixed.MatterNonSelfDual.family_not_self_dual',
+        'CubicAnomaly.Fixed.MatterNonSelfDual.matter27_hypercharge_fifth_trace',
+        'CubicAnomaly.Fixed.MatterNonSelfDual.matter81_hypercharge_fifth_trace',
+        'CubicAnomaly.Fixed.MatterNonSelfDual.matter81_not_self_dual',
+        'CubicAnomaly.Fixed.MatterSmall.alternating_three_action',
+        'CubicAnomaly.Fixed.MatterSmall.alternating_three_traceless_action',
+        'CubicAnomaly.Fixed.MatterSmall.alternating_two_action',
+        'CubicAnomaly.Fixed.MatterSmall.alternating_two_traceless_action',
+        'CubicAnomaly.Fixed.MatterSpectrum.copies_lie_apply',
+        'CubicAnomaly.Fixed.MatterSpectrum.family_finrank',
+        'CubicAnomaly.Fixed.MatterSpectrum.family_standard_model_action',
+        'CubicAnomaly.Fixed.MatterSpectrum.five_standard_model_action',
+        'CubicAnomaly.Fixed.MatterSpectrum.matter27_finrank',
+        'CubicAnomaly.Fixed.MatterSpectrum.matter81_family_action',
+        'CubicAnomaly.Fixed.MatterSpectrum.matter81_finrank',
+        'CubicAnomaly.Fixed.MatterSpectrum.matter81_full_hypercharge_action',
+        'CubicAnomaly.Fixed.MatterSpectrum.product_lie',
+        'CubicAnomaly.Fixed.MatterSpectrum.two_singlets_action_zero',
+        'CubicAnomaly.Fixed.MatterSpectrum.two_singlets_finrank',
+        'CubicAnomaly.Fixed.MatterSpectrum.vectorlike_hypercharge_action',
+        'CubicAnomaly.Fixed.MatterSpectrum.vectorlike_pair_finrank',
+        'CubicAnomaly.Fixed.StandardModelGroup.cover_blocks_determinant',
+        'CubicAnomaly.Fixed.StandardModelGroup.phase_power_surjective',
+        'CubicAnomaly.Fixed.StandardModelGroup.phase_scale_determinant',
+        'CubicAnomaly.Fixed.StandardModelGroup.scalar_block_determinant',
+        'CubicAnomaly.Fixed.StandardModelGroup.sixth_root_character_trivial_iff',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_block_embedding_injective',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_central_circle_injective',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_charge_lattice',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_circle_blocks',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_cover_kernel',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_cover_surjective',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_hom_descends_iff',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_kernel_card',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_kernel_central',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_kernel_cyclic',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_kernel_root_injective',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_kernel_root_surjective',
+        'CubicAnomaly.Fixed.StandardModelGroup.standard_model_representation_descent_charge_iff',
+        'CubicAnomaly.Fixed.TensorAnomaly.mem_tensor_representation_radical_iff',
+        'CubicAnomaly.Fixed.TensorAnomaly.tensor_27_by_3_family_cubic',
+        'CubicAnomaly.Fixed.TensorAnomaly.tensor_action_trace',
+        'CubicAnomaly.Fixed.TensorAnomaly.tensor_action_trace_cubic',
+        'CubicAnomaly.Fixed.TensorAnomaly.tensor_radical_eq_first_ideal',
+        'CubicAnomaly.Fixed.TensorAnomaly.tensor_representation_cubic',
     }
 )
 
-EXPORTED_THEOREMS = NATIVE_THEOREMS | KERNEL_THEOREMS
+CERTIFICATE_DERIVED_THEOREMS = frozenset(
+    {
+        'CubicAnomaly.Fixed.E8Geck.base_card',
+        'CubicAnomaly.Fixed.E8Geck.cartanSubalgebra_abelian',
+        'CubicAnomaly.Fixed.E8Geck.cartan_generator_mem',
+        'CubicAnomaly.Fixed.E8Geck.defining_space_finrank',
+        'CubicAnomaly.Fixed.E8Geck.defining_space_irreducible',
+        'CubicAnomaly.Fixed.E8Geck.lieAlgebra_finiteDimensional',
+        'CubicAnomaly.Fixed.E8Geck.lieAlgebra_hasTrivialRadical',
+        'CubicAnomaly.Fixed.E8Geck.lowering_generator_mem',
+        'CubicAnomaly.Fixed.E8Geck.raising_generator_mem',
+        'CubicAnomaly.Fixed.E8Geck.root_card',
+        'CubicAnomaly.Fixed.E8RootPairing.coordinateRoots_card',
+        'CubicAnomaly.Fixed.E8RootPairing.coordinateRoots_norm_two',
+        'CubicAnomaly.Fixed.E8RootPairing.coordinateRoots_reflection_closed',
+        'CubicAnomaly.Fixed.E8RootPairing.coordinateRoots_sign',
+        'CubicAnomaly.Fixed.E8RootPairing.coordinate_certificate',
+        'CubicAnomaly.Fixed.E8RootPairing.form_simpleRoots',
+        'CubicAnomaly.Fixed.E8RootPairing.invariant_subspace_eq_top',
+        'CubicAnomaly.Fixed.E8RootPairing.rootPairing_coroot',
+        'CubicAnomaly.Fixed.E8RootPairing.rootPairing_pairing',
+        'CubicAnomaly.Fixed.E8RootPairing.rootPairing_root',
+        'CubicAnomaly.Fixed.E8RootPairing.rootVector_simpleRoot',
+        'CubicAnomaly.Fixed.E8RootPairing.root_mem_or_neg_mem_simpleCone',
+        'CubicAnomaly.Fixed.E8RootPairing.simpleBase_cartanMatrix',
+        'CubicAnomaly.Fixed.E8RootPairing.simpleBase_unsigned_cartan_det_ne_zero',
+        'CubicAnomaly.Fixed.E8RootPairing.simpleIndex_bijective',
+        'CubicAnomaly.Fixed.E8RootPairing.simpleRoot_injective',
+        'CubicAnomaly.Fixed.E8RootPairing.simpleRoots_mem',
+        'CubicAnomaly.Fixed.E8RootPairing.simpleSupport_coe',
+        'CubicAnomaly.Fixed.E8RootPairing.simpleSupport_image',
+        'CubicAnomaly.Fixed.E8RootPairing.simpleSupport_independent',
+        'CubicAnomaly.Fixed.E8RootPairing.span_rootVector_eq_top',
+    }
+)
+
+EXPORTED_THEOREMS = NATIVE_THEOREMS | KERNEL_THEOREMS | CERTIFICATE_DERIVED_THEOREMS
 EXPORTED_THEOREM_BASENAMES = frozenset(
     qualified.rsplit(".", 1)[-1] for qualified in EXPORTED_THEOREMS
 )
@@ -941,7 +1102,7 @@ def strip_comments_and_strings(source: str) -> str:
 
 
 def duplicates(values: list[str]) -> list[str]:
-    return sorted(name for name in set(values) if values.count(name) > 1)
+    return sorted(name for name, count in Counter(values).items() if count > 1)
 
 
 def source_theorem_names(cleaned_source: str) -> list[str]:
@@ -1071,8 +1232,10 @@ def manifest_self_tests() -> int:
 def axiom_receipt_failures(output: str) -> list[str]:
     """Match every receipt to its named theorem and its declared trust class."""
     failures: list[str] = []
-    if NATIVE_THEOREMS & KERNEL_THEOREMS:
-        failures.append("A theorem cannot belong to both trust classes")
+    if (NATIVE_THEOREMS & KERNEL_THEOREMS
+            or NATIVE_THEOREMS & CERTIFICATE_DERIVED_THEOREMS
+            or KERNEL_THEOREMS & CERTIFICATE_DERIVED_THEOREMS):
+        failures.append("A theorem cannot belong to multiple trust classes")
     receipts = list(AXIOM_RECEIPT.finditer(output))
     targets = [match.group("target") for match in receipts]
     repeated = duplicates(targets)
@@ -1098,6 +1261,12 @@ def axiom_receipt_failures(output: str) -> list[str]:
                 f"missing={sorted(NATIVE_AXIOMS - found)}, "
                 f"unexpected={sorted(found - NATIVE_AXIOMS)}"
             )
+        elif target in CERTIFICATE_DERIVED_THEOREMS and found != CERTIFICATE_DERIVED_AXIOMS:
+            failures.append(
+                f"{target}: certificate-derived receipt differs from the exact set: "
+                f"missing={sorted(CERTIFICATE_DERIVED_AXIOMS - found)}, "
+                f"unexpected={sorted(found - CERTIFICATE_DERIVED_AXIOMS)}"
+            )
         elif target in KERNEL_THEOREMS and not found <= KERNEL_AXIOMS:
             failures.append(
                 f"{target}: deductive proof has nonfoundational dependencies: "
@@ -1110,6 +1279,7 @@ def receipt_self_tests() -> int:
     """Reject missing, mislabeled, duplicate, and over-trusting proof receipts."""
     native = sorted(NATIVE_THEOREMS)
     kernel = sorted(KERNEL_THEOREMS)
+    derived = sorted(CERTIFICATE_DERIVED_THEOREMS)
 
     def receipt(target: str, axioms: set[str]) -> str:
         if not axioms:
@@ -1117,7 +1287,10 @@ def receipt_self_tests() -> int:
         return f"'{target}' depends on axioms: [{', '.join(sorted(axioms))}]"
 
     lines = {
-        target: receipt(target, NATIVE_AXIOMS if target in NATIVE_THEOREMS else KERNEL_AXIOMS)
+        target: receipt(target,
+                        NATIVE_AXIOMS if target in NATIVE_THEOREMS else
+                        CERTIFICATE_DERIVED_AXIOMS if target in CERTIFICATE_DERIVED_THEOREMS else
+                        KERNEL_AXIOMS)
         for target in sorted(EXPORTED_THEOREMS)
     }
 
@@ -1140,6 +1313,17 @@ def receipt_self_tests() -> int:
         changed = dict(lines)
         changed[native[0]] = receipt(native[0], NATIVE_AXIOMS - {"Lean.trustCompiler"})
         check("missing native compiler dependency", list(changed.values()), True)
+        changed[native[0]] = receipt(native[0], CERTIFICATE_DERIVED_AXIOMS)
+        check("choice dependency in original native profile", list(changed.values()), True)
+    for target in derived:
+        for missing in CERTIFICATE_DERIVED_AXIOMS:
+            changed = dict(lines)
+            changed[target] = receipt(target, CERTIFICATE_DERIVED_AXIOMS - {missing})
+            check(f"missing {missing} in certificate-derived {target}", list(changed.values()), True)
+        for unexpected in ("sorryAx", "Project.unprovedClassification"):
+            changed = dict(lines)
+            changed[target] = receipt(target, CERTIFICATE_DERIVED_AXIOMS | {unexpected})
+            check(f"unexpected {unexpected} in certificate-derived {target}", list(changed.values()), True)
     if kernel:
         for target in kernel:
             changed = dict(lines)
@@ -1149,7 +1333,7 @@ def receipt_self_tests() -> int:
             check(f"compiler dependency in {target}", list(changed.values()), True)
             changed[target] = receipt(target, KERNEL_AXIOMS | {"sorryAx"})
             check(f"unfinished proof in {target}", list(changed.values()), True)
-    print("PASS  named axiom receipts and separate native/deductive trust classes")
+    print("PASS  named axiom receipts and separate native/deductive/certificate-derived trust classes")
     return 0
 
 
@@ -1203,6 +1387,8 @@ def main() -> int:
           + ", ".join(sorted(NATIVE_AXIOMS)))
     print(f"PASS  {len(KERNEL_THEOREMS)} deductive receipts use only: "
           + ", ".join(sorted(KERNEL_AXIOMS)))
+    print(f"PASS  {len(CERTIFICATE_DERIVED_THEOREMS)} exact certificate-derived receipts: "
+          + ", ".join(sorted(CERTIFICATE_DERIVED_AXIOMS)))
     return 0
 
 

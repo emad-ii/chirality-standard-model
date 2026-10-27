@@ -56,6 +56,30 @@ The conditions also yield a compact homogeneous realization $G/H$. Homogeneity i
 
 The [paper](paper/paper.pdf) gives the argument in full. The [interactive website](https://emad-ii.github.io/chirality-standard-model/) opens it at four levels, from the experiments and the language of symmetry to the equations and certificates. Its animated exhibits, root geometry and films all live in this repository.
 
+## Constructing the fixed candidate in Lean
+
+The constructive target can be developed before the universal exclusions are
+complete. The new [fixed-construction package](CubicAnomaly/Fixed.lean) proves
+the following statements about actual groups, vector spaces and actions:
+
+| Constructed object | Proved consequence |
+| :--- | :--- |
+| The 240 exceptional coordinate roots | An actual irreducible complex root pairing with an explicit `E8` simple base, feeding a finite-dimensional Geck matrix Lie algebra with trivial radical and an irreducible 248-dimensional defining module |
+| The unitary determinant-one block group | A surjective map from `SU(3) × SU(2) × U(1)`, an actual central cyclic kernel of order six, the quotient isomorphism, and the integral charge congruence |
+| Actual group actions on the same matter spaces | The covering kernel acts trivially, and the literal central-circle actions have the expected integer powers |
+| Alternating tensors and the dual defining module | The five Standard Model family actions and charges, derived by coordinate equivalences |
+| The constructed 81-dimensional matter module | An equivariant splitting into three 15-dimensional families and a self-dual 36-dimensional remainder; the family and full module are not self-dual |
+| The actual Standard Model Lie action | Vanishing linear trace and full local symmetric cubic on the 27-dimensional module |
+| Coupling to the defining family `sl(3,ℂ)` action | The full cubic radical is exactly the Standard Model ideal; the family cubic remains nonzero |
+
+The remaining central task is to **identify these constructions through the
+actual compact `E8 ⊃ E6 + A2` inclusion and its `27 ⊠ 3` complement**. In
+particular, the 248-dimensional defining module has not yet been identified
+with the generated Lie algebra's adjoint module. Three copies are currently
+an input of the downstream matter construction; their exceptional origin is
+part of this remaining bridge. The [fixed-candidate scope](formal/FixedCandidate.md)
+gives the exact statements, trust boundaries and outstanding identifications.
+
 ## Run it yourself
 
 Open the [master notebook in Colab](https://colab.research.google.com/github/emad-ii/chirality-standard-model/blob/main/Cubic_Anomaly_Master_Verification.ipynb) and choose **Runtime → Run all**. Python verification uses only the standard library. Enable **Run Lean** in the notebook for the pinned Lean 4 / Mathlib checks.
@@ -70,9 +94,14 @@ The notebook records the source revision separately from the mathematical certif
 
 | Method | What it establishes |
 | :--- | :--- |
-| **Manuscript proofs** | Global classification/completeness bridges, identification of the classified Lie pairs with the finite data, global groups and branching |
+| **Manuscript proofs** | Global classification/completeness bridges, identification of the classified Lie pairs with the finite data, compact exceptional group integrations and exceptional branching |
 | **Exact Python computation** | Independent root realizations, complete finite censuses, subgroup kernels and chiral dimensions |
 | **Lean 4 / Mathlib** | All-rank real and complex structure and the geometric rank-deficient-or-intrinsic-toral-data reduction; constructed root-lattice coordinates, full-span and connected-support filters, exact root counts, and the actual root-cubic anomaly on the same Cartan; full radical reconstructed from actual simple ideals; defining-module irreducibility for all three concrete compact classical algebras; actual real and complexified isotropy simplicity in all three concrete compact classical branches, with full mixed cubic vanishing under the nonzero-radical hypothesis; constructed tensor decompositions and invariant factor forms, and complete exclusion of the two-factor orthogonal/symplectic case; complete special-unitary exclusion in every dimension by tensor interchange, proving its full cubic radical is zero; dimension/quadratic restriction identities and derived exceptional search bounds; classical order-three exclusion and Weyl-product inequalities; exceptional finite uniqueness; $E_6$ incidence and intrinsic pair ordering |
+
+The fixed package additionally proves the actual exceptional root pairing and
+Geck matrix construction, the Standard Model group quotient and charge lattice,
+derived matter actions, non-self-duality and three-family splitting, and the
+full local anomaly and coupled radical statements listed above.
 
 The [formal proof scope](formal/README.md) states the structural theorem's precise
 inputs, the geometric abelian-rank convention, and the remaining steps toward
