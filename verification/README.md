@@ -194,7 +194,28 @@ structure and then excluding its reflection involution.
 [The actual alternating form](../CubicAnomaly/Classification/SymplecticForm.lean)
 proves self-duality of that complexified defining module. These endpoints
 use the original compact-pair hypotheses for the three concrete classical
-constructions; isotropy simplicity and highest-weight analysis remain open.
+constructions.
+
+[Special-unitary isotropy simplicity](../CubicAnomaly/Classification/UnitarySimplicity.lean)
+is now proved over both the reals and the actual complexification, in every
+dimension. The assumed nonzero full cubic radical consequently equals the
+whole isotropy, giving vanishing of every mixed cubic entry.
+[The orthogonal and symplectic factor reduction](../CubicAnomaly/Classification/ClassicalIsotropyFactors.lean)
+excludes three disjoint simple isotropy factors and leaves either simple
+isotropy or exactly two atomic ideals whose sum is the whole algebra.
+These arguments use actual nonzero products of ideal actions, proved tensor
+irreducibility and Killing-form self-duality, and actual equivariant
+complexification lifts. No tensor-factorization witness is an input.
+
+[Evaluation](../CubicAnomaly/Classification/TensorEvaluation.lean) separately
+constructs the two-factor defining tensor decomposition, with actual
+irreducible faithful factor actions. [Coefficient forms](../CubicAnomaly/Classification/TensorFactorDuality.lean)
+and [Schur scalarity](../CubicAnomaly/Classification/TensorFormFactorization.lean)
+construct invariant nondegenerate factor forms and prove the original form
+factors. The [actual adjoint trace pairings](../CubicAnomaly/Classification/AdjointTraceForms.lean)
+give self-duality of the self-adjoint and traceless self-adjoint operator
+modules. The final two-factor exclusion and highest-weight analysis remain
+open.
 
 The actual complexifications are also constructed:
 [special-unitary to Mathlib `sl`](../CubicAnomaly/Classification/UnitaryComplexification.lean),
@@ -264,7 +285,7 @@ Lean.trustCompiler
 ```
 
 The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem.
-The manifest contains **501 public theorem exports**: **472 deductive** and
+The manifest contains **666 public theorem exports**: **637 deductive** and
 **29 finite/native-derived**. The deductive structural, root-lattice and
 classical theorems use only a
 subset of `propext`, `Classical.choice`, and `Quot.sound`; compiler-evaluation
