@@ -214,8 +214,23 @@ and [Schur scalarity](../CubicAnomaly/Classification/TensorFormFactorization.lea
 construct invariant nondegenerate factor forms and prove the original form
 factors. The [actual adjoint trace pairings](../CubicAnomaly/Classification/AdjointTraceForms.lean)
 give self-duality of the self-adjoint and traceless self-adjoint operator
-modules. The final two-factor exclusion and highest-weight analysis remain
-open.
+modules. [The complete two-factor exclusion](../CubicAnomaly/Classification/CompactTensorExclusion.lean)
+now uses actual quotient injection, fixed-vector saturation, and density to
+descend the quotient's nonzero skew sign operator to the other factor. The
+actual trace-zero symmetric-pair derivation theorem forces that operator to
+vanish. If both traceless parts vanish, scalar density and tensor parity
+exhaust the ambient algebra by isotropy, contradicting properness. This
+argument needs neither a low-dimensional classification nor a promotion of
+real maximality to complex maximality.
+
+[The final orthogonal and symplectic endpoints](../CubicAnomaly/Classification/ClassicalSimplicity.lean)
+therefore prove real and actual complexified isotropy simplicity, in every
+dimension, from the original hypotheses. The nonzero full cubic radical is
+the entire isotropy, so every mixed cubic trace vanishes. Defining-module
+irreducibility and isotropy simplicity are now complete for all three
+concrete compact classical constructions. Highest-weight constituents,
+support classification, and their dimension/cubic-index interpretations
+remain open.
 
 The actual complexifications are also constructed:
 [special-unitary to Mathlib `sl`](../CubicAnomaly/Classification/UnitaryComplexification.lean),
@@ -285,7 +300,7 @@ Lean.trustCompiler
 ```
 
 The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem.
-The manifest contains **666 public theorem exports**: **637 deductive** and
+The manifest contains **787 public theorem exports**: **758 deductive** and
 **29 finite/native-derived**. The deductive structural, root-lattice and
 classical theorems use only a
 subset of `propext`, `Classical.choice`, and `Quot.sound`; compiler-evaluation
@@ -306,7 +321,8 @@ modules discharge the real and complex structural reduction, the actual
 dual-pair construction, the geometric rank-deficient-or-intrinsic-toral-data
 dichotomy, same-Cartan root-cubic detection and reconstruction of the full
 radical from actual simple ideals, the defining-module irreducibility step
-for all three concrete compact classical constructions, actual complexification
+and real/complexified isotropy simplicity for all three concrete compact
+classical constructions, complete two-factor exclusion, actual complexification
 bridges, dimension and quadratic restriction identities, derived exceptional
 search bounds, root-lattice saturation, classical order-three exclusion and
 unbounded classical arithmetic described above.
