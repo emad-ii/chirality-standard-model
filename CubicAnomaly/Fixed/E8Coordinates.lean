@@ -1,4 +1,8 @@
-import CubicAnomaly.Classification.Exceptional
+import CubicAnomaly.Classification.ExceptionalRoots
+import Mathlib.Data.Matrix.Cartan
+import Mathlib.Data.Vector.Basic
+import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+import Mathlib.Tactic
 
 /-!
 # Exact certificates for the fixed exceptional root coordinates
@@ -16,6 +20,11 @@ namespace CubicAnomaly.Fixed.E8RootPairing
 
 open CubicAnomaly.Classification.Exceptional
 open scoped BigOperators
+
+/-- Coordinate evaluation for the array-backed vectors used by the certificate. -/
+@[simp] theorem coordinate_vector_get_ofFn (f : Fin 8 → ℤ) (i : Fin 8) :
+    (Vector.ofFn f).get i = f i :=
+  Vector.getElem_ofFn i.isLt
 
 /-- Materialized integer vectors for efficient, exact finite verification. -/
 def coordinateVectors : Finset (Vector ℤ 8) :=

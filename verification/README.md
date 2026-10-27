@@ -303,10 +303,14 @@ Conventional root-system names use standard ADE classification. The theorem stat
 
 The [fixed package](../CubicAnomaly/Fixed.lean) adds actual objects to the
 finite and structural results. It constructs the exceptional `E8` root
-pairing and simple base and uses Mathlib's Geck construction to obtain a
-finite-dimensional matrix Lie algebra with trivial radical and an irreducible
-248-dimensional defining module. The finite root certificate is inherited
-by these structural theorems and remains visible in their named receipts.
+pairing and simple base and uses Mathlib's Geck construction to obtain an
+actual matrix Lie algebra. A sparse bilinear bracket is bound to those actual
+roots, and checked generator images and derivation identities identify the
+defining module with the adjoint representation. This proves that the algebra
+itself is simple of complex dimension 248. An explicit positive metric and
+weighted generator-adjoint identities construct a compact real form, its
+complexification equivalence, and real simplicity and dimension 248. The
+finite root and bracket certificates remain visible in the named receipts.
 
 Separately, deductive proofs construct the actual Standard Model group
 quotient and charge lattice, derive its family Lie actions, and split the
@@ -318,10 +322,20 @@ the actual Standard Model algebra. After coupling the actual defining
 family `sl(3,ℂ)` action, the full cubic radical is exactly the Standard Model
 ideal and the family cubic is nonzero.
 
-The [fixed-candidate scope](../formal/FixedCandidate.md) distinguishes this
-constructed downstream matter from the still-required compact exceptional
-inclusion and `27 ⊠ 3` complement identification. The latter must derive the
-family multiplicity from the exceptional structure.
+The actual exceptional grading has dimensions `86 + 81 + 81`. Checked
+commuting matrix units construct faithful `sl(5,ℂ) × sl(3,ℂ)` and gauge-plus-family
+embeddings into degree zero. A signed 81-element root basis matches the
+entire degree-one adjoint subspace with the existing matter representation,
+including every gauge and family action. The local cubic and its exact
+radical consequently apply to that actual exceptional subspace under the
+specified embedded algebra. The three-copy restricted matter content is
+derived through this explicit match.
+
+The [fixed-candidate scope](../formal/FixedCandidate.md) distinguishes these
+results from the remaining full `E6` factor and irreducible `27` identification,
+the original compact pair and its real complement, and exceptional group
+integration. The radical theorem for the entire 86-dimensional zero grade
+is also a separate obligation.
 
 ### Trust model
 
@@ -336,8 +350,8 @@ Lean.trustCompiler
 ```
 
 The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem.
-The manifest contains **995 public theorem exports**: **935 deductive**,
-**29 original finite/native-derived**, and **31 certificate-derived structural**. The deductive structural, root-lattice and
+The manifest contains **1234 public theorem exports**: **1006 deductive**,
+**30 finite/native-profile**, and **198 certificate-derived**. The deductive structural, root-lattice and
 classical theorems use only a
 subset of `propext`, `Classical.choice`, and `Quot.sound`; compiler-evaluation
 axioms are rejected for that class. Every receipt is matched to its fully
@@ -353,8 +367,9 @@ named class with **exactly** `propext`, `Classical.choice`, `Quot.sound`,
 on the finite root certificate; it does not broaden either the original
 finite profile or the deductive profile. Receipt self-tests reject every
 missing dependency in this third class and any added `sorryAx` or project
-classification axiom. The Standard Model group, charge, matter, chirality
-and anomaly theorems are deductive.
+classification axiom. The standalone Standard Model group, charge, matter,
+chirality and anomaly theorems are deductive. Their transfer to the actual
+exceptional subspace inherits the explicitly audited finite certificates.
 
 ### Manuscript proofs
 
@@ -372,10 +387,11 @@ classical constructions, complete two-factor and special-unitary exclusions, act
 bridges, dimension and quadratic restriction identities, derived exceptional
 search bounds, root-lattice saturation, classical order-three exclusion and
 unbounded classical arithmetic described above.
-They do not replace the remaining classification argument. The chiral-index
-coefficient for the exceptional representation still requires its
-identification with the constructed matter module; the latter already has
-a proved equivariant three-family splitting and self-dual remainder.
+They do not replace the remaining classification argument. The actual
+degree-one exceptional module is now matched to the constructed matter
+under the explicit gauge-plus-family embedding, giving its Standard Model
+three-family splitting and self-dual remainder. Its full `E6` module
+identification remains a separate obligation.
 
 ## Local notebook
 

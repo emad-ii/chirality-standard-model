@@ -1,4 +1,5 @@
 import Mathlib
+import CubicAnomaly.Classification.ExceptionalRoots
 
 /-!
 # Finite exceptional toral census
@@ -20,67 +21,6 @@ component labels here with the actual classified Lie pair is still required.
 -/
 
 namespace CubicAnomaly.Classification.Exceptional
-
-abbrev RootCoordinates := Array Int
-abbrev Grading := Array Int
-
-structure RootDatum where
-  cartan : Array (Array Int)
-  symmetrizer : Array Int
-
-def g2Datum : RootDatum := {
-  cartan := #[#[2, -1], #[-3, 2]]
-  symmetrizer := #[1, 3]
-}
-
-def f4Datum : RootDatum := {
-  cartan := #[
-    #[2, -1, 0, 0],
-    #[-1, 2, -2, 0],
-    #[0, -1, 2, -1],
-    #[0, 0, -1, 2]
-  ]
-  symmetrizer := #[2, 2, 1, 1]
-}
-
-def e6Datum : RootDatum := {
-  cartan := #[
-    #[2, 0, -1, 0, 0, 0],
-    #[0, 2, 0, -1, 0, 0],
-    #[-1, 0, 2, -1, 0, 0],
-    #[0, -1, -1, 2, -1, 0],
-    #[0, 0, 0, -1, 2, -1],
-    #[0, 0, 0, 0, -1, 2]
-  ]
-  symmetrizer := #[1, 1, 1, 1, 1, 1]
-}
-
-def e7Datum : RootDatum := {
-  cartan := #[
-    #[2, 0, -1, 0, 0, 0, 0],
-    #[0, 2, 0, -1, 0, 0, 0],
-    #[-1, 0, 2, -1, 0, 0, 0],
-    #[0, -1, -1, 2, -1, 0, 0],
-    #[0, 0, 0, -1, 2, -1, 0],
-    #[0, 0, 0, 0, -1, 2, -1],
-    #[0, 0, 0, 0, 0, -1, 2]
-  ]
-  symmetrizer := #[1, 1, 1, 1, 1, 1, 1]
-}
-
-def e8Datum : RootDatum := {
-  cartan := #[
-    #[2, 0, -1, 0, 0, 0, 0, 0],
-    #[0, 2, 0, -1, 0, 0, 0, 0],
-    #[-1, 0, 2, -1, 0, 0, 0, 0],
-    #[0, -1, -1, 2, -1, 0, 0, 0],
-    #[0, 0, 0, -1, 2, -1, 0, 0],
-    #[0, 0, 0, 0, -1, 2, -1, 0],
-    #[0, 0, 0, 0, 0, -1, 2, -1],
-    #[0, 0, 0, 0, 0, 0, -1, 2]
-  ]
-  symmetrizer := #[1, 1, 1, 1, 1, 1, 1, 1]
-}
 
 private def indices (n : Nat) : List Nat := List.range n
 
@@ -119,15 +59,6 @@ private def closure {α : Type} [BEq α] [Hashable α] [Inhabited α]
         seen := seen.insert image
         queue := queue.push image
   return queue
-
-/-- Generate a finite exceptional root system from its simple roots. -/
-def roots (datum : RootDatum) : Array RootCoordinates :=
-  let rank := datum.cartan.size
-  let seeds := (Array.range rank).foldl (fun acc i =>
-    let root := simpleRoot rank i
-    (acc.push root).push (negRoot root)) #[]
-  closure (fun root =>
-    (Array.range rank).map (reflectRoot datum root)) seeds
 
 private def assignments : Nat → Nat → Array Grading
   | 0, _ => #[#[]]

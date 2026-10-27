@@ -5,41 +5,124 @@ consequences. It does not require first excluding every other compact Lie
 pair. The new [fixed-construction modules](../CubicAnomaly/Fixed.lean) therefore
 develop the exceptional root model and the Standard Model sector directly.
 
-There are two distinct constructions. The exceptional side starts from the
-reconstructed `E8` coordinates and builds actual root and matrix objects.
-The Standard Model side constructs actual matrix groups and matter modules,
-then proves their charges, chirality and local anomaly identities. **The
-identification of these two constructions through the compact exceptional
-inclusion is still open.**
+The exceptional and matter constructions are now matched at the level of
+actual complex Lie-algebra actions. The constructed exceptional matrix algebra
+has dimension 248, is simple, and has an explicit compact real form. One actual
+81-dimensional homogeneous adjoint subspace is identified with the constructed
+Standard Model and family representation through a faithful, explicitly
+specified embedding. The full `E6` factor identification, compact pair and
+exceptional group integrations remain separate obligations.
 
-## Actual exceptional root and matrix objects
+## Actual exceptional root, adjoint and compact objects
 
-[E8Coordinates](../CubicAnomaly/Fixed/E8Coordinates.lean) reconstructs the roots
-using the existing exceptional Cartan-data generator. One finite certificate
-checks the 240 distinct materialized integer vectors, squared length two,
-closure under every root reflection, the eight simple coordinate vectors,
-and positivity or negativity in that simple basis. Explicit integral inverse
-witnesses avoid expensive determinant expansions.
+[E8Coordinates](../CubicAnomaly/Fixed/E8Coordinates.lean) uses the unchanged
+[shared root generator](../CubicAnomaly/Classification/ExceptionalRoots.lean)
+from the exceptional census. Its finite certificate checks 240 distinct integer
+vectors, squared length two, closure under every root reflection, the eight
+simple coordinate vectors, and positivity or negativity in that simple basis.
+The generator was separated from the census to keep construction imports small;
+its definitions and the census algorithms were preserved verbatim.
 
-[E8RootPairing](../CubicAnomaly/Fixed/E8RootPairing.lean) transports those facts
-to an actual complex `RootPairing`: roots and coroots span the full
-eight-dimensional space, the pairing is perfect, and the system is
-crystallographic and reduced. The reflection permutation is constructed.
-[E8Base](../CubicAnomaly/Fixed/E8Base.lean) builds the explicit simple base and
-identifies its Cartan matrix. [E8Irreducible](../CubicAnomaly/Fixed/E8Irreducible.lean)
-proves irreducibility by propagating reflection-invariant subspaces through
-the connected simple-root graph.
+[E8RootPairing](../CubicAnomaly/Fixed/E8RootPairing.lean),
+[E8Base](../CubicAnomaly/Fixed/E8Base.lean), and
+[E8Irreducible](../CubicAnomaly/Fixed/E8Irreducible.lean) construct an actual
+reduced, crystallographic, irreducible complex root pairing with its explicit
+simple base and `E8` Cartan matrix. [E8Geck](../CubicAnomaly/Fixed/E8Geck.lean)
+constructs the actual matrix Lie algebra and its irreducible defining module.
 
-[E8Geck](../CubicAnomaly/Fixed/E8Geck.lean) applies Mathlib's Geck construction
-to these actual objects. The generated algebra is a finite-dimensional
-complex matrix Lie algebra with trivial solvable radical. Its defining
-representation is irreducible and has dimension 248.
+[E8Adjoint](../CubicAnomaly/Fixed/E8Adjoint.lean) identifies that defining module
+with the **actual adjoint representation**. Its consequences include
 
-The last dimension statement concerns the **defining representation**.
-It does not yet prove that the generated Lie algebra itself has dimension
-248 or that its defining module is its adjoint representation. A compact
-real form, the actual `E6 + A2` inclusion, and the identification of its
-adjoint-complement half with `27 ⊠ 3` are also still required.
+\[
+ \dim_{\mathbb C}\mathfrak g=248,
+ \qquad \mathfrak g\text{ is simple}.
+\]
+
+This is the dimension of the generated Lie algebra itself. The identification
+uses a bilinear bracket table bound to the reconstructed roots, verified
+simple-generator images, and all 1,476,096 simple-generator derivation identities.
+It does not assume a Jacobi certificate or an exceptional classification theorem.
+
+[E8Metric](../CubicAnomaly/Fixed/E8Metric.lean) proves positivity of
+`J = diag(4I − C, I₂₄₀)` using an exact rational factor and inverse.
+[E8Adjoints](../CubicAnomaly/Fixed/E8Adjoints.lean) proves
+`eᵢ* J = J fᵢ` and `hᵢ* J = J hᵢ` for the actual generators.
+[E8Compact](../CubicAnomaly/Fixed/E8Compact.lean) then constructs the actual real
+subalgebra of skew-adjoint operators, the positive invariant form
+`−Re(trace(XY))`, and a complexification Lie equivalence back to `g`.
+[E8Structure](../CubicAnomaly/Fixed/E8Structure.lean) proves that this compact
+real algebra is simple and has real dimension 248. These are algebraic compact
+real-form statements; integration to a compact Lie group is a further step.
+
+## Actual grading and classical embeddings
+
+[E8Grading](../CubicAnomaly/Fixed/E8Grading.lean) realizes the seventh root
+coordinate modulo three as an actual grading
+
+\[
+ \mathfrak g=\mathfrak g_0\oplus\mathfrak g_1\oplus\mathfrak g_2,
+ \qquad (\dim\mathfrak g_0,\dim\mathfrak g_1,\dim\mathfrak g_2)
+ =(86,81,81).
+\]
+
+The bracket respects addition of degrees. The zero piece is an actual Lie
+subalgebra, and the other two pieces are actual modules for it. The finite
+root data also checks that the 78 zero-degree roots split into orthogonal
+sets of 72 and 6, with the displayed `E6` Cartan submatrix and `A2` Gram matrix.
+A Lie-algebra identification of the entire 78-dimensional factor is not
+inferred from these root counts alone.
+
+[E8A4](../CubicAnomaly/Fixed/E8A4.lean) and
+[E8A2](../CubicAnomaly/Fixed/E8A2.lean) construct actual embeddings of
+`sl(5,ℂ)` and the family `sl(3,ℂ)`. The first uses the simple-root chain with
+zero-based indices `[1,3,4,5]`. The family factor uses the negative highest
+root followed by the last simple root, fixing the defining-family orientation.
+All 25 and 9 projected matrix units have explicit integral sparse witnesses,
+with denominators cleared by 5 and 3. Their checked commutators give Lie
+homomorphisms on arbitrary matrices. Coordinate recovery proves injectivity
+on trace-zero matrices.
+
+[E8ClassicalEmbedding](../CubicAnomaly/Fixed/E8ClassicalEmbedding.lean) proves
+that the two images commute and that their product embedding is faithful.
+Restricting the first factor to the existing colour/weak block algebra gives
+an actual faithful inclusion
+
+\[
+ \mathfrak g_{\mathrm{SM},\mathbb C}\oplus\mathfrak{sl}_3(\mathbb C)
+ \hookrightarrow\mathfrak g_0.
+\]
+
+## The exceptional half and matter are matched
+
+[E8MatterData](../CubicAnomaly/Fixed/E8MatterData.lean) supplies a signed basis
+bijection between the 81 degree-one roots and the existing three-copy matter
+labels. It checks the action of every projected classical and family matrix
+unit on that same basis. [E8MatterRealization](../CubicAnomaly/Fixed/E8MatterRealization.lean)
+turns those checks into identities on arbitrary complex vectors.
+
+[E8MatterMatching](../CubicAnomaly/Fixed/E8MatterMatching.lean) constructs an
+explicit linear equivalence from the original `Matter81` to the actual
+`gradeModule 1` and proves that it intertwines the full embedded gauge and
+family action. Thus the fixed exceptional half has three copies of
+
+\[
+ \mathbf{10}\oplus\overline{\mathbf5}\oplus\mathbf5
+ \oplus\overline{\mathbf5}\oplus\mathbf1\oplus\mathbf1
+\]
+
+under the selected classical restriction, with the displayed defining family
+mixing. The multiplicity in this restricted representation is established by
+the explicit exceptional basis match. Naming the entire local 27 as an
+irreducible module for the full `E6` factor is still a separate identification.
+
+[E8Matter](../CubicAnomaly/Fixed/E8Matter.lean) constructs the representation
+from the **actual commutator action on the actual degree-one Lie submodule**.
+In the proved coordinates, it equals the existing coupled matter matrix
+representation. Consequently the local anomaly and radical results below
+now apply to this actual exceptional subspace under the specified embedding.
+The same module bundles the Standard Model restriction as an actual
+`LieModuleEquiv`, transfers the three-family splitting and self-dual remainder,
+and proves that the actual degree-one module is not Standard Model self-dual.
 
 ## Actual Standard Model group and charge lattice
 
@@ -133,15 +216,16 @@ Thus the action and anomaly identities cover the entire constructed algebra.
 trivial lines to a 27-dimensional module, and three copies of that module.
 The dimensions 15, 27 and 81 are proved for the actual vector spaces.
 
-[MatterChirality](../CubicAnomaly/Fixed/MatterChirality.lean) constructs an
-equivariant splitting
+[MatterChirality](../CubicAnomaly/Fixed/MatterChirality.lean) constructs a
+Standard Model equivariant splitting
 
 \[
  V_{81}\simeq 3F_{15}\oplus E_{36},
  \qquad E_{36}\simeq E_{36}^{*}.
 \]
 
-The self-duality of the remainder is an actual equivariant isomorphism.
+The self-duality of the remainder is an actual Standard Model equivariant
+isomorphism; it is a statement after restriction to the gauge algebra.
 The corresponding cancellation in the usual additive chiral quotient is
 a mathematical consequence of this splitting; no separate formal
 Grothendieck-group package is claimed.
@@ -205,70 +289,80 @@ not make it an anomaly-free gauge factor.
 
 ## Remaining identification and physical scope
 
-The remaining exceptional task is to construct and identify one actual
-compact inclusion
+The main remaining exceptional steps are to identify the full 78-dimensional
+factor as the required actual `E6` algebra and its local 27-dimensional module,
+prove the original irreducible-complement hypotheses for the complete compact
+pair, and establish the relevant compact group integrations. The constructed
+ambient compact form does not by itself establish those pair-level statements.
 
-\[
- \mathfrak e_8\supset\mathfrak e_6\oplus\mathfrak{su}(3)_M
-\]
+A concrete next proof strategy is to use the six Cartan labels `0..5` and
+the 72 roots with coordinates `v[6] = v[7] = 0` for the candidate `E6` span.
+The sparse bracket makes closure and commutation with the family factor
+finite, explicit obligations. A direct-sum recovery for this larger span
+must use the last two Cartan coordinates; the current `u[0]`-based family
+recovery was designed only to annihilate the selected `A4` subalgebra.
 
-and prove that its actual complex half restricts to the constructed matter
-module. This includes the exceptional subgroup chain, the actual
-`27 ⊠ 3` identification, and the relevant compact group integrations.
-The separate matrix constructions above do not assume this bridge.
+For irreducibility of the entire degree-one module, one possible reduction
+uses a single Cartan element `H = ∑ i, 5^i h_i`, distinct eigenvalues on its
+81 root labels, and a finite spanning tree of nonzero zero-grade root actions.
+Polynomial coordinate projections and propagation along the tree would then
+force any nonzero invariant subspace to be the whole module. This proposed
+route uses all eight zero-grade Cartan directions; the six `E6` directions
+alone retain the three family copies. These further reductions are a proof
+strategy, not additional exported Lean theorems.
 
-The restricted Standard Model representation is reducible. Its proved
-properties do not establish the original irreducible-complement hypotheses
-for an exceptional pair. Likewise, the Standard Model radical theorem is a
-theorem about the restricted gauge algebra, not yet the full exceptional
-identity `Rad(c_V) = e6`.
+The radical theorem for the actual exceptional half is currently about its
+restriction to the **specified embedded gauge-plus-family algebra**. It does
+not yet prove `Rad(c_V) = e6` on the entire 86-dimensional zero grade, or
+uniqueness of the Standard Model algebra among all its subalgebras.
 
 The universal orthogonal/symplectic exclusions and exceptional sieve
 completeness are not prerequisites for this constructive target. They remain
-part of the stronger global uniqueness program.
+part of the stronger global uniqueness program. The manuscript's universal
+uniqueness theorem is not yet an exported Lean theorem.
 
-Three copies are an explicit input of the downstream construction. Deriving
-that multiplicity from the exceptional inclusion remains part of the
-`27 ⊠ 3` identification. The fifth trace is a representation-theoretic
-chirality witness, not an additional physical gauge-anomaly claim.
+The fifth trace is a representation-theoretic chirality witness. The anomaly
+results are local trace identities; global gauge-anomaly cancellation requires
+its own theorem. The construction concerns internal groups and representations.
+Masses, decoupling of the additional matter, a vacuum, interactions and their
+parameters are not derived by these statements.
 
-The anomaly results are local trace identities; a global gauge-anomaly
-theorem is not supplied by them. The construction concerns internal groups
-and representations. Masses,
-decoupling of the additional matter, a vacuum and interaction parameters
-are not derived by these theorems.
+## The proof reduction that closes the adjoint bridge
 
-## Next construction route
+[AdjointRecognition](../CubicAnomaly/Fixed/AdjointRecognition.lean) proves a
+general result for a generated matrix Lie algebra acting irreducibly on `M`.
+Given a candidate linear map `B : M → End(M)`, it is enough to verify
 
-The explicit Geck matrices suggest a compact-form construction that can be
-attempted before proving the generated Lie algebra's dimension or invoking
-classification. This is a proposed proof route, not an exported theorem.
-For the explicit Cartan matrix `C`, set `S = 4I − C` and put the block
-Hermitian matrix `J = diag(S, I₂₄₀)` on the defining space. The required
-generator identities are `eᵢ* J = J fᵢ` and `hᵢ* J = J hᵢ`.
+\[
+ B(sv)=[s,B(v)]
+\]
 
-An exact positive-definiteness proof for `S`, followed by those identities,
-would make `σ(X) = −J⁻¹ X* J` a conjugate-linear Lie involution preserving
-the generated algebra. Its fixed real subalgebra and the form
-`−Re(trace(XY))` would then supply the algebraic compactness object used
-elsewhere in this project. This route still requires implementation and
-does not by itself integrate a compact Lie group.
+for its generating matrices, together with a nonzero image in the generated
+algebra and preimages for every generator. The kernel of `B` is invariant,
+so irreducibility and the nonzero witness make `B` injective. The preimage
+of the generated algebra is also invariant and nonzero, so every image of
+`B` lies in that algebra. Equivariance then makes the image a Lie subalgebra
+containing all generators, and hence the whole generated algebra.
 
-The separate adjoint bridge must identify the generated algebra with the
-intended 248-dimensional module, for example through an explicit root-operator
-basis with proved closure and independence. Merely splitting the defining
-space into dimensions `86 + 81 + 81` would not prove the required
-adjoint-complement statement. The actual subsystem generators and the
-`27 ⊠ 3` identification remain essential.
+For the checked bilinear operation `β`, the map is `B(v)(w) = β(v,w)`.
+Its resulting commutator identity transfers the actual matrix bracket to
+`β`. This supplies the adjoint identification and its dimension without
+first checking every triple in a Jacobi table.
+
+The subsequent matter match uses a second reduction: explicit matrix units
+and a signed basis intertwiner replace an appeal to a full exceptional
+branching classification for the restricted gauge and family representation.
 
 ## Trust boundary
 
-The group, charge, matter, chirality and anomaly theorems are deductive Lean
-proofs. Their named receipts use only subsets of `propext`, `Classical.choice`
-and `Quot.sound`.
+The standalone group, charge, matter, chirality and anomaly calculations are
+deductive Lean proofs. The generic adjoint-recognition and matrix-unit
+extension arguments are deductive as well. Their named receipts use only
+subsets of `propext`, `Classical.choice` and `Quot.sound`.
 
-The exceptional coordinate certificate uses `native_decide`. Structural
-theorems that depend on that certificate inherit its compiler-evaluation
+The exceptional coordinate, sparse compatibility, matrix-unit and matter
+matching certificates use `native_decide`. Structural and matching theorems
+that depend on those certificates inherit their compiler-evaluation
 dependencies; those dependencies are disclosed and audited by name. The
 audit retains the original exact finite-computation profile, keeps compiler
 dependencies forbidden in the deductive class, and adds an exact profile

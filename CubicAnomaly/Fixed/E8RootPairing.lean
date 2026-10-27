@@ -1,4 +1,5 @@
 import CubicAnomaly.Fixed.E8Coordinates
+import Mathlib.LinearAlgebra.Matrix.BilinearForm
 import Mathlib.LinearAlgebra.RootSystem.BaseExists
 import Mathlib.LinearAlgebra.RootSystem.GeckConstruction.Basic
 

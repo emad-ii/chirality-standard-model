@@ -9,8 +9,10 @@ the checked `E₈` coordinate set.  In particular, the Lie bracket is the actual
 matrix commutator and the generated algebra is finite dimensional.
 
 The dimension `248` below is the dimension of its defining matrix space.
-This file does not yet identify the generated Lie algebra's own dimension,
-construct a compact real form, or construct the `E₆ + A₂` inclusion.
+The subsequent `E8Adjoint` module identifies that space with the actual
+adjoint representation, while `E8Compact` constructs its compact real form.
+The grading and classical embedding modules then work inside this same
+generated algebra.
 -/
 
 namespace CubicAnomaly.Fixed.E8Geck
