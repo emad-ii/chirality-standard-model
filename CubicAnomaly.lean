@@ -11,6 +11,8 @@ import CubicAnomaly.Classification.UnitaryDefining
 import CubicAnomaly.Classification.UnitaryComplexification
 import CubicAnomaly.Classification.SymplecticComplexification
 import CubicAnomaly.Classification.UnitarySimplicity
+import CubicAnomaly.Classification.UnitarySelfDualExclusion
+import CubicAnomaly.Classification.UnitaryNoGo
 import CubicAnomaly.Classification.ClassicalTwoFactorReduction
 import CubicAnomaly.Classification.ClassicalSimplicity
 import CubicAnomaly.Classification.TensorParityBlocks
@@ -34,7 +36,8 @@ selection, full-radical reconstruction from simple ideals, constructed integer
 root coordinates, full-span and connected-support filters, all three compact
 classical defining-module reductions and isotropy simplicity in all three
 concrete compact classical branches, constructed tensor modules and forms,
-the complete two-factor quotient exclusion, actual complexifications, exceptional dimension bounds,
+the complete two-factor quotient exclusion, complete special-unitary exclusion
+by tensor interchange, actual complexifications, exceptional dimension bounds,
 classical arithmetic and Weyl products, finite exceptional
 selection, and the E6 incidence checks. See formal/README.md
 for the precise geometric abelian-rank convention and the remaining

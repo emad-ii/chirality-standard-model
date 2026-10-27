@@ -228,9 +228,21 @@ therefore prove real and actual complexified isotropy simplicity, in every
 dimension, from the original hypotheses. The nonzero full cubic radical is
 the entire isotropy, so every mixed cubic trace vanishes. Defining-module
 irreducibility and isotropy simplicity are now complete for all three
-concrete compact classical constructions. Highest-weight constituents,
-support classification, and their dimension/cubic-index interpretations
-remain open.
+concrete compact classical constructions. The remaining orthogonal and
+symplectic constituents, support classification, and dimension/cubic-index
+interpretations remain open.
+
+[The full special-unitary exclusion](../CubicAnomaly/Classification/UnitaryNoGo.lean)
+now proves the full cubic radical is zero in every dimension, from the
+original effectiveness, properness, compact form and complex-commutant
+hypotheses. Its actual scalar/adjoint/quotient decomposition forces the
+equivariant trace-skew operators on `End(W)` to form one nonzero complex
+line. [Canonical trace reshuffling](../CubicAnomaly/Classification/TraceReshuffle.lean)
+transfers that line to operators on `W ⊗ W` anticommuting with tensor
+interchange. The [actual tensor commutant](../CubicAnomaly/Classification/TensorUnitary.lean)
+is adjoint-closed, and the [star-algebra obstruction](../CubicAnomaly/Classification/FlipOddObstruction.lean)
+excludes such a line. This closes the special-unitary branch without
+highest-weight constituents or tensor complete reducibility.
 
 The actual complexifications are also constructed:
 [special-unitary to Mathlib `sl`](../CubicAnomaly/Classification/UnitaryComplexification.lean),
@@ -300,7 +312,7 @@ Lean.trustCompiler
 ```
 
 The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem.
-The manifest contains **787 public theorem exports**: **758 deductive** and
+The manifest contains **841 public theorem exports**: **812 deductive** and
 **29 finite/native-derived**. The deductive structural, root-lattice and
 classical theorems use only a
 subset of `propext`, `Classical.choice`, and `Quot.sound`; compiler-evaluation
@@ -322,7 +334,7 @@ dual-pair construction, the geometric rank-deficient-or-intrinsic-toral-data
 dichotomy, same-Cartan root-cubic detection and reconstruction of the full
 radical from actual simple ideals, the defining-module irreducibility step
 and real/complexified isotropy simplicity for all three concrete compact
-classical constructions, complete two-factor exclusion, actual complexification
+classical constructions, complete two-factor and special-unitary exclusions, actual complexification
 bridges, dimension and quadratic restriction identities, derived exceptional
 search bounds, root-lattice saturation, classical order-three exclusion and
 unbounded classical arithmetic described above.
