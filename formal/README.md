@@ -2,11 +2,15 @@
 
 The Lean development contains a rank-independent structural reduction for
 actual compact real Lie algebras and their complexifications. From the original
-hypotheses it now derives a rank-deficient-or-cyclic-grading dichotomy, with an
-actual ambient Cartan and a nonzero character of its integer root lattice in
-the equal-rank branch. It also reconstructs the full anomaly radical from
-actual simple coroot ideals, proves orthogonal defining-module irreducibility,
-and supplies uniform classical arithmetic and finite exceptional uniqueness.
+hypotheses it now derives a rank-deficient-or-intrinsic-toral-data dichotomy.
+The equal-rank branch constructs one actual ambient Cartan, an integer
+root-lattice basis and a nonzero character, and derives full zero-root rank,
+connected half-supports, exact dimension/root counts and the actual root-cubic
+anomaly on that same Cartan. It also reconstructs the full anomaly radical
+from actual simple ideals, proves the defining-module irreducibility step for
+all three concrete compact classical constructions, and supplies actual
+complexification bridges, exceptional search bounds, uniform classical
+arithmetic and finite exceptional uniqueness.
 **The manuscript's global uniqueness theorem over all compact Lie-algebra
 embeddings is not yet a Lean theorem.** The exact rank convention and remaining
 bridges are stated below.
@@ -287,9 +291,23 @@ actual coroot satisfying every mixed test from the original compact-pair
 hypotheses. Identifying these actual roots, weights and simple ideals with
 the authored census coordinates and component labels remains separate.
 
+`CubicIdealDecomposition.lean` also proves that internal component tests
+detect the **full** radical. Every ideal of a semisimple Lie algebra is
+perfect. Invariance and symmetry then kill cubic terms involving both an
+ideal and its complementary ideal. Consequently
+
+\[
+c|_{I^3}=0\quad\Longleftrightarrow\quad I\subseteq\operatorname{Rad}(c).
+\]
+
+The entire radical is therefore the sum of the actual simple coroot ideals
+whose internal cubic vanishes. The quantification over both remaining
+ambient inputs is discharged by proof; it is not dropped from the anomaly
+condition.
+
 ## The all-rank geometric branch reduction
 
-The new endpoint is
+The initial endpoint is
 
 ```lean
 CubicAnomaly.Classification.AllRankGrading.all_rank_rank_deficient_or_cyclic_grading
@@ -347,6 +365,97 @@ three-class support, grade identification, character or classification
 witness is an input to the all-rank endpoint. The rank-deficient disjunct
 is retained; this theorem does not eliminate it.
 
+### Intrinsic finite data and the same-Cartan anomaly
+
+The strengthened endpoint is
+
+```lean
+CubicAnomaly.Classification.IntrinsicToral.all_rank_rank_deficient_or_intrinsic_toral_data
+```
+
+It has the same original hypotheses and the conclusion
+
+```lean
+abelianRank ℝ h < abelianRank ℝ g ∨ IntrinsicToralData B h e
+```
+
+`IntrinsicToralData` extends the constructed cyclic grading with conclusions
+on that **same** ambient Cartan:
+
+- The actual zero-grade root forms span the complex dual of the Cartan and
+  have rational span of dimension `dim H`.
+- The actual positive- and negative-half support graphs are connected.
+  Their edges are exactly root differences lying in the zero-grade roots.
+- `dim h = dim H + #Ψ`, `dim V = #R₁`, and `#R₁ = #R₂`.
+- The actual integer root lattice is finite free of rank `dim H`, has a
+  constructed integral basis, and has exactly `3^(dim H)` characters into
+  `ZMod 3`. The selected character is a nonzero coordinate assignment.
+- A nonzero Cartan vector annihilates the actual grade-one root cubic
+  against every remaining pair of Cartan inputs.
+- The finite integer matrix formed from the grade-one roots' intrinsic
+  coordinate triple products has a nonzero rational kernel.
+
+`FullRankRoots.lean` proves the spanning claim by showing that a Cartan
+vector annihilating the contained roots centralizes the whole isotropy.
+Centrelessness kills it. The rational-rank statement uses both scalar
+extension and the crystallographic root-span rank theorem; it is not
+inferred merely from complex spanning.
+
+`RootSupportGraph.lean` proves that a connected component's root-space sum
+is an invariant submodule. Irreducibility makes it the entire half.
+`RootGraphCriterion.lean` proves the converse using actual nonzero root
+brackets. Its equivalence concerns ambient root-space modules disjoint
+from the Cartan and requires negation-closed acting roots, or the actual
+invariant-form criterion deriving that property. It does not assert such
+a criterion for arbitrary weight modules with multiplicities.
+
+`RootSupportDimension.lean` uses independent one-dimensional ambient root
+spaces to prove the dimension formulas. `RootCharacterCoordinates.lean`
+identifies actual grade membership, counts and graph edges with finite
+coordinate dot-product and difference predicates in the constructed basis.
+
+`ContainedCartan.lean` proves that the literal inverse image of the common
+ambient Cartan under the actual complexified isotropy inclusion is itself
+a Cartan. Its equivalence and lift preserve that inclusion exactly.
+`RootSupportTrace.lean` identifies the weights of a supported root-space
+module with its actual contained roots and proves every multiplicity is one.
+`CanonicalRootCubic.lean` then proves, for the canonical anomaly action,
+
+\[
+c_{\rho}(x,y,z)=\sum_{\alpha\in R_1}\alpha(x)\alpha(y)\alpha(z).
+\]
+
+`CommonCartanAnomaly.lean` and `RootCubicKernel.lean` prove that the original
+full radical is nonzero exactly when this root-cubic matrix on the same
+Cartan has a nonzero kernel. All mixed insertions are retained. No Cartan conjugacy witness,
+weight table or guessed multiplicity is an input.
+
+`IntrinsicCartanBasis.lean` constructs the Cartan basis dual to the
+constructed integral root basis. Actual roots evaluate on it to their
+integer coordinates. `CoordinateCubic.lean` consequently identifies the
+actual root-cubic matrix with the scalar cast of the integer matrix
+
+\[
+A_{(j,k),i}(a)=
+\sum_{\substack{\alpha\in\Phi\\
+                 \sum_\ell\alpha_\ell a_\ell=1\;\mathrm{mod}\;3}}
+\alpha_i\alpha_j\alpha_k\in\mathbb Z.
+\]
+
+`RationalKernel.lean` proves that any rational matrix has a nonzero kernel
+after field extension exactly when it already has one over the rationals.
+To descend a complex vector, choose a rational linear functional on
+`ℂ` sending a nonzero coordinate to one, then apply it to every coordinate
+and row equation. `IntrinsicAnomaly.lean` composes the bridges into
+`canonical_anomaly_iff_intrinsic_rational_kernel`. In particular the
+original-hypothesis `IntrinsicToralData` conclusion includes a nonzero
+rational vector annihilated by the exact integer matrix above.
+
+These are finite mathematical parametrizations of the actual roots.
+Identification with the authored exceptional coordinates, and correctness
+and completeness of the executable root-generation, rank, graph-search and
+Weyl-orbit algorithms under that identification, remain separate bridges.
+
 ## Root-lattice reduction and finite uniqueness
 
 `RootReduction.lean` proves saturation over `ℝ`.
@@ -400,12 +509,14 @@ the integer span of the contained roots; the entire quotient is not asserted to 
 cyclic. `ToralCharacter.lean` restricts its degree map to the actual integer
 root lattice and proves that its image lies in the cyclic subgroup just
 constructed. Inverting the injective map from `ZMod 3` gives the nonzero
-actual character and preserves all three grade identities. Given an actual
-integer basis of that root lattice, `rootCharacterBasisEquiv` parametrizes
-its characters by the basis values, proves the coordinate evaluation
-formula, and counts exactly `3^r` characters for a basis of size `r`.
-Identification of that basis with the census's authored coordinates is
-still required before applying the finite enumeration to an arbitrary pair.
+actual character and preserves all three grade identities.
+`RootLatticeBasis.lean` identifies this lattice with Mathlib's actual
+integer root span and constructs an integral basis of rank `dim H`.
+`intrinsicRootCharacterEquiv` parametrizes its characters by the basis
+values, proves the coordinate evaluation formula, and counts exactly
+`3^(dim H)` characters. No basis witness is an input. Identification of
+this constructed basis with the census's authored simple-root coordinates
+is still required before applying that finite enumeration to an arbitrary pair.
 
 `RootSimple.lean` proves that an ideal's Cartan intersection is invariant
 under coroot reflections using actual root `sl₂` triples. With Cartan
@@ -457,10 +568,66 @@ division-algebra classification. The endpoint
 irreducibility and equivariant self-duality of the actual defining module
 `W_C` under `h_C`.
 
-This completes that defining-module step for the orthogonal ambient algebra.
-The unitary and symplectic defining-module branches, simplicity of the
-isotropy in the remaining classical argument, and identification of its
-actual highest-weight constituents are not yet supplied.
+`UnitaryGeometry.lean` and `UnitaryDefining.lean` complete the defining-module
+step for the actual special-unitary algebra of traceless skew-Hermitian
+operators. A proper invariant complex subspace `U` gives a commuting
+orthogonal projection `P`. The operator
+
+\[
+i\bigl(\dim(W)P-\dim(U)\operatorname{id}\bigr)
+\]
+
+is a nonzero traceless skew-Hermitian element of the ambient centralizer,
+contradicting the derived zero centralizer. `ComplexDefining.lean`
+constructs the action of the actual complexified isotropy on the same
+complex defining space and proves irreducibility transfers to it.
+
+`SymplecticGeometry.lean` constructs the actual compact symplectic algebra
+from an antiunitary quaternionic structure `J`, with `J² = -1`.
+`SymplecticDefining.lean` proves that every self-adjoint operator commuting
+with the isotropy also commutes with `J`: otherwise its difference from
+its quaternionic conjugate gives a nonzero symplectic centralizer element.
+An invariant projection must therefore preserve `J`. A proper invariant
+subspace would then give a nonidentity reflection involution fixing the
+isotropy, which the existing involution obstruction excludes.
+`SymplecticForm.lean` constructs the actual nondegenerate alternating
+bilinear form `ω(u,v) = ⟨Ju,v⟩`, proves its invariance under the actual
+complexified action, and derives equivariant self-duality.
+
+Thus defining-module irreducibility is now proved for all three concrete
+compact classical constructions, with self-duality for the orthogonal
+and symplectic defining modules. Simplicity of the isotropy in the
+remaining classical argument and identification of actual highest-weight
+constituents are still open.
+
+`IdealActionProducts.lean` supplies a factorization-free supporting step:
+every nonzero ideal acts with full generated image on a faithful irreducible
+module, and two nonzero ideals have action operators with nonzero
+composition. These statements need neither finite dimension nor
+semisimplicity. They do not yet prove the required isotropy simplicity or
+external tensor irreducibility.
+
+### Actual classical complexifications
+
+`UnitaryComplexification.lean` constructs the actual equivalence from
+`ℂ ⊗ su(W)` to the complex trace-zero endomorphisms. Surjectivity is the
+explicit decomposition of an operator into its skew-Hermitian real and
+imaginary parts. `OrthogonalComplexification.lean` similarly identifies
+`ℂ ⊗ so(W)` with the endomorphisms preserving the complexified real inner
+product, acting on the actual `ℂ ⊗ W`. Its intrinsic equivalence does not
+require finite dimensionality.
+
+Choosing actual finite bases gives `standardSpecialUnitaryMatrixEquiv`
+and `standardOrthogonalMatrixEquiv` to Mathlib's matrix `sl` and `so`.
+The choices are constructed, and the full defining-action compatibility
+is proved. `SymplecticComplexification.lean` identifies `ℂ ⊗ sp(W,J)`
+with the complex endomorphisms preserving the actual alternating form
+constructed above. A standard symplectic matrix-basis identification is
+not yet supplied. These equivalences identify the concrete classical real
+forms; they do not classify an arbitrary simple compact algebra into one
+of those families.
+
+### Derived exceptional search bounds
 
 `QuadraticRestriction.lean` proves two necessary identities for the actual
 canonical positive half and actual complexified inclusion, directly from
@@ -481,6 +648,29 @@ The latter uses invariance of trace forms under actual module equivalences,
 their equality on dual modules, and additivity over complementary submodules.
 Neither a normalized Dynkin index nor its integrality is assumed or proved
 by this identity; connecting it to the integer sieve is remaining work.
+
+`KillingDimension.lean` derives
+`dim L = dim H + 2 #positiveRoots` and `dim L ≥ 3 dim H` from the actual
+root-system base. A nonzero Killing algebra has dimension at least three;
+if its dimension is even, it has dimension at least six.
+`SieveBounds.lean` derives nonzero isotropy from the original anomaly
+hypothesis and obtains
+
+\[
+2\dim V+3\le\dim\mathfrak g,
+\qquad
+2\dim V+6\le\dim\mathfrak g\quad(\dim\mathfrak g\text{ even}).
+\]
+
+The dimensions `52, 78, 133, 248` therefore imply the search bounds
+`23, 36, 65, 121`, respectively, without a supplied search-bound witness.
+The theorem states these as dimension implications; it does not assign
+exceptional type names to an arbitrary ambient algebra.
+`RankOneObstruction.lean` proves that an actual compact centreless
+rank-one algebra has dimension three. From the original hypotheses it
+then excludes strict rank deficiency whenever the ambient geometric
+abelian rank is two and its dimension is even. The remaining exceptional
+rank-deficient cases still require the representation and index sieve.
 
 ### Root lattices and dimension inequalities
 
@@ -537,14 +727,16 @@ current project:
 | Remaining bridge | What must be established |
 | --- | --- |
 | Classification and census interpretation | Exhaustive reduction of actual simple Lie algebras to classical or exceptional root data, with isomorphisms respecting the root lattice, subalgebra and representation; identification of the classical root lattices with the explicit realizations in `ClassicalToral.lean` and the exceptional integer bases with the authored census coordinates |
-| Exceptional rank-deficient branch | Formalization and completeness of the Weyl-dimension/Dynkin-index sieve currently implemented in Python, including the highest-weight dimension interpretation and normalized index integrality; the actual dimension and quadratic restriction identities are now proved |
-| Classical representation branch | Unitary and symplectic defining-module steps, simplicity of the subalgebra in that branch, canonical highest-weight constituents and support classification, and the Weyl-dimension and cubic-index interpretations; orthogonal defining-module irreducibility and self-duality are now proved |
-| Census-to-Lie interpretation | Identify the authored finite roots, module weights, coroot spans and component labels with actual classified Lie data; the generic full-radical test and its reconstruction as a sum of actual simple coroot ideals are now proved |
+| Exceptional rank-deficient branch | Formalization and completeness of the Weyl-dimension/Dynkin-index sieve currently implemented in Python, including the highest-weight dimension interpretation and normalized index integrality; actual dimension/quadratic identities, the four search bounds, and the rank-two even-dimensional obstruction are proved |
+| Classical representation branch | Simplicity of the isotropy in that branch, canonical highest-weight constituents and support classification, and the Weyl-dimension and cubic-index interpretations; the defining-module irreducibility step for all three concrete compact classical constructions is proved |
+| Census-to-Lie interpretation | Identify authored finite roots, coroot spans, component labels and Weyl action with actual classified Lie data, and establish semantic completeness of the executable root/rank/graph/orbit algorithms; intrinsic coordinate filters, full-span and connectivity criteria, root counts, the actual root-cubic anomaly and full-radical reconstruction from internally null simple ideals are proved |
 | Existence and identification | Construction of the compact `E8 ⊃ E6 + A2` inclusion and identification of its complex half with `27 ⊠ 3` |
 
 The common-Cartan construction, closed contained-root subsystem, three-grade
-support and actual root-lattice character are no longer missing in the
-equal-abelian-rank branch. The explicit geometric rank convention above is
+support, integral basis, actual root-lattice character, full-rank and
+connected-support filters, root-count interpretation and same-Cartan
+root-cubic anomaly are no longer missing in the equal-abelian-rank branch.
+The explicit geometric rank convention above is
 part of that statement; no equality with a differently defined rank is
 silently substituted.
 
@@ -565,7 +757,7 @@ python3 formal/scripts/check_formal_hygiene.py
 python3 formal/scripts/check_formal_hygiene.py --self-test
 ```
 
-The audit covers **346 public theorem exports**: **317 deductive** and
+The audit covers **501 public theorem exports**: **472 deductive** and
 **29 finite/native-derived**. The hygiene checker keeps an explicit export
 manifest and matches every
 `#print axioms` receipt to its fully qualified theorem name. It rejects
