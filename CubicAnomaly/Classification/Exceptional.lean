@@ -13,9 +13,10 @@ restriction of the grade-one trace cubic to each grade-zero simple factor.
 
 The calculation is independent of the paper's six-row and cubic-index tables.
 It formalizes the finite exceptional census, not the manuscript theorem that
-the homogeneous hypotheses reduce to this census.  Likewise, the final
-Cartan-restriction calculation still relies on the manuscript's invariant-
-theory argument to identify a vanishing simple factor with a radical ideal.
+the homogeneous hypotheses reduce to this census. The generic full-radical
+Cartan test and actual weight formula are proved in `CartanCubic.lean` and
+`CanonicalAnomaly.lean`. Identifying the authored coordinates, weights, and
+component labels here with the actual classified Lie pair is still required.
 -/
 
 namespace CubicAnomaly.Classification.Exceptional

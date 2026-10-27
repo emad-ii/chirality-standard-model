@@ -252,6 +252,24 @@ noncomputable def hermitianHalfOfCommutant
     HermitianHalf h (orthogonalComplement B h) :=
   hermitianHalfFromCompactForm B h (orthogonalComplement B h) e
 
+/-- The canonical Hermitian coordinates intertwine the complex structure
+coming from the commutant with multiplication by `I`.  This is a proved
+property of the construction, not an extra field of `HermitianHalf`. -/
+theorem hermitian_half_coordinates_complexStructure
+    (B : CompactForm g) (h : LieSubalgebra ℝ g)
+    (e : lieCommutant (L := h) (M := orthogonalComplement B h) ≃ₐ[ℝ] ℂ)
+    (m : orthogonalComplement B h) :
+    (hermitianHalfOfCommutant B h e).coordinates (commutantComplexStructure e m) =
+      Complex.I • (hermitianHalfOfCommutant B h e).coordinates m := by
+  letI originalRealModule : Module ℝ (orthogonalComplement B h) := inferInstance
+  letI : Module ℂ (orthogonalComplement B h) := complexModule e
+  have hJ : commutantComplexStructure e m = Complex.I • m := by
+    simpa using (complex_smul_formula e Complex.I m).symm
+  dsimp only [hermitianHalfOfCommutant, hermitianHalfFromCompactForm]
+  simp only [LinearEquiv.restrictScalars_apply]
+  rw [hJ]
+  exact map_smul _ _ _
+
 /-- The complex-commutant hypothesis supplies the Hermitian half used by the
 structural reduction; no separate witness needs to be assumed. -/
 theorem hermitian_half_exists_of_commutant

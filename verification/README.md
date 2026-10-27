@@ -67,21 +67,43 @@ The first command downloads the upstream Mathlib build cache; it can be omitted 
 
 ### What Lean proves
 
-The [all-rank structural theorem](../CubicAnomaly/Classification/HermitianRealization.lean)
+The [all-rank structural theorem](../CubicAnomaly/Classification/AllRankComplex.lean)
 now proves irreducibility, faithfulness, ambient simplicity, isotropy
 semisimplicity and maximality for an effective proper compact pair with complex
 commutant and a nonzero full cubic radical. It constructs a Hermitian matrix
 realization of the complex half from the compact form and commutant, explicitly
 intertwined with the entire adjoint complement. No separate realization witness
 is assumed. The structural conclusions, the matrix bracket law and scalar
-central action are proved. There is no rank bound.
+central action are proved. There is no rank bound. The same original
+hypotheses now also give absolute simplicity of the ambient complexification,
+nondegenerate complex Killing forms, a nonsymmetric complement, and the
+actual complementary irreducible inequivalent dual halves.
+
+The [canonical-half equivalence](../CubicAnomaly/Classification/CanonicalHalf.lean)
+identifies the positive eigenspace with the exact matrix action used by the
+anomaly. [Scalar extension](../CubicAnomaly/Classification/AnomalyComplexification.lean)
+preserves and reflects the full radical. The
+[Cartan proof](../CubicAnomaly/Classification/CartanCubic.lean) reduces it to
+a finite tensor-matrix kernel, testing every mixed pair of Cartan basis
+inputs. The [actual weight formula](../CubicAnomaly/Classification/CanonicalAnomaly.lean)
+expresses that matrix as a sum of weight-coordinate products with actual
+generalized weight multiplicities. No invariant-polynomial classification
+or supplied eigenbasis is used. The all-rank endpoint constructs the Cartan
+and the nonzero kernel vector from the original hypotheses.
 
 The [structural foundations](../CubicAnomaly/Classification/Structural.lean),
 [ambient simplicity proof](../CubicAnomaly/Classification/CompactSimple.lean),
 and [cubic radical proof](../CubicAnomaly/Classification/CubicRadical.lean) use
 actual Mathlib Lie algebras, modules and ideals. The
-[root-lattice module](../CubicAnomaly/Classification/RootReduction.lean) proves
-saturation for arbitrary finite crystallographic root pairings. The
+[root-lattice module](../CubicAnomaly/Classification/RootSaturation.lean) proves
+saturation for arbitrary finite crystallographic root pairings over
+characteristic-zero integral domains, including actual complex Lie root
+systems. [Root grading](../CubicAnomaly/Classification/RootGrading.lean)
+proves irreducible weight-coset homogeneity, zero-grade identification for
+closed subsystems, and the cyclic bracket decomposition once the actual
+common-Cartan support and pair identifications are supplied. A uniform
+[derivation argument](../CubicAnomaly/Classification/CyclicBracket.lean)
+eliminates the symmetric branch without an equal-rank assumption. The
 [classical arithmetic](../CubicAnomaly/Classification/Classical.lean) and
 [Weyl products](../CubicAnomaly/Classification/ClassicalWeyl.lean) prove the
 type-A cubic formula and both infinite D-type dimension gaps without bounded
@@ -139,12 +161,13 @@ from their standard upstream distributions.
 ### Manuscript proofs
 
 The paper supplies the homogeneous realization of the algebraic pair, the
-remaining completeness and representation-theoretic bridges, the
-invariant-theory identification of the Cartan cubic with the ideal-valued
-radical, global group integrations, branching and chiral index. The new Lean
-modules discharge the structural reduction, including construction of its
-complex half, root-lattice saturation, classical order-three exclusion and
-unbounded classical arithmetic described above.
+remaining classification/completeness and representation-theoretic bridges,
+identification of the classified actual weights and ideals with the finite
+census, global group integrations, branching and chiral index. The Lean
+modules discharge the real and complex structural reduction, the actual
+dual-pair construction, the full-radical-to-Cartan-weight-kernel equivalence,
+root-lattice saturation, conditional cyclic grading, classical order-three
+exclusion and unbounded classical arithmetic described above.
 They do not replace the remaining classification argument. The chiral-index
 coefficient is a statement about the classified representation.
 
