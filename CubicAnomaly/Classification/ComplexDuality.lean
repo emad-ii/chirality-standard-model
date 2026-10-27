@@ -175,7 +175,9 @@ section RealInvariantForm
 variable {L M : Type*} [LieRing L] [LieAlgebra ℝ L]
   [AddCommGroup M] [Module ℝ M] [LieRingModule L M] [LieModule ℝ L M]
 
-private theorem baseChange_form_nondegenerate (Φ : LinearMap.BilinForm ℝ M)
+/-- Complex scalar extension preserves nondegeneracy of a real bilinear
+form, without a dimension or positivity assumption. -/
+theorem complexified_bilinForm_nondegenerate (Φ : LinearMap.BilinForm ℝ M)
     (hnd : Φ.Nondegenerate) : (Φ.baseChange ℂ).Nondegenerate := by
   have hright (z : ℂ ⊗[ℝ] M) (y : M) :
       Φ.baseChange ℂ z (1 ⊗ₜ[ℝ] y) =
@@ -215,7 +217,9 @@ private theorem baseChange_form_nondegenerate (Φ : LinearMap.BilinForm ℝ M)
       rw [hleft] at h
       simpa using congrArg Complex.im h
 
-private theorem baseChange_form_invariant (Φ : LinearMap.BilinForm ℝ M)
+/-- Invariance of a real bilinear form extends to the actual complexified
+Lie action on the actual tensor-product module. -/
+theorem complexified_invariantForm_invariant (Φ : LinearMap.BilinForm ℝ M)
     (hΦ : Φ.lieInvariant L) : (Φ.baseChange ℂ).lieInvariant (ℂ ⊗[ℝ] L) := by
   intro x y z
   change (Φ.baseChange ℂ)
@@ -287,8 +291,8 @@ theorem positive_invariant_complex_halves_dual [Module.Finite ℝ M] [Nontrivial
     (complexifiedEnd (commutantComplexStructure e))
     (complexifiedEnd_square (commutantComplexStructure e)
       (commutant_complex_structure_square e))
-    (Φ.baseChange ℂ) (baseChange_form_invariant Φ hΦ)
-    (baseChange_form_nondegenerate Φ hnd)
+    (Φ.baseChange ℂ) (complexified_invariantForm_invariant Φ hΦ)
+    (complexified_bilinForm_nondegenerate Φ hnd)
     (baseChange_form_skew Φ (commutantComplexStructure e)
       (complex_commutant_structure_skew Φ hpositive hΦ e))
 

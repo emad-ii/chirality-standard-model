@@ -72,10 +72,11 @@ The notebook records the source revision separately from the mathematical certif
 | :--- | :--- |
 | **Manuscript proofs** | Global classification/completeness bridges, identification of the classified Lie pairs with the finite data, global groups and branching |
 | **Exact Python computation** | Independent root realizations, complete finite censuses, subgroup kernels and chiral dimensions |
-| **Lean 4 / Mathlib** | All-rank real and complex structural reduction, actual irreducible inequivalent dual halves, and uniform symmetric-pair exclusion; full anomaly radical equivalent to an actual Cartan weight-matrix kernel; root-lattice saturation and conditional cyclic grading; classical order-three exclusion and Weyl-product inequalities; exceptional finite uniqueness; $E_6$ incidence and intrinsic pair ordering |
+| **Lean 4 / Mathlib** | All-rank real and complex structure and the geometric rank-deficient-or-cyclic-grading reduction, with an actual root-lattice character in the equal-rank branch; full anomaly radical reconstructed from actual simple coroot ideals; involution obstruction, orthogonal defining-module irreducibility and self-duality, and dimension/quadratic restriction identities; classical order-three exclusion and Weyl-product inequalities; exceptional finite uniqueness; $E_6$ incidence and intrinsic pair ordering |
 
 The [formal proof scope](formal/README.md) states the structural theorem's precise
-inputs and the remaining steps toward global Lean uniqueness. The complete
+inputs, the geometric abelian-rank convention, and the remaining steps toward
+global Lean uniqueness. The complete
 compact-Lie classification is still a manuscript result. The
 [verification notes](verification/README.md) describe the checks and distinguish
 ordinary kernel proofs from the finite `native_decide` trust model.

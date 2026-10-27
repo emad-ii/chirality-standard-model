@@ -91,6 +91,15 @@ generalized weight multiplicities. No invariant-polynomial classification
 or supplied eigenbasis is used. The all-rank endpoint constructs the Cartan
 and the nonzero kernel vector from the original hypotheses.
 
+The [coroot criterion](../CubicAnomaly/Classification/CanonicalCoroot.lean)
+now reduces this further: the full radical is nonzero exactly when an actual
+nonzero coroot annihilates every mixed pair of Cartan basis inputs in the
+weight formula. [Coroot ideals](../CubicAnomaly/Classification/CorootComponents.lean)
+are proved simple, and the entire radical is their sum over all coroots
+passing those tests. These are actual Lie ideals, without supplied simple-type
+labels. Identifying their weights and components with the authored finite
+census remains necessary.
+
 The [structural foundations](../CubicAnomaly/Classification/Structural.lean),
 [ambient simplicity proof](../CubicAnomaly/Classification/CompactSimple.lean),
 and [cubic radical proof](../CubicAnomaly/Classification/CubicRadical.lean) use
@@ -98,12 +107,43 @@ actual Mathlib Lie algebras, modules and ideals. The
 [root-lattice module](../CubicAnomaly/Classification/RootSaturation.lean) proves
 saturation for arbitrary finite crystallographic root pairings over
 characteristic-zero integral domains, including actual complex Lie root
-systems. [Root grading](../CubicAnomaly/Classification/RootGrading.lean)
-proves irreducible weight-coset homogeneity, zero-grade identification for
-closed subsystems, and the cyclic bracket decomposition once the actual
-common-Cartan support and pair identifications are supplied. A uniform
-[derivation argument](../CubicAnomaly/Classification/CyclicBracket.lean)
-eliminates the symmetric branch without an equal-rank assumption. The
+systems. The new
+[all-rank grading endpoint](../CubicAnomaly/Classification/AllRankGrading.lean)
+derives a dichotomy directly from the original hypotheses: the isotropy has
+strictly smaller geometric abelian rank, or the actual ambient algebra has
+a nonzero integer-root-lattice character into `ZMod 3`. Its grades are exactly
+the complexified isotropy and the actual positive and negative complex halves;
+they form an internal direct sum and satisfy the bracket degree law.
+
+[Compact Cartans](../CubicAnomaly/Classification/CompactCartan.lean) constructs
+the ambient common Cartan when the two geometric abelian ranks agree. Here
+rank means the explicitly defined maximum dimension of an abelian subalgebra;
+no identification with Mathlib's characteristic-polynomial rank is asserted.
+[Common-Cartan geometry](../CubicAnomaly/Classification/CommonCartan.lean)
+derives the closed contained-root subsystem and zero-grade identity.
+[The actual dual halves](../CubicAnomaly/Classification/EqualRank.lean)
+force three-class support, and nonsymmetry forces order three.
+[Toral characters](../CubicAnomaly/Classification/ToralCharacter.lean) restricts
+the degree map to the actual integer root lattice and parametrizes characters
+by their values on any supplied actual integer basis. No grading-support
+or classification witness is supplied to the all-rank endpoint.
+
+A uniform [derivation argument](../CubicAnomaly/Classification/CyclicBracket.lean)
+eliminates the symmetric branch without an equal-rank assumption.
+[The involution obstruction](../CubicAnomaly/Classification/InvolutionObstruction.lean)
+strengthens this: every involutive real Lie automorphism fixing the isotropy
+pointwise is the identity, with no extra form-preservation hypothesis.
+For the actual orthogonal ambient algebra,
+[the defining module](../CubicAnomaly/Classification/OrthogonalDefining.lean)
+is consequently proved irreducible over the reals and irreducible and
+self-dual after complexification. The unitary and symplectic defining-module
+branches and the remaining highest-weight interpretation are still open.
+[Quadratic restriction](../CubicAnomaly/Classification/QuadraticRestriction.lean)
+proves the actual dimension equation and the Killing-form identity
+`κ_g|h = κ_h + 2 Tr_V(ρ(x)ρ(y))`; normalized Dynkin-index integrality and
+completeness of the integer sieve remain separate.
+
+The
 [classical arithmetic](../CubicAnomaly/Classification/Classical.lean) and
 [Weyl products](../CubicAnomaly/Classification/ClassicalWeyl.lean) prove the
 type-A cubic formula and both infinite D-type dimension gaps without bounded
@@ -149,7 +189,9 @@ Lean.trustCompiler
 ```
 
 The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem.
-The new deductive structural, root-lattice and classical theorems use only a
+The manifest contains **346 public theorem exports**: **317 deductive** and
+**29 finite/native-derived**. The deductive structural, root-lattice and
+classical theorems use only a
 subset of `propext`, `Classical.choice`, and `Quot.sound`; compiler-evaluation
 axioms are rejected for that class. Every receipt is matched to its fully
 qualified theorem name. Self-tests reject missing, duplicate, unknown or
@@ -165,9 +207,12 @@ remaining classification/completeness and representation-theoretic bridges,
 identification of the classified actual weights and ideals with the finite
 census, global group integrations, branching and chiral index. The Lean
 modules discharge the real and complex structural reduction, the actual
-dual-pair construction, the full-radical-to-Cartan-weight-kernel equivalence,
-root-lattice saturation, conditional cyclic grading, classical order-three
-exclusion and unbounded classical arithmetic described above.
+dual-pair construction, the geometric rank-deficient-or-cyclic-grading
+dichotomy, full-radical detection and reconstruction by actual simple coroot
+ideals, orthogonal defining-module irreducibility and self-duality, actual
+dimension and quadratic restriction identities, root-lattice saturation,
+classical order-three exclusion and unbounded classical arithmetic described
+above.
 They do not replace the remaining classification argument. The chiral-index
 coefficient is a statement about the classified representation.
 
