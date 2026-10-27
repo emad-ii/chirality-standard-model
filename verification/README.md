@@ -67,7 +67,40 @@ The first command downloads the upstream Mathlib build cache; it can be omitted 
 
 ### What Lean proves
 
+The [all-rank structural theorem](../CubicAnomaly/Classification/HermitianRealization.lean)
+now proves irreducibility, faithfulness, ambient simplicity, isotropy
+semisimplicity and maximality for an effective proper compact pair with complex
+commutant and a nonzero full cubic radical. It constructs a Hermitian matrix
+realization of the complex half from the compact form and commutant, explicitly
+intertwined with the entire adjoint complement. No separate realization witness
+is assumed. The structural conclusions, the matrix bracket law and scalar
+central action are proved. There is no rank bound.
+
+The [structural foundations](../CubicAnomaly/Classification/Structural.lean),
+[ambient simplicity proof](../CubicAnomaly/Classification/CompactSimple.lean),
+and [cubic radical proof](../CubicAnomaly/Classification/CubicRadical.lean) use
+actual Mathlib Lie algebras, modules and ideals. The
+[root-lattice module](../CubicAnomaly/Classification/RootReduction.lean) proves
+saturation for arbitrary finite crystallographic root pairings. The
+[classical arithmetic](../CubicAnomaly/Classification/Classical.lean) and
+[Weyl products](../CubicAnomaly/Classification/ClassicalWeyl.lean) prove the
+type-A cubic formula and both infinite D-type dimension gaps without bounded
+sampling or assumed rational ratio identities in their final product theorems.
+The [classical toral module](../CubicAnomaly/Classification/ClassicalToral.lean)
+proves strict zero-grade rank drop for every nonzero order-three functional
+on the explicit integral A, B, C and D root lattices, including the
+lattice-to-coordinate extension argument, uniformly in rank.
+
+The [formal scope document](../formal/README.md) gives exact hypotheses and
+lists the remaining representation-theoretic and classification bridges.
+**The full uniqueness theorem over all compact Lie-algebra pairs is not yet
+formalized.**
+
 The [exceptional classification module](../CubicAnomaly/Classification/Exceptional.lean) starts from authored Cartan matrices and integer symmetrizers for G2, F4, E6, E7 and E8. It reconstructs roots by reflection closure, exhausts root-lattice functionals modulo two and three up to Weyl action, checks the relevant component and grade-graph signatures, and evaluates the exact grade-one trace cubic on coroot spanning sets. This census is independent of the JSON certificate.
+
+The [selection module](../CubicAnomaly/Classification/Selection.lean) turns
+that checked cubic table into a universal uniqueness theorem, its converse,
+and an `∃!` statement inside the explicitly stated exceptional finite census.
 
 The [E6 checker](../CubicAnomaly/E6/Checker.lean) receives root coordinates, reflection permutations, a highest-root witness and six orbit seeds through the [generated data module](../CubicAnomaly/E6/Data.lean). It validates the witnesses against the fixed Cartan formulas and reconstructs the finite incidence calculation. It checks:
 
@@ -79,11 +112,12 @@ The [E6 checker](../CubicAnomaly/E6/Checker.lean) receives root coordinates, ref
 - A closed irreducible six-root, rank-two component exactly in the two extremal cells.
 - Common-subsystem multiplicities, context counts and 8,640 labelled containments.
 
-Conventional root-system names use standard ADE classification. The theorem statements and expected counts are authored in Lean, not copied from JSON summary fields. The data-freshness check verifies the translation from JSON to Lean; Lean separately validates those witnesses. The [25 exported theorems](../formal/AxiomAudit.lean) include `CubicAnomaly.E6.finite_certificate_valid` and the separate intrinsic-ordering theorems. Pair ranks are calculated from the integer root coordinates. The paper proves that rank plus root count is the dimension of the corresponding semisimple Lie algebra, and that the structural selection is equivalent to the chiral-dimension characterization.
+Conventional root-system names use standard ADE classification. The theorem statements and expected counts are authored in Lean, not copied from JSON summary fields. The data-freshness check verifies the translation from JSON to Lean; Lean separately validates those witnesses. The [exported theorem audit](../formal/AxiomAudit.lean) includes `CubicAnomaly.E6.finite_certificate_valid` and the separate intrinsic-ordering theorems, together with the new structural and classical results. Pair ranks are calculated from the integer root coordinates. The paper proves that rank plus root count is the dimension of the corresponding semisimple Lie algebra, and that the structural selection is equivalent to the chiral-dimension characterization.
 
 ### Trust model
 
-The finite computations use `native_decide`. The axiom audit checks every exported theorem against this exact receipt:
+The finite computations use `native_decide`. The axiom audit checks the original
+finite theorems and the selection results derived from them against this exact receipt:
 
 ```text
 propext
@@ -92,11 +126,27 @@ Lean.ofReduceBool
 Lean.trustCompiler
 ```
 
-The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem. The check also rejects unfinished proofs, project axioms, unsafe declarations and partial definitions. Compiler binaries and optional build caches come from their standard upstream distributions.
+The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem.
+The new deductive structural, root-lattice and classical theorems use only a
+subset of `propext`, `Classical.choice`, and `Quot.sound`; compiler-evaluation
+axioms are rejected for that class. Every receipt is matched to its fully
+qualified theorem name. Self-tests reject missing, duplicate, unknown or
+mislabeled receipts and compiler dependencies in deductive proofs.
+The check also rejects unfinished proofs, project axioms, unsafe declarations
+and partial definitions. Compiler binaries and optional build caches come
+from their standard upstream distributions.
 
 ### Manuscript proofs
 
-The paper supplies the compact-Lie structural reductions, the homogeneous realization of the algebraic pair, completeness bridges, the invariant-theory argument from the Cartan cubic to the ideal-valued radical, the classical all-rank argument, global group integrations, branching and chiral index. Their finite computational parts have the support described above. The chiral-index coefficient is a statement about the classified representation.
+The paper supplies the homogeneous realization of the algebraic pair, the
+remaining completeness and representation-theoretic bridges, the
+invariant-theory identification of the Cartan cubic with the ideal-valued
+radical, global group integrations, branching and chiral index. The new Lean
+modules discharge the structural reduction, including construction of its
+complex half, root-lattice saturation, classical order-three exclusion and
+unbounded classical arithmetic described above.
+They do not replace the remaining classification argument. The chiral-index
+coefficient is a statement about the classified representation.
 
 ## Local notebook
 

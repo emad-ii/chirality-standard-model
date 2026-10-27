@@ -70,11 +70,15 @@ The notebook records the source revision separately from the mathematical certif
 
 | Method | What it establishes |
 | :--- | :--- |
-| **Manuscript proofs** | Structural reductions, completeness, invariant theory, global groups and branching |
+| **Manuscript proofs** | Global classification/completeness bridges, invariant theory, global groups and branching |
 | **Exact Python computation** | Independent root realizations, complete finite censuses, subgroup kernels and chiral dimensions |
-| **Lean 4 / Mathlib** | 25 exported finite theorems covering the exceptional census, cubic selector, $E_6$ incidence and intrinsic pair ordering |
+| **Lean 4 / Mathlib** | All-rank compact-pair structural reduction, including construction of its complex half; root-lattice saturation, classical order-three exclusion and Weyl-product inequalities; exceptional finite uniqueness; $E_6$ incidence and intrinsic pair ordering |
 
-The [verification notes](verification/README.md) describe each check and the `native_decide` trust model.
+The [formal proof scope](formal/README.md) states the structural theorem's precise
+inputs and the remaining steps toward global Lean uniqueness. The complete
+compact-Lie classification is still a manuscript result. The
+[verification notes](verification/README.md) describe the checks and distinguish
+ordinary kernel proofs from the finite `native_decide` trust model.
 
 ## Everything in one place
 
