@@ -68,21 +68,24 @@ the following statements about actual groups, vector spaces and actions:
 | The root-coordinate grading modulo three | Actual homogeneous subspaces of dimensions `86 + 81 + 81`, with the bracket respecting degree |
 | Commuting projected matrix units | Faithful `sl(5,ℂ) × sl(3,ℂ)` and Standard Model plus family embeddings into the actual degree-zero subalgebra |
 | The signed exceptional matter basis | An explicit equivalence of the actual degree-one adjoint subspace with the constructed 81-dimensional matter module, preserving the embedded gauge and family action |
+| A separating Cartan operator and reversible root-action tree | Irreducibility of the actual degree-one module under the entire 86-dimensional zero-grade algebra |
+| The compact zero grade and its full real orthogonal complement | An actual effective proper pair of real dimensions 86 inside 248, with complement of dimension 162 and full real commutant exactly `ℂ` |
 | The unitary determinant-one block group | A surjective map from `SU(3) × SU(2) × U(1)`, an actual central cyclic kernel of order six, the quotient isomorphism, and the integral charge congruence |
 | Actual group actions on the same matter spaces | The covering kernel acts trivially, and the literal central-circle actions have the expected integer powers |
 | Alternating tensors and the dual defining module | The five Standard Model family actions and charges, derived by coordinate equivalences |
 | The Standard Model restriction of the 81-dimensional matter module | An equivariant splitting into three 15-dimensional families and a self-dual 36-dimensional remainder; the family and full module are not self-dual |
 | The actual Standard Model Lie action | Vanishing linear trace and full local symmetric cubic on the 27-dimensional module |
 | The actual exceptional half under the embedded gauge and family action | The full cubic radical is exactly the Standard Model ideal in that embedded algebra; the family cubic remains nonzero |
+| The actual exceptional half under the entire zero-grade algebra | The full cubic radical is exactly the explicit 78-dimensional span of six coroots and 72 root vectors |
+| The canonical Hermitian half of the actual compact pair | Its full cubic radical is nonzero, so the constructed pair satisfies the original algebraic hypotheses |
 
 The exceptional and matter constructions are matched through actual Lie
 actions. Their three-copy restricted matter content follows from the explicit
 exceptional basis equivalence. The remaining fixed-candidate obligations
 include the **full `E6` factor and irreducible `27` identification**, the
-original compact pair and its irreducible real complement, and exceptional
-group integration. The anomaly radical proved here concerns the specified
-embedded gauge-plus-family algebra; identifying the radical on the entire
-86-dimensional zero grade is a further step. The
+exceptional group integrations, and compatibility of group and Lie actions.
+The original compact pair, its irreducible real complement of complex type,
+and its full zero-grade anomaly radical are now proved. The
 [fixed-candidate scope](formal/FixedCandidate.md) gives the exact statements,
 trust boundaries and outstanding identifications.
 
@@ -109,6 +112,9 @@ compact real form, its actual graded adjoint spaces, and the faithful embedding
 and matter equivalence. It proves the Standard Model group quotient and charge
 lattice, derived matter actions, non-self-duality and three-family splitting,
 and the full local anomaly and restricted radical statements listed above.
+It also proves full zero-grade irreducibility, the exact 78-dimensional
+cubic radical, and the original compact-pair hypotheses for the canonical
+Hermitian half.
 
 The [formal proof scope](formal/README.md) states the structural theorem's precise
 inputs, the geometric abelian-rank convention, and the remaining steps toward

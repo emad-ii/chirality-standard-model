@@ -45,6 +45,11 @@ exceptional objects and Standard Model modules:
   Restricting the first factor embeds the actual Standard Model plus family
   algebra. A signed basis equivalence identifies the actual degree-one
   adjoint subspace with `Matter81` and intertwines that entire action.
+- The actual degree-one module is irreducible under the entire zero-grade
+  algebra. Compact conjugation constructs the 86-dimensional real isotropy
+  and its full 162-dimensional real orthogonal complement. A polynomial
+  in one compact family generator recovers multiplication by `i`, forcing
+  the full real commutant to be exactly `ℂ`.
 - The actual unitary block group is the quotient of
   `SU(3) × SU(2) × U(1)` by an explicitly proved central cyclic kernel of
   order six. Its charge congruence and representation descent criterion
@@ -62,13 +67,19 @@ exceptional objects and Standard Model modules:
   cubic radical is exactly the Standard Model ideal. The explicit action
   match transfers this result to the actual exceptional subspace under
   the embedded gauge and family algebra.
+- The cubic radical under the **entire** 86-dimensional zero-grade algebra
+  is exactly the explicit span of six coroots and 72 root vectors, of
+  dimension 78. Complex-linear coordinates identify the actual degree-one
+  module with the canonical Hermitian half of the compact pair and
+  transfer its full mixed cubic. Thus the canonical half has nonzero
+  radical, and the constructed pair satisfies every original algebraic
+  hypothesis of the all-rank structural theorem.
 
 The remaining construction gaps are the full `E6` Lie factor and irreducible
-`27` identification, the original compact pair and its irreducible real
-complement, and exceptional group integration. The radical on the entire
-86-dimensional zero grade is a further obligation: the current actual-action
-radical theorem is for the specified gauge-plus-family subalgebra. These
-gaps are separate from the universal classification gaps below.
+`27` identification and exceptional group integration. The original compact
+pair, complex-type real complement and full zero-grade radical are proved.
+The remaining identifications are separate from the universal classification
+gaps below.
 
 ## The structural reduction
 
@@ -1045,7 +1056,7 @@ current project:
 | Exceptional rank-deficient branch | Formalization and completeness of the Weyl-dimension/Dynkin-index sieve currently implemented in Python, including the highest-weight dimension interpretation and normalized index integrality; actual dimension/quadratic identities, the four search bounds, and the rank-two even-dimensional obstruction are proved |
 | Classical representation branch | The remaining orthogonal/symplectic constituents, support classification, and dimension/cubic-index interpretations; defining-module irreducibility and real/complexified isotropy simplicity are proved in all three concrete branches; the two-factor orthogonal/symplectic exclusion is complete, and the special-unitary branch is fully excluded in every dimension by tensor interchange |
 | Census-to-Lie interpretation | Identify authored finite roots, coroot spans, component labels and Weyl action with actual classified Lie data, and establish semantic completeness of the executable root/rank/graph/orbit algorithms; intrinsic coordinate filters, full-span and connectivity criteria, root counts, the actual root-cubic anomaly and full-radical reconstruction from internally null simple ideals are proved |
-| Existence and identification | The actual simple 248-dimensional exceptional algebra, compact real form, `86 + 81 + 81` grading, faithful classical/gauge embeddings and restricted matter equivalence are constructed. The full `E6` factor and irreducible `27` identification, original compact pair and real complement, full zero-grade radical, and exceptional group integrations remain open |
+| Exceptional identifications and integration | The actual compact pair satisfies the original effectivity, properness, complex-commutant and nonzero canonical cubic-radical hypotheses. Its full complex zero-grade radical is the explicit 78-dimensional coroot/root span. The full `E6` factor and irreducible `27` identification and exceptional group integrations remain open |
 
 The common-Cartan construction, closed contained-root subsystem, three-grade
 support, integral basis, actual root-lattice character, full-rank and
@@ -1072,8 +1083,8 @@ python3 formal/scripts/check_formal_hygiene.py
 python3 formal/scripts/check_formal_hygiene.py --self-test
 ```
 
-The audit covers **1234 public theorem exports**: **1006 deductive**,
-**30 finite/native-profile**, and **198 certificate-derived**. The hygiene checker keeps an explicit export
+The audit covers **1342 public theorem exports**: **1017 deductive**,
+**30 finite/native-profile**, and **295 certificate-derived**. The hygiene checker keeps an explicit export
 manifest and matches every
 `#print axioms` receipt to its fully qualified theorem name. It rejects
 missing, duplicate, unknown, and mislabeled receipts as well as unfinished

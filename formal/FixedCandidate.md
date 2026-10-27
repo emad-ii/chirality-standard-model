@@ -10,7 +10,10 @@ actual complex Lie-algebra actions. The constructed exceptional matrix algebra
 has dimension 248, is simple, and has an explicit compact real form. One actual
 81-dimensional homogeneous adjoint subspace is identified with the constructed
 Standard Model and family representation through a faithful, explicitly
-specified embedding. The full `E6` factor identification, compact pair and
+specified embedding. The actual compact pair now satisfies the original
+complex-commutant and nonzero canonical cubic-radical hypotheses. The entire
+complex zero-grade radical is identified with an explicit 78-dimensional
+span. The abstract `E6` factor and irreducible `27` identification and the
 exceptional group integrations remain separate obligations.
 
 ## Actual exceptional root, adjoint and compact objects
@@ -123,6 +126,77 @@ now apply to this actual exceptional subspace under the specified embedding.
 The same module bundles the Standard Model restriction as an actual
 `LieModuleEquiv`, transfers the three-family splitting and self-dual remainder,
 and proves that the actual degree-one module is not Standard Model self-dual.
+
+## The original compact-pair hypotheses
+
+[E8CompactGrading](../CubicAnomaly/Fixed/E8CompactGrading.lean) proves that
+the actual compact conjugation `σ(X) = −X*` reverses the three grades.
+[E8CompactPair](../CubicAnomaly/Fixed/E8CompactPair.lean) constructs
+
+\[
+ \mathfrak h=\mathfrak k\cap\mathfrak g_0,
+ \qquad
+ q=\mathfrak k\cap(\mathfrak g_1\oplus\mathfrak g_2),
+ \qquad
+ (\dim_{\mathbb R}\mathfrak k,\dim_{\mathbb R}\mathfrak h,
+   \dim_{\mathbb R}q)=(248,86,162).
+\]
+
+The complexification of `h` is the actual zero-grade algebra. The map
+`v ↦ v + σ(v)` identifies the real underlying degree-one module with `q`
+and intertwines the compact isotropy action.
+[E8CompactOrthogonal](../CubicAnomaly/Fixed/E8CompactOrthogonal.lean)
+identifies this `q` with the exact orthogonal complement used by the all-rank
+structural theorem, and proves properness and effectivity of the pair.
+
+[DiagonalTreeIrreducible](../CubicAnomaly/Fixed/DiagonalTreeIrreducible.lean)
+proves a general irreducibility criterion: an injective diagonal spectrum
+isolates coordinates by polynomials in one operator, and reversible action
+edges along a spanning tree propagate any nonzero coordinate to all the
+others. [E8MatterIrreducible](../CubicAnomaly/Fixed/E8MatterIrreducible.lean)
+binds two finite checks to the actual inherited action and proves
+
+\[
+ \mathfrak g_1\text{ is irreducible under the entire }\mathfrak g_0.
+\]
+
+The complex-type proof uses one actual family operator. On the three family
+coordinates, `T = i diag(1,1,−2)` has eigenvalues `i,i,−2i`, so
+
+\[
+ J=i\,\mathrm{id}=\tfrac32T+\tfrac12T^3.
+\]
+
+[E8FamilyComplexStructure](../CubicAnomaly/Fixed/E8FamilyComplexStructure.lean)
+proves this identity for the actual exceptional action and proves that its
+generator is compact. Thus every real intertwiner commutes with `J` and is
+complex linear. The compact isotropy complexly spans `g₀`, so complex
+irreducibility and Schur's lemma give exactly the complex scalars.
+[PolynomialComplexStructure](../CubicAnomaly/Fixed/PolynomialComplexStructure.lean)
+proves this implication generally, and
+[E8PairComplexType](../CubicAnomaly/Fixed/E8PairComplexType.lean) transports
+it to the actual real complement:
+
+\[
+ \operatorname{End}_{\mathfrak h,\mathbb R}(q)\cong_{\mathbb R}\mathbb C.
+\]
+
+The inverse of the chosen algebra equivalence sends `i` to the existing
+degree-one complex structure.
+[E8CanonicalPair](../CubicAnomaly/Fixed/E8CanonicalPair.lean)
+therefore constructs a complex-linear coordinate equivalence with the
+canonical Hermitian half in `HermitianRealization.lean`. It transports the
+full cubic tensor, including the `i³ = −i` normalization, and proves that
+each of the six compact coroots `i h₀,…,i h₅` belongs to its radical.
+Their nonzero witnesses establish the original nonzero-radical hypothesis.
+
+The endpoint `e8_original_pair_hypotheses` has no additional hypothesis:
+it establishes effectivity, properness, the full real complex commutant,
+and a nonzero full cubic radical for this exact canonical Hermitian half.
+Applying the existing all-rank theorem yields real irreducibility and
+faithfulness of the full complement, ambient simplicity, isotropy
+semisimplicity, and maximality in
+`e8_canonical_pair_structural_conclusions`.
 
 ## Actual Standard Model group and charge lattice
 
@@ -287,34 +361,55 @@ this coupled action with the already constructed three-copy `Matter81`.
 The family factor retains a nonzero cubic anomaly; this construction does
 not make it an anomaly-free gauge factor.
 
+## The cubic radical on the entire zero-grade algebra
+
+[E8FullCubic](../CubicAnomaly/Fixed/E8FullCubic.lean) constructs the matrix
+representation from the inherited action of every element of `g₀` on
+the actual `g₁`. Its restriction agrees with the already matched
+gauge-plus-family representation. The Cartan cubic is computed on the
+actual 81 root weights. On the eight simple-coroot coordinates it is
+
+\[
+ c(t,t,t)=6t_6^3-27t_6^2t_7+27t_6t_7^2.
+\]
+
+Here the convention is
+`c(A,B,C) = trace(A(BC + CB))/2`, so `c(A,A,A) = trace(A³)`.
+The finite tensor calculation checks all first-slot contractions with
+the six coroots `h₀,…,h₅`, including arbitrary pairs of the eight Cartan
+directions.
+[FiniteToralCubic](../CubicAnomaly/Classification/FiniteToralCubic.lean)
+upgrades this to the full mixed radical using proved spanning, weight and
+opposite-root bracket identities. This argument does not assume a Lie
+classification or a nondegenerate Killing form.
+
+The radical is a Lie ideal. Bracketing the six coroots with the 72 supported
+root vectors places all of those vectors in the radical. Their independent
+coordinates give a 78-dimensional subspace `e6Span`. The embedded faithful
+family `sl₃` has dimension eight and intersects the full radical trivially,
+by the already proved family anomaly. Since `dim g₀ = 86`, the dimension
+bound forces
+
+\[
+ \operatorname{Rad}(c_{\mathfrak g_1})=\texttt{e6Span},
+ \qquad \dim_{\mathbb C}\operatorname{Rad}(c_{\mathfrak g_1})=78.
+\]
+
+These are full-algebra results: the other two cubic inputs range over all
+of `g₀`. The radical is both nonzero and proper. Naming its explicit
+78-dimensional Lie ideal as an abstract standard `E6` model remains a
+separate identification; the radical computation itself no longer depends
+on completing that identification.
+
 ## Remaining identification and physical scope
 
-The main remaining exceptional steps are to identify the full 78-dimensional
-factor as the required actual `E6` algebra and its local 27-dimensional module,
-prove the original irreducible-complement hypotheses for the complete compact
-pair, and establish the relevant compact group integrations. The constructed
-ambient compact form does not by itself establish those pair-level statements.
-
-A concrete next proof strategy is to use the six Cartan labels `0..5` and
-the 72 roots with coordinates `v[6] = v[7] = 0` for the candidate `E6` span.
-The sparse bracket makes closure and commutation with the family factor
-finite, explicit obligations. A direct-sum recovery for this larger span
-must use the last two Cartan coordinates; the current `u[0]`-based family
-recovery was designed only to annihilate the selected `A4` subalgebra.
-
-For irreducibility of the entire degree-one module, one possible reduction
-uses a single Cartan element `H = ∑ i, 5^i h_i`, distinct eigenvalues on its
-81 root labels, and a finite spanning tree of nonzero zero-grade root actions.
-Polynomial coordinate projections and propagation along the tree would then
-force any nonzero invariant subspace to be the whole module. This proposed
-route uses all eight zero-grade Cartan directions; the six `E6` directions
-alone retain the three family copies. These further reductions are a proof
-strategy, not additional exported Lean theorems.
-
-The radical theorem for the actual exceptional half is currently about its
-restriction to the **specified embedded gauge-plus-family algebra**. It does
-not yet prove `Rad(c_V) = e6` on the entire 86-dimensional zero grade, or
-uniqueness of the Standard Model algebra among all its subalgebras.
+The main remaining exceptional identifications are the explicit
+78-dimensional radical with the required abstract `E6` algebra, its local
+27-dimensional irreducible module, and the relevant compact group
+integrations. The complete original compact-pair hypotheses and the full
+zero-grade cubic radical are now proved. The existing selected Standard
+Model embedding and its matter action do not establish uniqueness of the
+Standard Model algebra among all subalgebras of the radical.
 
 The universal orthogonal/symplectic exclusions and exceptional sieve
 completeness are not prerequisites for this constructive target. They remain

@@ -331,11 +331,26 @@ radical consequently apply to that actual exceptional subspace under the
 specified embedded algebra. The three-copy restricted matter content is
 derived through this explicit match.
 
+Two further finite checks give a separating Cartan spectrum and a reversible
+root-action tree, proving irreducibility under the entire zero-grade
+algebra. Compact conjugation realizes its real isotropy and the full real
+orthogonal complement. A cubic polynomial in one actual compact family
+generator recovers multiplication by `i`, so Schur's lemma determines the
+full real commutant as `ℂ`.
+
+The actual Cartan cubic tensor, toral/root spanning identities and Lie-ideal
+closure identify the **full zero-grade radical** with an explicit
+78-dimensional span. Complex-linear coordinate transport then proves the
+nonzero full radical of the canonical Hermitian half. The constructed
+compact pair consequently satisfies the exact original algebraic hypotheses,
+and the existing all-rank theorem supplies its five structural conclusions.
+The new polynomial, tree and toral-detection arguments are deductive;
+their application to the exceptional construction inherits its disclosed
+finite certificates.
+
 The [fixed-candidate scope](../formal/FixedCandidate.md) distinguishes these
-results from the remaining full `E6` factor and irreducible `27` identification,
-the original compact pair and its real complement, and exceptional group
-integration. The radical theorem for the entire 86-dimensional zero grade
-is also a separate obligation.
+results from the remaining full `E6` factor and irreducible `27` identification
+and exceptional group integration.
 
 ### Trust model
 
@@ -350,8 +365,8 @@ Lean.trustCompiler
 ```
 
 The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem.
-The manifest contains **1234 public theorem exports**: **1006 deductive**,
-**30 finite/native-profile**, and **198 certificate-derived**. The deductive structural, root-lattice and
+The manifest contains **1342 public theorem exports**: **1017 deductive**,
+**30 finite/native-profile**, and **295 certificate-derived**. The deductive structural, root-lattice and
 classical theorems use only a
 subset of `propext`, `Classical.choice`, and `Quot.sound`; compiler-evaluation
 axioms are rejected for that class. Every receipt is matched to its fully
