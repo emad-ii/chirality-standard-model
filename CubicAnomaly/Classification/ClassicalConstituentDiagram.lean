@@ -129,6 +129,31 @@ theorem not_type_B_or_C
     simp only [A,he, ← CartanMatrix.B_transpose, Matrix.transpose_apply] at hh
     exact hh
 
+/-- Negative transport of the simple roots by a Weyl word transports
+their coroots by the same sign and preserves the Cartan matrix. -/
+theorem cartan_preserved_of_dual_word (w : List H.root) (δ : Equiv.Perm b.support)
+    (hd : ∀ i z, (δ i).val.val z = -i.val.val (cartanWord H w z)) :
+    ∀ i j, b.cartanMatrix (δ i) (δ j) = b.cartanMatrix i j := by
+  let P := rootSystem H
+  letI := P.indexNeg
+  have co (j : b.support) : cartanWord H w (P.coroot (δ j)) = -P.coroot j := by
+    rw [coroot_word]
+    apply P.coroot_eq_neg_iff.mpr
+    apply P.root.injective
+    ext y
+    obtain ⟨z,rfl⟩ := (cartanWord H w).surjective y
+    have he := word_root_eval H w (δ j) z
+    rw [hd] at he
+    exact he.trans (LinearMap.congr_fun (P.root_eq_neg_iff.mpr rfl) (cartanWord H w z)).symm
+  intro i j
+  have p (i j : b.support) : ((b.cartanMatrix i j : ℤ) : ℂ) = i.val.val (P.coroot j) :=
+    b.algebraMap_cartanMatrixIn_apply ℤ i j
+  apply Int.cast_injective (α := ℂ)
+  rw [p, p, hd, co]
+  change -((i.val.val : Dual ℂ H) (-P.coroot j)) = _
+  rw [map_neg, neg_neg]
+  rfl
+
 end Cartan
 
 end CubicAnomaly.Classification.ClassicalConstituentDiagram

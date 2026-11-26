@@ -5,7 +5,7 @@ import CubicAnomaly.Fixed.MatterGroupAction
 import CubicAnomaly.Fixed.MatterNonSelfDual
 import CubicAnomaly.Fixed.MatterFamilyAnomaly
 import CubicAnomaly.Fixed.E8CompactIsotropy
-import CubicAnomaly.Fixed.E8EqualRankConverse
+import CubicAnomaly.Fixed.GlobalClassification
 import CubicAnomaly.Fixed.SmallExceptionalExclusion
 
 /-!
@@ -36,5 +36,8 @@ The local 27 is irreducible with first fundamental highest weight. The two
 factors are mutual centralizers. The compact radical has real dimension 78
 and is simple. The real isotropy splits as its product with the standard
 special unitary Lie algebra on three complex coordinates.
-Exceptional group integration and global uniqueness remain open.
+The global classification identifies every effective proper compact pair with
+complex commutant and nonzero cubic radical with this constructed pair by a
+real Lie equivalence preserving both oriented matter spaces and the full radical.
+Integrating the exceptional inclusions to compact Lie groups remains open.
 -/

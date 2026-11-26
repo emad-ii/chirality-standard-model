@@ -35,40 +35,19 @@ import CubicAnomaly.Classification.RootSimple
 import CubicAnomaly.Classification.ClassicalWeyl
 import CubicAnomaly.Classification.ClassicalToral
 import CubicAnomaly.Classification.Selection
-import CubicAnomaly.Classification.ClassicalConstituentDiagram
-import CubicAnomaly.Classification.ClassicalConstituentPathRoot
-import CubicAnomaly.Classification.ExceptionalSieve
-import CubicAnomaly.Classification.ExceptionalSieveA2Cubic
-import CubicAnomaly.Classification.ExceptionalSieveFactorDual
-import CubicAnomaly.Classification.ExceptionalSieveFactorTypes
-import CubicAnomaly.Classification.ExceptionalSieveFaithful
 import CubicAnomaly.Classification.ExceptionalSieveFreudenthal
-import CubicAnomaly.Classification.ExceptionalSieveStringOpposition
-import CubicAnomaly.Classification.ExceptionalSieveStringProducts
-import CubicAnomaly.Classification.MinusculeDimension
-import CubicAnomaly.Classification.MinusculeIntegralWeights
-import CubicAnomaly.Classification.OrthogonalMatrixDimension
 import CubicAnomaly.Classification.RootClassificationSubsystem
-import CubicAnomaly.Classification.TypeACompactExclusion
-import CubicAnomaly.Classification.TypeACubicHighestWeight
-import CubicAnomaly.Classification.TypeCCompactRecognition
 import CubicAnomaly.E6.Claims
 import CubicAnomaly.Fixed
 
 /-!
-The machine-checked surface for the all-rank real/complex structural reduction,
-the rank-deficient-or-intrinsic-toral-data split, actual root-cubic anomaly
-selection, full-radical reconstruction from simple ideals, constructed integer
-root coordinates, full-span and connected-support filters, all three compact
-classical defining-module reductions and isotropy simplicity in all three
-concrete compact classical branches, constructed tensor modules and forms,
-the complete two-factor quotient exclusion, complete special-unitary exclusion
-by tensor interchange, actual complexifications, exceptional dimension bounds,
-classical arithmetic and Weyl products, finite exceptional
-selection, the E6 incidence checks, and constructed components of the fixed
-candidate: an actual exceptional root pairing and generated matrix algebra,
-the Standard Model central quotient and charge lattice, concrete matter
-modules and their local anomalies. See formal/README.md
-for the precise geometric abelian-rank convention and the remaining
-classification and census-identification bridges to global uniqueness.
+For an effective proper compact Lie-algebra pair whose full adjoint complement
+has complex commutant, `Fixed.GlobalClassification.compact_pair_classification`
+proves that the canonical cubic radical is nonzero exactly when one real ambient
+Lie equivalence identifies the isotropy, the full radical, and both oriented
+matter spaces with those of the constructed compact exceptional pair.
+
+The development also verifies the finite exceptional root data, the E₆ incidence
+calculations, and the Standard Model quotient, charge lattice and matter actions.
+The complete statements and their axiom receipts are documented in `formal/README.md`.
 -/

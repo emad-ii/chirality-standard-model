@@ -140,13 +140,13 @@ private theorem extend_compact_abelian (B : CompactForm g) (U : LieSubalgebra �
   exact heq ▸ LieSubalgebra.subset_lieSpan (Set.mem_insert _ _)
 
 omit [LieAlgebra.IsKilling ℂ (ℂ ⊗[ℝ] g)] in
-/-- Every compact inclusion has nested complexified Cartans. This extension
-also applies at deficient rank: the isotropy Cartan maps into an ambient
-Cartan, and attains the geometric rank of the isotropy algebra. -/
-theorem compact_pair_nested_cartans (B : CompactForm g) (h : LieSubalgebra ℝ g) :
-    ∃ (A : LieSubalgebra ℂ (ℂ ⊗[ℝ] h)) (H : LieSubalgebra ℂ (ℂ ⊗[ℝ] g)),
-      A.IsCartanSubalgebra ∧ H.IsCartanSubalgebra ∧ finrank ℂ A = abelianRank ℝ h ∧
-      ∀ x : A, complexifiedLieHom h.incl x ∈ H := by
+/-- An isotropy Cartan attaining its geometric rank extends to a real
+ambient Cartan. The inclusion of their scalar extensions is explicit. -/
+theorem compact_pair_nested_real_cartans (B : CompactForm g) (h : LieSubalgebra ℝ g) :
+    ∃ (T : LieSubalgebra ℝ h) (D : LieSubalgebra ℝ g),
+      IsLieAbelian T ∧ T.IsCartanSubalgebra ∧ IsLieAbelian D ∧ D.IsCartanSubalgebra ∧
+      finrank ℝ T = abelianRank ℝ h ∧ (h.incl.comp T.incl).range ≤ D ∧
+      ∀ x : complexifiedSubalgebra T, complexifiedLieHom h.incl x ∈ complexifiedSubalgebra D := by
   obtain ⟨T, hT, hdim⟩ := exists_abelian_finrank_eq_abelianRank ℝ h
   letI := hT
   letI : T.IsCartanSubalgebra := compact_maximum_abelian_isCartan (B.restrict h) T hdim
@@ -154,20 +154,33 @@ theorem compact_pair_nested_cartans (B : CompactForm g) (h : LieSubalgebra ℝ g
   let E := LieEquiv.ofInjective F (Subtype.val_injective.comp Subtype.val_injective)
   letI : IsLieAbelian F.range := (lie_abelian_iff_equiv_lie_abelian E).mp hT
   obtain ⟨D, hle, hD, hcart⟩ := extend_compact_abelian B F.range
+  refine ⟨T, D, hT, inferInstance, hD, hcart, hdim, hle, ?_⟩
+  rintro ⟨x, ⟨z, rfl⟩⟩
+  induction z using TensorProduct.induction_on with
+  | zero => simp
+  | tmul c t =>
+    let v : D := ⟨F t, hle ⟨t, rfl⟩⟩
+    exact ⟨c ⊗ₜ[ℝ] v, rfl⟩
+  | add z w hz hw => simpa only [map_add] using (complexifiedSubalgebra D).add_mem hz hw
+
+omit [LieAlgebra.IsKilling ℂ (ℂ ⊗[ℝ] g)] in
+/-- Every compact inclusion has nested complexified Cartans. This extension
+also applies at deficient rank: the isotropy Cartan maps into an ambient
+Cartan, and attains the geometric rank of the isotropy algebra. -/
+theorem compact_pair_nested_cartans (B : CompactForm g) (h : LieSubalgebra ℝ g) :
+    ∃ (A : LieSubalgebra ℂ (ℂ ⊗[ℝ] h)) (H : LieSubalgebra ℂ (ℂ ⊗[ℝ] g)),
+      A.IsCartanSubalgebra ∧ H.IsCartanSubalgebra ∧ finrank ℂ A = abelianRank ℝ h ∧
+      ∀ x : A, complexifiedLieHom h.incl x ∈ H := by
+  obtain ⟨T, D, habT, hT, habD, hD, hdim, _, hnest⟩ := compact_pair_nested_real_cartans B h
+  letI := habT
+  letI := hT
+  letI := habD
   letI := hD
-  letI := hcart
   refine ⟨complexifiedSubalgebra T, complexifiedSubalgebra D,
-    complexified_abelian_cartan T, complexified_abelian_cartan D, ?_, ?_⟩
-  · change finrank ℂ (T.toSubmodule.baseChange ℂ) = _
-    rw [complexification_submodule_finrank]
-    exact hdim
-  · rintro ⟨x, ⟨z, rfl⟩⟩
-    induction z using TensorProduct.induction_on with
-    | zero => simp
-    | tmul c t =>
-      let v : D := ⟨F t, hle ⟨t, rfl⟩⟩
-      exact ⟨c ⊗ₜ[ℝ] v, rfl⟩
-    | add z w hz hw => simpa only [map_add] using (complexifiedSubalgebra D).add_mem hz hw
+    complexified_abelian_cartan T, complexified_abelian_cartan D, ?_, hnest⟩
+  change finrank ℂ (T.toSubmodule.baseChange ℂ) = _
+  rw [complexification_submodule_finrank]
+  exact hdim
 
 /-- On an embedded isotropy triple the divisor applies to the actual sum of
 the isotropy Killing trace and twice the trace of the canonical complex half.

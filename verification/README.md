@@ -97,8 +97,9 @@ nonzero coroot annihilates every mixed pair of Cartan basis inputs in the
 weight formula. [Coroot ideals](../CubicAnomaly/Classification/CorootComponents.lean)
 are proved simple, and the entire radical is their sum over all coroots
 passing those tests. These are actual Lie ideals, without supplied simple-type
-labels. Identifying their weights and components with the authored finite
-census remains necessary.
+labels. The common-Cartan proof identifies the root coordinates and transports
+the grade-one cubic to the exceptional census.
+[Cubic transport](../CubicAnomaly/Classification/RootClassificationCubic.lean).
 
 [Internal ideal tests](../CubicAnomaly/Classification/CubicIdealDecomposition.lean)
 now recover the full radical as well: perfectness of semisimple ideals,
@@ -160,9 +161,9 @@ identifies the original anomaly action's cubic with
 `Σ α∈R₁, α(x) α(y) α(z)`.
 [The kernel equivalence](../CubicAnomaly/Classification/RootCubicKernel.lean)
 then detects the original full radical using this actual root-cubic matrix
-on the same Cartan. This discharges every mixed insertion; it is not only
-a test of diagonal cubic values. Identification with authored root tables
-and semantic completeness of their executable algorithms remain open.
+on the same Cartan, including every mixed insertion. The subsequent
+root bijection matches the actual exceptional roots to the authored tables.
+[Root transport](../CubicAnomaly/Classification/RootClassificationExceptional.lean).
 
 [The intrinsic Cartan basis](../CubicAnomaly/Classification/IntrinsicCartanBasis.lean)
 now makes every root evaluation literally its constructed integer coordinate.
@@ -228,9 +229,11 @@ therefore prove real and actual complexified isotropy simplicity, in every
 dimension, from the original hypotheses. The nonzero full cubic radical is
 the entire isotropy, so every mixed cubic trace vanishes. Defining-module
 irreducibility and isotropy simplicity are now complete for all three
-concrete compact classical constructions. The remaining orthogonal and
-symplectic constituents, support classification, and dimension/cubic-index
-interpretations remain open.
+concrete compact classical constructions. The final constituent arguments
+exclude a nonzero radical for the orthogonal and compact symplectic models
+in every dimension.
+[Orthogonal exclusion](../CubicAnomaly/Classification/ClassicalConstituentOrthogonalExclusion.lean) ·
+[Symplectic exclusion](../CubicAnomaly/Classification/ClassicalConstituentSymplecticExclusion.lean).
 
 [The full special-unitary exclusion](../CubicAnomaly/Classification/UnitaryNoGo.lean)
 now proves the full cubic radical is zero in every dimension, from the
@@ -249,12 +252,18 @@ The actual complexifications are also constructed:
 [orthogonal to Mathlib `so`](../CubicAnomaly/Classification/OrthogonalComplexification.lean),
 and [symplectic to the preserver of the actual alternating form](../CubicAnomaly/Classification/SymplecticComplexification.lean).
 The `sl` and `so` matrix constructions supply their own finite bases and
-prove defining-action compatibility. This does not classify an arbitrary
-simple compact ambient algebra into the concrete families.
-[Quadratic restriction](../CubicAnomaly/Classification/QuadraticRestriction.lean)
-proves the actual dimension equation and the Killing-form identity
-`κ_g|h = κ_h + 2 Tr_V(ρ(x)ρ(y))`; normalized Dynkin-index integrality and
-completeness of the integer sieve remain separate.
+prove defining-action compatibility. Real-form recognition then identifies
+the classical ambient models occurring in the global theorem.
+[Type A](../CubicAnomaly/Classification/TypeACompactRecognition.lean) ·
+[Types B and D](../CubicAnomaly/Classification/ClassicalOrthogonalRecognition.lean) ·
+[Type C](../CubicAnomaly/Classification/TypeCCompactRecognition.lean).
+
+The dimension equation and Killing-form identity
+`κ_g|h = κ_h + 2 Tr_V(ρ(x)ρ(y))` hold for the actual compact pair.
+Evaluating the identity on simple coroots supplies each constituent's
+exceptional index test.
+[Quadratic restriction](../CubicAnomaly/Classification/QuadraticRestriction.lean) ·
+[Exceptional factor index](../CubicAnomaly/Classification/ExceptionalSieve.lean).
 
 [Actual root dimensions](../CubicAnomaly/Classification/KillingDimension.lean)
 and the original anomaly hypothesis now derive
@@ -276,10 +285,11 @@ proves strict zero-grade rank drop for every nonzero order-three functional
 on the explicit integral A, B, C and D root lattices, including the
 lattice-to-coordinate extension argument, uniformly in rank.
 
-The [formal scope document](../formal/README.md) gives exact hypotheses and
-lists the remaining representation-theoretic and classification bridges.
-**The full uniqueness theorem over all compact Lie-algebra pairs is not yet
-formalized.**
+The pinned Lean project proves the global classification of the oriented
+compact Lie-algebra pair. The proof uses the actual exceptional factor
+bounds and the all-rank classical exclusions.
+[Formal hypotheses and proof](../formal/README.md) ·
+[Global theorem](../CubicAnomaly/Fixed/GlobalClassification.lean).
 
 The [exceptional classification module](../CubicAnomaly/Classification/Exceptional.lean) starts from authored Cartan matrices and integer symmetrizers for G2, F4, E6, E7 and E8. It reconstructs roots by reflection closure, exhausts root-lattice functionals modulo two and three up to Weyl action, checks the relevant component and grade-graph signatures, and evaluates the exact grade-one trace cubic on coroot spanning sets. This census is independent of the JSON certificate.
 
@@ -366,8 +376,8 @@ Lean.trustCompiler
 ```
 
 The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem.
-The manifest contains **1784 public theorem exports**: **1347 deductive**,
-**30 finite/native-profile**, and **407 certificate-derived**. The deductive structural, root-lattice and
+The manifest contains **1889 public theorem exports**: **1441 deductive**,
+**30 finite/native-profile**, and **418 certificate-derived**. The deductive structural, root-lattice and
 classical theorems use only a
 subset of `propext`, `Classical.choice`, and `Quot.sound`; compiler-evaluation
 axioms are rejected for that class. Every receipt is matched to its fully
@@ -377,8 +387,8 @@ The check also rejects unfinished proofs, project axioms, unsafe declarations
 and partial definitions. Compiler binaries and optional build caches come
 from their standard upstream distributions.
 
-The new certificate-derived exceptional structural exports have a third
-named class with **exactly** `propext`, `Classical.choice`, `Quot.sound`,
+The global compact-pair classification and the certificate-derived
+exceptional structural exports use a third named class with **exactly** `propext`, `Classical.choice`, `Quot.sound`,
 `Lean.ofReduceBool`, and `Lean.trustCompiler`. This records their dependence
 on the finite root certificate; it does not broaden either the original
 finite profile or the deductive profile. Receipt self-tests reject every
@@ -389,16 +399,21 @@ exceptional subspace inherits the explicitly audited finite certificates.
 
 ### Manuscript and formal proof scope
 
-Lean proves the equal-abelian-rank uniqueness theorem for real compact pairs,
-including the isomorphism of their two oriented matter spaces. It proves
-vanishing of the full cubic radical for arbitrary compact ambient algebras
-of type A or C, and for every ambient algebra of real dimension 14 or 52. The actual fixed radical is a compact simple real form of E₆,
-and the local module is an irreducible 27 of first fundamental highest weight.
-The numerical exceptional sieve covers all bounded products of the catalogued
-dominant labels. Its complete representation-theoretic interpretation and
-the remaining rank-deficient orthogonal analysis still rely on the manuscript.
-Exceptional group integration is a separate question.
-[Formal proof scope](../formal/README.md).
+The exported Lean theorems `anomaly_iff_fixed_pair` and
+`compact_pair_classification` cover every finite-dimensional effective
+proper compact Lie-algebra pair with a chosen complex commutant
+equivalence on the entire adjoint complement. The canonical full cubic
+radical is nonzero exactly when a real ambient isomorphism carries the
+isotropy and the two oriented matter eigenspaces to the constructed E₈
+pair, with the eigenspaces compared after complexification. The stronger
+statement identifies the 78-dimensional radical under that isomorphism.
+[Global classification](../CubicAnomaly/Fixed/GlobalClassification.lean) ·
+[Formal scope](../formal/README.md).
+
+The fixed compact radical complexifies to E₆. Its local module is the
+irreducible 27 with first fundamental highest weight. Exceptional group
+integration and differentiation of the group actions remain open.
+[Fixed-candidate scope](../formal/FixedCandidate.md).
 
 ## Local notebook
 

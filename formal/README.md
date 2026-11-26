@@ -1,30 +1,28 @@
 # Formal proof scope
 
-The Lean development contains a rank-independent structural reduction for
-actual compact real Lie algebras and their complexifications. From the original
-hypotheses it now derives a rank-deficient-or-intrinsic-toral-data dichotomy.
-The equal-rank branch constructs one actual ambient Cartan, an integer
-root-lattice basis and a nonzero character, and derives full zero-root rank,
-connected half-supports, exact dimension/root counts and the actual root-cubic
-anomaly on that same Cartan. It also reconstructs the full anomaly radical
-from actual simple ideals and proves defining-module irreducibility for all
-three concrete compact classical constructions. All three now have simple
-real and complexified isotropy, and their nonzero full cubic radicals are
-the entire isotropy. The orthogonal and symplectic two-factor remainder is
-excluded by actual quotient maps, tensor density, and a trace-zero
-symmetric-pair derivation argument. Actual tensor decompositions and
-invariant factor forms are constructed without complete-reducibility or
-factorization witnesses. The special-unitary branch is now fully excluded
-in every dimension: tensor interchange and the actual Hermitian adjoint
-force its full cubic radical to be zero. The development also
-supplies actual complexification bridges, exceptional search bounds,
-uniform classical arithmetic and finite exceptional uniqueness. For equal
-abelian rank there is now a real isomorphism of the oriented pair to the
-constructed exceptional pair. The compact symplectic defining algebra is
-also excluded in every dimension.
-**The manuscript's global uniqueness theorem over all compact Lie-algebra
-embeddings is not yet a Lean theorem.** The exact rank convention and remaining
-bridges are stated below.
+For every finite-dimensional compact real Lie-algebra pair with effective
+proper isotropy and a chosen complex commutant equivalence on its entire
+adjoint complement, the canonical half has nonzero full mixed cubic radical
+if and only if the oriented pair is isomorphic to the constructed compact
+E₈ pair. The same real ambient isomorphism carries the isotropy and its
+radical onto the fixed isotropy and radical. Its complexification identifies
+the two matter eigenspaces with their orientations preserved.
+
+```lean
+CubicAnomaly.Fixed.GlobalClassification.anomaly_iff_fixed_pair
+CubicAnomaly.Fixed.GlobalClassification.compact_pair_classification
+```
+
+The structural reduction produces simple complex ambient type and an
+irreducible dual-pair complement. Nested Cartans and root-system
+classification give the classical and exceptional alternatives. The
+exceptional index and dimension tests force full Cartan rank. The compact
+classical models all have zero full cubic radical under the other
+hypotheses. The equal-rank classification and the constructed fixed pair
+give the forward and reverse implications.
+[Global theorem](../CubicAnomaly/Fixed/GlobalClassification.lean) ·
+[Ambient alternatives](../CubicAnomaly/Fixed/AmbientClassification.lean) ·
+[Equal-rank pair](../CubicAnomaly/Fixed/E8EqualRankRealPair.lean).
 
 The toolchain remains Lean 4.28.0 with the exact Mathlib revision in
 `lake-manifest.json`. No project axioms or unfinished proofs are used.
@@ -307,9 +305,10 @@ M_{(j,k),i}
 `canonical_anomaly_iff_cartan_weight_kernel` is an equivalence for the
 original full radical. `AllRankComplex.all_rank_nonzero_cartan_weight_kernel`
 constructs a Cartan and a nonzero vector in this actual weight matrix's
-kernel from the original hypotheses. Identifying the resulting actual
-weights with an authored finite root table remains part of the
-classification-to-census bridge.
+kernel from the original hypotheses. For a common Cartan, the subsequent
+root-system and cubic transport identify the grade-one weights and their
+integer contractions with the census coordinates.
+[Cubic transport](../CubicAnomaly/Classification/RootClassificationCubic.lean).
 
 ### The radical is a sum of actual simple coroot ideals
 
@@ -356,8 +355,9 @@ C(\alpha;i,j)
 entire complex radical as a sum of actual simple ideals.
 `all_rank_exists_null_coroot` constructs the Cartan of `h_C` and a nonzero
 actual coroot satisfying every mixed test from the original compact-pair
-hypotheses. Identifying these actual roots, weights and simple ideals with
-the authored census coordinates and component labels remains separate.
+hypotheses. The common-Cartan selection later uses the actual root and
+cubic identifications with the exceptional census.
+[Common-Cartan selection](../CubicAnomaly/Classification/RootClassificationSelection.lean).
 
 `CubicIdealDecomposition.lean` also proves that internal component tests
 detect the **full** radical. Every ideal of a semisimple Lie algebra is
@@ -430,8 +430,9 @@ degree law, and are exactly
 The last two equalities use the actual embedded `I` and `-I` eigenspaces
 of the extended commutant complex structure. No Cartan, closed subsystem,
 three-class support, grade identification, character or classification
-witness is an input to the all-rank endpoint. The rank-deficient disjunct
-is retained; this theorem does not eliminate it.
+witness is an input to this reduction. The global theorem eliminates the
+rank-deficient alternative using the classical exclusions and the exceptional
+factor tests. [Global classification](../CubicAnomaly/Fixed/GlobalClassification.lean).
 
 ### Intrinsic finite data and the same-Cartan anomaly
 
@@ -519,10 +520,10 @@ and row equation. `IntrinsicAnomaly.lean` composes the bridges into
 original-hypothesis `IntrinsicToralData` conclusion includes a nonzero
 rational vector annihilated by the exact integer matrix above.
 
-These are finite mathematical parametrizations of the actual roots.
-Identification with the authored exceptional coordinates, and correctness
-and completeness of the executable root-generation, rank, graph-search and
-Weyl-orbit algorithms under that identification, remain separate bridges.
+These finite parametrizations are related to the exceptional tables by an
+actual root bijection preserving the integral coordinates, the three grades
+and the cubic contractions. [Root bijection](../CubicAnomaly/Classification/RootClassificationExceptional.lean) ·
+[Cubic transport](../CubicAnomaly/Classification/RootClassificationCubic.lean).
 
 ## Root-lattice reduction and finite uniqueness
 
@@ -582,9 +583,10 @@ actual character and preserves all three grade identities.
 integer root span and constructs an integral basis of rank `dim H`.
 `intrinsicRootCharacterEquiv` parametrizes its characters by the basis
 values, proves the coordinate evaluation formula, and counts exactly
-`3^(dim H)` characters. No basis witness is an input. Identification of
-this constructed basis with the census's authored simple-root coordinates
-is still required before applying that finite enumeration to an arbitrary pair.
+`3^(dim H)` characters. On the common Cartan, the root bijection built
+from the classified simple-root matrix matches the actual root system
+to the authored coordinates used in the exceptional enumeration.
+[Root classification](../CubicAnomaly/Classification/RootClassificationDynkin.lean).
 
 `RootSimple.lean` proves that an ideal's Cartan intersection is invariant
 under coroot reflections using actual root `sl₂` triples. With Cartan
@@ -848,10 +850,10 @@ all_rank_symplectic_cubic_trace_zero
 
 Together with `UnitarySimplicity.lean`, these complete defining-module
 irreducibility and isotropy simplicity for all three concrete compact
-classical constructions in every dimension. The remaining orthogonal
-constituent analysis, support classification, and dimension
-and cubic-index interpretations are separate work. The special-unitary
-branch is closed by the following operator argument.
+classical constructions in every dimension. The final orthogonal exclusion
+uses the possible highest-weight supports of the defining module. The
+special-unitary exclusion uses tensor interchange.
+[Orthogonal exclusion](../CubicAnomaly/Classification/ClassicalConstituentOrthogonalExclusion.lean).
 
 ### Complete special-unitary exclusion by tensor interchange
 
@@ -980,8 +982,10 @@ the complementary dual-module decomposition:
 
 The latter uses invariance of trace forms under actual module equivalences,
 their equality on dual modules, and additivity over complementary submodules.
-Neither a normalized Dynkin index nor its integrality is assumed or proved
-by this identity; connecting it to the integer sieve is remaining work.
+The factor-index theorem then evaluates the restriction on an actual long
+simple coroot and obtains the divisibility test used for each constituent.
+[Factor-index formula](../CubicAnomaly/Classification/ExceptionalSieveFactorIndex.lean) ·
+[Ambient divisibility](../CubicAnomaly/Classification/ExceptionalSieve.lean).
 
 `KillingDimension.lean` derives
 `dim L = dim H + 2 #positiveRoots` and `dim L ≥ 3 dim H` from the actual
@@ -1051,9 +1055,12 @@ Classical.typeD_weyl_exterior_gap_two
 
 have only `r : ℕ` and `5 ≤ r` as hypotheses. The Weyl-ratio identities and
 dimension bounds are not assumptions in those final results. They apply
-even beyond the odd ranks needed by the manuscript. Identifying these
-explicit root products with dimensions of actual highest-weight modules
-still requires the representation-theoretic Weyl dimension theorem.
+even beyond the odd ranks needed by the manuscript. The all-rank
+classification obtains its dimension bounds on the actual modules from
+weight strings, Weyl orbits and the product of constituent dimensions.
+[Simple-root strings](../CubicAnomaly/Classification/ExceptionalSieveSimpleStrings.lean) ·
+[Factor products](../CubicAnomaly/Classification/ExceptionalSieveFactorProduct.lean) ·
+[Orthogonal exclusion](../CubicAnomaly/Classification/ClassicalConstituentOrthogonalExclusion.lean).
 
 ## Selection from an actual common Cartan
 
@@ -1149,13 +1156,41 @@ minuscule dimension bound counts weights in a supplied minuscule orbit.
 [type-A highest-weight coordinates](../CubicAnomaly/Classification/TypeACubicHighestWeight.lean),
 and [minuscule weights](../CubicAnomaly/Classification/MinusculeDimension.lean).
 
-## Remaining work for global uniqueness
+## Global uniqueness for the oriented compact pair
 
-| Remaining implication | Current proof boundary |
-| --- | --- |
-| Rank-deficient exceptional pairs | Actual highest vectors with bounded integral labels, Killing-trace divisors, the simple-module Casimir identity, and the numerical sieve on products of dominant labels are proved. Dimensions 14 and 52 are excluded at every rank. The remaining exceptional dimensions require a complete connection from actual module dimensions and cubic traces to the finite label tests. |
-| Rank-deficient classical pairs | The concrete special-unitary and compact symplectic cases and the two-factor orthogonal case are excluded in all dimensions. In the remaining orthogonal case the root-lowering constituents and a bound on their support are proved. The unrestricted type-A and type-C cases are excluded and orthogonal support satisfies the opposition-orbit constraints. The remaining orthogonal dimension and cubic-index arguments and full type-B and type-D recognition are still required. |
-| Exceptional Lie groups | The fixed compact Lie algebra and representation are constructed. Integrating the exceptional inclusions and differentiating the proposed group actions are additional global-group statements. |
+For G₂, F₄, E₆, E₇ and E₈ the exceptional rank bound applies to the
+nested Cartans of the original pair. Each simple factor contributes an
+actual highest label, its trace-index test and a lower bound from
+simple-root strings. The constituent dimensions multiply to the half
+dimension. A non-self-dual half supplies a label moved by opposition.
+The surviving F₄ and E₇ rows require an A₂ constituent of dimension 10,
+which divides neither 22 nor 52. The E₆ rank-two case contradicts the
+quadratic trace congruence forced by its vanishing mixed cubic.
+[Exceptional assembly](../CubicAnomaly/Classification/ExceptionalSieveAssembly.lean) ·
+[E₆ obstruction](../CubicAnomaly/Classification/ExceptionalSieveE6Singleton.lean).
+
+For classical ambient types, real-form recognition identifies a concrete
+special-unitary, compact orthogonal or compact symplectic model. The
+orthogonal exclusion uses opposition on the defining highest weight,
+the type-A cubic and the remaining type-D and E₆ support cases.
+Transport brings the vanishing full radical back to the original pair.
+[Orthogonal recognition](../CubicAnomaly/Classification/ClassicalOrthogonalRecognition.lean) ·
+[Orthogonal exclusion](../CubicAnomaly/Classification/ClassicalConstituentOrthogonalExclusion.lean) ·
+[Ambient alternatives](../CubicAnomaly/Fixed/AmbientClassification.lean).
+
+Every survivor therefore reaches the constructed compact E₈ pair.
+The commutant equivalence fixes the labels of the two matter halves.
+The forward implication carries each eigenspace to the corresponding
+fixed eigenspace. The converse transports nonvanishing of the fixed
+canonical radical back to the original pair. The stronger equivalence
+identifies the full 78-dimensional radical under the very same map on
+the isotropy algebra.
+[Global classification](../CubicAnomaly/Fixed/GlobalClassification.lean) ·
+[Radical transport](../CubicAnomaly/Fixed/OrientedPairRadical.lean).
+
+Integration of the exceptional Lie algebra inclusions and compatibility
+of the constructed group and Lie actions under differentiation remain open.
+[Fixed construction and physical scope](FixedCandidate.md#remaining-identification-and-physical-scope).
 
 ## Verification and trust
 
@@ -1169,8 +1204,8 @@ python3 formal/scripts/check_formal_hygiene.py
 python3 formal/scripts/check_formal_hygiene.py --self-test
 ```
 
-The audit covers **1784 public theorem exports**: **1347 deductive**,
-**30 finite/native-profile**, and **407 certificate-derived**. The hygiene checker keeps an explicit export
+The audit covers **1889 public theorem exports**: **1441 deductive**,
+**30 finite/native-profile**, and **418 certificate-derived**. The hygiene checker keeps an explicit export
 manifest and matches every
 `#print axioms` receipt to its fully qualified theorem name. It rejects
 missing, duplicate, unknown, and mislabeled receipts as well as unfinished
@@ -1200,8 +1235,8 @@ are also accepted in this class. The stricter native receipt is preserved
 for the existing finite surface rather than applying one enlarged whitelist
 to all theorems.
 
-The certificate-derived exceptional construction and matching theorems have a third,
-separately named trust class with the **exact** receipt
+The certificate-derived class includes the exceptional construction, the matching
+theorems and the global compact-pair classification. Its **exact** receipt is
 
 ```text
 propext

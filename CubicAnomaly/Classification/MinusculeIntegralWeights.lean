@@ -87,7 +87,6 @@ theorem minuscule_finset_of_integral_labels {n : ℕ} (s : Fin n ≃ b.support)
     intro j hj μ hμ
     obtain ⟨u,_,rfl⟩ := Finset.mem_image.mp hμ
     obtain ⟨k,hk⟩ := s.surjective ⟨j,hj⟩
-    change wt u (P.coroot j) = -1 ∨ wt u (P.coroot j) = 0 ∨ wt u (P.coroot j) = 1
     rw [← show (s k).val = j from congrArg Subtype.val hk]
     change wt u (coroot (s k).val.val) = -1 ∨ wt u (coroot (s k).val.val) = 0 ∨
       wt u (coroot (s k).val.val) = 1

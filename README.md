@@ -58,9 +58,10 @@ The [paper](paper/paper.pdf) gives the argument in full. The [interactive websit
 
 ## Constructing the fixed candidate in Lean
 
-The constructive target can be developed before the universal exclusions are
-complete. The new [fixed-construction package](CubicAnomaly/Fixed.lean) proves
-the following statements about actual groups, vector spaces and actions:
+The fixed-construction package builds the exceptional pair and its matter action.
+The classification theorem identifies which compact Lie-algebra pairs are
+isomorphic to this model. [Construction](CubicAnomaly/Fixed.lean) ·
+[Classification](CubicAnomaly/Fixed/GlobalClassification.lean).
 
 | Constructed object | Proved consequence |
 | :--- | :--- |
@@ -83,9 +84,9 @@ The 78-dimensional radical is Lie-isomorphic to the simple E₆ root-lattice
 algebra. Its centralizer is the embedded family sl₃, and its action on the
 81 is three copies of the irreducible 27 with first fundamental highest
 weight. The original compact isotropy is the product of its 78-dimensional
-simple radical and standard su(3), with the stated action on the canonical half. Exceptional
-group integration, differentiation of the group actions, and universal
-uniqueness for arbitrary compact pairs remain open in Lean.
+simple radical and standard su(3), with the stated action on the canonical
+half. Integration of the exceptional Lie algebra inclusions and compatibility
+of the group actions with differentiation remain open in Lean.
 [Fixed-candidate proof scope](formal/FixedCandidate.md).
 
 ## Run it yourself
@@ -104,7 +105,7 @@ The notebook records the source revision separately from the mathematical certif
 | :--- | :--- |
 | **Manuscript proofs** | Global classification/completeness bridges, identification of the classified Lie pairs with the finite data, compact exceptional group integrations |
 | **Exact Python computation** | Independent root realizations, complete finite censuses, subgroup kernels and chiral dimensions |
-| **Lean 4 / Mathlib** | All-rank real and complex structure and the geometric rank-deficient-or-intrinsic-toral-data reduction; constructed root-lattice coordinates, full-span and connected-support filters, exact root counts, and the actual root-cubic anomaly on the same Cartan; full radical reconstructed from actual simple ideals; defining-module irreducibility for all three concrete compact classical algebras; actual real and complexified isotropy simplicity in all three concrete compact classical branches, with full mixed cubic vanishing under the nonzero-radical hypothesis; constructed tensor decompositions and invariant factor forms, and complete exclusion of the two-factor orthogonal/symplectic case; complete special-unitary exclusion in every dimension by tensor interchange, proving its full cubic radical is zero; dimension/quadratic restriction identities and derived exceptional search bounds; classical order-three exclusion and Weyl-product inequalities; exceptional finite uniqueness; $E_6$ incidence and intrinsic pair ordering |
+| **Lean 4 / Mathlib** | All-rank classification of the oriented compact Lie-algebra pair, identification of its full cubic radical, classical ambient exclusions, exceptional rank and cubic tests, and $E_6$ incidence and intrinsic pair ordering |
 
 The fixed package additionally constructs the simple exceptional algebra and
 compact real form, its actual graded adjoint spaces, and the faithful embedding
@@ -115,24 +116,20 @@ It also proves full zero-grade irreducibility, the exact 78-dimensional
 cubic radical, and the original compact-pair hypotheses for the canonical
 Hermitian half.
 
-For every effective proper pair with complex commutant and nonzero radical,
-Lean proves that either the isotropy has strictly smaller abelian rank or
-the pair is isomorphic to the constructed exceptional pair. In the second
-case the equivalence is real, maps the isotropy onto the fixed compact
-subalgebra, and its scalar extension maps both oriented matter halves.
-The full cubic radical vanishes for every compact ambient algebra of Dynkin
-type A or C and for every ambient algebra of real dimension 14 or 52. The general rank-deficient exclusion remains open.
-[All-rank alternative](CubicAnomaly/Fixed/E8EqualRankRealPair.lean),
-[type A](CubicAnomaly/Classification/TypeACompactExclusion.lean),
-[type C](CubicAnomaly/Classification/TypeCCompactRecognition.lean),
-and [dimensions 14 and 52](CubicAnomaly/Fixed/SmallExceptionalExclusion.lean).
+For a finite-dimensional compact real Lie algebra with an effective proper
+isotropy subalgebra, choose a complex commutant equivalence on the entire
+adjoint complement. The full mixed cubic radical of the canonical half is
+nonzero exactly when the pair is isomorphic to the constructed compact E₈
+pair. One real Lie algebra isomorphism identifies the isotropy and its
+78-dimensional radical. Its complexification carries the positive and
+negative matter eigenspaces to their respective fixed eigenspaces.
+[Global classification](CubicAnomaly/Fixed/GlobalClassification.lean).
 
-The [formal proof scope](formal/README.md) states the structural theorem's precise
-inputs, the geometric abelian-rank convention, and the remaining steps toward
-global Lean uniqueness. The complete
-compact-Lie classification is still a manuscript result. The
-[verification notes](verification/README.md) describe the checks and distinguish
-ordinary kernel proofs from the finite `native_decide` trust model.
+The formal scope gives the precise hypotheses, the geometric
+abelian-rank convention and the proof of the classical and exceptional
+exclusions. The verification notes describe the checks and the trust model
+for the finite computations. [Formal scope](formal/README.md) ·
+[Verification notes](verification/README.md).
 
 ## Everything in one place
 

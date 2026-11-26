@@ -152,4 +152,45 @@ theorem typeD_bounded_reflection_family {n : ℕ} (a : Fin n → ZMod 3) :
           · exact swap_small hy _
         · exact funext (fun j => (d_reflection m y i j).symm)
 
+/-- The signed coordinate vectors of the defining D module, evaluated on
+the simple coroots in Dynkin order. -/
+def vectorLabel (m : ℕ) (u : Fin (m+2) × Bool) : Fin (m+2) → ℤ :=
+  dWeight m (fun k => if k = u.1.val then (if u.2 then -1 else 1) else 0)
+
+theorem vectorLabel_highest (m : ℕ) (hm : 0 < m) (j : Fin (m+2)) :
+    vectorLabel m (0,false) j = if j.val = 0 then 1 else 0 := by
+  simp only [vectorLabel, dWeight, Fin.val_zero, Bool.false_eq_true, if_false]
+  grind
+
+theorem vectorLabel_bounds (m : ℕ) (u : Fin (m+2) × Bool) (j : Fin (m+2)) :
+    -1 ≤ vectorLabel m u j ∧ vectorLabel m u j ≤ 1 := by
+  unfold vectorLabel dWeight
+  grind
+
+theorem vectorLabel_reflect (m : ℕ) (u : Fin (m+2) × Bool) (i : Fin (m+2)) :
+    ∃ v : Fin (m+2) × Bool, ∀ j,
+      vectorLabel m v j = vectorLabel m u j - CartanMatrix.D (m+2) i j * vectorLabel m u i := by
+  let p := if i.val = m+1 then m else i.val
+  let k := if u.1.val = p then p+1 else if u.1.val = p+1 then p else u.1.val
+  have hp : p < m+1 := by unfold p; split_ifs <;> omega
+  have hk : k < m+2 := by unfold k; split_ifs <;> omega
+  let newSign := if i.val = m+1 ∧ (u.1.val = p ∨ u.1.val = p+1) then !u.2 else u.2
+  refine ⟨(⟨k,hk⟩,newSign), fun j => ?_⟩
+  let x (l : ℕ) : ℤ := if l = u.1.val then (if u.2 then -1 else 1) else 0
+  have hcoords :
+      (fun l => if l = k then (if newSign then (-1:ℤ) else 1) else 0) =
+        (if i.val = m+1 then flipPair x m else swapPair x i.val) := by
+    funext l
+    by_cases hi : i.val = m+1
+    · simp only [hi, if_true, x, p, k, newSign, flipPair, true_and]
+      by_cases hb : u.2 = true <;> grind (splits := 20)
+    · simp only [hi, if_false, x, p, k, newSign, swapPair, false_and]
+      grind (splits := 20)
+  have hsym : CartanMatrix.D (m+2) i j = CartanMatrix.D (m+2) j i := by
+    simp only [CartanMatrix.D, Matrix.of_apply]
+    grind
+  change dWeight m (fun l => if l = k then (if newSign then -1 else 1) else 0) j =
+    dWeight m x j - _ * dWeight m x i
+  rw [hcoords, d_reflection, hsym]
+
 end CubicAnomaly.Classification.RootClassificationClassicalCD
