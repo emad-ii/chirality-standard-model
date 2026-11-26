@@ -1101,12 +1101,39 @@ whole symplectic algebra, contradicting properness. The theorem applies
 in every dimension to the original concrete compact symplectic pair.
 [Symplectic exclusion](../CubicAnomaly/Classification/ClassicalConstituentSymplecticExclusion.lean).
 
+For an ambient compact Lie algebra whose Cartan matrix is of type A, the
+proof constructs a complex equivalence to trace-zero matrices and descends
+it to a real special-unitary equivalence. Transport along this equivalence
+proves that the full cubic radical is zero for the original pair, at every
+isotropy rank. [Type-A recognition](../CubicAnomaly/Classification/TypeACompactRecognition.lean)
+and [exclusion](../CubicAnomaly/Classification/TypeACompactExclusion.lean).
+
+In ambient dimension 52 the original compact-pair hypotheses and a nonzero
+radical force the isotropy to have abelian rank at least four. For semisimple
+isotropy of rank at most eight, failure of Weyl negation forces a connected
+simple-root component of type A of rank at least two, odd D, or E₆. In the
+orthogonal defining algebra the highest-weight support satisfies the
+opposition-orbit constraints, including the bounds on exchanged nodes.
+[Dimension 52](../CubicAnomaly/Classification/ExceptionalSieveF4.lean),
+[semisimple opposition](../CubicAnomaly/Classification/WeylComponentObstruction.lean),
+and [orthogonal support](../CubicAnomaly/Classification/ClassicalConstituentOrthogonal.lean).
+
+The exceptional sieve proves the Freudenthal recurrence on actual weight
+spaces and Weyl-word invariance of their multiplicities. The dimension of an
+irreducible module over the direct sum of its acting simple ideals is the product
+of the dimensions of the corresponding irreducible constituents. The Killing-trace
+restriction on each constituent gives the tested quadratic-index divisibility.
+[Freudenthal recurrence](../CubicAnomaly/Classification/ExceptionalSieveFreudenthal.lean),
+[Weyl invariance](../CubicAnomaly/Classification/ExceptionalSieveWeightOrbit.lean),
+[factor dimensions](../CubicAnomaly/Classification/ExceptionalSieveFactorProduct.lean),
+and [factor index](../CubicAnomaly/Classification/ExceptionalSieve.lean).
+
 ## Remaining work for global uniqueness
 
 | Remaining implication | Current proof boundary |
 | --- | --- |
-| Rank-deficient exceptional pairs | Actual highest vectors with bounded integral labels, Killing-trace divisors, the simple-module Casimir identity, and the numerical sieve on products of dominant labels are proved. The interpretation of the Weyl dimension computation and the remaining duality and cubic tests on actual modules are still required. |
-| Rank-deficient classical pairs | The concrete special-unitary and compact symplectic cases and the two-factor orthogonal case are excluded in all dimensions. In the remaining orthogonal case the root-lowering constituents and a bound on their support are proved. The final support, dimension and cubic-index arguments and their application to arbitrary compact classical pairs are still required. |
+| Rank-deficient exceptional pairs | Actual highest vectors with bounded integral labels, Killing-trace divisors, the simple-module Casimir identity, and the numerical sieve on products of dominant labels are proved. Dimension 52 is excluded at deficient rank. The remaining exceptional dimensions require a complete connection from actual module dimensions and cubic traces to the finite label tests. |
+| Rank-deficient classical pairs | The concrete special-unitary and compact symplectic cases and the two-factor orthogonal case are excluded in all dimensions. In the remaining orthogonal case the root-lowering constituents and a bound on their support are proved. The unrestricted type-A case is excluded and the orthogonal support satisfies the opposition-orbit constraints. The remaining orthogonal dimension and cubic-index arguments and full type-B, C and D recognition are still required. |
 | Exceptional Lie groups | The fixed compact Lie algebra and representation are constructed. Integrating the exceptional inclusions and differentiating the proposed group actions are additional global-group statements. |
 
 ## Verification and trust
@@ -1121,8 +1148,8 @@ python3 formal/scripts/check_formal_hygiene.py
 python3 formal/scripts/check_formal_hygiene.py --self-test
 ```
 
-The audit covers **1638 public theorem exports**: **1218 deductive**,
-**30 finite/native-profile**, and **390 certificate-derived**. The hygiene checker keeps an explicit export
+The audit covers **1687 public theorem exports**: **1261 deductive**,
+**30 finite/native-profile**, and **396 certificate-derived**. The hygiene checker keeps an explicit export
 manifest and matches every
 `#print axioms` receipt to its fully qualified theorem name. It rejects
 missing, duplicate, unknown, and mislabeled receipts as well as unfinished

@@ -12,7 +12,7 @@ and Cartan to their partners.
 
 namespace CubicAnomaly.Classification.ChevalleyGraphRecognition
 
-open LieSubalgebra CubicAnomaly.Fixed.TensorAnomaly
+open LieSubalgebra Module CubicAnomaly.Fixed.TensorAnomaly
 open ChevalleyHeightSeparation ChevalleyTriangularSpan LieSubdirect
 
 variable {K L₁ L₂ ι : Type*} [Field K] [CharZero K]
@@ -47,9 +47,7 @@ private lemma onto_generated {S L : Type*} [LieRing S] [LieAlgebra K S]
     exacts [he i, hf i]
   exact fun x => (p.mem_range x).mp (hle (hg ▸ LieSubalgebra.mem_top x))
 
-/-- Matching the Cartan weights and all mixed generator brackets suffices to
-recognize the Lie algebra, with the specified values of the isomorphism. -/
-theorem exists_equiv_of_matched_generators [LieAlgebra.IsSimple K L₁] [LieAlgebra.IsSimple K L₂]
+private theorem recognize_graph
     (H₁ : LieSubalgebra K L₁) (H₂ : LieSubalgebra K L₂)
     [IsLieAbelian H₁] [IsLieAbelian H₂] [Nontrivial H₁] (T : H₁ ≃ₗ[K] H₂)
     (e₁ f₁ : ι → L₁) (e₂ f₂ : ι → L₂)
@@ -59,7 +57,11 @@ theorem exists_equiv_of_matched_generators [LieAlgebra.IsSimple K L₁] [LieAlge
     (t : H₁) (hte : ∀ i, ⁅t.val,e₁ i⁆ = e₁ i) (htf : ∀ i, ⁅t.val,f₁ i⁆ = -f₁ i)
     (hne : ∀ i, e₁ i ≠ 0) (hnf : ∀ i, f₁ i ≠ 0)
     (hg₁ : lieSpan K L₁ (Set.range e₁ ∪ Set.range f₁) = ⊤)
-    (hg₂ : lieSpan K L₂ (Set.range e₂ ∪ Set.range f₂) = ⊤) :
+    (criterion : ∀ (S : LieSubalgebra K (ProductLie L₁ L₂)),
+      Function.Surjective (fun x : S => x.val.1) →
+      (∀ i, ∃ x : S, x.val.2 = e₂ i) → (∀ i, ∃ x : S, x.val.2 = f₂ i) →
+      (∀ u : L₁, ((u, 0) : ProductLie L₁ L₂) ∈ S) ∨
+        ∃ Φ : L₁ ≃ₗ⁅K⁆ L₂, ∀ x : S, Φ x.val.1 = x.val.2) :
     ∃ Φ : L₁ ≃ₗ⁅K⁆ L₂, (∀ h : H₁, Φ h.val = (T h).val) ∧
       (∀ i, Φ (e₁ i) = e₂ i) ∧ ∀ i, Φ (f₁ i) = f₂ i := by
   let d := diagHom T
@@ -75,16 +77,10 @@ theorem exists_equiv_of_matched_generators [LieAlgebra.IsSimple K L₁] [LieAlge
     map_add' := fun _ _ => rfl
     map_smul' := fun _ _ => rfl
     map_lie' := rfl }
-  let p₂ : S →ₗ⁅K⁆ L₂ := {
-    toFun := fun x => x.val.2
-    map_add' := fun _ _ => rfl
-    map_smul' := fun _ _ => rfl
-    map_lie' := rfl }
-  obtain htop | ⟨Φ, hΦ⟩ := full_or_graph S
+  obtain hall | ⟨Φ, hΦ⟩ := criterion S
     (onto_generated p₁ e₁ f₁ hg₁ (fun i => p₁.mem_range_self ⟨_, ein i⟩)
       (fun i => p₁.mem_range_self ⟨_, fin i⟩))
-    (onto_generated p₂ e₂ f₂ hg₂ (fun i => p₂.mem_range_self ⟨_, ein i⟩)
-      (fun i => p₂.mem_range_self ⟨_, fin i⟩))
+    (fun i => ⟨⟨_, ein i⟩, rfl⟩) (fun i => ⟨⟨_, fin i⟩, rfl⟩)
   · exfalso
     have tri := generated_le_triangular D E F (by
       rintro ⟨x, hx⟩ i
@@ -100,7 +96,7 @@ theorem exists_equiv_of_matched_generators [LieAlgebra.IsSimple K L₁] [LieAlge
       exact (d.mem_range _).mpr ⟨h, Prod.ext h₁.symm h₂.symm⟩)
     obtain ⟨u, hu⟩ := exists_ne (0 : H₁)
     let x : ProductLie L₁ L₂ := (u.val, 0)
-    have hx : x ∈ S := htop ▸ LieSubalgebra.mem_top x
+    have hx : x ∈ S := hall u
     have hxD := triangular_height_zero_mem (d t) D.toSubmodule (by
       intro y hy
       obtain ⟨h, rfl⟩ := (d.mem_range _).mp hy
@@ -119,5 +115,101 @@ theorem exists_equiv_of_matched_generators [LieAlgebra.IsSimple K L₁] [LieAlge
     have h₂ : T h = 0 := Subtype.ext (congrArg Prod.snd hh)
     exact hu (h₁ ▸ T.map_eq_zero_iff.mp h₂)
   · exact ⟨Φ, fun h => hΦ ⟨_, hin h⟩, fun i => hΦ ⟨_, ein i⟩, fun i => hΦ ⟨_, fin i⟩⟩
+
+/-- Matching the Cartan weights and all mixed generator brackets suffices to
+recognize the Lie algebra, with the specified values of the isomorphism. -/
+theorem exists_equiv_of_matched_generators [LieAlgebra.IsSimple K L₁] [LieAlgebra.IsSimple K L₂]
+    (H₁ : LieSubalgebra K L₁) (H₂ : LieSubalgebra K L₂)
+    [IsLieAbelian H₁] [IsLieAbelian H₂] [Nontrivial H₁] (T : H₁ ≃ₗ[K] H₂)
+    (e₁ f₁ : ι → L₁) (e₂ f₂ : ι → L₂)
+    (he : ∀ (h : H₁) i, ∃ c : K, ⁅h.val,e₁ i⁆ = c • e₁ i ∧ ⁅(T h).val,e₂ i⁆ = c • e₂ i)
+    (hf : ∀ (h : H₁) i, ∃ c : K, ⁅h.val,f₁ i⁆ = c • f₁ i ∧ ⁅(T h).val,f₂ i⁆ = c • f₂ i)
+    (hef : ∀ i j, ∃ h : H₁, ⁅e₁ i, f₁ j⁆ = h.val ∧ ⁅e₂ i, f₂ j⁆ = (T h).val)
+    (t : H₁) (hte : ∀ i, ⁅t.val,e₁ i⁆ = e₁ i) (htf : ∀ i, ⁅t.val,f₁ i⁆ = -f₁ i)
+    (hne : ∀ i, e₁ i ≠ 0) (hnf : ∀ i, f₁ i ≠ 0)
+    (hg₁ : lieSpan K L₁ (Set.range e₁ ∪ Set.range f₁) = ⊤)
+    (hg₂ : lieSpan K L₂ (Set.range e₂ ∪ Set.range f₂) = ⊤) :
+    ∃ Φ : L₁ ≃ₗ⁅K⁆ L₂, (∀ h : H₁, Φ h.val = (T h).val) ∧
+      (∀ i, Φ (e₁ i) = e₂ i) ∧ ∀ i, Φ (f₁ i) = f₂ i := by
+  apply recognize_graph H₁ H₂ T e₁ f₁ e₂ f₂ he hf hef t hte htf hne hnf hg₁
+  intro S hs hE hF
+  let p₂ : S →ₗ⁅K⁆ L₂ := {
+    toFun := fun x => x.val.2
+    map_add' := fun _ _ => rfl
+    map_smul' := fun _ _ => rfl
+    map_lie' := rfl }
+  have hs₂ := onto_generated p₂ e₂ f₂ hg₂ (fun i => (p₂.mem_range _).mpr (hE i))
+    (fun i => (p₂.mem_range _).mpr (hF i))
+  obtain ht | hg := full_or_graph S hs hs₂
+  · left
+    intro u
+    rw [ht]
+    trivial
+  · exact Or.inr hg
+
+/-- An upper bound on the dimension of the target suffices in place of
+its simplicity and generation. The projection of the matched subalgebra
+into the target is injective, and its projection onto the source is
+surjective. -/
+theorem exists_equiv_of_matched_generators_of_finrank_le [LieAlgebra.IsSimple K L₁]
+    [FiniteDimensional K L₁] [FiniteDimensional K L₂]
+    (H₁ : LieSubalgebra K L₁) (H₂ : LieSubalgebra K L₂)
+    [IsLieAbelian H₁] [IsLieAbelian H₂] [Nontrivial H₁] (T : H₁ ≃ₗ[K] H₂)
+    (e₁ f₁ : ι → L₁) (e₂ f₂ : ι → L₂)
+    (he : ∀ (h : H₁) i, ∃ c : K, ⁅h.val,e₁ i⁆ = c • e₁ i ∧ ⁅(T h).val,e₂ i⁆ = c • e₂ i)
+    (hf : ∀ (h : H₁) i, ∃ c : K, ⁅h.val,f₁ i⁆ = c • f₁ i ∧ ⁅(T h).val,f₂ i⁆ = c • f₂ i)
+    (hef : ∀ i j, ∃ h : H₁, ⁅e₁ i, f₁ j⁆ = h.val ∧ ⁅e₂ i, f₂ j⁆ = (T h).val)
+    (t : H₁) (hte : ∀ i, ⁅t.val,e₁ i⁆ = e₁ i) (htf : ∀ i, ⁅t.val,f₁ i⁆ = -f₁ i)
+    (hne : ∀ i, e₁ i ≠ 0) (hnf : ∀ i, f₁ i ≠ 0)
+    (hg₁ : lieSpan K L₁ (Set.range e₁ ∪ Set.range f₁) = ⊤)
+    (hdim : Module.finrank K L₂ ≤ Module.finrank K L₁) :
+    ∃ Φ : L₁ ≃ₗ⁅K⁆ L₂, (∀ h : H₁, Φ h.val = (T h).val) ∧
+      (∀ i, Φ (e₁ i) = e₂ i) ∧ ∀ i, Φ (f₁ i) = f₂ i := by
+  apply recognize_graph H₁ H₂ T e₁ f₁ e₂ f₂ he hf hef t hte htf hne hnf hg₁
+  intro S hs hE hF
+  let p : S →ₗ⁅K⁆ L₁ := {
+    toFun := fun x => x.val.1
+    map_add' := fun _ _ => rfl
+    map_smul' := fun _ _ => rfl
+    map_lie' := rfl }
+  let q : S →ₗ⁅K⁆ L₂ := {
+    toFun := fun x => x.val.2
+    map_add' := fun _ _ => rfl
+    map_smul' := fun _ _ => rfl
+    map_lie' := rfl }
+  let I : LieIdeal K L₁ := {
+    toSubmodule := S.toSubmodule.comap (LinearMap.inl K L₁ L₂)
+    lie_mem := by
+      intro x y hy
+      obtain ⟨z, rfl⟩ := hs x
+      change ((⁅z.val.1, y⁆, 0) : ProductLie L₁ L₂) ∈ S
+      have h := S.lie_mem z.property (show ((y, 0) : ProductLie L₁ L₂) ∈ S from hy)
+      change (⁅z.val.1, y⁆, ⁅z.val.2, (0 : L₂)⁆) ∈ S at h
+      simpa only [lie_zero] using h }
+  obtain hb | ht := LieAlgebra.IsSimple.eq_bot_or_eq_top I
+  · right
+    have hq : Function.Injective q := by
+      apply q.ker_eq_bot.mp
+      apply eq_bot_iff.mpr
+      intro z hz
+      have hz₂ : z.val.2 = 0 := hz
+      have hz₁ : z.val.1 ∈ I := by
+        change ((z.val.1, 0) : ProductLie L₁ L₂) ∈ S
+        rw [← hz₂]
+        exact z.property
+      rw [hb] at hz₁
+      exact Subtype.ext (Prod.ext (show z.val.1 = 0 from hz₁) hz₂)
+    letI : FiniteDimensional K (ProductLie L₁ L₂) := inferInstanceAs (FiniteDimensional K (L₁ × L₂))
+    have h₁ := p.toLinearMap.finrank_range_le
+    rw [LinearMap.range_eq_top.mpr (show Function.Surjective p from hs), finrank_top] at h₁
+    have h₂ := LinearMap.finrank_le_finrank_of_injective (f := q.toLinearMap) hq
+    let hpeq := LinearMap.injective_iff_surjective_of_finrank_eq_finrank (f := p.toLinearMap)
+      (show Module.finrank K S = Module.finrank K L₁ by omega)
+    let hqeq := LinearMap.injective_iff_surjective_of_finrank_eq_finrank (f := q.toLinearMap)
+      (show Module.finrank K S = Module.finrank K L₂ by omega)
+    let P := LieEquiv.ofBijective p ⟨hpeq.mpr hs, hs⟩
+    let Q := LieEquiv.ofBijective q ⟨hq, hqeq.mp hq⟩
+    exact ⟨P.symm.trans Q, fun z => congrArg Q (P.symm_apply_apply z)⟩
+  · exact Or.inl (fun x => show x ∈ I from ht ▸ LieSubmodule.mem_top x)
 
 end CubicAnomaly.Classification.ChevalleyGraphRecognition

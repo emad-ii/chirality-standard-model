@@ -1,3 +1,5 @@
+import CubicAnomaly.Classification.ExceptionalF4Dimension
+import CubicAnomaly.Classification.ExceptionalSieveA2Index
 import CubicAnomaly.Classification.ExceptionalSieveRankTwo
 import CubicAnomaly.Classification.ExceptionalSieveNormalization
 import CubicAnomaly.Classification.ExceptionalSieveIndex
@@ -159,5 +161,49 @@ theorem compact_pair_f4_forces_A2
       T (hnest (coroot α.val))
   rw [hN] at hi
   exact compatible_of_trace_multiple .f4 22 t a m (by simpa using hi.symm.trans hmult)
+
+/-- The original deficient-rank compact pair at dimension 52 has an ambient
+Cartan whose matrix cannot be F₄. This excludes the rank-deficient F₄
+branch in a classification performed on this nested Cartan. -/
+theorem compact_pair_f4_rank_deficient_exclusion
+    (B : CompactForm g) (h : LieSubalgebra ℝ g) (heff : Effective h) (hproper : h ≠ ⊤)
+    (e : lieCommutant (L := h) (M := orthogonalComplement B h) ≃ₐ[ℝ] ℂ)
+    (hradical : (hermitianHalfOfCommutant B h e).cubicRadical ≠ ⊥)
+    (hg : finrank ℝ g = 52) (hr : abelianRank ℝ h < 4) :
+    ∃ hK : LieAlgebra.IsKilling ℂ (ℂ ⊗[ℝ] g),
+      letI := hK
+      ∃ (H : LieSubalgebra ℂ (ℂ ⊗[ℝ] g)) (hH : H.IsCartanSubalgebra),
+        letI := hH
+        ∀ (b : (rootSystem H).Base) (s : Index Exceptional.f4Datum ≃ b.support),
+          ¬∀ i j, b.cartanMatrix (s i) (s j) = matrix Exceptional.f4Datum i j := by
+  let V := invariantEigenspace (complexifiedEnd (commutantComplexStructure e)) Complex.I
+  letI : IsIrreducible ℂ (ℂ ⊗[ℝ] h) V :=
+    (compact_complement_complex_type_decomposition B h hproper e).2.1
+  obtain ⟨hK, hiK, A, H, hA, hH, hs, hd, b, s, a, χ, v, hm, hv, hw, hp, hc, hidx⟩ :=
+    compact_pair_f4_forces_A2 B h heff hproper e hradical hg hr
+  letI := hK
+  letI := hiK
+  letI := hA
+  letI := hH
+  refine ⟨hK, H, hH, fun bg sg hmg => ?_⟩
+  exact ExceptionalSieveA2Index.f4_a2_dimension_ne_twenty_two A b s
+    ((hm 0 1).trans (by decide)) ((hm 1 0).trans (by decide)) v hv χ hw a hc
+    (fun i => hp i (b.isPos_of_mem_support i.property)) (hidx bg sg hmg) hd
+
+/-- The rank-deficient 52-dimensional ambient is impossible under the
+original compact-pair assumptions, including the nonzero cubic radical. -/
+theorem compact_pair_dimension_52_rank_ge_four
+    (B : CompactForm g) (h : LieSubalgebra ℝ g) (heff : Effective h) (hproper : h ≠ ⊤)
+    (e : lieCommutant (L := h) (M := orthogonalComplement B h) ≃ₐ[ℝ] ℂ)
+    (hradical : (hermitianHalfOfCommutant B h e).cubicRadical ≠ ⊥)
+    (hg : finrank ℝ g = 52) : 4 ≤ abelianRank ℝ h := by
+  by_contra! hr
+  obtain ⟨hK,H,hH,he⟩ := compact_pair_f4_rank_deficient_exclusion B h heff hproper e hradical hg hr
+  letI := hK
+  letI := hH
+  letI := (all_rank_complex_structural_reduction B h heff hproper e hradical).2.1
+  obtain ⟨b⟩ := RootPairing.nonempty_base (rootSystem H)
+  obtain ⟨s,hs⟩ := ExceptionalF4Dimension.dim52_matching_F4 H b (by rwa [Module.finrank_baseChange])
+  exact he b s hs
 
 end CubicAnomaly.Classification.ExceptionalSieveF4

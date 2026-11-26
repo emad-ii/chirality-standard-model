@@ -21,43 +21,6 @@ open scoped TensorProduct
 
 variable {g k : Type*} [LieRing g] [LieAlgebra ℝ g] [LieRing k] [LieAlgebra ℝ k]
 
-private theorem radical_of_matched_real_actions {h : LieSubalgebra ℝ g} {l : LieSubalgebra ℝ k}
-    {q : LieSubmodule ℝ h g} {p : LieSubmodule ℝ l k}
-    (V : HermitianHalf h q) (W : HermitianHalf l p) (θ : h ≃ₗ⁅ℝ⁆ l)
-    (R : (Fin V.dimension → ℂ) ≃ₗ[ℂ] (Fin W.dimension → ℂ))
-    (hR : ∀ x : h, ∀ v, R (complexHermitianRepresentation V (1 ⊗ₜ[ℝ] x) *ᵥ v) =
-      complexHermitianRepresentation W (1 ⊗ₜ[ℝ] (θ x)) *ᵥ R v)
-    (hW : W.cubicRadical ≠ ⊥) : V.cubicRadical ≠ ⊥ := by
-  let M := Matrix.toLinAlgEquiv'.trans ((R.conjAlgEquiv ℂ).trans Matrix.toLinAlgEquiv'.symm)
-  let a (x : h) := complexHermitianRepresentation V (1 ⊗ₜ[ℝ] x)
-  let b (x : l) := complexHermitianRepresentation W (1 ⊗ₜ[ℝ] x)
-  have heq (x : h) : M (a x) = b (θ x) := by
-    apply Matrix.toLin'.injective
-    change Matrix.toLin' (LinearMap.toMatrix' (R.conj (a x).toLin')) = _
-    rw [Matrix.toLin'_toMatrix']
-    apply LinearMap.ext
-    intro v
-    change R (a x *ᵥ R.symm v) = b (θ x) *ᵥ v
-    simpa only [R.apply_symm_apply] using hR x (R.symm v)
-  have same (x y z : h) : matrixTraceCubic (V.generators x) (V.generators y) (V.generators z) =
-      matrixTraceCubic (W.generators (θ x)) (W.generators (θ y)) (W.generators (θ z)) := by
-    apply mul_left_cancel₀ (neg_ne_zero.mpr Complex.I_ne_zero)
-    rw [← hermitian_complex_cubic_real_inputs, ← hermitian_complex_cubic_real_inputs]
-    change matrixTraceCubic (a x) (a y) (a z) = matrixTraceCubic (b (θ x)) (b (θ y)) (b (θ z))
-    rw [← heq, ← heq, ← heq, matrix_trace_cubic_algEquiv]
-  have hn : W.cubicRadical.toSubmodule ≠ ⊥ := fun hbot =>
-    hW (LieSubmodule.toSubmodule_injective hbot)
-  obtain ⟨v, hv, hv0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hn
-  let u := θ.symm v
-  have hu : u ∈ V.cubicRadical := by
-    apply (hermitian_half_cubic_radical_membership V u).mpr
-    intro y z
-    rw [same, show θ u = v from θ.apply_symm_apply _]
-    exact (hermitian_half_cubic_radical_membership W v).mp hv _ _
-  intro hb
-  have hu0 : u = 0 := by simpa only [hb, LieSubmodule.mem_bot] using hu
-  exact hv0 ((θ.apply_symm_apply v).symm.trans ((congrArg θ hu0).trans (map_zero θ)))
-
 variable [Module.Finite ℝ g] [Module.Finite ℝ k]
 
 /-- Carrying the positive ambient matter by a real pair equivalence carries

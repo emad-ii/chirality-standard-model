@@ -366,8 +366,8 @@ Lean.trustCompiler
 ```
 
 The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem.
-The manifest contains **1638 public theorem exports**: **1218 deductive**,
-**30 finite/native-profile**, and **390 certificate-derived**. The deductive structural, root-lattice and
+The manifest contains **1687 public theorem exports**: **1261 deductive**,
+**30 finite/native-profile**, and **396 certificate-derived**. The deductive structural, root-lattice and
 classical theorems use only a
 subset of `propext`, `Classical.choice`, and `Quot.sound`; compiler-evaluation
 axioms are rejected for that class. Every receipt is matched to its fully
@@ -391,8 +391,9 @@ exceptional subspace inherits the explicitly audited finite certificates.
 
 Lean proves the equal-abelian-rank uniqueness theorem for real compact pairs,
 including the isomorphism of their two oriented matter spaces. It proves
-the complete special-unitary and compact symplectic exclusions in all
-dimensions. The actual fixed radical is a compact simple real form of E₆,
+vanishing of the full cubic radical for arbitrary compact ambient algebras
+of type A and all compact symplectic defining algebras. At ambient dimension
+52, a nonzero radical forces isotropy rank at least four. The actual fixed radical is a compact simple real form of E₆,
 and the local module is an irreducible 27 of first fundamental highest weight.
 The numerical exceptional sieve covers all bounded products of the catalogued
 dominant labels. Its complete representation-theoretic interpretation and

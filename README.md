@@ -120,10 +120,14 @@ Lean proves that either the isotropy has strictly smaller abelian rank or
 the pair is isomorphic to the constructed exceptional pair. In the second
 case the equivalence is real, maps the isotropy onto the fixed compact
 subalgebra, and its scalar extension maps both oriented matter halves.
-The special-unitary and compact symplectic defining algebras are excluded
-in all dimensions. The general rank-deficient exclusion remains open.
-[All-rank alternative](CubicAnomaly/Fixed/E8EqualRankRealPair.lean) and
-[symplectic exclusion](CubicAnomaly/Classification/ClassicalConstituentSymplecticExclusion.lean).
+The full cubic radical vanishes for every compact ambient algebra of Dynkin
+type A and for the compact symplectic defining algebras in every dimension.
+In ambient dimension 52, a nonzero radical forces the isotropy to have
+abelian rank at least four. The general rank-deficient exclusion remains open.
+[All-rank alternative](CubicAnomaly/Fixed/E8EqualRankRealPair.lean),
+[type A](CubicAnomaly/Classification/TypeACompactExclusion.lean),
+[symplectic exclusion](CubicAnomaly/Classification/ClassicalConstituentSymplecticExclusion.lean),
+and [dimension 52](CubicAnomaly/Classification/ExceptionalSieveF4.lean).
 
 The [formal proof scope](formal/README.md) states the structural theorem's precise
 inputs, the geometric abelian-rank convention, and the remaining steps toward

@@ -165,6 +165,70 @@ theorem alternating_square_third_highest_vector (P : t.HasPrimitiveVectorWith v 
   · intro x hx hf
     simp [-pow_one, thirdAlternatingVector, alternatingTensor, hx, lower_annihilated x f hx hf]
 
+/-- Lower in two mutually orthogonal root directions. A label of two at
+the second node gives a symmetric level-two vector. Lowering antisymmetrically
+at the first node produces a new highest vector in the alternating square. -/
+theorem alternating_square_two_node_vector {h' e' p : L} {t' : IsSl2Triple h' e' p}
+    (P : t.HasPrimitiveVectorWith v (2 : K)) (P' : t'.HasPrimitiveVectorWith v (2 : K))
+    (hcross : ⁅e, p⁆ = 0) (hcross' : ⁅e', f⁆ = 0) (horth : ⁅h', f⁆ = 0) :
+    ∃ z : M ⊗[K] M, z ≠ 0 ∧ TensorProduct.comm K M M z = -z ∧
+      ⁅e, z⁆ = 0 ∧ ⁅e', z⁆ = 0 ∧
+      (∀ x : L, ∀ μ α β : K, ⁅x, v⁆ = μ • v → ⁅x, f⁆ = -(α • f) →
+        ⁅x, p⁆ = -(β • p) → ⁅x, z⁆ = (2 * μ - 2 * α - β) • z) ∧
+      ∀ x : L, ⁅x, v⁆ = 0 → ⁅x, f⁆ = 0 → ⁅x, p⁆ = 0 → ⁅x, z⁆ = 0 := by
+  let u := ⁅f, v⁆
+  let w := ⁅f, u⁆
+  let z := alternatingTensor K ⁅p, v⁆ w + alternatingTensor K ⁅p, w⁆ v -
+    alternatingTensor K ⁅p, u⁆ u
+  have eu : ⁅e, u⁆ = (2 : K) • v := by simpa [u] using P.lie_e_pow_succ_toEnd_f 0
+  have ew : ⁅e, w⁆ = (2 : K) • u := by
+    convert P.lie_e_pow_succ_toEnd_f 1 using 1
+    norm_num [u, w, pow_succ', Module.End.mul_apply]
+  have ku : ⁅e', u⁆ = 0 := by simp [u, leibniz_lie, hcross', P'.lie_e]
+  have kw : ⁅e', w⁆ = 0 := by simp [w, leibniz_lie, hcross', ku]
+  have hu : ⁅h', u⁆ = (2 : K) • u := by simp [u, leibniz_lie, horth, P'.lie_h]
+  have hw : ⁅h', w⁆ = (2 : K) • w := by simp [w, leibniz_lie, horth, hu]
+  have kp {y : M} (hy : ⁅e', y⁆ = 0) (hh : ⁅h', y⁆ = (2 : K) • y) :
+      ⁅e', ⁅p, y⁆⁆ = (2 : K) • y := by rw [leibniz_lie, t'.lie_e_f, hh, hy, lie_zero, add_zero]
+  have ep (y : M) : ⁅e, ⁅p, y⁆⁆ = ⁅p, ⁅e, y⁆⁆ := by rw [leibniz_lie, hcross, zero_lie, zero_add]
+  refine ⟨z, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · intro hz
+    let E := (toEnd K L M e).rTensor M
+    let E' := (toEnd K L M e').rTensor M
+    have hh := congrArg (fun s => E (E (E' s))) hz
+    simp [z, E, E', alternatingTensor, kp P'.lie_e P'.lie_h, kp ku hu, kp kw hw, ku, kw,
+      P'.lie_e, P.lie_e, eu, ew, ← TensorProduct.smul_tmul', square_ne_zero (K := K) P.ne_zero] at hh
+  · simp only [z, map_sub, map_add, flip_alt]
+    abel
+  · simp only [z, lie_add, lie_sub, TensorProduct.LieModule.lie_tmul_right, ep, ew, eu, P.lie_e, lie_zero, lie_smul,
+      alternatingTensor, TensorProduct.zero_tmul, TensorProduct.tmul_zero,
+      ← TensorProduct.smul_tmul', TensorProduct.tmul_smul]
+    module
+  · simp only [z, lie_add, lie_sub, TensorProduct.LieModule.lie_tmul_right, kp P'.lie_e P'.lie_h, kp ku hu, kp kw hw,
+      P'.lie_e, ku, kw, alternatingTensor, TensorProduct.zero_tmul, TensorProduct.tmul_zero,
+      ← TensorProduct.smul_tmul', TensorProduct.tmul_smul]
+    module
+  · intro x μ α β hv hf hp
+    have lower (l : L) (γ : K) (hl : ⁅x, l⁆ = -(γ • l)) {y : M} {ν : K}
+        (hy : ⁅x, y⁆ = ν • y) : ⁅x, ⁅l, y⁆⁆ = (ν - γ) • ⁅l, y⁆ := by
+      rw [leibniz_lie, hl, neg_lie, smul_lie, hy, lie_smul]
+      module
+    have huv := lower f α hf hv
+    have hwv := lower f α hf huv
+    change ⁅x, u⁆ = _ at huv
+    change ⁅x, w⁆ = _ at hwv
+    simp only [z, lie_sub, lie_add, alt_weight x (lower p β hp hv) hwv,
+      alt_weight x (lower p β hp hwv) hv, alt_weight x (lower p β hp huv) huv]
+    module
+  · intro x hv hf hp
+    have kill {y : M} (hy : ⁅x, y⁆ = 0) (l : L) (hl : ⁅x, l⁆ = 0) :
+        ⁅x, ⁅l, y⁆⁆ = 0 := by rw [leibniz_lie, hl, zero_lie, hy, lie_zero, add_zero]
+    have huv := kill hv f hf
+    have hwv := kill huv f hf
+    change ⁅x, u⁆ = _ at huv
+    change ⁅x, w⁆ = _ at hwv
+    simp [z, alternatingTensor, hv, huv, hwv, kill hv p hp, kill huv p hp, kill hwv p hp]
+
 end Strings
 
 section FormOperators
