@@ -18,3 +18,7 @@ generated assets.
 
 Public availability does not constitute a broader license grant.
 The permissions and restrictions stated above remain unchanged.
+
+Third-party mathlib code adapted in the finite Cartan classification retains
+its Apache License 2.0. The [attribution notice](CubicAnomaly/Classification/DynkinClassification/NOTICE.md)
+identifies the source and links to that license.

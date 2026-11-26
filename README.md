@@ -6,6 +6,7 @@
 </p>
 
 <p align="center">
+  <a href="verification/README.md#lean"><img src="https://img.shields.io/badge/Lean-checked-2e7d32?style=for-the-badge" alt="Lean checked" /></a>
   <a href="https://emad-ii.github.io/chirality-standard-model/"><img src="https://img.shields.io/badge/Explore-Interactive_website-236d88?style=for-the-badge" alt="Explore the interactive website" /></a>
   <a href="paper/paper.pdf"><img src="https://img.shields.io/badge/Read-The_paper-0f233f?style=for-the-badge" alt="Read the paper PDF" /></a>
   <a href="https://colab.research.google.com/github/emad-ii/chirality-standard-model/blob/main/Cubic_Anomaly_Master_Verification.ipynb"><img src="https://img.shields.io/badge/Run-Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white" alt="Run the master verification notebook in Colab" /></a>
@@ -56,6 +57,53 @@ The conditions also yield a compact homogeneous realization $G/H$. Homogeneity i
 
 The [paper](paper/paper.pdf) gives the argument in full. The [interactive website](https://emad-ii.github.io/chirality-standard-model/) opens it at four levels, from the experiments and the language of symmetry to the equations and certificates. Its animated exhibits, root geometry and films all live in this repository.
 
+## Lean-checked theorem
+
+Lean checks both directions of the compact-pair classification under the
+stated hypotheses. The same isomorphism identifies the full cubic radical
+and the two oriented matter halves. The selected Standard Model group
+quotient and descent are also checked. This is not a Lean proof of exceptional
+compact-group integration, uniqueness of the selected Standard Model
+subalgebra, or global anomaly cancellation.
+
+[Exact theorem](CubicAnomaly/Fixed/GlobalClassification.lean) ·
+[Proof scope](formal/README.md) ·
+[Reproduce the checks](verification/README.md#lean) ·
+[Trust model for finite computation](verification/README.md#trust-model).
+
+## Constructing the fixed candidate in Lean
+
+The fixed-construction package builds the exceptional pair and its matter action.
+The classification theorem identifies which compact Lie-algebra pairs are
+isomorphic to this model. [Construction](CubicAnomaly/Fixed.lean) ·
+[Classification](CubicAnomaly/Fixed/GlobalClassification.lean).
+
+| Constructed object | Proved consequence |
+| :--- | :--- |
+| The 240 exceptional coordinate roots and Geck generators | An actual simple complex Lie algebra of dimension 248, an explicit identification with its adjoint module, and a simple compact real form of real dimension 248 |
+| The root-coordinate grading modulo three | Actual homogeneous subspaces of dimensions `86 + 81 + 81`, with the bracket respecting degree |
+| Commuting projected matrix units | Faithful `sl(5,ℂ) × sl(3,ℂ)` and Standard Model plus family embeddings into the actual degree-zero subalgebra |
+| The signed exceptional matter basis | An explicit equivalence of the actual degree-one adjoint subspace with the constructed 81-dimensional matter module, preserving the embedded gauge and family action |
+| A separating Cartan operator and reversible root-action tree | Irreducibility of the actual degree-one module under the entire 86-dimensional zero-grade algebra |
+| The compact zero grade and its full real orthogonal complement | An actual effective proper pair of real dimensions 86 inside 248, with complement of dimension 162 and full real commutant exactly `ℂ` |
+| The unitary determinant-one block group | A surjective map from `SU(3) × SU(2) × U(1)`, an actual central cyclic kernel of order six, the quotient isomorphism, and the integral charge congruence |
+| Actual group actions on the same matter spaces | The covering kernel acts trivially, and the literal central-circle actions have the expected integer powers |
+| Alternating tensors and the dual defining module | The five Standard Model family actions and charges, derived by coordinate equivalences |
+| The Standard Model restriction of the 81-dimensional matter module | An equivariant splitting into three 15-dimensional families and a self-dual 36-dimensional remainder; the family and full module are not self-dual |
+| The actual Standard Model Lie action | Vanishing linear trace and full local symmetric cubic on the 27-dimensional module |
+| The actual exceptional half under the embedded gauge and family action | The full cubic radical is exactly the Standard Model ideal in that embedded algebra; the family cubic remains nonzero |
+| The actual exceptional half under the entire zero-grade algebra | The full cubic radical is exactly the explicit 78-dimensional span of six coroots and 72 root vectors |
+| The canonical Hermitian half of the actual compact pair | Its full cubic radical is nonzero, so the constructed pair satisfies the original algebraic hypotheses |
+
+The 78-dimensional radical is Lie-isomorphic to the simple E₆ root-lattice
+algebra. Its centralizer is the embedded family sl₃, and its action on the
+81 is three copies of the irreducible 27 with first fundamental highest
+weight. The original compact isotropy is the product of its 78-dimensional
+simple radical and standard su(3), with the stated action on the canonical
+half. Integration of the exceptional Lie algebra inclusions and compatibility
+of the group actions with differentiation remain open in Lean.
+[Fixed-candidate proof scope](formal/FixedCandidate.md).
+
 ## Run it yourself
 
 Open the [master notebook in Colab](https://colab.research.google.com/github/emad-ii/chirality-standard-model/blob/main/Cubic_Anomaly_Master_Verification.ipynb) and choose **Runtime → Run all**. Python verification uses only the standard library. Enable **Run Lean** in the notebook for the pinned Lean 4 / Mathlib checks.
@@ -70,11 +118,33 @@ The notebook records the source revision separately from the mathematical certif
 
 | Method | What it establishes |
 | :--- | :--- |
-| **Manuscript proofs** | Structural reductions, completeness, invariant theory, global groups and branching |
+| **Manuscript proofs** | Global classification/completeness bridges, identification of the classified Lie pairs with the finite data, compact exceptional group integrations |
 | **Exact Python computation** | Independent root realizations, complete finite censuses, subgroup kernels and chiral dimensions |
-| **Lean 4 / Mathlib** | 25 exported finite theorems covering the exceptional census, cubic selector, $E_6$ incidence and intrinsic pair ordering |
+| **Lean 4 / Mathlib** | All-rank classification of the oriented compact Lie-algebra pair, identification of its full cubic radical, classical ambient exclusions, exceptional rank and cubic tests, and $E_6$ incidence and intrinsic pair ordering |
 
-The [verification notes](verification/README.md) describe each check and the `native_decide` trust model.
+The fixed package additionally constructs the simple exceptional algebra and
+compact real form, its actual graded adjoint spaces, and the faithful embedding
+and matter equivalence. It proves the Standard Model group quotient and charge
+lattice, derived matter actions, non-self-duality and three-family splitting,
+and the full local anomaly and restricted radical statements listed above.
+It also proves full zero-grade irreducibility, the exact 78-dimensional
+cubic radical, and the original compact-pair hypotheses for the canonical
+Hermitian half.
+
+For a finite-dimensional compact real Lie algebra with an effective proper
+isotropy subalgebra, choose a complex commutant equivalence on the entire
+adjoint complement. The full mixed cubic radical of the canonical half is
+nonzero exactly when the pair is isomorphic to the constructed compact E₈
+pair. One real Lie algebra isomorphism identifies the isotropy and its
+78-dimensional radical. Its complexification carries the positive and
+negative matter eigenspaces to their respective fixed eigenspaces.
+[Global classification](CubicAnomaly/Fixed/GlobalClassification.lean).
+
+The formal scope gives the precise hypotheses, the geometric
+abelian-rank convention and the proof of the classical and exceptional
+exclusions. The verification notes describe the checks and the trust model
+for the finite computations. [Formal scope](formal/README.md) ·
+[Verification notes](verification/README.md).
 
 ## Everything in one place
 

@@ -1,7 +1,53 @@
 import CubicAnomaly.Classification.Exceptional
+import CubicAnomaly.Classification.AllRankComplex
+import CubicAnomaly.Classification.AllRankGrading
+import CubicAnomaly.Classification.IntrinsicToral
+import CubicAnomaly.Classification.CanonicalCoroot
+import CubicAnomaly.Classification.CubicIdealDecomposition
+import CubicAnomaly.Classification.IdealActionProducts
+import CubicAnomaly.Classification.OrthogonalDefining
+import CubicAnomaly.Classification.OrthogonalComplexification
+import CubicAnomaly.Classification.UnitaryDefining
+import CubicAnomaly.Classification.UnitaryComplexification
+import CubicAnomaly.Classification.SymplecticComplexification
+import CubicAnomaly.Classification.UnitarySimplicity
+import CubicAnomaly.Classification.UnitarySelfDualExclusion
+import CubicAnomaly.Classification.UnitaryNoGo
+import CubicAnomaly.Classification.ClassicalTwoFactorReduction
+import CubicAnomaly.Classification.ClassicalSimplicity
+import CubicAnomaly.Classification.ClassicalConstituentComparison
+import CubicAnomaly.Classification.ClassicalConstituentSupport
+import CubicAnomaly.Classification.CommonCartanDefining
+import CubicAnomaly.Classification.EqualRankOrbit
+import CubicAnomaly.Classification.ExceptionalSieveIndex
+import CubicAnomaly.Classification.ExceptionalSieveRankTwo
+import CubicAnomaly.Classification.ExceptionalSieveProducts
+import CubicAnomaly.Classification.RootReflectionAutomorphism
+import CubicAnomaly.Classification.TensorParityBlocks
+import CubicAnomaly.Classification.RootGraphCriterion
+import CubicAnomaly.Classification.RootCharacterCoordinates
+import CubicAnomaly.Classification.SieveBounds
+import CubicAnomaly.Classification.RankOneObstruction
+import CubicAnomaly.Classification.QuadraticRestriction
+import CubicAnomaly.Classification.AmbientComplexification
+import CubicAnomaly.Classification.RootGrading
+import CubicAnomaly.Classification.RootSimple
+import CubicAnomaly.Classification.ClassicalWeyl
+import CubicAnomaly.Classification.ClassicalToral
+import CubicAnomaly.Classification.Selection
+import CubicAnomaly.Classification.ExceptionalSieveFreudenthal
+import CubicAnomaly.Classification.RootClassificationSubsystem
 import CubicAnomaly.E6.Claims
+import CubicAnomaly.Fixed
 
 /-!
-The machine-checked surface for the exceptional toral census, its Cartan
-trace-cubic selector, and the finite E6 incidence checks.
+For an effective proper compact Lie-algebra pair whose full adjoint complement
+has complex commutant, `Fixed.GlobalClassification.compact_pair_classification`
+proves that the canonical cubic radical is nonzero exactly when one real ambient
+Lie equivalence identifies the isotropy, the full radical, and both oriented
+matter spaces with those of the constructed compact exceptional pair.
+
+The development also verifies the finite exceptional root data, the E₆ incidence
+calculations, and the Standard Model quotient, charge lattice and matter actions.
+The complete statements and their axiom receipts are documented in `formal/README.md`.
 -/
