@@ -6,6 +6,7 @@
 </p>
 
 <p align="center">
+  <a href="verification/README.md#lean"><img src="https://img.shields.io/badge/Lean-checked-2e7d32?style=for-the-badge" alt="Lean checked" /></a>
   <a href="https://emad-ii.github.io/chirality-standard-model/"><img src="https://img.shields.io/badge/Explore-Interactive_website-236d88?style=for-the-badge" alt="Explore the interactive website" /></a>
   <a href="paper/paper.pdf"><img src="https://img.shields.io/badge/Read-The_paper-0f233f?style=for-the-badge" alt="Read the paper PDF" /></a>
   <a href="https://colab.research.google.com/github/emad-ii/chirality-standard-model/blob/main/Cubic_Anomaly_Master_Verification.ipynb"><img src="https://img.shields.io/badge/Run-Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white" alt="Run the master verification notebook in Colab" /></a>
@@ -55,6 +56,20 @@ The conditions also yield a compact homogeneous realization $G/H$. Homogeneity i
 3. **Restrict the representation.** Along the identified Standard Model chain, $\mathbf{27}\boxtimes\mathbf3$ contains three minimal family modules, three vector-like $\mathbf5\oplus\overline{\mathbf5}$ pairs and six singlets. Taking the net chiral class gives $\chi(V)=3\chi(F_{\mathrm{SM}})$; duality reverses the sign.
 
 The [paper](paper/paper.pdf) gives the argument in full. The [interactive website](https://emad-ii.github.io/chirality-standard-model/) opens it at four levels, from the experiments and the language of symmetry to the equations and certificates. Its animated exhibits, root geometry and films all live in this repository.
+
+## Lean-checked theorem
+
+Lean checks both directions of the compact-pair classification under the
+stated hypotheses. The same isomorphism identifies the full cubic radical
+and the two oriented matter halves. The selected Standard Model group
+quotient and descent are also checked. This is not a Lean proof of exceptional
+compact-group integration, uniqueness of the selected Standard Model
+subalgebra, or global anomaly cancellation.
+
+[Exact theorem](CubicAnomaly/Fixed/GlobalClassification.lean) ·
+[Proof scope](formal/README.md) ·
+[Reproduce the checks](verification/README.md#lean) ·
+[Trust model for finite computation](verification/README.md#trust-model).
 
 ## Constructing the fixed candidate in Lean
 
