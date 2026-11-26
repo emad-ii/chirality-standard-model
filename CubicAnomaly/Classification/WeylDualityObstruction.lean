@@ -22,6 +22,17 @@ private def step {n : ℕ} (C : Matrix (Fin n) (Fin n) ℤ)
   let d := ∑ j, C i j * z[j]
   Vector.ofFn fun j => z[j] - if i = j then d else 0
 
+/-- An explicit simple reflection word sends each simple coroot to the
+negative of the indexed simple coroot. -/
+def SignedCorootWord {n : ℕ} (C : Matrix (Fin n) (Fin n) ℤ) (w : List (Fin n))
+    (p : Fin n → Fin n) : Prop :=
+  ∀ i, w.foldl (step C) (unit i) = Vector.ofFn fun j => -(unit (p i)).get j
+
+instance {n : ℕ} (C : Matrix (Fin n) (Fin n) ℤ) (w : List (Fin n))
+    (p : Fin n → Fin n) : Decidable (SignedCorootWord C w p) := by
+  unfold SignedCorootWord
+  infer_instance
+
 /-- A Coxeter word in ascending order of the numbered simple roots. -/
 def coxeterWord (n k : ℕ) : List (Fin n) := (List.replicate k (List.finRange n)).flatten
 
@@ -90,6 +101,21 @@ private theorem fold_corootSum {C : Matrix (Fin n) (Fin n) ℤ}
   | cons i w ih =>
     change corootSum H b s (w.foldl _ _) = applyWord H _ ((rootSystem H).coreflection (s i) _)
     rw [ih, step_corootSum H b s h]
+
+/-- Integer signed-permutation certificates determine the action on the
+coroots of an actual Cartan block. -/
+theorem signed_word_indexed_coroots {C : Matrix (Fin n) (Fin n) ℤ}
+    (w : List (Fin n)) (p : Fin n → Fin n)
+    (h : ∀ i j, b.cartanMatrix (s i) (s j) = C i j) (hc : SignedCorootWord C w p) (i : Fin n) :
+    applyWord H (w.map fun j => (s j).val) (b.toCoweightBasis (s i)) =
+      -b.toCoweightBasis (s (p i)) := by
+  have hu (k : Fin n) : corootSum H b s (unit k) = b.toCoweightBasis (s k) := by
+    simp [corootSum, unit, Vector.get, Pi.single_apply, ite_smul]
+  have hh := fold_corootSum H b s h w (unit i)
+  rw [hc i, hu] at hh
+  refine hh.symm.trans ?_
+  rw [← hu]
+  simp [corootSum, Vector.get]
 
 /-- The same Coxeter word negates each indexed basis coroot, including when
 the displayed matrix is only one connected component. -/

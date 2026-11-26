@@ -29,7 +29,7 @@ private theorem difference (j i : Fin n) : entry j i.castSucc - entry j i.succ =
   simp only [entry, CartanMatrix.A, Matrix.of_apply, Fin.ext_iff, Fin.val_castSucc, Fin.val_succ]
   split_ifs <;> norm_num <;> omega
 
-private theorem bracket_diagonal_single {m : Type*} [Fintype m] [DecidableEq m]
+theorem bracket_diagonal_single {m : Type*} [Fintype m] [DecidableEq m]
     (d : m → ℂ) (i j : m) :
     ⁅Matrix.diagonal d, Matrix.single i j (1 : ℂ)⁆ = (d i - d j) • Matrix.single i j 1 := by
   ext k l

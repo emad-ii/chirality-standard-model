@@ -88,7 +88,8 @@ private theorem typeACentered_cubic_zero (N a i : ℕ) (hi : 2 * i < N) :
   simp_rw [Fin.revPerm_apply, heq, Finset.sum_neg_distrib] at h
   linarith
 
-private theorem cubic_sum_two_coordinate_shift {N : ℕ} (x : Fin N → ℚ)
+/-- The cubic sum after moving one unit between two coordinates. -/
+theorem cubic_sum_two_coordinate_shift {K : Type*} [CommRing K] {N : ℕ} (x : Fin N → K)
     (p q : Fin N) (hpq : p ≠ q) :
     (∑ j : Fin N, (x j - (if j = p then 1 else 0) +
       (if j = q then 1 else 0)) ^ 3) =

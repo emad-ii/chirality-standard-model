@@ -109,6 +109,39 @@ private theorem model_support_budget (b : (rootSystem H).Base) (β : LinearMap.B
   intro i
   exact ⟨fun h => hall _ ((ha i).2.1 h), fun h => hall _ ((ha i).2.2 h)⟩
 
+include hp e in
+/-- Two orthogonal simple nodes cannot both have label two in the
+orthogonal defining representation. The four constructed skew highest
+weights would have to fit into the three ambient constituents. -/
+theorem no_two_orthogonal_labels_two [IsIrreducible ℂ (ℂ ⊗[ℝ] h) W]
+    (b : (rootSystem H).Base) (β : LinearMap.BilinForm ℂ W)
+    (A : Model h β) (hnd : β.Nondegenerate) (hi : β.lieInvariant (ℂ ⊗[ℝ] h)) (hsym : β.IsSymm)
+    {χ : H → ℂ} {v : W} (hv : IsHighestVector H b χ v)
+    (i j : b.support) (hij : i ≠ j) (ho : i.val.val (coroot j.val.val) = 0)
+    (ho' : j.val.val (coroot i.val.val) = 0)
+    (hi₂ : χ (coroot i.val.val) = 2) (hj₂ : χ (coroot j.val.val) = 2) : False := by
+  obtain ⟨μ, u, a, hu, hμ, hkill, ha⟩ := orthogonal_support_weights H b β hnd hi hsym
+  have he := (irreducible_highest_weight_unique H b hv
+    (show IsHighestVector H b μ u from ⟨hu, hμ, hkill⟩)).2
+  subst χ
+  have pos (k : b.support) (hk : μ (coroot k.val.val) = 2) : 1 ≤ (a k : ℕ) := by
+    have hcast := ((ha k).1).symm.trans hk
+    have hk' : (a k : ℕ) = 2 := by exact_mod_cast hcast
+    omega
+  obtain ⟨θ, p, q, _, _, _, hall⟩ := compact_model_highest_weights B h hp e H b A
+  let test := fun (m : H → ℂ) => m (coroot i.val.val) + 7 * m (coroot j.val.val)
+  have three (m : H → ℂ) (hm : HasSkewHighestWeight H b β m) :
+      test m = test θ ∨ test m = test p ∨ test m = test q := by
+    rcases hall m hm with rfl | rfl | rfl <;> simp
+  have hsi := three _ ((ha i).2.1 (pos i hi₂))
+  have hsj := three _ ((ha j).2.1 (pos j hj₂))
+  have hm₁ := three _ (orthogonal_two_node_weight H b β hnd hi hsym μ u hu hμ hkill i j hij ho hi₂ hj₂)
+  have hm₂ := three _ (orthogonal_two_node_weight H b β hnd hi hsym μ u hu hμ hkill j i hij.symm ho' hj₂ hi₂)
+  have self (k : b.support) : k.val.val (coroot k.val.val) = 2 :=
+    root_apply_coroot (Finset.mem_filter.mp k.val.property).2
+  norm_num only [test, self, ho, ho', hi₂, hj₂] at hsi hsj hm₁ hm₂
+  grind
+
 end Model
 
 section Orthogonal

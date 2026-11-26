@@ -25,6 +25,30 @@ variable {L M : Type*} [LieRing L] [LieAlgebra ℂ L] [FiniteDimensional ℂ L]
   (b : (rootSystem H).Base) [AddCommGroup M] [Module ℂ M]
   [LieRingModule L M] [LieModule ℂ L M] [FiniteDimensional ℂ M] [IsIrreducible ℂ L M]
 
+/-- Either cubic symmetric-power edge of A₂ has exactly ten dimensions. -/
+theorem a2_edge_three_dimension (s : Fin 2 ≃ b.support)
+    (h01 : b.cartanMatrix (s 0) (s 1) = -1) (h10 : b.cartanMatrix (s 1) (s 0) = -1)
+    (v : M) (hv : v ≠ 0) (χ : H → ℂ) (hw : ∀ x : H, ⁅x,v⁆ = χ x • v)
+    (hc : (χ (coroot (s 0).val.val) = 3 ∧ χ (coroot (s 1).val.val) = 0) ∨
+      (χ (coroot (s 0).val.val) = 0 ∧ χ (coroot (s 1).val.val) = 3))
+    (he : ∀ i : b.support, ∀ x ∈ rootSpace H i.val.val, ⁅x,v⁆ = 0) : finrank ℂ M = 10 := by
+  have one (u : Fin 2 ≃ b.support) (h0 : b.cartanMatrix (u 0) (u 1) = -1)
+      (h1 : b.cartanMatrix (u 1) (u 0) = -1)
+      (ha : χ (coroot (u 0).val.val) = 3) (hb : χ (coroot (u 1).val.val) = 0) :
+      finrank ℂ M = 10 := by
+    have lo := a2_two_string_dimension_lower H b u h0 h1 v hv χ hw 3 0 (by simpa using ha)
+      (by simpa using hb) he
+    have hi := a2_edge_highest_dimension_le H b u h0 h1 v hv 3
+      (by simpa [ha] using hw (coroot (u 0).val.val))
+      (by simpa [hb] using hw (coroot (u 1).val.val)) he
+    exact le_antisymm (hi.trans (by decide)) ((by decide : 10 ≤ Fintype.card (Strings 3 0)).trans lo)
+  rcases hc with ⟨ha,hb⟩ | ⟨ha,hb⟩
+  · exact one s h01 h10 ha hb
+  · let u := (Equiv.swap (0 : Fin 2) 1).trans s
+    have hu₀ : u 0 = s 1 := by simp [u]
+    have hu₁ : u 1 = s 0 := by simp [u]
+    exact one u (hu₀ ▸ hu₁ ▸ h10) (hu₁ ▸ hu₀ ▸ h01) (hu₀ ▸ hb) (hu₁ ▸ ha)
+
 /-- No A₂ highest weight of a twenty-two-dimensional representation
 satisfies the index constraint on an embedding in F₄. -/
 theorem f4_a2_dimension_ne_twenty_two (s : Fin 2 ≃ b.support)

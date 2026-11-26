@@ -6,6 +6,7 @@ import CubicAnomaly.Fixed.MatterNonSelfDual
 import CubicAnomaly.Fixed.MatterFamilyAnomaly
 import CubicAnomaly.Fixed.E8CompactIsotropy
 import CubicAnomaly.Fixed.E8EqualRankConverse
+import CubicAnomaly.Fixed.SmallExceptionalExclusion
 
 /-!
 # The constructed fixed exceptional pair and its matter action

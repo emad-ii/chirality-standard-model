@@ -24,6 +24,7 @@ open CubicAnomaly.Classification.ExceptionalSieveProducts
 open CubicAnomaly.Classification.ExceptionalSieveIndex
 open CubicAnomaly.Classification.RootClassificationExceptional
 open CubicAnomaly.Classification.Structural
+open CubicAnomaly.Classification.CompactGeometry
 open CubicAnomaly.Classification.Complexification
 open CubicAnomaly.Classification.CompactCartan
 open CubicAnomaly.Classification.HermitianRealization
@@ -33,7 +34,7 @@ open scoped TensorProduct
 def ambientDatum : Ambient → RootDatum
   | .g2 => g2Datum | .f4 => f4Datum | .e6 => e6Datum | .e7 => e7Datum | .e8 => e8Datum
 
-private theorem ambient_certified (G : Ambient) :
+theorem ambient_certified (G : Ambient) :
     Certified (ambientDatum G) ∧ TraceDivisor (ambientDatum G) G.divisor := by
   obtain ⟨c₁,c₂,c₃,c₄,c₅⟩ := exceptional_root_tables_certified
   obtain ⟨d₁,d₂,d₃,d₄,d₅⟩ := exceptional_killing_trace_divisors
@@ -125,6 +126,60 @@ theorem ideal_intersection_isCartan (A : LieSubalgebra ℂ L) [A.IsCartanSubalge
 end Ideal
 
 set_option maxHeartbeats 0 in
+/-- The index statement for prescribed nested Cartans, preserving their
+inclusion for use in the final exceptional case analysis. -/
+theorem nested_exceptional_factor_index
+    (B : CompactForm g) (h : LieSubalgebra ℝ g) (hproper : h ≠ ⊤)
+    (e : lieCommutant (L := h) (M := orthogonalComplement B h) ≃ₐ[ℝ] ℂ)
+    [LieAlgebra.IsKilling ℂ (ℂ ⊗[ℝ] g)] [LieAlgebra.IsKilling ℂ (ℂ ⊗[ℝ] h)]
+    (A : LieSubalgebra ℂ (ℂ ⊗[ℝ] h)) (H : LieSubalgebra ℂ (ℂ ⊗[ℝ] g))
+    [A.IsCartanSubalgebra] [H.IsCartanSubalgebra]
+    (hn : ∀ x : A, complexifiedLieHom h.incl x ∈ H)
+    (G : Ambient) (bg : (rootSystem H).Base) (sg : Index (ambientDatum G) ≃ bg.support)
+    (hg : ∀ i j, bg.cartanMatrix (sg i) (sg j) = matrix (ambientDatum G) i j) :
+    let V := invariantEigenspace (complexifiedEnd (commutantComplexStructure e)) Complex.I
+          ∀ (I : LieIdeal ℂ (ℂ ⊗[ℝ] h)) (hI : IsAtom I),
+            let C : LieSubalgebra ℂ I := A.comap I.toLieSubalgebra.incl
+            letI := atomic_ideal_isKilling I hI
+            letI := ideal_intersection_isCartan A I
+            ∀ (b : (rootSystem C).Base) (t : Factor) (s : Index t.datum ≃ b.support),
+              (∀ i j, b.cartanMatrix (s i) (s j) = matrix t.datum i j) →
+              ∃ (S : LieSubmodule ℂ I V) (a : t.Label) (χ : Weight ℂ C S) (v : S),
+                IsAtom S ∧ IsIrreducible ℂ I S ∧ v ≠ 0 ∧ (∀ z : C, ⁅z, v⁆ = χ z • v) ∧
+                (∀ α : C.root, b.IsPos α → ∀ z ∈ rootSpace C α.val, ⁅z, v⁆ = 0) ∧
+                (∀ i, χ (coroot (s i).val.val) = (a (nodes t i) : ℂ)) ∧
+                Compatible G (finrank ℂ V) (row t a) := by
+  let V := invariantEigenspace (complexifiedEnd (commutantComplexStructure e)) Complex.I
+  letI : IsIrreducible ℂ (ℂ ⊗[ℝ] h) V :=
+    (ComplexDuality.compact_complement_complex_type_decomposition B h hproper e).2.1
+  dsimp only
+  intro I hI
+  let C : LieSubalgebra ℂ I := A.comap I.toLieSubalgebra.incl
+  letI := atomic_ideal_isKilling I hI
+  letI := ideal_intersection_isCartan A I
+  letI : LieAlgebra.IsSimple ℂ I := LieAlgebra.IsSemisimple.isSimple_of_isAtom I hI
+  intro b t s hmat
+  obtain ⟨S, a, χ, v, hS, hir, hv, hev, hp, ha, i, hi⟩ :=
+    simple_factor_index_numerator (W := V) I Iᶜ disjoint_compl_right sup_compl_eq_top
+      C b t s hmat
+  refine ⟨S, a, χ, v, hS, hir, hv, hev, hp, ha, ?_⟩
+  let α : C.root := s i
+  have hα : α.val.IsNonZero := (Finset.mem_filter.mp α.property).2
+  obtain ⟨x, u, w, T, hu, hw⟩ := exists_isSl2Triple_of_weight_isNonZero hα
+  have hx := T.h_eq_coroot hα hu hw
+  subst x
+  let x : I := coroot α.val
+  have T' : IsSl2Triple (x : ℂ ⊗[ℝ] h) (u : ℂ ⊗[ℝ] h) (w : ℂ ⊗[ℝ] h) :=
+    { h_ne_zero := fun hz => T.h_ne_zero (Subtype.ext hz)
+      lie_e_f := congrArg Subtype.val T.lie_e_f
+      lie_h_e_nsmul := congrArg Subtype.val T.lie_h_e_nsmul
+      lie_h_f_nsmul := congrArg Subtype.val T.lie_h_f_nsmul }
+  obtain ⟨m, hm⟩ := compact_pair_index_divisibility B h hproper e H bg sg
+    (ambient_certified G).1 hg (ambient_certified G).2 T' (hn ⟨x, (coroot α.val).property⟩)
+  exact compatible_of_trace_multiple G (finrank ℂ V) t a m (hi.symm.trans hm)
+
+
+set_option maxHeartbeats 0 in
 /-- Every classified simple isotropy factor supplies an actual highest-weight
 row passing the exceptional sieve's index test, in the Cartans obtained
 from the original compact pair. The rank of the isotropy is unrestricted. -/
@@ -164,30 +219,7 @@ theorem all_rank_exceptional_factor_index
   letI := hA
   letI := hH
   refine ⟨hgK, hhK, A, H, hA, hH, hd, ?_⟩
-  intro G bg sg hg I hI
-  let C : LieSubalgebra ℂ I := A.comap I.toLieSubalgebra.incl
-  letI := atomic_ideal_isKilling I hI
-  letI := ideal_intersection_isCartan A I
-  letI : LieAlgebra.IsSimple ℂ I := LieAlgebra.IsSemisimple.isSimple_of_isAtom I hI
-  dsimp only
-  intro b t s hmat
-  obtain ⟨S, a, χ, v, hS, hir, hv, hev, hp, ha, i, hi⟩ :=
-    simple_factor_index_numerator (W := V) I Iᶜ disjoint_compl_right sup_compl_eq_top
-      C b t s hmat
-  refine ⟨S, a, χ, v, hS, hir, hv, hev, hp, ha, ?_⟩
-  let α : C.root := s i
-  have hα : α.val.IsNonZero := (Finset.mem_filter.mp α.property).2
-  obtain ⟨x, u, w, T, hu, hw⟩ := exists_isSl2Triple_of_weight_isNonZero hα
-  have hx := T.h_eq_coroot hα hu hw
-  subst x
-  let x : I := coroot α.val
-  have T' : IsSl2Triple (x : ℂ ⊗[ℝ] h) (u : ℂ ⊗[ℝ] h) (w : ℂ ⊗[ℝ] h) :=
-    { h_ne_zero := fun hz => T.h_ne_zero (Subtype.ext hz)
-      lie_e_f := congrArg Subtype.val T.lie_e_f
-      lie_h_e_nsmul := congrArg Subtype.val T.lie_h_e_nsmul
-      lie_h_f_nsmul := congrArg Subtype.val T.lie_h_f_nsmul }
-  obtain ⟨m, hm⟩ := compact_pair_index_divisibility B h hproper e H bg sg
-    (ambient_certified G).1 hg (ambient_certified G).2 T' (hn ⟨x, (coroot α.val).property⟩)
-  exact compatible_of_trace_multiple G (finrank ℂ V) t a m (hi.symm.trans hm)
+  intro G bg sg hg
+  exact nested_exceptional_factor_index B h hproper e A H hn G bg sg hg
 
 end CubicAnomaly.Classification.ExceptionalSieve

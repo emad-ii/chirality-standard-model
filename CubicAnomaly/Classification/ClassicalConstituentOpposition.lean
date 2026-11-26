@@ -20,7 +20,8 @@ variable {L M : Type*} [LieRing L] [LieAlgebra ℂ L] [FiniteDimensional ℂ L] 
   [FiniteDimensional ℂ M] [IsIrreducible ℂ L M]
 
 omit [FiniteDimensional ℂ L] [IsKilling ℂ L] in
-private theorem dual_irreducible : IsIrreducible ℂ L (Dual ℂ M) := by
+/-- The contragredient of a finite-dimensional irreducible module is irreducible. -/
+theorem dual_irreducible : IsIrreducible ℂ L (Dual ℂ M) := by
   letI := nontrivial_of_isIrreducible ℂ L M
   apply IsIrreducible.mk
   intro N hN

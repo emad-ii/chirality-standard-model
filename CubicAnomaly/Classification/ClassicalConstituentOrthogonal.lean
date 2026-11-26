@@ -44,6 +44,35 @@ variable {g W : Type*} [LieRing g] [LieAlgebra ℝ g] [FiniteDimensional ℝ g]
     [AddCommGroup W] [Module ℂ W] [LieRingModule (ℂ ⊗[ℝ] h) W]
     [LieModule ℂ (ℂ ⊗[ℝ] h) W] [FiniteDimensional ℂ W] [IsIrreducible ℂ (ℂ ⊗[ℝ] h) W]
 
+include hp e in
+/-- A skew highest weight fixed by opposition belongs to the actual adjoint
+constituent, hence is a root of maximal height. -/
+theorem skew_fixed_highest_is_adjoint (β : LinearMap.BilinForm ℂ W) (A : Model h β)
+    (w : List H.root) (hw : ∀ i : H.root, b.IsPos i ↔ ¬ b.IsPos (rootWord H w i))
+    (μ : H → ℂ) (hm : HasSkewHighestWeight H b β μ)
+    (hfixed : ∀ z : H, μ z = -μ (cartanWord H w z)) :
+    ∃ r : H.root, (r.val : H → ℂ) = μ ∧ b.IsPos r ∧ ∀ j : H.root, b.height j ≤ b.height r := by
+  obtain ⟨θ, p, q, ⟨y, hy⟩, ⟨s, hs⟩, ⟨t, ht⟩, hall⟩ := compact_model_highest_weights B h hp e H b A
+  let P := invariantEigenspace (complexifiedEnd (commutantComplexStructure e)) Complex.I
+  let Q := invariantEigenspace (complexifiedEnd (commutantComplexStructure e)) (-Complex.I)
+  obtain ⟨_, hP, hQ, ⟨d⟩, hpq⟩ := compact_complement_complex_type_decomposition B h hp e
+  letI : IsIrreducible ℂ (ℂ ⊗[ℝ] h) P := hP
+  letI : IsIrreducible ℂ (ℂ ⊗[ℝ] h) Q := hQ
+  have hqp := dual_highest_weight_of_reversing_word H b w hw hs
+    (highest_map H d.toLieModuleHom ht (fun hz => ht.1 (d.injective (hz.trans (map_zero d).symm))))
+  have hne : p ≠ q := by
+    intro he
+    obtain ⟨E, _⟩ := irreducible_equiv_of_highest_weight H hs (he ▸ ht)
+    exact hpq ⟨E⟩
+  rcases hall μ hm with rfl | rfl | rfl
+  · exact adjoint_highest_is_maximal_root H b hy
+  · exact (hne (funext (fun z => (hfixed z).trans (hqp z).symm))).elim
+  · exfalso
+    apply hne
+    funext z
+    obtain ⟨x, rfl⟩ := (cartanWord H w).surjective z
+    exact neg_inj.mp ((hqp x).symm.trans (hfixed x))
+
 /-- Highest weight, natural simple labels, adjoint highest weight, and the
 action of opposition on all nonzero labels of the orthogonal module. -/
 def OrthogonalSupportOrbit : Prop :=

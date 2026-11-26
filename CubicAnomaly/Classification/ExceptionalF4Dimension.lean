@@ -87,4 +87,45 @@ theorem dim52_matching_F4 (hdim : finrank ℂ L = 52) :
     · exact (exceptional_dimensions.2.2.1 he.symm).elim
     · exact (exceptional_dimensions.2.2.2 he.symm).elim
 
+private theorem rank_four_classical_dimensions : ∀ t : Fin 4,
+    Certified (datum t 4) ∧ 4 + (table (datum t 4)).card ≠ 14 := by native_decide
+
+private theorem exceptional_rank_at_fourteen : ∀ d ∈ [g2Datum, f4Datum, e6Datum, e7Datum, e8Datum],
+    d.cartan.size + (table d).card = 14 → d.cartan.size ≤ 2 := by native_decide
+
+include b in
+/-- A simple complex Killing algebra of dimension fourteen has Cartan rank at most two. -/
+theorem dim14_cartan_finrank_le_two (hdim : finrank ℂ L = 14) : finrank ℂ H ≤ 2 := by
+  have hlim := three_cartan_finrank_le H
+  have hpar := killing_dimension_parity H
+  rw [hdim] at hlim hpar
+  by_contra! hlarge
+  have hr : finrank ℂ H = 4 := by omega
+  rcases simple_lie_classical_or_exceptional_census H b with hcl | ⟨d, hd, s, _, e, _⟩
+  · have hnon (t : Fin 4) (n : ℕ) (e : b.support ≃ Fin n)
+        (hm : b.cartanMatrix.reindex e e = canon t n) : False := by
+      have hnr : finrank ℂ H = n :=
+        (finrank_eq_card_basis (b.toCoweightBasis.reindex e)).trans (Fintype.card_fin _)
+      obtain rfl : n = 4 := hnr.symm.trans hr
+      obtain ⟨hc, hne⟩ := rank_four_classical_dimensions t
+      let s := (indices t 4).trans e.symm
+      have h (i j : Index (datum t 4)) : b.cartanMatrix (s i) (s j) = matrix (datum t 4) i j := by
+        rw [matrix_eq]
+        exact congrFun (congrFun hm (indices t 4 i)) (indices t 4 j)
+      obtain ⟨f, _⟩ := exists_census_root_equiv b s hc h
+      have hd := dimension_of_equiv H b s f
+      exact hne ((congrArg (· + (table (datum t 4)).card) (rank_eq t 4).symm).trans
+        (hd.symm.trans hdim))
+    rcases hcl with ⟨n,e,h⟩ | ⟨n,e,h⟩ | ⟨n,e,h⟩ | ⟨n,e,h⟩
+    · exact hnon 0 n e h
+    · exact hnon 1 n e h
+    · exact hnon 2 n e h
+    · exact hnon 3 n e h
+  · have hsz : finrank ℂ H = d.cartan.size :=
+      (finrank_eq_card_basis (b.toCoweightBasis.reindex s.symm)).trans (Fintype.card_fin _)
+    have he := dimension_of_equiv H b s e
+    have hmem : d ∈ [g2Datum, f4Datum, e6Datum, e7Datum, e8Datum] := by simpa using hd
+    have hc := exceptional_rank_at_fourteen d hmem (he.symm.trans hdim)
+    omega
+
 end CubicAnomaly.Classification.ExceptionalF4Dimension

@@ -1,3 +1,4 @@
+import CubicAnomaly.Classification.ChevalleySimpleTriples
 import CubicAnomaly.Classification.ClassicalConstituents
 import CubicAnomaly.Classification.ExceptionalSieveWeights
 
@@ -31,7 +32,8 @@ def HasSkewHighestWeight (b : (rootSystem H).Base) (β : LinearMap.BilinForm ℂ
     (∀ x : H, ⁅(x : L), A⁆ = μ x • A) ∧
     ∀ α : H.root, b.IsPos α → ∀ x ∈ rootSpace H α.val, ⁅x, A⁆ = 0
 
-private theorem scalar_of_root {i : H.root} {v w : L}
+/-- A nonzero vector spans its actual root space. -/
+theorem scalar_of_root {i : H.root} {v w : L}
     (hv : v ∈ rootSpace H i.val) (hv₀ : v ≠ 0) (hw : w ∈ rootSpace H i.val) :
     ∃ c : ℂ, c • v = w := by
   exact (finrank_eq_one_iff_of_nonzero' (⟨v, hv⟩ : rootSpace H i.val) (by simpa using hv₀)).mp
@@ -72,7 +74,9 @@ private theorem kill_positive_of_kill_simple (b : (rootSystem H).Base) {w : M}
   obtain ⟨c, rfl⟩ := scalar_of_root H hmem huv hx
   rw [smul_lie, lie_lie, hi _ hu, hs ⟨j, hj⟩ _ hv, lie_zero, lie_zero, sub_self, smul_zero]
 
-private theorem transport_skew_highest (b : (rootSystem H).Base) (β : LinearMap.BilinForm ℂ M)
+/-- An alternating or symmetric tensor highest vector gives a highest operator
+in the algebra preserving the corresponding nondegenerate form. -/
+theorem transport_skew_highest (b : (rootSystem H).Base) (β : LinearMap.BilinForm ℂ M)
     (hβ : β.Nondegenerate) (hInv : β.lieInvariant L) (ε : ℂ) (h₀ : ε ≠ 0)
     (hε : ∀ a b, β a b = ε * β b a) (μ : H → ℂ) (z : M ⊗[ℂ] M)
     (hz : z ≠ 0) (hflip : TensorProduct.comm ℂ M M z = -ε • z)
@@ -150,5 +154,39 @@ theorem orthogonal_support_weights (b : (rootSystem H).Base)
     obtain ⟨hz, hflip, hez, hwz, hother⟩ := alternating_square_third_highest_vector P h
     exact transport_skew_highest H b β hβ hInv 1 one_ne_zero hε _ _ hz (by simpa using hflip)
       (fun x => hwz x _ _ (hw x) (hfw x)) (hkill _ hez hother)
+
+omit [Nontrivial M] in
+/-- For distinct orthogonal simple nodes of label two, the skew algebra
+has an additional highest weight obtained by lowering twice at one node
+and once at the other. -/
+theorem orthogonal_two_node_weight (b : (rootSystem H).Base)
+    (β : LinearMap.BilinForm ℂ M) (hβ : β.Nondegenerate) (hInv : β.lieInvariant L)
+    (hsym : β.IsSymm) (χ : H → ℂ) (v : M) (hv : v ≠ 0)
+    (hw : ∀ x : H, ⁅(x : L), v⁆ = χ x • v)
+    (hp : ∀ α : H.root, b.IsPos α → ∀ x ∈ rootSpace H α.val, ⁅x, v⁆ = 0)
+    (i j : b.support) (hij : i ≠ j) (horth : i.val.val (coroot j.val.val) = 0)
+    (hl : χ (coroot i.val.val) = 2) (hl' : χ (coroot j.val.val) = 2) :
+    HasSkewHighestWeight H b β (fun x => 2 * χ x - 2 * i.val.val x - j.val.val x) := by
+  obtain ⟨e, f, ht, he, hf, hc, _⟩ := ChevalleySimpleTriples.exists_simple_root_triples H b
+  have prim (k : b.support) (hk : χ (coroot k.val.val) = 2) :
+      (ht k).HasPrimitiveVectorWith v (2 : ℂ) :=
+    ⟨hv, hk ▸ hw _, hp _ (b.isPos_of_mem_support k.property) _ (he k)⟩
+  have lower (k : b.support) (x : H) : ⁅(x : L), f k⁆ = -(k.val.val x • f k) := by
+    simpa only [Pi.neg_apply, neg_smul] using lie_eq_smul_of_mem_rootSpace (hf k) x
+  obtain ⟨z, hz, hflip, h₁, h₂, hwt, hother⟩ := alternating_square_two_node_vector
+    (prim i hl) (prim j hl') (hc i j hij) (hc j i hij.symm) (by rw [lower, horth, zero_smul, neg_zero])
+  apply transport_skew_highest H b β hβ hInv 1 one_ne_zero
+    (fun u w => by simpa using hsym.eq u w) _ z hz (by simpa using hflip)
+    (fun x => hwt x _ _ _ (hw x) (lower i x) (lower j x))
+  intro k x hx
+  obtain ⟨c, rfl⟩ := scalar_of_root H (he k) (ht k).e_ne_zero hx
+  rw [smul_lie]
+  suffices ⁅e k, z⁆ = 0 by rw [this, smul_zero]
+  by_cases hk : k = i
+  · exact hk ▸ h₁
+  by_cases hk' : k = j
+  · exact hk' ▸ h₂
+  exact hother _ (hp _ (b.isPos_of_mem_support k.property) _ (he k)) (hc k i hk) (hc k j hk')
+
 
 end CubicAnomaly.Classification.ClassicalConstituentWeights

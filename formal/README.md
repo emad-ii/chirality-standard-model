@@ -946,10 +946,13 @@ and `standardOrthogonalMatrixEquiv` to Mathlib's matrix `sl` and `so`.
 The choices are constructed, and the full defining-action compatibility
 is proved. `SymplecticComplexification.lean` identifies `ℂ ⊗ sp(W,J)`
 with the complex endomorphisms preserving the actual alternating form
-constructed above. A standard symplectic matrix-basis identification is
-not yet supplied. These equivalences identify the concrete classical real
-forms; they do not classify an arbitrary simple compact algebra into one
-of those families.
+constructed above. In the standard orthonormal quaternionic coordinates
+on two copies of `ℂⁿ`, its Gram matrix is `-J`. The complexification maps
+isomorphically onto Mathlib's symplectic matrix algebra and scalar conjugation
+becomes negative conjugate transpose. Multiplication by `J` injects the
+Hamiltonian matrices into the symmetric matrices and bounds their dimension
+by `n(2n+1)`. [Symplectic compact model](../CubicAnomaly/Classification/SymplecticCompactModel.lean)
+and [matrix dimension](../CubicAnomaly/Classification/SymplecticMatrixDimension.lean).
 
 `UnitaryModuleBridge.lean` and `ClassicalModuleBridge.lean` additionally make
 these identifications equivariant for the actual complexified isotropy
@@ -1128,12 +1131,30 @@ restriction on each constituent gives the tested quadratic-index divisibility.
 [factor dimensions](../CubicAnomaly/Classification/ExceptionalSieveFactorProduct.lean),
 and [factor index](../CubicAnomaly/Classification/ExceptionalSieve.lean).
 
+The type-C recognition proof constructs all `2r²` signed roots from an actual
+Cartan of type C. The resulting dimension bound and the standard symplectic
+simple-root matrices give a complex Lie isomorphism. Normalized compact
+conjugation descends it to a real isomorphism, so the cubic radical vanishes
+for any compact ambient algebra of this type. In real dimensions 14 and 52,
+combining the rank bounds with equal-rank uniqueness also forces a zero
+radical. [Type C](../CubicAnomaly/Classification/TypeCCompactRecognition.lean)
+and [small exceptional dimensions](../CubicAnomaly/Fixed/SmallExceptionalExclusion.lean).
+
+For general simple factors the positive-string and opposition checks are now
+connected to actual faithful modules. The `A₂` dimension-35 case contradicts
+the required vanishing cubic. The type-A matrix-unit calculation relates the
+actual highest vector to the centered cubic in its coordinates. A separate
+minuscule dimension bound counts weights in a supplied minuscule orbit.
+[A₂ cubic](../CubicAnomaly/Classification/ExceptionalSieveA2Cubic.lean),
+[type-A highest-weight coordinates](../CubicAnomaly/Classification/TypeACubicHighestWeight.lean),
+and [minuscule weights](../CubicAnomaly/Classification/MinusculeDimension.lean).
+
 ## Remaining work for global uniqueness
 
 | Remaining implication | Current proof boundary |
 | --- | --- |
-| Rank-deficient exceptional pairs | Actual highest vectors with bounded integral labels, Killing-trace divisors, the simple-module Casimir identity, and the numerical sieve on products of dominant labels are proved. Dimension 52 is excluded at deficient rank. The remaining exceptional dimensions require a complete connection from actual module dimensions and cubic traces to the finite label tests. |
-| Rank-deficient classical pairs | The concrete special-unitary and compact symplectic cases and the two-factor orthogonal case are excluded in all dimensions. In the remaining orthogonal case the root-lowering constituents and a bound on their support are proved. The unrestricted type-A case is excluded and the orthogonal support satisfies the opposition-orbit constraints. The remaining orthogonal dimension and cubic-index arguments and full type-B, C and D recognition are still required. |
+| Rank-deficient exceptional pairs | Actual highest vectors with bounded integral labels, Killing-trace divisors, the simple-module Casimir identity, and the numerical sieve on products of dominant labels are proved. Dimensions 14 and 52 are excluded at every rank. The remaining exceptional dimensions require a complete connection from actual module dimensions and cubic traces to the finite label tests. |
+| Rank-deficient classical pairs | The concrete special-unitary and compact symplectic cases and the two-factor orthogonal case are excluded in all dimensions. In the remaining orthogonal case the root-lowering constituents and a bound on their support are proved. The unrestricted type-A and type-C cases are excluded and orthogonal support satisfies the opposition-orbit constraints. The remaining orthogonal dimension and cubic-index arguments and full type-B and type-D recognition are still required. |
 | Exceptional Lie groups | The fixed compact Lie algebra and representation are constructed. Integrating the exceptional inclusions and differentiating the proposed group actions are additional global-group statements. |
 
 ## Verification and trust
@@ -1148,8 +1169,8 @@ python3 formal/scripts/check_formal_hygiene.py
 python3 formal/scripts/check_formal_hygiene.py --self-test
 ```
 
-The audit covers **1687 public theorem exports**: **1261 deductive**,
-**30 finite/native-profile**, and **396 certificate-derived**. The hygiene checker keeps an explicit export
+The audit covers **1784 public theorem exports**: **1347 deductive**,
+**30 finite/native-profile**, and **407 certificate-derived**. The hygiene checker keeps an explicit export
 manifest and matches every
 `#print axioms` receipt to its fully qualified theorem name. It rejects
 missing, duplicate, unknown, and mislabeled receipts as well as unfinished

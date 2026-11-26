@@ -201,6 +201,18 @@ theorem normalized_highest_weight_trace_index [LieAlgebra.IsSimple ℂ L] [IsIrr
   rw [← normalized_highest_casimir H b t s hmat χ a ha]
   linear_combination (2 * (t.dualCoxeter : ℂ)) * hc
 
+/-- Numbering an actual Cartan by a catalog matrix determines the
+dimensions of both the Cartan and its ambient Killing algebra. -/
+theorem matched_factor_dimensions
+    (hmat : ∀ i j, b.cartanMatrix (s i) (s j) = matrix t.datum i j) :
+    finrank ℂ H = t.rank ∧ finrank ℂ L = t.algebraDim := by
+  refine ⟨(finrank_eq_card_basis (corootBasis H b t s)).trans (by simp [datum_rank]), ?_⟩
+  obtain ⟨E, -, -⟩ := root_data H b t s hmat
+  rw [KillingDimension.killing_finrank_eq_cartan_add_roots H,
+      KillingDimension.actual_root_count_eq_card H, ← Fintype.card_congr E,
+      finrank_eq_card_basis (corootBasis H b t s)]
+  simpa using (table_dimensions t).1
+
 /-- In every catalog type there is an actual simple coroot on which the
 combined isotropy-adjoint and doubled module trace equals the numerator
 of the exceptional index quotient. -/
@@ -224,12 +236,7 @@ theorem actual_long_coroot_trace [LieAlgebra.IsSimple ℂ L] [IsIrreducible ℂ 
     rw [hi] at hk
     simpa [x, corootBasis] using hk
   refine ⟨hκ, ?_⟩
-  obtain ⟨E, -, -⟩ := root_data H b t s hmat
-  have hdim : finrank ℂ L = t.algebraDim := by
-    rw [KillingDimension.killing_finrank_eq_cartan_add_roots H,
-      KillingDimension.actual_root_count_eq_card H, ← Fintype.card_congr E,
-      finrank_eq_card_basis (corootBasis H b t s)]
-    simpa using (table_dimensions t).1
+  have hdim := (matched_factor_dimensions H b t s hmat).2
   have hd : (t.algebraDim : ℂ) ≠ 0 := by
     rw [← hdim]
     letI : Nontrivial L := nontrivial_of_isIrreducible ℂ L L
