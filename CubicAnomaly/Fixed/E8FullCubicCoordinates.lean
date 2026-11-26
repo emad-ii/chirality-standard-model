@@ -99,7 +99,7 @@ private theorem gradeBasis_val (a : ZMod 3) (d : GradeLabel a) :
     simp only [basisVector, hb, Pi.single_apply, he]
   exact congrArg Subtype.val hh
 
-private theorem zeroBasis_val (d : GradeLabel 0) :
+theorem e8_full_zeroBasis_val (d : GradeLabel 0) :
     (zeroBasis d).val = adjointEquiv (basisVector d.val) :=
   gradeBasis_val 0 d
 
@@ -133,7 +133,7 @@ private theorem diagramSign_ne_zero (i : Fin 8) : (diagramSign i : ℂ) ≠ 0 :=
 theorem e8_full_cartan_matrix (i : Fin 8) :
     (cartan i).val.val = RootPairing.GeckConstruction.h (E8RootPairing.simpleIndex i) := by
   change (diagramSign i : ℂ) • (zeroBasis ⟨.inl i, cartanLabel_mem i⟩).val.val = _
-  rw [zeroBasis_val, e8_adjointEquiv_val, e8_h_bracketMatrixMap_image,
+  rw [e8_full_zeroBasis_val, e8_adjointEquiv_val, e8_h_bracketMatrixMap_image,
     Int.cast_smul_eq_zsmul, ← SemigroupAction.mul_smul,
     bracket_data_diagram_sign_sq, one_smul]
 
@@ -145,11 +145,11 @@ private theorem realize_singleton_complex (d : DataIndex) (n : ℤ) :
     realize (E8BracketData.singleton d n) = (n : ℂ) • basisVector d := by
   rw [e8_realize_singleton, Int.cast_smul_eq_zsmul]
 
-private theorem zero_grade_bracket (d : GradeLabel 0) (a : ZMod 3) (f : GradeLabel a) :
+theorem e8_full_zero_grade_bracket (d : GradeLabel 0) (a : ZMod 3) (f : GradeLabel a) :
     (⁅zeroBasis d, gradeBasis a f⁆ : gradeModule a).val =
       adjointEquiv (realize (bracket d.val f.val)) := by
   change ⁅(zeroBasis d).val, (gradeBasis a f).val⁆ = _
-  rw [zeroBasis_val, gradeBasis_val, ← e8_adjointEquiv_bracket,
+  rw [e8_full_zeroBasis_val, gradeBasis_val, ← e8_adjointEquiv_bracket,
     e8_candidateBracket_labels _ _
       ((e8_mem_gradeLabels 0 d.val).mp d.property).1
       ((e8_mem_gradeLabels a f.val).mp f.property).1]
@@ -163,7 +163,7 @@ theorem e8_full_cartan_basis_action (i : Fin 8) (a : ZMod 3) (d : GradeLabel a) 
   change (diagramSign i : ℂ) • (⁅zeroBasis ⟨.inl i, cartanLabel_mem i⟩,
     gradeBasis a d⁆ : gradeModule a).val =
       (labelWeight d.val i : ℂ) • (gradeBasis a d).val
-  simp only [zero_grade_bracket, gradeBasis_val]
+  simp only [e8_full_zero_grade_bracket, gradeBasis_val]
   rcases d with ⟨d, hd⟩
   cases d with
   | inl j => simp [bracket, labelWeight, realize, SparseRealization.realize]
@@ -228,7 +228,7 @@ private theorem toral_sparse_realization (xs : List (Fin 8)) (c : Fin 8 → ℤ)
       simp only [realize, SparseRealization.realize, List.map_cons, List.sum_cons,
         Int.cast_smul_eq_zsmul]
     change (c i : ℂ) • (zeroBasis ⟨.inl i, cartanLabel_mem i⟩).val + x.val = _
-    rw [List.map_cons, hr, map_add, map_smul, zeroBasis_val, hval]
+    rw [List.map_cons, hr, map_add, map_smul, e8_full_zeroBasis_val, hval]
 
 /-- Opposite zero-root weights bracket into the actual toral span. -/
 theorem e8_full_opposite_root_bracket
@@ -246,7 +246,7 @@ theorem e8_full_opposite_root_bracket
     apply Subtype.ext
     change (⁅zeroBasis ⟨.inr v.val, rootLabel_mem v.property⟩,
       gradeBasis 0 ⟨.inr w.val, rootLabel_mem w.property⟩⁆ : gradeModule 0).val = x.val
-    rw [zero_grade_bracket, hval]
+    rw [e8_full_zero_grade_bracket, hval]
     simp only [bracket, hneg, if_pos, c]
   simpa only [heq] using hx
 

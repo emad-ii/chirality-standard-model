@@ -15,6 +15,14 @@ import CubicAnomaly.Classification.UnitarySelfDualExclusion
 import CubicAnomaly.Classification.UnitaryNoGo
 import CubicAnomaly.Classification.ClassicalTwoFactorReduction
 import CubicAnomaly.Classification.ClassicalSimplicity
+import CubicAnomaly.Classification.ClassicalConstituentComparison
+import CubicAnomaly.Classification.ClassicalConstituentSupport
+import CubicAnomaly.Classification.CommonCartanDefining
+import CubicAnomaly.Classification.EqualRankOrbit
+import CubicAnomaly.Classification.ExceptionalSieveIndex
+import CubicAnomaly.Classification.ExceptionalSieveRankTwo
+import CubicAnomaly.Classification.ExceptionalSieveProducts
+import CubicAnomaly.Classification.RootReflectionAutomorphism
 import CubicAnomaly.Classification.TensorParityBlocks
 import CubicAnomaly.Classification.RootGraphCriterion
 import CubicAnomaly.Classification.RootCharacterCoordinates
@@ -27,6 +35,14 @@ import CubicAnomaly.Classification.RootSimple
 import CubicAnomaly.Classification.ClassicalWeyl
 import CubicAnomaly.Classification.ClassicalToral
 import CubicAnomaly.Classification.Selection
+import CubicAnomaly.Classification.ChevalleyHeightSeparation
+import CubicAnomaly.Classification.ChevalleyRootGeneration
+import CubicAnomaly.Classification.ChevalleyTriangularSpan
+import CubicAnomaly.Classification.ClassicalConstituentSquare
+import CubicAnomaly.Classification.ExceptionalSieve
+import CubicAnomaly.Classification.ExceptionalSieveCasimir
+import CubicAnomaly.Classification.LieSubdirect
+import CubicAnomaly.Classification.RootClassificationConjugacy
 import CubicAnomaly.E6.Claims
 import CubicAnomaly.Fixed
 

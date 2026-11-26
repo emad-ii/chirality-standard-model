@@ -79,15 +79,14 @@ the following statements about actual groups, vector spaces and actions:
 | The actual exceptional half under the entire zero-grade algebra | The full cubic radical is exactly the explicit 78-dimensional span of six coroots and 72 root vectors |
 | The canonical Hermitian half of the actual compact pair | Its full cubic radical is nonzero, so the constructed pair satisfies the original algebraic hypotheses |
 
-The exceptional and matter constructions are matched through actual Lie
-actions. Their three-copy restricted matter content follows from the explicit
-exceptional basis equivalence. The remaining fixed-candidate obligations
-include the **full `E6` factor and irreducible `27` identification**, the
-exceptional group integrations, and compatibility of group and Lie actions.
-The original compact pair, its irreducible real complement of complex type,
-and its full zero-grade anomaly radical are now proved. The
-[fixed-candidate scope](formal/FixedCandidate.md) gives the exact statements,
-trust boundaries and outstanding identifications.
+The 78-dimensional radical is Lie-isomorphic to the simple E₆ root-lattice
+algebra. Its centralizer is the embedded family sl₃, and its action on the
+81 is three copies of the irreducible 27 with first fundamental highest
+weight. The original compact isotropy is the product of its 78-dimensional
+simple radical and standard su(3), with the stated action on the canonical half. Exceptional
+group integration, differentiation of the group actions, and universal
+uniqueness for arbitrary compact pairs remain open in Lean.
+[Fixed-candidate proof scope](formal/FixedCandidate.md).
 
 ## Run it yourself
 
@@ -103,7 +102,7 @@ The notebook records the source revision separately from the mathematical certif
 
 | Method | What it establishes |
 | :--- | :--- |
-| **Manuscript proofs** | Global classification/completeness bridges, identification of the classified Lie pairs with the finite data, compact exceptional group integrations and exceptional branching |
+| **Manuscript proofs** | Global classification/completeness bridges, identification of the classified Lie pairs with the finite data, compact exceptional group integrations |
 | **Exact Python computation** | Independent root realizations, complete finite censuses, subgroup kernels and chiral dimensions |
 | **Lean 4 / Mathlib** | All-rank real and complex structure and the geometric rank-deficient-or-intrinsic-toral-data reduction; constructed root-lattice coordinates, full-span and connected-support filters, exact root counts, and the actual root-cubic anomaly on the same Cartan; full radical reconstructed from actual simple ideals; defining-module irreducibility for all three concrete compact classical algebras; actual real and complexified isotropy simplicity in all three concrete compact classical branches, with full mixed cubic vanishing under the nonzero-radical hypothesis; constructed tensor decompositions and invariant factor forms, and complete exclusion of the two-factor orthogonal/symplectic case; complete special-unitary exclusion in every dimension by tensor interchange, proving its full cubic radical is zero; dimension/quadratic restriction identities and derived exceptional search bounds; classical order-three exclusion and Weyl-product inequalities; exceptional finite uniqueness; $E_6$ incidence and intrinsic pair ordering |
 
@@ -115,6 +114,13 @@ and the full local anomaly and restricted radical statements listed above.
 It also proves full zero-grade irreducibility, the exact 78-dimensional
 cubic radical, and the original compact-pair hypotheses for the canonical
 Hermitian half.
+
+For an arbitrary pair of equal abelian rank satisfying the paper's hypotheses,
+the formalization selects the E₈ Cartan matrix, the Weyl orbit of the
+grading character and the dimensions 248, 86 and 81. The rank-deficient
+exclusion and the isomorphism from an arbitrary survivor to the fixed
+compact pair are still open in Lean.
+[Equal-rank selection](CubicAnomaly/Classification/EqualRankSelection.lean).
 
 The [formal proof scope](formal/README.md) states the structural theorem's precise
 inputs, the geometric abelian-rank convention, and the remaining steps toward

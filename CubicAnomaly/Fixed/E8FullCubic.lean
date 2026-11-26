@@ -66,7 +66,7 @@ private theorem diagramSign_ne_zero (i : Fin 8) : (diagramSign i : ℂ) ≠ 0 :=
 
 abbrev E6Label := {d : DataIndex // d ∈ e6Labels}
 
-private def e6ToZeroLabel : E6Label → GradeLabel 0 :=
+def e6ToZeroLabel : E6Label → GradeLabel 0 :=
   Set.inclusion (s := (e6Labels : Set DataIndex))
     (t := (gradeLabels 0 : Set DataIndex)) e8_full_cubic_support_certificate.2.1
 

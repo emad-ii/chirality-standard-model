@@ -1,6 +1,7 @@
 import CubicAnomaly.Fixed.E8PairComplexType
 import CubicAnomaly.Fixed.E8FullCubic
 import CubicAnomaly.Classification.HermitianRealization
+import CubicAnomaly.Classification.AnomalyComplexification
 
 set_option Elab.async false
 
@@ -258,6 +259,93 @@ theorem e8_canonical_pair_structural_conclusions :
   all_rank_structural_reduction compactForm compactZero e8_compact_pair_effective
     e8_compactZero_ne_top pairCommutantEquivComplex canonicalHalf
     e8_canonical_half_cubicRadical_ne_bot
+
+open CubicAnomaly.Classification.AnomalyComplexification
+open CubicAnomaly.Classification.Complexification
+open scoped TensorProduct
+
+private theorem complexified_action_change (x : ℂ ⊗[ℝ] compactZero) :
+    canonicalMatrixChange (fullMatrixRepresentation (zeroComplexificationEquiv x)) =
+      complexHermitianRepresentation canonicalHalf x := by
+  induction x using TensorProduct.induction_on with
+  | zero => simp
+  | add x y hx hy => simp only [map_add, hx, hy]
+  | tmul c x =>
+    rw [e8_zeroComplexificationEquiv_tmul, map_smul, map_smul, canonical_matrix_change_action]
+    rfl
+
+private theorem radical_transport_membership {L K : Type*}
+    [LieRing L] [LieAlgebra ℂ L] [LieRing K] [LieAlgebra ℂ K]
+    {n m : Type*} [Fintype n] [DecidableEq n] [Fintype m] [DecidableEq m]
+    (e : L ≃ₗ⁅ℂ⁆ K) (ρ : L →ₗ⁅ℂ⁆ Matrix n n ℂ) (τ : K →ₗ⁅ℂ⁆ Matrix m m ℂ)
+    (h : ∀ a b c, complexTraceCubicForm ρ.toLinearMap a b c =
+      complexTraceCubicForm τ.toLinearMap (e a) (e b) (e c)) (x : L) :
+    x ∈ complexTraceRadical ρ ↔ e x ∈ complexTraceRadical τ := by
+  simp only [complexTraceRadical, mem_radical_iff]
+  constructor
+  · intro hx y z
+    obtain ⟨b, rfl⟩ := e.surjective y
+    obtain ⟨c, rfl⟩ := e.surjective z
+    exact (h x b c).symm.trans (hx b c)
+  · intro hx y z
+    exact (h x y z).trans (hx _ _)
+
+private theorem complexified_radical_membership (x : ℂ ⊗[ℝ] compactZero) :
+    x ∈ canonicalHalf.cubicRadical.toSubmodule.baseChange ℂ ↔
+      zeroComplexificationEquiv x ∈ fullRadical := by
+  rw [← hermitian_complex_radical_eq_baseChange]
+  change x ∈ complexTraceRadical (complexHermitianRepresentation canonicalHalf) ↔
+    zeroComplexificationEquiv x ∈ complexTraceRadical fullMatrixRepresentation
+  apply radical_transport_membership zeroComplexificationEquiv
+    (complexHermitianRepresentation canonicalHalf) fullMatrixRepresentation _ x
+  intro a b c
+  change matrixTraceCubic (complexHermitianRepresentation canonicalHalf a)
+      (complexHermitianRepresentation canonicalHalf b)
+      (complexHermitianRepresentation canonicalHalf c) = _
+  have ht := canonical_cubic_coordinate_invariance
+      (fullMatrixRepresentation (zeroComplexificationEquiv a))
+      (fullMatrixRepresentation (zeroComplexificationEquiv b))
+      (fullMatrixRepresentation (zeroComplexificationEquiv c))
+  simpa only [complexified_action_change] using ht
+
+/-- The complexification of the canonical compact radical is the full
+78-dimensional radical in the actual degree-zero algebra. -/
+theorem e8_canonical_radical_complexification :
+    (canonicalHalf.cubicRadical.toSubmodule.baseChange ℂ).map
+      zeroComplexificationEquiv.toLinearEquiv.toLinearMap = fullRadical.toSubmodule := by
+  ext y
+  obtain ⟨x, rfl⟩ := zeroComplexificationEquiv.surjective y
+  constructor
+  · rintro ⟨z, hz, he⟩
+    exact he ▸ (complexified_radical_membership z).mp hz
+  · exact fun hx => ⟨x, (complexified_radical_membership x).mpr hx, rfl⟩
+
+/-- Membership in the original real radical is exactly membership of the
+embedded compact element in the six-coroot, 72-root span. -/
+theorem e8_canonical_radical_iff_e6Span (x : compactZero) :
+    x ∈ canonicalHalf.cubicRadical ↔ compactZeroToComplex x ∈ e6Span := by
+  have h := complexified_radical_membership (1 ⊗ₜ[ℝ] x)
+  rw [complexification_real_mem_baseChange_iff, e8_zeroComplexificationEquiv_tmul,
+    one_smul] at h
+  rw [← e8_full_radical_eq_e6Span]
+  exact h
+
+private theorem finrank_subspace_complexification {M : Type*} [AddCommGroup M]
+    [Module ℝ M] (N : Submodule ℝ M) :
+    Module.finrank ℂ (N.baseChange ℂ) = Module.finrank ℝ N := by
+  have hi : Function.Injective (N.subtype.baseChange ℂ) :=
+    Module.Flat.lTensor_preserves_injective_linearMap N.subtype Subtype.val_injective
+  exact (LinearMap.finrank_range_of_inj hi).trans Module.finrank_baseChange
+
+/-- The compact cubic radical has real dimension 78 for the canonical half. -/
+theorem e8_canonical_radical_real_finrank : Module.finrank ℝ canonicalHalf.cubicRadical = 78 := by
+  let N := canonicalHalf.cubicRadical.toSubmodule
+  change Module.finrank ℝ N = 78
+  have h := congrArg (fun S : Submodule ℂ zeroSubalgebra => Module.finrank ℂ S)
+    e8_canonical_radical_complexification
+  exact (finrank_subspace_complexification N).symm.trans
+    ((zeroComplexificationEquiv.toLinearEquiv.finrank_map_eq (N.baseChange ℂ)).symm.trans
+      (h.trans e8_full_radical_finrank))
 
 end
 

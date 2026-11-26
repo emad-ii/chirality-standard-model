@@ -4,7 +4,7 @@ import CubicAnomaly.Fixed.StandardModelGroup
 import CubicAnomaly.Fixed.MatterGroupAction
 import CubicAnomaly.Fixed.MatterNonSelfDual
 import CubicAnomaly.Fixed.MatterFamilyAnomaly
-import CubicAnomaly.Fixed.E8CanonicalPair
+import CubicAnomaly.Fixed.E8CompactIsotropy
 
 /-!
 # The constructed fixed exceptional pair and its matter action
@@ -29,6 +29,10 @@ the complement's full real commutant is `ℂ`. Transport to the canonical
 Hermitian half proves its full cubic radical is nonzero. Thus the actual
 fixed pair satisfies the original algebraic hypotheses.
 
-The full `E6` factor and irreducible `27` identification, exceptional group
-integrations, and the global uniqueness theorem remain separate obligations.
+The full radical is Lie-isomorphic to the simple E₆ root-lattice algebra.
+The local 27 is irreducible with first fundamental highest weight. The two
+factors are mutual centralizers. The compact radical has real dimension 78
+and is simple. The real isotropy splits as its product with the standard
+special unitary Lie algebra on three complex coordinates.
+Exceptional group integration and global uniqueness remain open.
 -/

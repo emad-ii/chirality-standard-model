@@ -25,9 +25,10 @@ theorem e8_compact_dimension_eq :
 theorem e8_compact_finrank : Module.finrank ℝ compactRealAlgebra = 248 :=
   e8_compact_dimension_eq.trans E8Adjoint.e8_lieAlgebra_finrank
 
-private theorem simple_of_fixed_equiv {L : Type*} [LieRing L] [LieAlgebra ℂ L]
-    (e : L ≃ₗ⁅ℂ⁆ E8Geck.lieAlgebra) : LieAlgebra.IsSimple ℂ L := by
-  letI := E8Adjoint.e8_lieAlgebra_isSimple
+/-- Transfer simplicity along the Lie equivalences used to identify a compact real form. -/
+theorem simple_of_complex_lie_equiv {L M : Type*} [LieRing L] [LieAlgebra ℂ L]
+    [LieRing M] [LieAlgebra ℂ M] [LieAlgebra.IsSimple ℂ M]
+    (e : L ≃ₗ⁅ℂ⁆ M) : LieAlgebra.IsSimple ℂ L := by
   constructor
   · intro I
     rcases LieAlgebra.IsSimple.eq_bot_or_eq_top (I.map e.toLieHom) with hb | ht
@@ -45,8 +46,9 @@ private theorem simple_of_fixed_equiv {L : Type*} [LieRing L] [LieAlgebra ℂ L]
 
 /-- The constructed compact real algebra is simple, by descent from its actual complexification. -/
 theorem e8_compact_isSimple : LieAlgebra.IsSimple ℝ compactRealAlgebra := by
+  letI := E8Adjoint.e8_lieAlgebra_isSimple
   letI : LieAlgebra.IsSimple ℂ (ℂ ⊗[ℝ] compactRealAlgebra) :=
-    simple_of_fixed_equiv complexificationEquiv
+    simple_of_complex_lie_equiv complexificationEquiv
   exact CubicAnomaly.Classification.SimpleIdealStructure.simple_of_complexification_simple
 
 end CubicAnomaly.Fixed.E8Structure

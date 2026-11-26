@@ -30,7 +30,7 @@ theorem invariant_form_eq_zero_of_not_self_dual
   exact hns (invariant_nondegenerate_form_self_dual Φ hΦ
     (invariant_form_nondegenerate_of_ne_zero Φ hΦ hne))
 
-private def invariantSummandProjection (P Q : LieSubmodule K L M)
+def invariantSummandProjection (P Q : LieSubmodule K L M)
     (hc : IsCompl P Q) : M →ₗ⁅K,L⁆ P where
   __ := P.toSubmodule.linearProjOfIsCompl Q.toSubmodule
     (LieSubmodule.isCompl_toSubmodule.mpr hc)

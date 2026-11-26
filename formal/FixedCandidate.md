@@ -13,8 +13,9 @@ Standard Model and family representation through a faithful, explicitly
 specified embedding. The actual compact pair now satisfies the original
 complex-commutant and nonzero canonical cubic-radical hypotheses. The entire
 complex zero-grade radical is identified with an explicit 78-dimensional
-span. The abstract `E6` factor and irreducible `27` identification and the
-exceptional group integrations remain separate obligations.
+span. This ideal is Lie-isomorphic to the simple complex E₆ root-lattice algebra.
+Its irreducible local module has complex dimension 27 and highest weight ω₁.
+The family algebra acts on the three copies by its defining representation.
 
 ## Actual exceptional root, adjoint and compact objects
 
@@ -72,8 +73,7 @@ The bracket respects addition of degrees. The zero piece is an actual Lie
 subalgebra, and the other two pieces are actual modules for it. The finite
 root data also checks that the 78 zero-degree roots split into orthogonal
 sets of 72 and 6, with the displayed `E6` Cartan submatrix and `A2` Gram matrix.
-A Lie-algebra identification of the entire 78-dimensional factor is not
-inferred from these root counts alone.
+The bracket identification of the 78-dimensional factor is given below.
 
 [E8A4](../CubicAnomaly/Fixed/E8A4.lean) and
 [E8A2](../CubicAnomaly/Fixed/E8A2.lean) construct actual embeddings of
@@ -115,8 +115,7 @@ family action. Thus the fixed exceptional half has three copies of
 
 under the selected classical restriction, with the displayed defining family
 mixing. The multiplicity in this restricted representation is established by
-the explicit exceptional basis match. Naming the entire local 27 as an
-irreducible module for the full `E6` factor is still a separate identification.
+the explicit exceptional basis match. The full radical action on the local 27 is described below.
 
 [E8Matter](../CubicAnomaly/Fixed/E8Matter.lean) constructs the representation
 from the **actual commutator action on the actual degree-one Lie submodule**.
@@ -396,18 +395,63 @@ bound forces
 \]
 
 These are full-algebra results: the other two cubic inputs range over all
-of `g₀`. The radical is both nonzero and proper. Naming its explicit
-78-dimensional Lie ideal as an abstract standard `E6` model remains a
-separate identification; the radical computation itself no longer depends
-on completing that identification.
+of `g₀`. The radical is both nonzero and proper. The following constructions identify its Lie bracket and its module.
+
+## The E₆ ideal and its local 27
+
+The [E₆ lattice model](../CubicAnomaly/Fixed/E8RadicalIdentificationData.lean)
+generates its roots from the six-dimensional E₆ Cartan matrix. Its bracket
+uses the coroot pairing on Cartan inputs, the negative coroot on opposite
+roots, and the lattice cocycle when two roots sum to a root. A signed basis
+map preserves all 6,084 ordered basis brackets. Bilinearity gives the Lie
+equivalence `E6Lattice.radicalLieEquiv` onto the full radical of the actual
+degree-one action. The lattice formulas thus inherit the Lie identities.
+The adjoint root operators extract individual coordinates of an arbitrary
+ideal element, and a single root line generates all 78 directions. This
+proves simplicity. [Bracket equivalence](../CubicAnomaly/Fixed/E8RadicalIdentification.lean)
+and [simplicity proof](../CubicAnomaly/Fixed/E8RadicalIdentificationSimple.lean).
+
+The zero algebra splits as the Lie direct product of this ideal and the
+embedded family sl₃. The two factors are mutual centralizers. In particular,
+the selected Standard Model algebra belongs to the full radical even when
+the other two cubic insertions range over the entire zero algebra.
+[Direct product](../CubicAnomaly/Fixed/E8RadicalFamily.lean) and
+[centralizers](../CubicAnomaly/Fixed/E8RadicalCentralizer.lean).
+
+In signed matter coordinates, commuting with the family matrix units forces
+the radical to act by the same operator on each copy of `Matter27`.
+A proper invariant local subspace would give a proper invariant triple of
+copies under the entire zero algebra. Irreducibility of the actual degree-one
+space therefore proves irreducibility of the local 27. The degree-one root
+`(0,−1,−1,−2,−2,−2,−1)` supplies a nonzero local vector with Dynkin labels
+`(1,0,0,0,0,0)`. Each positive simple-root operator kills it.
+[Local action and irreducibility](../CubicAnomaly/Fixed/E8LocalMatter.lean)
+and [highest weight](../CubicAnomaly/Fixed/E8LocalHighestWeight.lean).
+
+On the compact real form, the complexification of the original Hermitian
+cubic radical is exactly the displayed complex radical. In particular the
+real radical has dimension 78, and membership can be tested by embedding
+a compact element into the six-coroot, 72-root span.
+[Canonical radical](../CubicAnomaly/Fixed/E8CanonicalPair.lean).
+
+The orthogonal complement of the real radical inside the compact isotropy
+is an eight-dimensional Lie ideal. Its action on a local triplet preserves
+the induced positive Hermitian metric. Orthonormal coordinates give a real
+Lie equivalence with the traceless skew-adjoint operators on ℂ³. The real
+radical is simple and its literal inclusion complexifies to the E₆ lattice
+algebra. Adding the two commuting generators gives an equivalence onto the
+original compact isotropy. In these coordinates a generator acts on the
+canonical half by the sum of the E₆ action on each local 27 and the defining
+family action on the three copies.
+[Compact factors](../CubicAnomaly/Fixed/E8CompactFactors.lean),
+[standard su(3)](../CubicAnomaly/Fixed/E8LocalCompactFamily.lean), and
+[canonical product action](../CubicAnomaly/Fixed/E8CompactIsotropy.lean).
 
 ## Remaining identification and physical scope
 
-The main remaining exceptional identifications are the explicit
-78-dimensional radical with the required abstract `E6` algebra, its local
-27-dimensional irreducible module, and the relevant compact group
-integrations. The complete original compact-pair hypotheses and the full
-zero-grade cubic radical are now proved. The existing selected Standard
+The integration of the exceptional Lie algebra inclusions and the compatibility
+of the constructed group and Lie actions under differentiation remain open.
+The existing selected Standard
 Model embedding and its matter action do not establish uniqueness of the
 Standard Model algebra among all subalgebras of the radical.
 

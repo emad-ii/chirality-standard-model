@@ -348,9 +348,10 @@ The new polynomial, tree and toral-detection arguments are deductive;
 their application to the exceptional construction inherits its disclosed
 finite certificates.
 
-The [fixed-candidate scope](../formal/FixedCandidate.md) distinguishes these
-results from the remaining full `E6` factor and irreducible `27` identification
-and exceptional group integration.
+The signed brackets identify the full ideal with the simple E₆ lattice
+algebra. Its action gives three copies of one irreducible 27 of highest
+weight ω₁. The compact radical has real dimension 78. The exceptional
+group integrations remain open. [Fixed-candidate scope](../formal/FixedCandidate.md).
 
 ### Trust model
 
@@ -365,8 +366,8 @@ Lean.trustCompiler
 ```
 
 The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem.
-The manifest contains **1342 public theorem exports**: **1017 deductive**,
-**30 finite/native-profile**, and **295 certificate-derived**. The deductive structural, root-lattice and
+The manifest contains **1553 public theorem exports**: **1166 deductive**,
+**30 finite/native-profile**, and **357 certificate-derived**. The deductive structural, root-lattice and
 classical theorems use only a
 subset of `propext`, `Classical.choice`, and `Quot.sound`; compiler-evaluation
 axioms are rejected for that class. Every receipt is matched to its fully

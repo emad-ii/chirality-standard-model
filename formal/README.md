@@ -75,11 +75,13 @@ exceptional objects and Standard Model modules:
   radical, and the constructed pair satisfies every original algebraic
   hypothesis of the all-rank structural theorem.
 
-The remaining construction gaps are the full `E6` Lie factor and irreducible
-`27` identification and exceptional group integration. The original compact
-pair, complex-type real complement and full zero-grade radical are proved.
-The remaining identifications are separate from the universal classification
-gaps below.
+The six-coroot, 72-root span is Lie-isomorphic to the simple E₆ root-lattice
+algebra. Its centralizer is the embedded family sl₃. On the degree-one
+space this gives three copies of one irreducible 27 with first fundamental
+highest weight, with the defining family action on the copy index. The
+canonical compact radical has real dimension 78 and complexifies to this
+E₆ ideal. Exceptional group integration and differentiation of the group
+actions remain open. [Proofs and conventions](FixedCandidate.md#the-e₆-ideal-and-its-local-27).
 
 ## The structural reduction
 
@@ -995,8 +997,10 @@ exceptional type names to an arbitrary ambient algebra.
 `RankOneObstruction.lean` proves that an actual compact centreless
 rank-one algebra has dimension three. From the original hypotheses it
 then excludes strict rank deficiency whenever the ambient geometric
-abelian rank is two and its dimension is even. The remaining exceptional
-rank-deficient cases still require the representation and index sieve.
+abelian rank is two and its dimension is even. The rank-one isotropy obstruction now applies in every ambient rank.
+For odd ambient dimension it forces isotropy rank at least three and
+sharpens the 133-dimensional ambient search to half-dimension at most 62.
+The general highest-weight and index interpretation is discussed below.
 
 ### Root lattices and dimension inequalities
 
@@ -1013,8 +1017,8 @@ is invertible modulo three. For A, differences from a fixed coordinate
 generate its sum-zero lattice. Lifting residues to `{-1,0,1}` puts every
 zero-grade root in a proper rational hyperplane. The comparison with the
 ambient root span handles A's sum-zero realization without confusing its
-rank with the number of coordinates. Connecting an arbitrary classical Lie
-algebra to these explicit root lattices remains a classification bridge.
+rank with the number of coordinates. The signed-coordinate reflection proof
+also works on the simple roots of an actual Cartan with a classical matrix.
 
 `Classical.lean` proves the entire finite sum for the type-A support cubic,
 not merely an identity for two unspecified coordinates:
@@ -1045,31 +1049,42 @@ even beyond the odd ranks needed by the manuscript. Identifying these
 explicit root products with dimensions of actual highest-weight modules
 still requires the representation-theoretic Weyl dimension theorem.
 
+## Selection from an actual common Cartan
+
+The simple roots of the ambient complexification give a positive-definite,
+indecomposable crystallographic Cartan matrix. A finite Cartan classification
+on the pinned toolchain gives a reindexing to A, B, C, D, E, F or G. For each
+exceptional matrix, reflection closure and descent identify the actual roots
+with the entire authored root table. The same bijection transports the integer
+root lattice, character grades and cubic contraction matrix.
+[Dynkin classification](../CubicAnomaly/Classification/RootClassificationDynkin.lean)
+and [cubic transport](../CubicAnomaly/Classification/RootClassificationCubic.lean).
+
+For each classical matrix, lift the character values on simple roots to
+integers. The lifts have values between −2 and 2 on every root, as do their
+simple reflections. A zero residue then has integer value zero. If its roots
+span the Cartan dual, the functional vanishes identically. This contradicts
+the nontrivial character supplied by the compact pair.
+[All-rank classical obstruction](../CubicAnomaly/Classification/RootClassificationClassical.lean).
+
+In the remaining five root systems, the original hypotheses give full
+zero-root span and a nonzero rational kernel for the grade-one cubic
+matrix. Checking the characters selects E₈, with 78 roots of grade zero
+and 81 of grade one. Thus at equal abelian rank the rank is 8 and the
+actual ambient, isotropy and complex-half dimensions are 248, 86 and 81.
+The selected character lies in the Weyl orbit of the seventh-coordinate
+character in the fixed construction.
+[Equal-rank selection](../CubicAnomaly/Classification/EqualRankSelection.lean)
+and [Weyl orbit](../CubicAnomaly/Classification/RootClassificationOrbit.lean).
+
 ## Remaining work for global uniqueness
 
-The following implications are not supplied by a successful build of the
-current project:
-
-| Remaining bridge | What must be established |
+| Remaining implication | Current proof boundary |
 | --- | --- |
-| Classification and census interpretation | Exhaustive reduction of actual simple Lie algebras to classical or exceptional root data, with isomorphisms respecting the root lattice, subalgebra and representation; identification of the classical root lattices with the explicit realizations in `ClassicalToral.lean` and the exceptional integer bases with the authored census coordinates |
-| Exceptional rank-deficient branch | Formalization and completeness of the Weyl-dimension/Dynkin-index sieve currently implemented in Python, including the highest-weight dimension interpretation and normalized index integrality; actual dimension/quadratic identities, the four search bounds, and the rank-two even-dimensional obstruction are proved |
-| Classical representation branch | The remaining orthogonal/symplectic constituents, support classification, and dimension/cubic-index interpretations; defining-module irreducibility and real/complexified isotropy simplicity are proved in all three concrete branches; the two-factor orthogonal/symplectic exclusion is complete, and the special-unitary branch is fully excluded in every dimension by tensor interchange |
-| Census-to-Lie interpretation | Identify authored finite roots, coroot spans, component labels and Weyl action with actual classified Lie data, and establish semantic completeness of the executable root/rank/graph/orbit algorithms; intrinsic coordinate filters, full-span and connectivity criteria, root counts, the actual root-cubic anomaly and full-radical reconstruction from internally null simple ideals are proved |
-| Exceptional identifications and integration | The actual compact pair satisfies the original effectivity, properness, complex-commutant and nonzero canonical cubic-radical hypotheses. Its full complex zero-grade radical is the explicit 78-dimensional coroot/root span. The full `E6` factor and irreducible `27` identification and exceptional group integrations remain open |
-
-The common-Cartan construction, closed contained-root subsystem, three-grade
-support, integral basis, actual root-lattice character, full-rank and
-connected-support filters, root-count interpretation and same-Cartan
-root-cubic anomaly are no longer missing in the equal-abelian-rank branch.
-The explicit geometric rank convention above is
-part of that statement; no equality with a differently defined rank is
-silently substituted.
-
-There is deliberately no theorem that hides these bridges in a field called
-"classification" or assumes that an arbitrary pair lies in the six-row
-table. The finite selection theorem and the structural theorem are both
-proved, but they are not yet connected by the full classification argument.
+| Rank-deficient exceptional pairs | Actual highest vectors with bounded integral labels, divisibility of actual ambient Killing traces, and the numerical sieve for products of dominant weights are proved. Applying the sieve to every actual module requires the Weyl dimension formula and the representation-theoretic trace, duality and cubic formulas for the simple factors. |
+| Rank-deficient classical pairs | The special-unitary case and the two-factor orthogonal/symplectic cases are excluded. In the remaining simple-isotropy cases Lean constructs the symplectic highest constituent and the orthogonal lowering constituents and bounds their support. The final representation identifications and the dimension and anomaly comparisons in the manuscript are still required. |
+| Isomorphism of compact pairs | The surviving equal-rank Cartan matrix, integer root character and dimensions are identified. The classification of root data must still be lifted to a real Lie equivalence from an arbitrary surviving pair to the constructed compact pair, carrying the isotropy and the oriented half. |
+| Exceptional Lie groups | The fixed compact Lie algebra and representation are constructed. Integrating the exceptional inclusions and differentiating the proposed group actions are additional global-group statements. |
 
 ## Verification and trust
 
@@ -1083,8 +1098,8 @@ python3 formal/scripts/check_formal_hygiene.py
 python3 formal/scripts/check_formal_hygiene.py --self-test
 ```
 
-The audit covers **1342 public theorem exports**: **1017 deductive**,
-**30 finite/native-profile**, and **295 certificate-derived**. The hygiene checker keeps an explicit export
+The audit covers **1553 public theorem exports**: **1166 deductive**,
+**30 finite/native-profile**, and **357 certificate-derived**. The hygiene checker keeps an explicit export
 manifest and matches every
 `#print axioms` receipt to its fully qualified theorem name. It rejects
 missing, duplicate, unknown, and mislabeled receipts as well as unfinished
