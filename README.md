@@ -115,12 +115,15 @@ It also proves full zero-grade irreducibility, the exact 78-dimensional
 cubic radical, and the original compact-pair hypotheses for the canonical
 Hermitian half.
 
-For an arbitrary pair of equal abelian rank satisfying the paper's hypotheses,
-the formalization selects the E₈ Cartan matrix, the Weyl orbit of the
-grading character and the dimensions 248, 86 and 81. The rank-deficient
-exclusion and the isomorphism from an arbitrary survivor to the fixed
-compact pair are still open in Lean.
-[Equal-rank selection](CubicAnomaly/Classification/EqualRankSelection.lean).
+For every effective proper pair with complex commutant and nonzero radical,
+Lean proves that either the isotropy has strictly smaller abelian rank or
+the pair is isomorphic to the constructed exceptional pair. In the second
+case the equivalence is real, maps the isotropy onto the fixed compact
+subalgebra, and its scalar extension maps both oriented matter halves.
+The special-unitary and compact symplectic defining algebras are excluded
+in all dimensions. The general rank-deficient exclusion remains open.
+[All-rank alternative](CubicAnomaly/Fixed/E8EqualRankRealPair.lean) and
+[symplectic exclusion](CubicAnomaly/Classification/ClassicalConstituentSymplecticExclusion.lean).
 
 The [formal proof scope](formal/README.md) states the structural theorem's precise
 inputs, the geometric abelian-rank convention, and the remaining steps toward

@@ -22,7 +22,8 @@ variable {K L : Type*} [Field K] [CharZero K] [LieRing L] [LieAlgebra K L]
   (H : LieSubalgebra K L) [H.IsCartanSubalgebra] [IsTriangularizable K H L]
 
 omit [CharZero K] [IsTriangularizable K H L] in
-private theorem cartan_ideal_parts (I : LieIdeal K L) (t : H) :
+/-- A Cartan element splits inside the Cartan along every ideal and its complement. -/
+theorem cartan_ideal_parts (I : LieIdeal K L) (t : H) :
     ∃ x y : H, (x : L) ∈ I ∧ (y : L) ∈ Iᶜ ∧ x + y = t := by
   have ht : (t : L) ∈ I ⊔ Iᶜ := by rw [sup_compl_eq_top]; trivial
   obtain ⟨x, hx, y, hy, hxy⟩ := (LieSubmodule.mem_sup I Iᶜ t).mp ht

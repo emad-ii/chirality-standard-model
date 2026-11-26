@@ -18,7 +18,10 @@ factorization witnesses. The special-unitary branch is now fully excluded
 in every dimension: tensor interchange and the actual Hermitian adjoint
 force its full cubic radical to be zero. The development also
 supplies actual complexification bridges, exceptional search bounds,
-uniform classical arithmetic and finite exceptional uniqueness.
+uniform classical arithmetic and finite exceptional uniqueness. For equal
+abelian rank there is now a real isomorphism of the oriented pair to the
+constructed exceptional pair. The compact symplectic defining algebra is
+also excluded in every dimension.
 **The manuscript's global uniqueness theorem over all compact Lie-algebra
 embeddings is not yet a Lean theorem.** The exact rank convention and remaining
 bridges are stated below.
@@ -845,8 +848,8 @@ all_rank_symplectic_cubic_trace_zero
 
 Together with `UnitarySimplicity.lean`, these complete defining-module
 irreducibility and isotropy simplicity for all three concrete compact
-classical constructions in every dimension. The remaining orthogonal and
-symplectic constituent analysis, support classification, and dimension
+classical constructions in every dimension. The remaining orthogonal
+constituent analysis, support classification, and dimension
 and cubic-index interpretations are separate work. The special-unitary
 branch is closed by the following operator argument.
 
@@ -1077,13 +1080,33 @@ character in the fixed construction.
 [Equal-rank selection](../CubicAnomaly/Classification/EqualRankSelection.lean)
 and [Weyl orbit](../CubicAnomaly/Classification/RootClassificationOrbit.lean).
 
+The character comparison lifts to a Lie algebra isomorphism. Matched
+positive and negative simple-root generators in a product generate a
+subalgebra surjecting onto each simple factor. Its intersection with
+height zero is contained in the diagonal Cartan. The subalgebra is proper,
+so it is the graph of a Lie equivalence. Compact-normalized root triples
+let the equivalence descend to the real form while preserving both
+grades. The fixed Geck algebra and isotropy have an explicit common
+Cartan with real origin. Consequently the equal-rank conclusion is an
+isomorphism to the actual fixed pair. Its scalar extension carries the
+two oriented matter halves with it.
+[Lie algebra recognition](../CubicAnomaly/Classification/ChevalleyRecognition.lean),
+[real descent](../CubicAnomaly/Classification/CompactEqualRankPair.lean),
+and [fixed-pair theorem](../CubicAnomaly/Fixed/E8EqualRankRealPair.lean).
+
+In the compact symplectic case the square of a highest vector gives a
+rank-one operator in the isotropy. Its quaternionic partner gives a second
+such operator on a nonorthogonal line. The generated operators span the
+whole symplectic algebra, contradicting properness. The theorem applies
+in every dimension to the original concrete compact symplectic pair.
+[Symplectic exclusion](../CubicAnomaly/Classification/ClassicalConstituentSymplecticExclusion.lean).
+
 ## Remaining work for global uniqueness
 
 | Remaining implication | Current proof boundary |
 | --- | --- |
-| Rank-deficient exceptional pairs | Actual highest vectors with bounded integral labels, divisibility of actual ambient Killing traces, and the numerical sieve for products of dominant weights are proved. Applying the sieve to every actual module requires the Weyl dimension formula and the representation-theoretic trace, duality and cubic formulas for the simple factors. |
-| Rank-deficient classical pairs | The special-unitary case and the two-factor orthogonal/symplectic cases are excluded. In the remaining simple-isotropy cases Lean constructs the symplectic highest constituent and the orthogonal lowering constituents and bounds their support. The final representation identifications and the dimension and anomaly comparisons in the manuscript are still required. |
-| Isomorphism of compact pairs | The surviving equal-rank Cartan matrix, integer root character and dimensions are identified. The classification of root data must still be lifted to a real Lie equivalence from an arbitrary surviving pair to the constructed compact pair, carrying the isotropy and the oriented half. |
+| Rank-deficient exceptional pairs | Actual highest vectors with bounded integral labels, Killing-trace divisors, the simple-module Casimir identity, and the numerical sieve on products of dominant labels are proved. The interpretation of the Weyl dimension computation and the remaining duality and cubic tests on actual modules are still required. |
+| Rank-deficient classical pairs | The concrete special-unitary and compact symplectic cases and the two-factor orthogonal case are excluded in all dimensions. In the remaining orthogonal case the root-lowering constituents and a bound on their support are proved. The final support, dimension and cubic-index arguments and their application to arbitrary compact classical pairs are still required. |
 | Exceptional Lie groups | The fixed compact Lie algebra and representation are constructed. Integrating the exceptional inclusions and differentiating the proposed group actions are additional global-group statements. |
 
 ## Verification and trust
@@ -1098,8 +1121,8 @@ python3 formal/scripts/check_formal_hygiene.py
 python3 formal/scripts/check_formal_hygiene.py --self-test
 ```
 
-The audit covers **1553 public theorem exports**: **1166 deductive**,
-**30 finite/native-profile**, and **357 certificate-derived**. The hygiene checker keeps an explicit export
+The audit covers **1638 public theorem exports**: **1218 deductive**,
+**30 finite/native-profile**, and **390 certificate-derived**. The hygiene checker keeps an explicit export
 manifest and matches every
 `#print axioms` receipt to its fully qualified theorem name. It rejects
 missing, duplicate, unknown, and mislabeled receipts as well as unfinished

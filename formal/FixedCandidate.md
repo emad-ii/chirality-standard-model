@@ -447,6 +447,13 @@ family action on the three copies.
 [standard su(3)](../CubicAnomaly/Fixed/E8LocalCompactFamily.lean), and
 [canonical product action](../CubicAnomaly/Fixed/E8CompactIsotropy.lean).
 
+Every equal-rank survivor is isomorphic to this constructed compact
+pair by a real Lie equivalence carrying the isotropy. Its scalar
+extension carries the chosen positive and negative halves to the
+corresponding fixed half. The all-rank alternative leaves only strict
+rank deficiency as a possible source of another pair.
+[Real pair equivalence](../CubicAnomaly/Fixed/E8EqualRankRealPair.lean).
+
 ## Remaining identification and physical scope
 
 The integration of the exceptional Lie algebra inclusions and the compatibility
@@ -455,7 +462,7 @@ The existing selected Standard
 Model embedding and its matter action do not establish uniqueness of the
 Standard Model algebra among all subalgebras of the radical.
 
-The universal orthogonal/symplectic exclusions and exceptional sieve
+The universal orthogonal exclusions and exceptional sieve
 completeness are not prerequisites for this constructive target. They remain
 part of the stronger global uniqueness program. The manuscript's universal
 uniqueness theorem is not yet an exported Lean theorem.

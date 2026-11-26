@@ -73,17 +73,18 @@ private theorem map_character_grade_le (σ : L ≃ₗ⁅K⁆ L) (π : Equiv.Perm
     exact (root_space_le_character_grade_iff H ψ (π j) i).mpr hψ (hs j x hx)
 
 /-- A word relating two characters transports their full homogeneous subspaces. -/
-theorem map_character_grades_of_word
+theorem map_character_grades_of_word_preserving_cartan
     (b : (rootSystem H).Base) (s : Index e8Datum ≃ b.support) (w : List (Fin 8))
     (χ ψ : rootLattice H →+ ZMod 3) (hw : χ = ψ.comp (latticeWord H b s w).toAddMonoidHom) :
-    ∃ σ : L ≃ₗ⁅K⁆ L, ∀ i : ZMod 3, (rootCharacterGrade H χ i).map σ.toLinearMap =
+    ∃ σ : L ≃ₗ⁅K⁆ L, (∀ x : L, σ x ∈ H ↔ x ∈ H) ∧
+      ∀ i : ZMod 3, (rootCharacterGrade H χ i).map σ.toLinearMap =
       rootCharacterGrade H ψ i := by
   let π := rootWord H b s w
   have hd (j : H.root) : χ (rootLatticeElement H j) = ψ (rootLatticeElement H (π j)) := by
     conv_lhs => rw [hw, AddMonoidHom.comp_apply]
     exact congrArg ψ (lattice_word_on_root H b s w j)
   obtain ⟨σ, hH, hσ⟩ := exists_automorphism_realizing_root_word H b s w
-  refine ⟨σ, fun i => le_antisymm (map_character_grade_le H σ π χ ψ
+  refine ⟨σ, hH, fun i => le_antisymm (map_character_grade_le H σ π χ ψ
     (fun x => (hH x).mpr) (fun j x => (hσ j x).mpr) hd i) ?_⟩
   have hinvH (x : L) (hx : x ∈ H) : σ.symm x ∈ H :=
     (hH _).mp (by simpa using hx)
@@ -95,6 +96,15 @@ theorem map_character_grades_of_word
     (fun j => by simpa only [Equiv.apply_symm_apply] using (hd (π.symm j)).symm) i
   intro x hx
   exact ⟨σ.symm x, hback ⟨x, hx, rfl⟩, σ.apply_symm_apply x⟩
+
+/-- A word relating two characters transports their full homogeneous subspaces. -/
+theorem map_character_grades_of_word
+    (b : (rootSystem H).Base) (s : Index e8Datum ≃ b.support) (w : List (Fin 8))
+    (χ ψ : rootLattice H →+ ZMod 3) (hw : χ = ψ.comp (latticeWord H b s w).toAddMonoidHom) :
+    ∃ σ : L ≃ₗ⁅K⁆ L, ∀ i : ZMod 3, (rootCharacterGrade H χ i).map σ.toLinearMap =
+      rootCharacterGrade H ψ i := by
+  obtain ⟨σ, _, hσ⟩ := map_character_grades_of_word_preserving_cartan H b s w χ ψ hw
+  exact ⟨σ, hσ⟩
 
 /-- Conjugation realizes the E₈ character-orbit calculation on the full
 homogeneous components, including the Cartan in degree zero. -/

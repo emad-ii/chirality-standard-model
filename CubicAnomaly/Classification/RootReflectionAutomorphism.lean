@@ -16,7 +16,8 @@ open LieAlgebra.IsKilling
 
 variable {K L : Type*} [Field K] [LieRing L] [LieAlgebra K L]
 
-private def adDerivation (x : L) : LieDerivation K L L where
+/-- The inner derivation associated to a root operator. -/
+def adDerivation (x : L) : LieDerivation K L L where
   toLinearMap := ad K L x
   leibniz' a b := by
     change ⁅x, ⁅a, b⁆⁆ = ⁅a, ⁅x, b⁆⁆ - ⁅b, ⁅x, a⁆⁆
@@ -47,13 +48,16 @@ end Exp
 variable [CharZero K] [FiniteDimensional K L] [LieAlgebra.IsKilling K L]
   (H : LieSubalgebra K L) [H.IsCartanSubalgebra] [IsTriangularizable K H L]
 
-/-- Each Weyl generator on the Cartan subalgebra is realized by an ambient
-Lie algebra automorphism. -/
-theorem exists_automorphism_coreflection (i : H.root) :
-    ∃ σ : L ≃ₗ⁅K⁆ L, ∀ z : H, σ (z : L) = ((rootSystem H).coreflection i z : H) := by
-  letI : LieAlgebra ℚ L := {
-    __ := Module.compHom L (algebraMap ℚ K)
-    lie_smul := fun q x y => LieAlgebra.lie_smul ((algebraMap ℚ K) q) x y }
+/-- A property of Lie automorphisms that is preserved by composition and
+holds on the exponentials of nilpotent root operators holds on a lift
+of every root reflection. -/
+theorem exists_coreflection_of_exp_stable [LieAlgebra ℚ L] (i : H.root)
+    (p : (L ≃ₗ⁅K⁆ L) → Prop)
+    (hexp : ∀ (x : L) (χ : H → K), χ ≠ 0 → x ∈ rootSpace H χ →
+      ∀ hn : IsNilpotent ((adDerivation (K := K) x).toLinearMap),
+        p ((adDerivation (K := K) x).exp hn))
+    (htrans : ∀ a b, p a → p b → p (a.trans b)) :
+    ∃ σ : L ≃ₗ⁅K⁆ L, p σ ∧ ∀ z : H, σ (z : L) = ((rootSystem H).coreflection i z : H) := by
   have hi : i.val.IsNonZero := (Finset.mem_filter.mp i.property).2
   obtain ⟨s, e, f, t, he, hf⟩ := exists_isSl2Triple_of_weight_isNonZero hi
   obtain rfl := t.h_eq_coroot hi he hf
@@ -80,7 +84,10 @@ theorem exists_automorphism_coreflection (i : H.root) :
     rw [exp_three, Fe, Fh, ← Nat.cast_smul_eq_nsmul ℚ, smul_neg, smul_smul]
     · norm_num [sub_eq_add_neg]
     · simp [Fe, Fh, Ff]
-  refine ⟨((E.exp hE).trans (F.exp hF)).trans (E.exp hE), fun z => ?_⟩
+  have hpE : p (E.exp hE) := hexp e _ hi he hE
+  have hpF : p (F.exp hF) := hexp (-f) _ (neg_ne_zero.mpr hi) ((rootSpace H _).neg_mem hf) hF
+  refine ⟨((E.exp hE).trans (F.exp hF)).trans (E.exp hE),
+    htrans _ _ (htrans _ _ hpE hpF) hpE, fun z => ?_⟩
   let k := i.val z
   have Ez : E (z : L) = -(k • e) :=
     (lie_skew e (z : L)).symm.trans (congrArg Neg.neg (lie_eq_smul_of_mem_rootSpace he z))
@@ -99,6 +106,17 @@ theorem exists_automorphism_coreflection (i : H.root) :
   have eqn : (z : L) - k • f - k • (e + h - f) = z.val - k • e - k • h := by module
   rw [eqn, map_sub, map_sub, map_smul, map_smul, EonZ, Efix, EonH]
   module
+
+/-- Each Weyl generator on the Cartan subalgebra is realized by an ambient
+Lie algebra automorphism. -/
+theorem exists_automorphism_coreflection (i : H.root) :
+    ∃ σ : L ≃ₗ⁅K⁆ L, ∀ z : H, σ (z : L) = ((rootSystem H).coreflection i z : H) := by
+  letI : LieAlgebra ℚ L := {
+    __ := Module.compHom L (algebraMap ℚ K)
+    lie_smul := fun q x y => LieAlgebra.lie_smul ((algebraMap ℚ K) q) x y }
+  obtain ⟨σ, _, hs⟩ := exists_coreflection_of_exp_stable H i (fun _ => True)
+    (fun _ _ _ _ _ => trivial) (fun _ _ _ _ => trivial)
+  exact ⟨σ, hs⟩
 
 private theorem map_mem_reflected_rootSpace (i : H.root) (σ : L ≃ₗ⁅K⁆ L)
     (hs : ∀ z : H, σ (z : L) = ((rootSystem H).coreflection i z : H))

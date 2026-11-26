@@ -28,7 +28,8 @@ private def productActionLinear : L ⊗[ℂ] L →ₗ[ℂ] Module.End ℂ M :=
   TensorProduct.lift ((LinearMap.mul ℂ (Module.End ℂ M)).compl₁₂
     (toEnd ℂ L M).toLinearMap (toEnd ℂ L M).toLinearMap)
 
-private def productAction : L ⊗[ℂ] L →ₗ⁅ℂ,L⁆ Module.End ℂ M where
+/-- Composition of the two infinitesimal actions as a tensor-product equivariant map. -/
+def productAction : L ⊗[ℂ] L →ₗ⁅ℂ,L⁆ Module.End ℂ M where
   __ := productActionLinear
   map_lie' := by
     intro x z
@@ -155,28 +156,40 @@ open LieAlgebra.IsKilling
 
 variable (H : LieSubalgebra ℂ L) [H.IsCartanSubalgebra]
 
-private structure RootPair (α : H.root) where
+/-- Opposite root vectors completing the coroot to an sl₂ triple. -/
+structure RootPair (α : H.root) where
   e : L
   f : L
   triple : IsSl2Triple (coroot α.val : L) e f
   he : e ∈ rootSpace H α.val
   hf : f ∈ rootSpace H (-α.val)
 
-private def rootPair (α : H.root) : RootPair H α := Classical.choice <| by
+/-- A choice of such a pair for every actual root. -/
+def rootPair (α : H.root) : RootPair H α := Classical.choice <| by
   have hα : α.val.IsNonZero := (Finset.mem_filter.mp α.property).2
   obtain ⟨h, e, f, t, he, hf⟩ := exists_isSl2Triple_of_weight_isNonZero hα
   have h := t.h_eq_coroot hα he hf
   exact ⟨⟨e, f, h ▸ t, he, hf⟩⟩
 
-private def pairScale (α : H.root) := killingForm ℂ L (rootPair H α).e (rootPair H α).f
+/-- Killing pairing of the chosen opposite root vectors. -/
+def pairScale (α : H.root) := killingForm ℂ L (rootPair H α).e (rootPair H α).f
 
-private theorem pairScale_ne_zero (α : H.root) : pairScale H α ≠ 0 := by
+/-- The paired vectors have nonzero Killing pairing. -/
+theorem pairScale_ne_zero (α : H.root) : pairScale H α ≠ 0 := by
   let P := rootPair H α
   have h := lie_eq_killingForm_smul_of_mem_rootSpace_of_mem_rootSpace_neg P.he P.hf
   change ⁅P.e, P.f⁆ = pairScale H α • _ at h
   intro hzero
   apply P.triple.h_ne_zero
   rw [← P.triple.lie_e_f, h, hzero, zero_smul]
+
+/-- The Cartan element Killing-dual to the root scales to its actual coroot. -/
+theorem coroot_eq_pairScale_smul_dual (α : H.root) :
+    coroot α.val = pairScale H α • (cartanEquivDual H).symm (α.val : Module.Dual ℂ H) := by
+  apply Subtype.ext
+  exact (rootPair H α).triple.lie_e_f.symm.trans
+    (lie_eq_killingForm_smul_of_mem_rootSpace_of_mem_rootSpace_neg
+      (rootPair H α).he (rootPair H α).hf)
 
 omit [FiniteDimensional ℂ L] [LieAlgebra.IsKilling ℂ L] [H.IsCartanSubalgebra] in
 private theorem killing_vanish_of_weights {a b : H → ℂ} {v w : L}
@@ -222,13 +235,16 @@ private theorem cartan_orthogonal_root (α : H.root) (x : H) {y : L}
   obtain ⟨z, hz⟩ : ∃ z, α.val z ≠ 0 := by simpa [Weight.IsNonZero, Weight.IsZero, funext_iff] using hα
   exact ⟨z, by simpa using hz⟩
 
-private def cartanDual (b : Basis ι ℂ H) :=
+/-- Killing-dual basis in the Cartan. -/
+def cartanDual (b : Basis ι ℂ H) :=
   (traceForm ℂ H L).dualBasis (traceForm_cartan_nondegenerate ℂ L H) b
 
-private def cartanTensor (b : Basis ι ℂ H) : L ⊗[ℂ] L :=
+/-- The Cartan summand of the inverse Killing tensor. -/
+def cartanTensor (b : Basis ι ℂ H) : L ⊗[ℂ] L :=
   ∑ i, ((cartanDual H b i : H) : L) ⊗ₜ[ℂ] ((b i : H) : L)
 
-private def rootTensor (α : H.root) : L ⊗[ℂ] L :=
+/-- The inverse Killing tensor summand corresponding to an actual root. -/
+def rootTensor (α : H.root) : L ⊗[ℂ] L :=
   (pairScale H α)⁻¹ • ((rootPair H α).f ⊗ₜ[ℂ] (rootPair H α).e)
 
 private theorem tensorEnd_rootTensor (α : H.root) (y : L) :
@@ -243,7 +259,8 @@ private theorem tensorEnd_cartanTensor (b : Basis ι ℂ H) (y : L) :
   rw [cartanTensor, map_sum, LinearMap.sum_apply]
   rfl
 
-private theorem casimir_tensor_by_roots (b : Basis ι ℂ H) :
+/-- The inverse Killing tensor decomposes into Cartan and paired-root summands. -/
+theorem casimir_tensor_by_roots (b : Basis ι ℂ H) :
     casimirTensor L = cartanTensor H b + ∑ α : H.root, rootTensor H α := by
   classical
   apply (tensorEnd L).injective
@@ -292,6 +309,100 @@ private theorem casimir_tensor_by_roots (b : Basis ι ℂ H) :
       · exact hroot ⟨⟨χ, hspace⟩, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hχ⟩⟩ hy
   | zero => simp
   | add x y _ _ hx hy => rw [map_add, ← hx, ← hy]
+
+/-- The highest-weight Casimir value for the Killing normalization. The second
+summand contracts the highest weight with the sum of all positive roots. -/
+def highestCasimirValue (b : (rootSystem H).Base) (χ : Module.Dual ℂ H) : ℂ := by
+  classical
+  exact χ ((cartanEquivDual H).symm χ) +
+    ∑ α : H.root, if b.IsPos α then χ ((cartanEquivDual H).symm α.val) else 0
+
+omit [FiniteDimensional ℂ M] in
+private theorem cartanTensor_action (b : Basis ι ℂ H) (χ : Module.Dual ℂ H)
+    {v : M} (hev : ∀ x : H, ⁅x, v⁆ = χ x • v) :
+    (productAction (L := L) (M := M)) (cartanTensor H b) v = χ ((cartanEquivDual H).symm χ) • v := by
+  rw [cartanTensor, map_sum, LinearMap.sum_apply]
+  have hact (i : ι) : (productAction (L := L) (M := M)) (((cartanDual H b i : H) : L) ⊗ₜ[ℂ] ((b i : H) : L)) v =
+      (χ (b i) * χ (cartanDual H b i)) • v := by
+    change ⁅cartanDual H b i, ⁅b i, v⁆⁆ = _
+    rw [hev, lie_smul, hev, mul_smul]
+  simp_rw [hact]
+  rw [← Finset.sum_smul]
+  congr 1
+  have h := congrArg (fun c : Module.Dual ℂ H => χ ((cartanEquivDual H).symm c))
+    (b.dualBasis.sum_repr χ)
+  simpa only [map_sum, map_smul, Basis.dualBasis_repr, smul_eq_mul] using h
+
+omit [FiniteDimensional ℂ M] in
+private theorem rootTensor_action (b : (rootSystem H).Base) (χ : Module.Dual ℂ H)
+    {v : M} (hev : ∀ x : H, ⁅x, v⁆ = χ x • v)
+    (hkill : ∀ α : H.root, b.IsPos α → ∀ x ∈ rootSpace H α.val, ⁅x, v⁆ = 0)
+    (α : H.root) :
+    letI := (rootSystem H).indexNeg
+    letI := Classical.propDecidable
+    (productAction (L := L) (M := M)) (rootTensor H (-α)) v =
+      (if b.IsPos α then χ ((cartanEquivDual H).symm α.val) else 0) • v := by
+  classical
+  letI := (rootSystem H).indexNeg
+  let P := rootPair H (-α)
+  have hn : (rootSystem H).root (-α) = -(rootSystem H).root α := by
+    simp only [RootPairing.indexNeg_neg, RootPairing.root_reflectionPerm,
+      RootPairing.reflection_apply_self]
+  have hdual : ((-α).val : Module.Dual ℂ H) = -(α.val : Module.Dual ℂ H) := hn
+  rw [rootTensor, map_smul, LinearMap.smul_apply]
+  change (pairScale H (-α))⁻¹ • ⁅P.f, ⁅P.e, v⁆⁆ = _
+  by_cases h : b.IsPos α
+  · rw [if_pos h]
+    have hweight : (-(⇑(-α).val) : H → ℂ) = ⇑α.val := by
+      funext x
+      have hh := LinearMap.congr_fun hdual x
+      change (-α).val x = -α.val x at hh
+      change -(-α).val x = _
+      rw [hh, neg_neg]
+    have hf : ⁅P.f, v⁆ = 0 :=
+      hkill α h P.f (by simpa only [hweight] using P.hf)
+    have hbr := lie_eq_killingForm_smul_of_mem_rootSpace_of_mem_rootSpace_neg P.he P.hf
+    have hfe : ⁅P.f, ⁅P.e, v⁆⁆ =
+        pairScale H (-α) • (χ ((cartanEquivDual H).symm α.val) • v) := by
+      have hh := leibniz_lie P.e P.f v
+      rw [hf, lie_zero, hbr, smul_lie] at hh
+      change 0 = pairScale H (-α) • ⁅(cartanEquivDual H).symm ((-α).val : Module.Dual ℂ H), v⁆ +
+        ⁅P.f, ⁅P.e, v⁆⁆ at hh
+      rw [hdual, map_neg, neg_lie, hev, smul_neg] at hh
+      exact eq_of_sub_eq_zero (by rw [sub_eq_add_neg, add_comm]; exact hh.symm)
+    rw [hfe, inv_smul_smul₀ (pairScale_ne_zero H _)]
+  · rw [if_neg h, hkill _ ((RootPairing.Base.IsPos.neg_iff_not b α).mpr h) _ P.he]
+    simp
+
+omit [FiniteDimensional ℂ M] in
+/-- On an actual highest vector, the Casimir acts by the contraction
+of the highest weight with itself plus all positive roots. -/
+theorem highest_weight_casimir_formula (b : (rootSystem H).Base) (χ : Module.Dual ℂ H)
+    {v : M} (hev : ∀ x : H, ⁅x, v⁆ = χ x • v)
+    (hkill : ∀ α : H.root, b.IsPos α → ∀ x ∈ rootSpace H α.val, ⁅x, v⁆ = 0) :
+    casimirOperator L M v = highestCasimirValue H b χ • v := by
+  classical
+  letI := (rootSystem H).indexNeg
+  rw [casimirOperator, casimir_tensor_by_roots H (Module.finBasis ℂ H), map_add, map_sum,
+    LinearMap.add_apply, LinearMap.sum_apply, cartanTensor_action H _ χ hev]
+  rw [← Equiv.sum_comp (Equiv.neg H.root) (fun α => (productAction (L := L) (M := M)) (rootTensor H α) v)]
+  simp only [Equiv.neg_apply, rootTensor_action H b χ hev hkill, ← Finset.sum_smul,
+    ← add_smul]
+  rfl
+
+/-- The quadratic trace index of an actual simple-algebra irreducible
+is computed by its highest weight, the positive roots and the two dimensions. -/
+theorem highest_weight_trace_index [LieAlgebra.IsSimple ℂ L] [IsIrreducible ℂ L M]
+    (b : (rootSystem H).Base) (χ : Module.Dual ℂ H) {v : M} (hv : v ≠ 0)
+    (hev : ∀ x : H, ⁅x, v⁆ = χ x • v)
+    (hkill : ∀ α : H.root, b.IsPos α → ∀ x ∈ rootSpace H α.val, ⁅x, v⁆ = 0) :
+    ∃ m : ℂ, traceForm ℂ L M = m • killingForm ℂ L ∧
+      highestCasimirValue H b χ * finrank ℂ M = m * finrank ℂ L := by
+  obtain ⟨c, m, hc, hm, hdim⟩ := casimir_scalar_trace_index (L := L) (M := M)
+  have h := highest_weight_casimir_formula H b χ hev hkill
+  rw [hc] at h
+  have heq := smul_left_injective ℂ hv (show c • v = highestCasimirValue H b χ • v from h)
+  exact ⟨m, hm, heq ▸ hdim⟩
 
 end Highest
 

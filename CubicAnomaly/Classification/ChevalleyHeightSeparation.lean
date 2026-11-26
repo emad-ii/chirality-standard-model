@@ -15,6 +15,7 @@ variable {K L : Type*} [Field K] [CharZero K] [LieRing L] [LieAlgebra K L]
 private noncomputable def heights (t : L) (c : K) (i : ℕ) :=
   (ad K L t).eigenspace (((i : K) + 1) * c)
 
+omit [CharZero K] in
 private theorem bracket_at_heights {t x y : L} {c : K} {i j : ℕ}
     (hx : x ∈ heights t c i) (hy : y ∈ heights t c j) :
     ⁅x, y⁆ ∈ heights t c (i + j + 1) := by

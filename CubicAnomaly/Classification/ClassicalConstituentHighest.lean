@@ -184,6 +184,22 @@ theorem cyclic_highest_line (b : (rootSystem H).Base) {μ : H → ℂ} {v w : M}
     LieSubmodule.lieSpan_le.mpr (Set.singleton_subset_iff.mpr (word_mem H b v []))
   exact hle hmem
 
+/-- A nonzero functional killed by all negative root spaces has nonzero
+evaluation on the highest line. -/
+theorem negative_annihilator_pairs_highest [IsIrreducible ℂ L M] (b : (rootSystem H).Base)
+    {μ : H → ℂ} {v : M} (hv : IsHighestVector H b μ v) (f : Dual ℂ M) (hf : f ≠ 0)
+    (hneg : ∀ i : H.root, ¬ b.IsPos i → ∀ x ∈ rootSpace H i.val, ∀ m : M, f ⁅x,m⁆ = 0) :
+    f v ≠ 0 := by
+  intro hz
+  have hle : wordSpan H b v ≤ LinearMap.ker f := by
+    apply Submodule.span_le.mpr
+    rintro _ ⟨w, rfl⟩
+    cases w with
+    | nil => exact hz
+    | cons x w => exact hneg x.root x.neg x.op x.mem _
+  rw [wordSpan_eq_top H b hv] at hle
+  exact hf (LinearMap.ext fun m => hle (show m ∈ (⊤ : Submodule ℂ M) from trivial))
+
 /-- In an irreducible module any two highest vectors for an actual root-system
 base span the same line and have identical Cartan weights. -/
 theorem irreducible_highest_weight_unique [IsIrreducible ℂ L M] (b : (rootSystem H).Base)

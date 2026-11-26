@@ -60,6 +60,21 @@ def indexQuotient (g : Ambient) (n : ℕ) (r : Row) : ℚ :=
 def Compatible (g : Ambient) (n : ℕ) (r : Row) : Prop :=
   (indexQuotient g n r).den = 1
 
+/-- An actual integral multiple of the ambient divisor gives precisely the
+denominator test used to enumerate the corresponding factor row. -/
+theorem compatible_of_trace_multiple (g : Ambient) (n : ℕ) (t : Factor) (a : t.Label)
+    (m : ℤ) (hm : 4 * (t.dualCoxeter : ℂ) + 4 * (n : ℂ) * (t.casimir a : ℂ) / t.algebraDim =
+      ((g.divisor * m : ℤ) : ℂ)) : Compatible g n (row t a) := by
+  have h : (4 * t.dualCoxeter + 4 * (n : ℚ) * t.casimir a / t.algebraDim : ℚ) =
+      g.divisor * (m : ℚ) := by
+    apply Rat.cast_injective (α := ℂ)
+    simpa using hm
+  have hnz : (g.divisor : ℚ) ≠ 0 := by cases g <;> decide
+  have hh := (div_eq_iff hnz).mpr (h.trans (mul_comm _ _))
+  change (indexQuotient g n (row t a)).den = 1
+  change indexQuotient g n (row t a) = (m : ℚ) at hh
+  rw [hh, Rat.den_intCast]
+
 instance (g : Ambient) (n : ℕ) (r : Row) : Decidable (Compatible g n r) := by
   unfold Compatible
   infer_instance

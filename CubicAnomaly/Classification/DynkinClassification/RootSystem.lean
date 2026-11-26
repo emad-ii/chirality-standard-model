@@ -94,12 +94,15 @@ theorem actual_cartan_connected [P.IsIrreducible] [P.IsReduced] (i j : b.support
   refine b.induction_on_cartanMatrix _ (Relation.ReflTransGen.refl (a := i)) (fun u v hu hv => ?_)
   exact hu.tail (fun hz => hv (b.cartanMatrix_apply_eq_zero_iff_symm.mp hz))
 
+/-- The simple Cartan matrix of a possibly reducible root system is finite. -/
+theorem actual_finite_cartan : b.cartanMatrix.IsFiniteCartan :=
+  Matrix.IsFiniteCartan.mk_of_exists_posDef b.cartanMatrix_apply_same
+    b.cartanMatrix_le_zero_of_ne (exists_left_symmetrizer b)
+
 /-- The actual simple-root Cartan matrix of an irreducible reduced root
 system satisfies both hypotheses of the finite Dynkin classification. -/
 theorem actual_finite_indecomposable_cartan [P.IsIrreducible] [P.IsReduced] :
     b.cartanMatrix.IsFiniteCartan ∧ b.cartanMatrix.IsIndecomposable :=
-  ⟨Matrix.IsFiniteCartan.mk_of_exists_posDef b.cartanMatrix_apply_same
-     b.cartanMatrix_le_zero_of_ne (exists_left_symmetrizer b),
-   actual_cartan_connected b⟩
+  ⟨actual_finite_cartan b, actual_cartan_connected b⟩
 
 end CubicAnomaly.Classification.DynkinClassification

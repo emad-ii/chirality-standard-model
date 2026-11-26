@@ -366,8 +366,8 @@ Lean.trustCompiler
 ```
 
 The first two are foundational Lean axioms; the last two connect compiled evaluation to the theorem.
-The manifest contains **1553 public theorem exports**: **1166 deductive**,
-**30 finite/native-profile**, and **357 certificate-derived**. The deductive structural, root-lattice and
+The manifest contains **1638 public theorem exports**: **1218 deductive**,
+**30 finite/native-profile**, and **390 certificate-derived**. The deductive structural, root-lattice and
 classical theorems use only a
 subset of `propext`, `Classical.choice`, and `Quot.sound`; compiler-evaluation
 axioms are rejected for that class. Every receipt is matched to its fully
@@ -387,27 +387,18 @@ classification axiom. The standalone Standard Model group, charge, matter,
 chirality and anomaly theorems are deductive. Their transfer to the actual
 exceptional subspace inherits the explicitly audited finite certificates.
 
-### Manuscript proofs
+### Manuscript and formal proof scope
 
-The paper supplies the homogeneous realization of the algebraic pair, the
-remaining classification/completeness and representation-theoretic bridges,
-identification of the classified actual weights and ideals with the finite
-census, compact exceptional group integrations, exceptional branching and
-its chiral index. The Lean
-modules discharge the real and complex structural reduction, the actual
-dual-pair construction, the geometric rank-deficient-or-intrinsic-toral-data
-dichotomy, same-Cartan root-cubic detection and reconstruction of the full
-radical from actual simple ideals, the defining-module irreducibility step
-and real/complexified isotropy simplicity for all three concrete compact
-classical constructions, complete two-factor and special-unitary exclusions, actual complexification
-bridges, dimension and quadratic restriction identities, derived exceptional
-search bounds, root-lattice saturation, classical order-three exclusion and
-unbounded classical arithmetic described above.
-They do not replace the remaining classification argument. The actual
-degree-one exceptional module is now matched to the constructed matter
-under the explicit gauge-plus-family embedding, giving its Standard Model
-three-family splitting and self-dual remainder. Its full `E6` module
-identification remains a separate obligation.
+Lean proves the equal-abelian-rank uniqueness theorem for real compact pairs,
+including the isomorphism of their two oriented matter spaces. It proves
+the complete special-unitary and compact symplectic exclusions in all
+dimensions. The actual fixed radical is a compact simple real form of E₆,
+and the local module is an irreducible 27 of first fundamental highest weight.
+The numerical exceptional sieve covers all bounded products of the catalogued
+dominant labels. Its complete representation-theoretic interpretation and
+the remaining rank-deficient orthogonal analysis still rely on the manuscript.
+Exceptional group integration is a separate question.
+[Formal proof scope](../formal/README.md).
 
 ## Local notebook
 
